@@ -1,12 +1,12 @@
-name: Run Python Scripts on Push to Main
+name: Update READMEs
 
 on:
   push:
     branches:
     - main
   workflow_dispatch:
-  # schedule:
-  # - cron:  '21 3/12 * * *'
+  schedule:
+  - cron:  '21 3/12 * * *'
 
 permissions:
   contents: write
