@@ -1,0 +1,458 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">datasette-reconcile</h1><a id="user-content-datasette-reconcile" class="anchor" aria-label="Permalink: datasette-reconcile" href="#datasette-reconcile"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://pypi.org/project/datasette-reconcile" rel="nofollow"><img src="https://img.shields.io/pypi/v/datasette-reconcile.svg" alt="PyPI - Version" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/2d5672b63cce54caab1d6178d996f685c700f1b0e815a1208c2f00093e4e9040/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f6461746173657474652d7265636f6e63696c652e737667"></a>
+<a href="https://pypi.org/project/datasette-reconcile" rel="nofollow"><img src="https://img.shields.io/pypi/pyversions/datasette-reconcile.svg" alt="PyPI - Python Version" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/ae1cab5a3d030380789f49e8c76c0cc82f5855063bf3d3ab4b8415b7b6d262b5/68747470733a2f2f696d672e736869656c64732e696f2f707970692f707976657273696f6e732f6461746173657474652d7265636f6e63696c652e737667"></a>
+<a href="https://github.com/drkane/datasette-reconcile/releases"><img src="https://img.shields.io/github/v/release/drkane/datasette-reconcile?include_prereleases&label=changelog" alt="Changelog" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/be2acb7981700fcd95db7c48ee6063d75e7cb6eaa5043981bc19a696f6d9da01/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f72656c656173652f64726b616e652f6461746173657474652d7265636f6e63696c653f696e636c7564655f70726572656c6561736573266c6162656c3d6368616e67656c6f67"></a>
+<a href="https://github.com/drkane/datasette-reconcile/actions?query=workflow%3ATest"><img src="https://github.com/drkane/datasette-reconcile/workflows/Test/badge.svg" alt="Tests" style="max-width: 100%;"></a>
+<a href="https://github.com/drkane/datasette-reconcile/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" alt="License" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/c355f200ea90fddaa407b6eaab303663a669248ea3ca7b1fcf77dbe04ff5f48c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d417061636865253230322e302d626c75652e737667"></a></p>
+<p dir="auto">Adds a reconciliation API endpoint to <a href="https://docs.datasette.io/en/stable/" rel="nofollow">Datasette</a>, based on the <a href="https://reconciliation-api.github.io/specs/latest/" rel="nofollow">Reconciliation Service API</a> specification.</p>
+<p dir="auto">The reconciliation API is used to match a set of strings to their correct identifiers, to help with disambiguation and consistency in large datasets. For example, the strings "United Kingdom", "United Kingdom of Great Britain and Northern Ireland" and "UK" could all be used to identify the country which has the ISO country code <code>GB</code>. It is particularly implemented in <a href="https://openrefine.org/" rel="nofollow">OpenRefine</a>.</p>
+<p dir="auto">The plugin adds a <code>/-/reconcile</code> endpoint to a table served by datasette, which responds based on the Reconciliation Service API specification. In order to activate this endpoint you need to configure the reconciliation service, as dscribed in the <a href="#usage">usage</a> section.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Installation</h2><a id="user-content-installation" class="anchor" aria-label="Permalink: Installation" href="#installation"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Install this plugin in the same environment as Datasette.</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ datasette install datasette-reconcile"><pre class="notranslate"><code>$ datasette install datasette-reconcile
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Usage</h2><a id="user-content-usage" class="anchor" aria-label="Permalink: Usage" href="#usage"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Plugin configuration</h3><a id="user-content-plugin-configuration" class="anchor" aria-label="Permalink: Plugin configuration" href="#plugin-configuration"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The plugin should be configured using Datasette's <a href="https://docs.datasette.io/en/stable/metadata.html" rel="nofollow"><code>metadata.json</code></a> file. The configuration can be put at the root, database or table layer of <code>metadata.json</code>, for most use cases it will make most sense to configure at the table level.</p>
+<p dir="auto">Add a <code>datasette-reconcile</code> object under <code>plugins</code> in <code>metadata.json</code>. This should look something like:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+  "databases": {
+    "sf-trees": {
+      "tables": {
+        "Street_Tree_List": {
+          "plugins": {
+            "datasette-reconcile": {
+              "id_field": "id",
+              "name_field": "name",
+              "type_field": "type",
+              "type_default": [
+                {
+                  "id": "tree",
+                  "name": "Tree"
+                }
+              ],
+              "max_limit": 5,
+              "service_name": "Tree reconciliation",
+              "view_url": "https://example.com/trees/{{id}}"
+            }
+          }
+        }
+      }
+    }
+  }
+}"><pre>{
+  <span class="pl-ent">"databases"</span>: {
+    <span class="pl-ent">"sf-trees"</span>: {
+      <span class="pl-ent">"tables"</span>: {
+        <span class="pl-ent">"Street_Tree_List"</span>: {
+          <span class="pl-ent">"plugins"</span>: {
+            <span class="pl-ent">"datasette-reconcile"</span>: {
+              <span class="pl-ent">"id_field"</span>: <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span>,
+              <span class="pl-ent">"name_field"</span>: <span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span>,
+              <span class="pl-ent">"type_field"</span>: <span class="pl-s"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span>,
+              <span class="pl-ent">"type_default"</span>: [
+                {
+                  <span class="pl-ent">"id"</span>: <span class="pl-s"><span class="pl-pds">"</span>tree<span class="pl-pds">"</span></span>,
+                  <span class="pl-ent">"name"</span>: <span class="pl-s"><span class="pl-pds">"</span>Tree<span class="pl-pds">"</span></span>
+                }
+              ],
+              <span class="pl-ent">"max_limit"</span>: <span class="pl-c1">5</span>,
+              <span class="pl-ent">"service_name"</span>: <span class="pl-s"><span class="pl-pds">"</span>Tree reconciliation<span class="pl-pds">"</span></span>,
+              <span class="pl-ent">"view_url"</span>: <span class="pl-s"><span class="pl-pds">"</span>https://example.com/trees/{{id}}<span class="pl-pds">"</span></span>
+            }
+          }
+        }
+      }
+    }
+  }
+}</pre></div>
+<p dir="auto">The only required item in the configuration is <code>name_field</code>. This refers to the field in the table which will be searched to match the query text.</p>
+<p dir="auto">The rest of the configuration items are optional, and are as follows:</p>
+<ul dir="auto">
+<li><code>id_field</code>: The field containing the identifier for this entity. If not provided, and there is a primary key set, then the primary key will be used. A primary key of more than one field will give an error.</li>
+<li><code>type_field</code>: If provided, this field will be used to determine the type of the entity. If not provided, then the <code>type_default</code> setting will be used instead.</li>
+<li><code>type_default</code>: If provided, this value will be used as the type of every entity returned. If not provided the default of <code>Object</code> will be used for every entity.</li>
+<li><code>max_limit</code>: The maximum number of records that a query can request to return. This is 5 by default. A individual query can request fewer results than this, but it cannot request more.</li>
+<li><code>service_name</code>: The name of the reconciliation service that will appear in the service manifest. If not provided it will take the form <code><database name> <table name> reconciliation</code>.</li>
+<li><code>identifierSpace</code>: <a href="https://reconciliation-api.github.io/specs/latest/#identifier-and-schema-spaces" rel="nofollow">Identifier space</a> given in the service manifest. If not provided a default of <code>http://rdf.freebase.com/ns/type.object.id</code> is used.</li>
+<li><code>schemaSpace</code>: <a href="https://reconciliation-api.github.io/specs/latest/#identifier-and-schema-spaces" rel="nofollow">Schema space</a> given in the service manifest. If not provided a default of <code>http://rdf.freebase.com/ns/type.object.id</code> is used.</li>
+<li><code>view_url</code>: <a href="https://reconciliation-api.github.io/specs/latest/#dfn-view-template" rel="nofollow">URL for a view of an individual entity</a>. It must contain the string <code>{{id}}</code> which will be replaced with the ID of the entity. If not provided it will use the default datasette view for the entity record (something like <code>/<db_name>/<table>/{{id}}</code>).</li>
+</ul>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Using the endpoint</h3><a id="user-content-using-the-endpoint" class="anchor" aria-label="Permalink: Using the endpoint" href="#using-the-endpoint"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Once the plugin is configured for a particular database or table, you can access the reconciliation endpoint using the url <code>/<db_name>/<table>/-/reconcile</code>.</p>
+<p dir="auto">A simple GET request to <code>/<db_name>/<table>/-/reconcile</code> will return the <a href="https://reconciliation-api.github.io/specs/latest/#service-manifest" rel="nofollow">Service Manifest</a> as JSON which reconciliation clients can use to determine how the service is set up.</p>
+<p dir="auto">A POST request to the same url with the <code>queries</code> argument set will trigger the reconciliation process. The <code>queries</code> parameter should be a json object in the format described in <a href="https://reconciliation-api.github.io/specs/latest/#reconciliation-queries" rel="nofollow">the specification</a>. An example set of two queries would look like:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+  "q1": {
+    "query": "Hans-Eberhard Urbaniak"
+  },
+  "q2": {
+    "query": "Ernst Schwanhold"
+  }
+}"><pre>{
+  <span class="pl-ent">"q1"</span>: {
+    <span class="pl-ent">"query"</span>: <span class="pl-s"><span class="pl-pds">"</span>Hans-Eberhard Urbaniak<span class="pl-pds">"</span></span>
+  },
+  <span class="pl-ent">"q2"</span>: {
+    <span class="pl-ent">"query"</span>: <span class="pl-s"><span class="pl-pds">"</span>Ernst Schwanhold<span class="pl-pds">"</span></span>
+  }
+}</pre></div>
+<p dir="auto">The query can optionally be encoded as a <code>queries</code> parameter in a GET request. For example:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="/<db_name>/<table>/-/reconcile?queries={"q1":{"query":"Hans-Eberhard Urbaniak"},"q2":{"query": "Ernst Schwanhold"}}"><pre class="notranslate"><code>/<db_name>/<table>/-/reconcile?queries={"q1":{"query":"Hans-Eberhard Urbaniak"},"q2":{"query": "Ernst Schwanhold"}}
+</code></pre></div>
+<p dir="auto">Various options are available in the query object. Current the only ones implemented in datasette-reconcile are the mandatory <code>query</code> string, and the <code>limit</code> option, which must be less than or equal to the value in the <code>max_limit</code> configration option.</p>
+<p dir="auto">All endpoints that start with <code>/<db_name>/<table>/-/reconcile</code> are configured to send an <code>Access-Control-Allow-Origin: *</code> CORS header to allow access <a href="https://reconciliation-api.github.io/specs/latest/#cross-origin-access" rel="nofollow">as described in the specification</a>.</p>
+<p dir="auto">JSONP output is not yet supported.</p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Returned value</h3><a id="user-content-returned-value" class="anchor" aria-label="Permalink: Returned value" href="#returned-value"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The result of the GET or POST <code>queries</code> requests described above is a json object describing potential <a href="https://reconciliation-api.github.io/specs/latest/#reconciliation-query-responses" rel="nofollow">reconciliation candidates</a> for each of the queries specified. The result will look something like:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+  "q1": {
+    "result": [
+      {
+        "id": "120333937",
+        "name": "Urbaniak, Regina",
+        "score": 53.015232,
+        "match": false,
+        "type": [
+          {
+            "id": "person",
+            "name": "Person"
+          }
+        ]
+      },
+      {
+        "id": "1127147390",
+        "name": "Urbaniak, Jan",
+        "score": 52.357353,
+        "match": false,
+        "type": [
+          {
+            "id": "person",
+            "name": "Person"
+          }
+        ]
+      }
+    ]
+  },
+  "q2": {
+    "result": [
+      {
+        "id": "123064325",
+        "name": "Schwanhold, Ernst",
+        "score": 86.43497,
+        "match": true,
+        "type": [
+          {
+            "id": "person",
+            "name": "Person"
+          }
+        ]
+      },
+      {
+        "id": "116362988X",
+        "name": "Schwanhold, Nadine",
+        "score": 62.04763,
+        "match": false,
+        "type": [
+          {
+            "id": "person",
+            "name": "Person"
+          }
+        ]
+      }
+    ]
+  }
+}"><pre>{
+  <span class="pl-ent">"q1"</span>: {
+    <span class="pl-ent">"result"</span>: [
+      {
+        <span class="pl-ent">"id"</span>: <span class="pl-s"><span class="pl-pds">"</span>120333937<span class="pl-pds">"</span></span>,
+        <span class="pl-ent">"name"</span>: <span class="pl-s"><span class="pl-pds">"</span>Urbaniak, Regina<span class="pl-pds">"</span></span>,
+        <span class="pl-ent">"score"</span>: <span class="pl-c1">53.015232</span>,
+        <span class="pl-ent">"match"</span>: <span class="pl-c1">false</span>,
+        <span class="pl-ent">"type"</span>: [
+          {
+            <span class="pl-ent">"id"</span>: <span class="pl-s"><span class="pl-pds">"</span>person<span class="pl-pds">"</span></span>,
+            <span class="pl-ent">"name"</span>: <span class="pl-s"><span class="pl-pds">"</span>Person<span class="pl-pds">"</span></span>
+          }
+        ]
+      },
+      {
+        <span class="pl-ent">"id"</span>: <span class="pl-s"><span class="pl-pds">"</span>1127147390<span class="pl-pds">"</span></span>,
+        <span class="pl-ent">"name"</span>: <span class="pl-s"><span class="pl-pds">"</span>Urbaniak, Jan<span class="pl-pds">"</span></span>,
+        <span class="pl-ent">"score"</span>: <span class="pl-c1">52.357353</span>,
+        <span class="pl-ent">"match"</span>: <span class="pl-c1">false</span>,
+        <span class="pl-ent">"type"</span>: [
+          {
+            <span class="pl-ent">"id"</span>: <span class="pl-s"><span class="pl-pds">"</span>person<span class="pl-pds">"</span></span>,
+            <span class="pl-ent">"name"</span>: <span class="pl-s"><span class="pl-pds">"</span>Person<span class="pl-pds">"</span></span>
+          }
+        ]
+      }
+    ]
+  },
+  <span class="pl-ent">"q2"</span>: {
+    <span class="pl-ent">"result"</span>: [
+      {
+        <span class="pl-ent">"id"</span>: <span class="pl-s"><span class="pl-pds">"</span>123064325<span class="pl-pds">"</span></span>,
+        <span class="pl-ent">"name"</span>: <span class="pl-s"><span class="pl-pds">"</span>Schwanhold, Ernst<span class="pl-pds">"</span></span>,
+        <span class="pl-ent">"score"</span>: <span class="pl-c1">86.43497</span>,
+        <span class="pl-ent">"match"</span>: <span class="pl-c1">true</span>,
+        <span class="pl-ent">"type"</span>: [
+          {
+            <span class="pl-ent">"id"</span>: <span class="pl-s"><span class="pl-pds">"</span>person<span class="pl-pds">"</span></span>,
+            <span class="pl-ent">"name"</span>: <span class="pl-s"><span class="pl-pds">"</span>Person<span class="pl-pds">"</span></span>
+          }
+        ]
+      },
+      {
+        <span class="pl-ent">"id"</span>: <span class="pl-s"><span class="pl-pds">"</span>116362988X<span class="pl-pds">"</span></span>,
+        <span class="pl-ent">"name"</span>: <span class="pl-s"><span class="pl-pds">"</span>Schwanhold, Nadine<span class="pl-pds">"</span></span>,
+        <span class="pl-ent">"score"</span>: <span class="pl-c1">62.04763</span>,
+        <span class="pl-ent">"match"</span>: <span class="pl-c1">false</span>,
+        <span class="pl-ent">"type"</span>: [
+          {
+            <span class="pl-ent">"id"</span>: <span class="pl-s"><span class="pl-pds">"</span>person<span class="pl-pds">"</span></span>,
+            <span class="pl-ent">"name"</span>: <span class="pl-s"><span class="pl-pds">"</span>Person<span class="pl-pds">"</span></span>
+          }
+        ]
+      }
+    ]
+  }
+}</pre></div>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Behind the scenes</h3><a id="user-content-behind-the-scenes" class="anchor" aria-label="Permalink: Behind the scenes" href="#behind-the-scenes"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The reconcile engine works by performing an SQL query against the <code>name_field</code> within the specified database table. Where that table has a full text search index implemented, the search will be performed against that index.</p>
+<p dir="auto">When a full text search index is present on the table, the SQL query takes the form (based on the search query <code>test</code>, note that double quotes are added to facilitate searching - these are not present in the original query):</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="select <id_field>, <name_field>
+from <table>
+  inner join (
+    select "rowid", "rank"
+    from <fts_table>
+    where <fts_table> MATCH '"test"'
+  ) as "a" on <table>."rowid" = a."rowid"
+order by a.rank
+limit 5"><pre><span class="pl-k">select</span> <span class="pl-k"><</span>id_field<span class="pl-k">></span>, <span class="pl-k"><</span>name_field<span class="pl-k">></span>
+<span class="pl-k">from</span> <span class="pl-k"><</span>table<span class="pl-k">></span>
+  <span class="pl-k">inner join</span> (
+    <span class="pl-k">select</span> <span class="pl-s"><span class="pl-pds">"</span>rowid<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>rank<span class="pl-pds">"</span></span>
+    <span class="pl-k">from</span> <span class="pl-k"><</span>fts_table<span class="pl-k">></span>
+    <span class="pl-k">where</span> <span class="pl-k"><</span>fts_table<span class="pl-k">></span> MATCH <span class="pl-s"><span class="pl-pds">'</span>"test"<span class="pl-pds">'</span></span>
+  ) <span class="pl-k">as</span> <span class="pl-s"><span class="pl-pds">"</span>a<span class="pl-pds">"</span></span> <span class="pl-k">on</span> <span class="pl-k"><</span>table<span class="pl-k">></span>.<span class="pl-s"><span class="pl-pds">"</span>rowid<span class="pl-pds">"</span></span> <span class="pl-k">=</span> a.<span class="pl-s"><span class="pl-pds">"</span>rowid<span class="pl-pds">"</span></span>
+<span class="pl-k">order by</span> <span class="pl-c1">a</span>.<span class="pl-c1">rank</span>
+<span class="pl-k">limit</span> <span class="pl-c1">5</span></pre></div>
+<p dir="auto">If a full text search index is not present, the query looks like this (note that the wildcard <code>%</code> is added to either side of the query - these are not present in the original query):</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="select <id_field>, <name_field>
+from <table>
+where <name_field> like '%test%'
+limit 5"><pre><span class="pl-k">select</span> <span class="pl-k"><</span>id_field<span class="pl-k">></span>, <span class="pl-k"><</span>name_field<span class="pl-k">></span>
+<span class="pl-k">from</span> <span class="pl-k"><</span>table<span class="pl-k">></span>
+<span class="pl-k">where</span> <span class="pl-k"><</span>name_field<span class="pl-k">></span> <span class="pl-k">like</span> <span class="pl-s"><span class="pl-pds">'</span>%test%<span class="pl-pds">'</span></span>
+<span class="pl-k">limit</span> <span class="pl-c1">5</span></pre></div>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Extend endpoint</h3><a id="user-content-extend-endpoint" class="anchor" aria-label="Permalink: Extend endpoint" href="#extend-endpoint"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">You can also use the reconciliation API <a href="https://www.w3.org/community/reports/reconciliation/CG-FINAL-specs-0.2-20230410/#data-extension-service" rel="nofollow">Data extension service</a> to find additional properties for a set of entities, given an ID.</p>
+<p dir="auto">Send a GET request to the <code>/<db_name>/<table>/-/reconcile/extend/propose</code> endpoint to find a list of the possible properties you can select. The properties are all the columns in the table (excluding any that have been hidden). An example response would look like:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+  "limit": 5,
+  "type": "Person",
+  "properties": [
+    {
+      "id": "preferredName",
+      "name": "preferredName"
+    },
+    {
+      "id": "professionOrOccupation",
+      "name": "professionOrOccupation"
+    },
+    {
+      "id": "wikidataId",
+      "name": "wikidataId"
+    }
+  ]
+}"><pre>{
+  <span class="pl-ent">"limit"</span>: <span class="pl-c1">5</span>,
+  <span class="pl-ent">"type"</span>: <span class="pl-s"><span class="pl-pds">"</span>Person<span class="pl-pds">"</span></span>,
+  <span class="pl-ent">"properties"</span>: [
+    {
+      <span class="pl-ent">"id"</span>: <span class="pl-s"><span class="pl-pds">"</span>preferredName<span class="pl-pds">"</span></span>,
+      <span class="pl-ent">"name"</span>: <span class="pl-s"><span class="pl-pds">"</span>preferredName<span class="pl-pds">"</span></span>
+    },
+    {
+      <span class="pl-ent">"id"</span>: <span class="pl-s"><span class="pl-pds">"</span>professionOrOccupation<span class="pl-pds">"</span></span>,
+      <span class="pl-ent">"name"</span>: <span class="pl-s"><span class="pl-pds">"</span>professionOrOccupation<span class="pl-pds">"</span></span>
+    },
+    {
+      <span class="pl-ent">"id"</span>: <span class="pl-s"><span class="pl-pds">"</span>wikidataId<span class="pl-pds">"</span></span>,
+      <span class="pl-ent">"name"</span>: <span class="pl-s"><span class="pl-pds">"</span>wikidataId<span class="pl-pds">"</span></span>
+    }
+  ]
+}</pre></div>
+<p dir="auto">Then send a POST request to the <code>/<db_name>/<table>/-/reconcile</code> endpoint with an <code>extend</code> argument. The <code>extend</code> argument should be a JSON object with a set of <code>ids</code> to lookup and <code>properties</code> to return. For example:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+  "ids": ["10662041X", "1064905412"],
+  "properties": [
+    {
+      "id": "professionOrOccupation"
+    },
+    {
+      "id": "wikidataId"
+    }
+  ]
+}"><pre>{
+  <span class="pl-ent">"ids"</span>: [<span class="pl-s"><span class="pl-pds">"</span>10662041X<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>1064905412<span class="pl-pds">"</span></span>],
+  <span class="pl-ent">"properties"</span>: [
+    {
+      <span class="pl-ent">"id"</span>: <span class="pl-s"><span class="pl-pds">"</span>professionOrOccupation<span class="pl-pds">"</span></span>
+    },
+    {
+      <span class="pl-ent">"id"</span>: <span class="pl-s"><span class="pl-pds">"</span>wikidataId<span class="pl-pds">"</span></span>
+    }
+  ]
+}</pre></div>
+<p dir="auto">The endpoint will return a result that looks like:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+  "meta": [
+    {
+      "id": "professionOrOccupation",
+      "name": "professionOrOccupation"
+    },
+    {
+      "id": "wikidataId",
+      "name": "wikidataId"
+    }
+  ],
+  "rows": {
+    "10662041X": {
+      "professionOrOccupation": [
+        {
+          "str": "Doctor"
+        }
+      ],
+      "wikidataId": [
+        {
+          "str": "Q3874347"
+        }
+      ]
+    },
+    "1064905412": {
+      "professionOrOccupation": [
+        {
+          "str": "Architect"
+        }
+      ],
+      "wikidataId": [
+        {
+          "str": "Q3874347"
+        }
+      ]
+    }
+  }
+}"><pre>{
+  <span class="pl-ent">"meta"</span>: [
+    {
+      <span class="pl-ent">"id"</span>: <span class="pl-s"><span class="pl-pds">"</span>professionOrOccupation<span class="pl-pds">"</span></span>,
+      <span class="pl-ent">"name"</span>: <span class="pl-s"><span class="pl-pds">"</span>professionOrOccupation<span class="pl-pds">"</span></span>
+    },
+    {
+      <span class="pl-ent">"id"</span>: <span class="pl-s"><span class="pl-pds">"</span>wikidataId<span class="pl-pds">"</span></span>,
+      <span class="pl-ent">"name"</span>: <span class="pl-s"><span class="pl-pds">"</span>wikidataId<span class="pl-pds">"</span></span>
+    }
+  ],
+  <span class="pl-ent">"rows"</span>: {
+    <span class="pl-ent">"10662041X"</span>: {
+      <span class="pl-ent">"professionOrOccupation"</span>: [
+        {
+          <span class="pl-ent">"str"</span>: <span class="pl-s"><span class="pl-pds">"</span>Doctor<span class="pl-pds">"</span></span>
+        }
+      ],
+      <span class="pl-ent">"wikidataId"</span>: [
+        {
+          <span class="pl-ent">"str"</span>: <span class="pl-s"><span class="pl-pds">"</span>Q3874347<span class="pl-pds">"</span></span>
+        }
+      ]
+    },
+    <span class="pl-ent">"1064905412"</span>: {
+      <span class="pl-ent">"professionOrOccupation"</span>: [
+        {
+          <span class="pl-ent">"str"</span>: <span class="pl-s"><span class="pl-pds">"</span>Architect<span class="pl-pds">"</span></span>
+        }
+      ],
+      <span class="pl-ent">"wikidataId"</span>: [
+        {
+          <span class="pl-ent">"str"</span>: <span class="pl-s"><span class="pl-pds">"</span>Q3874347<span class="pl-pds">"</span></span>
+        }
+      ]
+    }
+  }
+}</pre></div>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Suggest endpoints</h3><a id="user-content-suggest-endpoints" class="anchor" aria-label="Permalink: Suggest endpoints" href="#suggest-endpoints"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">You can also use the <a href="https://www.w3.org/community/reports/reconciliation/CG-FINAL-specs-0.2-20230410/#suggest-services" rel="nofollow">suggest endpoints</a> to get quick suggestions, for example for an auto-complete dropdown menu. The following endpoints are available:</p>
+<ul dir="auto">
+<li><code>/<db_name>/<table>/-/reconcile/suggest/property</code> - looks up in a list of table columns</li>
+<li><code>/<db_name>/<table>/-/reconcile/suggest/entity</code> - looks up in a list of table rows</li>
+<li><code>/<db_name>/<table>/-/reconcile/suggest/type</code> - not currently implemented</li>
+</ul>
+<p dir="auto">Each endpoint takes a <code>prefix</code> argument which can be used in a GET request. For example, the GET request <code>/<db_name>/<table>/-/reconcile/suggest/entity?prefix=abc</code> will produce a response such as:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+  "result": [
+    {
+      "name": "abc company limited",
+      "id": "Q123456"
+    },
+    {
+      "name": "abc other company limited",
+      "id": "Q123457"
+    }
+  ]
+}"><pre>{
+  <span class="pl-ent">"result"</span>: [
+    {
+      <span class="pl-ent">"name"</span>: <span class="pl-s"><span class="pl-pds">"</span>abc company limited<span class="pl-pds">"</span></span>,
+      <span class="pl-ent">"id"</span>: <span class="pl-s"><span class="pl-pds">"</span>Q123456<span class="pl-pds">"</span></span>
+    },
+    {
+      <span class="pl-ent">"name"</span>: <span class="pl-s"><span class="pl-pds">"</span>abc other company limited<span class="pl-pds">"</span></span>,
+      <span class="pl-ent">"id"</span>: <span class="pl-s"><span class="pl-pds">"</span>Q123457<span class="pl-pds">"</span></span>
+    }
+  ]
+}</pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Development</h2><a id="user-content-development" class="anchor" aria-label="Permalink: Development" href="#development"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">This plugin uses hatch for build and testing. To set up this plugin locally, first checkout the code.</p>
+<p dir="auto">You'll need to fetch the git submodules for the tests too:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="git submodule init
+git submodule update"><pre class="notranslate"><code>git submodule init
+git submodule update
+</code></pre></div>
+<p dir="auto">To run the tests:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="hatch run test"><pre class="notranslate"><code>hatch run test
+</code></pre></div>
+<p dir="auto">Run tests then report on coverage</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="hatch run cov"><pre class="notranslate"><code>hatch run cov
+</code></pre></div>
+<p dir="auto">Run tests then run a server showing where coverage is missing</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="hatch run cov-html"><pre class="notranslate"><code>hatch run cov-html
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Linting/formatting</h3><a id="user-content-lintingformatting" class="anchor" aria-label="Permalink: Linting/formatting" href="#lintingformatting"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Black and ruff should be run before committing any changes.</p>
+<p dir="auto">To check for any changes needed:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="hatch run lint:style"><pre class="notranslate"><code>hatch run lint:style
+</code></pre></div>
+<p dir="auto">To run any autoformatting possible:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="hatch run lint:fmt"><pre class="notranslate"><code>hatch run lint:fmt
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Publish to pypi</h3><a id="user-content-publish-to-pypi" class="anchor" aria-label="Permalink: Publish to pypi" href="#publish-to-pypi"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="hatch build
+hatch publish
+git tag v<VERSION_NUMBER>
+git push origin v<VERSION_NUMBER>"><pre class="notranslate"><code>hatch build
+hatch publish
+git tag v<VERSION_NUMBER>
+git push origin v<VERSION_NUMBER>
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Acknowledgements</h2><a id="user-content-acknowledgements" class="anchor" aria-label="Permalink: Acknowledgements" href="#acknowledgements"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Thanks for <a href="https://github.com/simonw/">@simonw</a> for developing datasette and the datasette ecosystem.</p>
+<p dir="auto">Other contributions from:</p>
+<ul dir="auto">
+<li><a href="https://github.com/JBPressac/">@JBPressac</a></li>
+<li><a href="https://github.com/nicokant/">@nicokant</a> - implementation of extend service</li>
+</ul>
+</article></div>

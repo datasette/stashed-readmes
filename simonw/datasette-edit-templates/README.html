@@ -1,0 +1,89 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">datasette-edit-templates</h1><a id="user-content-datasette-edit-templates" class="anchor" aria-label="Permalink: datasette-edit-templates" href="#datasette-edit-templates"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://pypi.org/project/datasette-edit-templates/" rel="nofollow"><img src="https://img.shields.io/pypi/v/datasette-edit-templates.svg" alt="PyPI" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/af838dfacdf936640e67a04dbb772a45d25ed88acd533eac94af192387f32d2a/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f6461746173657474652d656469742d74656d706c617465732e737667"></a>
+<a href="https://github.com/simonw/datasette-edit-templates/releases"><img src="https://img.shields.io/github/v/release/simonw/datasette-edit-templates?include_prereleases&label=changelog" alt="Changelog" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/13d34693875fd9063b20c8ecec3c782a430b2c09443b3cc6f96a74abc5105300/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f72656c656173652f73696d6f6e772f6461746173657474652d656469742d74656d706c617465733f696e636c7564655f70726572656c6561736573266c6162656c3d6368616e67656c6f67"></a>
+<a href="https://github.com/simonw/datasette-edit-templates/actions?query=workflow%3ATest"><img src="https://github.com/simonw/datasette-edit-templates/workflows/Test/badge.svg" alt="Tests" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/datasette-edit-templates/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" alt="License" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/c355f200ea90fddaa407b6eaab303663a669248ea3ca7b1fcf77dbe04ff5f48c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d417061636865253230322e302d626c75652e737667"></a></p>
+<p dir="auto">Plugin allowing Datasette templates to be edited within Datasette.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Installation</h2><a id="user-content-installation" class="anchor" aria-label="Permalink: Installation" href="#installation"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Install this plugin in the same environment as Datasette.</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="datasette install datasette-edit-templates"><pre>datasette install datasette-edit-templates</pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Usage</h2><a id="user-content-usage" class="anchor" aria-label="Permalink: Usage" href="#usage"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">On startup. a <code>_templates_</code> table will be created in the database you are running Datasette against.</p>
+<p dir="auto">Use the app menu to navigate to the <code>/-/edit-templates</code> page, and edit templates there.</p>
+<p dir="auto">Changes should become visible instantly, and will be persisted to your database.</p>
+<p dir="auto">The interface is only available to users with the <code>edit-templates</code> permission.</p>
+<p dir="auto">The <code>root</code> user is granted this permission by default. You can sign in as the root user using <code>datasette mydb.db --root</code>.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Configuration</h2><a id="user-content-configuration" class="anchor" aria-label="Permalink: Configuration" href="#configuration"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">To put the <code>_templates_</code> table in a specific database, set the <code>datasette-edit-templates: database</code> plugin configuration option:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    "plugins": {
+        "datasette-edit-templates": {
+            "database": "some_database"
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"plugins"</span>: {
+        <span class="pl-ent">"datasette-edit-templates"</span>: {
+            <span class="pl-ent">"database"</span>: <span class="pl-s"><span class="pl-pds">"</span>some_database<span class="pl-pds">"</span></span>
+        }
+    }
+}</pre></div>
+<p dir="auto">On Datasette <a href="https://docs.datasette.io/en/latest/changelog.html#a5-2023-08-29" rel="nofollow">1.0a5</a> or higher you can use the <a href="https://docs.datasette.io/en/latest/internals.html#internals-internal" rel="nofollow">internal database</a> with <code>"internal_db: true":</code></p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    "plugins": {
+        "datasette-edit-templates": {
+            "internal_db": true
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"plugins"</span>: {
+        <span class="pl-ent">"datasette-edit-templates"</span>: {
+            <span class="pl-ent">"internal_db"</span>: <span class="pl-c1">true</span>
+        }
+    }
+}</pre></div>
+<p dir="auto">By default the <a href="https://docs.datasette.io/en/stable/plugin_hooks.html#prepare-jinja2-environment-env-datasette" rel="nofollow">prepare_jinja2_environment()</a> hook will be used to load the custom templates.</p>
+<p dir="auto">You can disable this behavior using the <code>skip_prepare_jinja2_environment</code> plugin configuration option:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    "plugins": {
+        "datasette-edit-templates": {
+            "skip_prepare_jinja2_environment": true
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"plugins"</span>: {
+        <span class="pl-ent">"datasette-edit-templates"</span>: {
+            <span class="pl-ent">"skip_prepare_jinja2_environment"</span>: <span class="pl-c1">true</span>
+        }
+    }
+}</pre></div>
+<p dir="auto">Set this option if you want to further customize how the templates are loaded using another plugin.</p>
+<p dir="auto">The menu item used to access this plugin is labeled "Edit templates" by default. You can customize this using the <code>menu_label</code> plugin configuration option:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    "plugins": {
+        "datasette-edit-templates": {
+            "menu_label": "Custom templates"
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"plugins"</span>: {
+        <span class="pl-ent">"datasette-edit-templates"</span>: {
+            <span class="pl-ent">"menu_label"</span>: <span class="pl-s"><span class="pl-pds">"</span>Custom templates<span class="pl-pds">"</span></span>
+        }
+    }
+}</pre></div>
+<p dir="auto">Set that to <code>null</code> to hide the menu option entirely.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Development</h2><a id="user-content-development" class="anchor" aria-label="Permalink: Development" href="#development"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">To set up this plugin locally, first checkout the code. Then create a new virtual environment:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="cd datasette-edit-templates
+python3 -mvenv venv
+source venv/bin/activate"><pre><span class="pl-c1">cd</span> datasette-edit-templates
+python3 -mvenv venv
+<span class="pl-c1">source</span> venv/bin/activate</pre></div>
+<p dir="auto">Or if you are using <code>pipenv</code>:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="pipenv shell"><pre>pipenv shell</pre></div>
+<p dir="auto">Now install the dependencies and tests:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="pip install -e '.[test]'"><pre>pip install -e <span class="pl-s"><span class="pl-pds">'</span>.[test]<span class="pl-pds">'</span></span></pre></div>
+<p dir="auto">To run the tests:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="pytest"><pre>pytest</pre></div>
+</article></div>

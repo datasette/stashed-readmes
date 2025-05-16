@@ -1,0 +1,63 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">datasette-ripgrep</h1><a id="user-content-datasette-ripgrep" class="anchor" aria-label="Permalink: datasette-ripgrep" href="#datasette-ripgrep"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://pypi.org/project/datasette-ripgrep/" rel="nofollow"><img src="https://img.shields.io/pypi/v/datasette-ripgrep.svg" alt="PyPI" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/2a2c6b27cb1240a30e6852be7cf29435acbd42de45f93e1c5e2473b926292e2b/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f6461746173657474652d726970677265702e737667"></a>
+<a href="https://github.com/simonw/datasette-ripgrep/releases"><img src="https://img.shields.io/github/v/release/simonw/datasette-ripgrep?include_prereleases&label=changelog" alt="Changelog" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/b794f54e9a9cb3ef9a15b8278fb20b6e5dae386be4704ee3b79ca66af9139ab8/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f72656c656173652f73696d6f6e772f6461746173657474652d726970677265703f696e636c7564655f70726572656c6561736573266c6162656c3d6368616e67656c6f67"></a>
+<a href="https://github.com/simonw/datasette-ripgrep/actions?query=workflow%3ATest"><img src="https://github.com/simonw/datasette-ripgrep/workflows/Test/badge.svg" alt="Tests" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/datasette-ripgrep/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" alt="License" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/c355f200ea90fddaa407b6eaab303663a669248ea3ca7b1fcf77dbe04ff5f48c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d417061636865253230322e302d626c75652e737667"></a></p>
+<p dir="auto">Web interface for searching your code using <a href="https://github.com/BurntSushi/ripgrep">ripgrep</a>, built as a <a href="https://datasette.io/" rel="nofollow">Datasette</a> plugin</p>
+<p dir="auto">For background on this project see <a href="https://simonwillison.net/2020/Nov/28/datasette-ripgrep/" rel="nofollow">datasette-ripgrep: deploy a regular expression search engine for your source code</a>.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Demo</h2><a id="user-content-demo" class="anchor" aria-label="Permalink: Demo" href="#demo"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Try this plugin out at <a href="https://ripgrep.datasette.io/-/ripgrep" rel="nofollow">https://ripgrep.datasette.io/-/ripgrep</a> - where you can run regular expression searches across the source code of Datasette and all of the <code>datasette-*</code> plugins belonging to the <a href="https://github.com/simonw">simonw GitHub user</a>.</p>
+<p dir="auto">Some example searches:</p>
+<ul dir="auto">
+<li><a href="https://ripgrep.datasette.io/-/ripgrep?pattern=with.*AsyncClient" rel="nofollow">with.*AsyncClient</a> - regular expression search for <code>with.*AsyncClient</code></li>
+<li><a href="https://ripgrep.datasette.io/-/ripgrep?pattern=.plugin_config(&literal=on" rel="nofollow">.plugin_config, literal=on</a> - a non-regular expression search for <code>.plugin_config(</code></li>
+<li><a href="https://ripgrep.datasette.io/-/ripgrep?pattern=with.*AsyncClient&glob=datasette%2F%2A%2A" rel="nofollow">with.*AsyncClient glob=datasette/**</a> - search for that pattern only within the <code>datasette/</code> top folder</li>
+<li><a href="https://ripgrep.datasette.io/-/ripgrep?pattern=%22sqlite-utils%5B%22%3E%5D&glob=setup.py" rel="nofollow">"sqlite-utils[">] glob=setup.py</a> - a regular expression search for packages that depend on either <code>sqlite-utils</code> or <code>sqlite-utils>=some-version</code></li>
+<li><a href="https://ripgrep.datasette.io/-/ripgrep?pattern=test&glob=%21*.html" rel="nofollow">test glob=!*.html</a> - search for the string <code>test</code> but exclude results in HTML files</li>
+</ul>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Installation</h2><a id="user-content-installation" class="anchor" aria-label="Permalink: Installation" href="#installation"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Install this plugin in the same environment as Datasette.</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ datasette install datasette-ripgrep"><pre class="notranslate"><code>$ datasette install datasette-ripgrep
+</code></pre></div>
+<p dir="auto">The <code>rg</code> executable needs to be <a href="https://github.com/BurntSushi/ripgrep/blob/master/README.md#installation">installed</a> such that it can be run by this tool.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Usage</h2><a id="user-content-usage" class="anchor" aria-label="Permalink: Usage" href="#usage"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">This plugin requires configuration: it needs to a <code>path</code> setting so that it knows where to run searches.</p>
+<p dir="auto">Create a <code>metadata.json</code> file that looks like this:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    "plugins": {
+        "datasette-ripgrep": {
+            "path": "/path/to/your/files"
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"plugins"</span>: {
+        <span class="pl-ent">"datasette-ripgrep"</span>: {
+            <span class="pl-ent">"path"</span>: <span class="pl-s"><span class="pl-pds">"</span>/path/to/your/files<span class="pl-pds">"</span></span>
+        }
+    }
+}</pre></div>
+<p dir="auto">Now run Datasette using <code>datasette -m metadata.json</code>. The plugin will add an interface at <code>/-/ripgrep</code> for running searches.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Plugin configuration</h2><a id="user-content-plugin-configuration" class="anchor" aria-label="Permalink: Plugin configuration" href="#plugin-configuration"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The <code>"path"</code> configuration is required. Optional extra configuration options are:</p>
+<ul dir="auto">
+<li><code>time_limit</code> - floating point number. The <code>rg</code> process will be terminated if it takes longer than this limit. The default is one second, <code>1.0</code>.</li>
+<li><code>max_lines</code> - integer. The <code>rg</code> process will be terminated if it returns more than this number of lines. The default is <code>2000</code>.</li>
+</ul>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Development</h2><a id="user-content-development" class="anchor" aria-label="Permalink: Development" href="#development"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">To set up this plugin locally, first checkout the code. Then create a new virtual environment:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="cd datasette-ripgrep
+python3 -mvenv venv
+source venv/bin/activate"><pre class="notranslate"><code>cd datasette-ripgrep
+python3 -mvenv venv
+source venv/bin/activate
+</code></pre></div>
+<p dir="auto">Or if you are using <code>pipenv</code>:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pipenv shell"><pre class="notranslate"><code>pipenv shell
+</code></pre></div>
+<p dir="auto">Now install the dependencies and tests:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pip install -e '.[test]'"><pre class="notranslate"><code>pip install -e '.[test]'
+</code></pre></div>
+<p dir="auto">To run the tests:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pytest"><pre class="notranslate"><code>pytest
+</code></pre></div>
+</article></div>

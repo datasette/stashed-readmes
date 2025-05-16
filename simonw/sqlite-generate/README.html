@@ -1,0 +1,66 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">sqlite-generate</h1><a id="user-content-sqlite-generate" class="anchor" aria-label="Permalink: sqlite-generate" href="#sqlite-generate"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://pypi.org/project/sqlite-generate/" rel="nofollow"><img src="https://img.shields.io/pypi/v/sqlite-generate.svg" alt="PyPI" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/953c31d7a2678ffbaf79ad0d17856c6dc79fd8d0fc33b2338a2cc8844f1e41fc/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f73716c6974652d67656e65726174652e737667"></a>
+<a href="https://github.com/simonw/sqlite-generate/releases"><img src="https://img.shields.io/github/v/release/simonw/sqlite-generate?label=changelog" alt="Changelog" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/f1e22813ca5bf3559ace213b8ffa730e7a7eac15fffa580ea6ceb26538d95ca1/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f72656c656173652f73696d6f6e772f73716c6974652d67656e65726174653f6c6162656c3d6368616e67656c6f67"></a>
+<a href="https://github.com/simonw/sqlite-generate/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" alt="License" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/c355f200ea90fddaa407b6eaab303663a669248ea3ca7b1fcf77dbe04ff5f48c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d417061636865253230322e302d626c75652e737667"></a></p>
+<p dir="auto">Tool for generating demo SQLite databases</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Installation</h2><a id="user-content-installation" class="anchor" aria-label="Permalink: Installation" href="#installation"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Install this plugin using <code>pip</code>:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ pip install sqlite-generate"><pre class="notranslate"><code>$ pip install sqlite-generate
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Demo</h2><a id="user-content-demo" class="anchor" aria-label="Permalink: Demo" href="#demo"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">You can see a demo of the database generated using this command running in <a href="https://github.com/simonw/datasette">Datasette</a> at <a href="https://sqlite-generate-demo.datasette.io/" rel="nofollow">https://sqlite-generate-demo.datasette.io/</a></p>
+<p dir="auto">The demo is generated using the following command:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="sqlite-generate demo.db --seed seed --fts --columns=10 --fks=0,3 --pks=0,2"><pre class="notranslate"><code>sqlite-generate demo.db --seed seed --fts --columns=10 --fks=0,3 --pks=0,2
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Usage</h2><a id="user-content-usage" class="anchor" aria-label="Permalink: Usage" href="#usage"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">To generate a SQLite database file called <code>data.db</code> with 10 randomly named tables in it, run the following:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="sqlite-generate data.db"><pre class="notranslate"><code>sqlite-generate data.db
+</code></pre></div>
+<p dir="auto">You can use the <code>--tables</code> option to generate a different number of tables:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="sqlite-generate data.db --tables 20"><pre class="notranslate"><code>sqlite-generate data.db --tables 20
+</code></pre></div>
+<p dir="auto">You can run the command against the same database file multiple times to keep adding new tables, using different settings for each batch of generated tables.</p>
+<p dir="auto">By default each table will contain a random number of rows between 0 and 200. You can customize this with the <code>--rows</code> option:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="sqlite-generate data.db --rows 20"><pre class="notranslate"><code>sqlite-generate data.db --rows 20
+</code></pre></div>
+<p dir="auto">This will insert 20 rows into each table.</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="sqlite-generate data.db --rows 500,2000"><pre class="notranslate"><code>sqlite-generate data.db --rows 500,2000
+</code></pre></div>
+<p dir="auto">This inserts a random number of rows between 500 and 2000 into each table.</p>
+<p dir="auto">Each table will have 5 columns. You can change this using <code>--columns</code>:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="sqlite-generate data.db --columns 10"><pre class="notranslate"><code>sqlite-generate data.db --columns 10
+</code></pre></div>
+<p dir="auto"><code>--columns</code> can also accept a range:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="sqlite-generate data.db --columns 5,15"><pre class="notranslate"><code>sqlite-generate data.db --columns 5,15
+</code></pre></div>
+<p dir="auto">You can control the random number seed used with the <code>--seed</code> option. This will result in the exact same database file being created by multiple runs of the tool:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="sqlite-generate data.db --seed=myseed"><pre class="notranslate"><code>sqlite-generate data.db --seed=myseed
+</code></pre></div>
+<p dir="auto">By default each table will contain between 0 and 2 foreign key columns to other tables. You can control this using the <code>--fks</code> option, with either a single number or a range:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="sqlite-generate data.db --columns=20 --fks=5,15"><pre class="notranslate"><code>sqlite-generate data.db --columns=20 --fks=5,15
+</code></pre></div>
+<p dir="auto">Each table will have a single primary key column called <code>id</code>. You can use the <code>--pks=</code> option to change the number of primary key columns on each table. Drop it to 0 to generate <a href="https://www.sqlite.org/rowidtable.html" rel="nofollow">rowid tables</a>. Increase it above 1 to generate tables with compound primary keys. Or use a range to get a random selection of different primary key layouts:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="sqlite-generate data.db --pks=0,2"><pre class="notranslate"><code>sqlite-generate data.db --pks=0,2
+</code></pre></div>
+<p dir="auto">To configure <a href="https://www.sqlite.org/fts5.html" rel="nofollow">SQLite full-text search</a> for all columns of type text, use <code>--fts</code>:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="sqlite-generate data.db --fts"><pre class="notranslate"><code>sqlite-generate data.db --fts
+</code></pre></div>
+<p dir="auto">This will use FTS5 by default. To use <a href="https://www.sqlite.org/fts3.html" rel="nofollow">FTS4</a> instead, use <code>--fts4</code>.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Development</h2><a id="user-content-development" class="anchor" aria-label="Permalink: Development" href="#development"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">To contribute to this tool, first checkout the code. Then create a new virtual environment:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="cd sqlite-generate
+python -mvenv venv
+source venv/bin/activate"><pre class="notranslate"><code>cd sqlite-generate
+python -mvenv venv
+source venv/bin/activate
+</code></pre></div>
+<p dir="auto">Or if you are using <code>pipenv</code>:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pipenv shell"><pre class="notranslate"><code>pipenv shell
+</code></pre></div>
+<p dir="auto">Now install the dependencies and tests:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pip install -e '.[test]'"><pre class="notranslate"><code>pip install -e '.[test]'
+</code></pre></div>
+<p dir="auto">To run the tests:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pytest"><pre class="notranslate"><code>pytest
+</code></pre></div>
+</article></div>

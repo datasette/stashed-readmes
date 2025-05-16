@@ -1,0 +1,157 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">datasette-publish-vercel</h1><a id="user-content-datasette-publish-vercel" class="anchor" aria-label="Permalink: datasette-publish-vercel" href="#datasette-publish-vercel"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://pypi.org/project/datasette-publish-vercel/" rel="nofollow"><img src="https://img.shields.io/pypi/v/datasette-publish-vercel.svg" alt="PyPI" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/67082701607716165abff57a76c83a2ea7dff649d4bc3426b7510aeac8ebc1da/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f6461746173657474652d7075626c6973682d76657263656c2e737667"></a>
+<a href="https://github.com/simonw/datasette-publish-vercel/releases"><img src="https://img.shields.io/github/v/release/simonw/datasette-publish-vercel?include_prereleases&label=changelog" alt="Changelog" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/24ce49e0c3a0582b2afef6749202ca8d9d19c480188b5cca84812f30099f6c42/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f72656c656173652f73696d6f6e772f6461746173657474652d7075626c6973682d76657263656c3f696e636c7564655f70726572656c6561736573266c6162656c3d6368616e67656c6f67"></a>
+<a href="https://github.com/simonw/datasette-publish-vercel/actions?query=workflow%3ATest"><img src="https://github.com/simonw/datasette-publish-vercel/workflows/Test/badge.svg" alt="Tests" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/datasette-publish-vercel/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" alt="License" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/c355f200ea90fddaa407b6eaab303663a669248ea3ca7b1fcf77dbe04ff5f48c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d417061636865253230322e302d626c75652e737667"></a></p>
+<p dir="auto">Datasette plugin for publishing data using <a href="https://vercel.com/" rel="nofollow">Vercel</a>.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Installation</h2><a id="user-content-installation" class="anchor" aria-label="Permalink: Installation" href="#installation"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Install this plugin in the same environment as Datasette.</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ datasette install datasette-publish-vercel"><pre class="notranslate"><code>$ datasette install datasette-publish-vercel
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Usage</h2><a id="user-content-usage" class="anchor" aria-label="Permalink: Usage" href="#usage"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">First, install the Vercel CLI tool by <a href="https://vercel.com/download" rel="nofollow">following their instructions</a>.</p>
+<p dir="auto">Run <code>vercel login</code> to login to (or create) an account.</p>
+<p dir="auto">Now you can use <code>datasette publish vercel</code> to publish your data:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="datasette publish vercel my-database.db --project=my-database"><pre class="notranslate"><code>datasette publish vercel my-database.db --project=my-database
+</code></pre></div>
+<p dir="auto">The <code>--project</code> argument is required - it specifies the project name that should be used for your deployment. This will be used as part of the deployment's URL.</p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Other options</h3><a id="user-content-other-options" class="anchor" aria-label="Permalink: Other options" href="#other-options"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li><code>--no-prod</code> deploys to the project without updating the "production" URL alias to point to that new deployment. Without that option all deploys go directly to production.</li>
+<li><code>--debug</code> enables the Vercel CLI debug output.</li>
+<li><code>--token</code> allows you to pass a Now authentication token, rather than needing to first run <code>now login</code> to configure the tool. Tokens can be created in the Vercel web dashboard under Account Settings -> Tokens.</li>
+<li><code>--public</code> runs <code>vercel --public</code> to publish the application source code at <code>/_src</code> e.g. <a href="https://datasette-public.now.sh/_src" rel="nofollow">https://datasette-public.now.sh/_src</a> and make recent logs visible at <code>/_logs</code> e.g. <a href="https://datasette-public.now.sh/_logs" rel="nofollow">https://datasette-public.now.sh/_logs</a></li>
+<li><code>--generate-dir</code> - by default this tool generates a new Vercel app in a temporary directory, deploys it and then deletes the directory. Use <code>--generate-dir=my-app</code> to output the generated application files to a new directory of your choice instead. You can then deploy it by running <code>vercel</code> in that directory.</li>
+<li><code>--setting default_page_size 10</code> - use this to set Datasette settings, as described in <a href="https://docs.datasette.io/en/stable/settings.html" rel="nofollow">the documentation</a>. This is a replacement for the unsupported <code>--extra-options</code> option.</li>
+</ul>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Full help</h3><a id="user-content-full-help" class="anchor" aria-label="Permalink: Full help" href="#full-help"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><strong>Warning:</strong> Some of these options are not yet implemented by this plugin. In particular, the following do not yet work:</p>
+<ul dir="auto">
+<li><code>--extra-options</code> - use <code>--setting</code> described above instead.</li>
+<li><code>--plugin-secret</code></li>
+<li><code>--version-note</code></li>
+</ul>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ datasette publish vercel --help
+
+Usage: datasette publish vercel [OPTIONS] [FILES]...
+
+  Publish to https://vercel.com/
+
+Options:
+  -m, --metadata FILENAME         Path to JSON/YAML file containing metadata to publish
+  --extra-options TEXT            Extra options to pass to datasette serve
+  --branch TEXT                   Install datasette from a GitHub branch e.g. main
+  --template-dir DIRECTORY        Path to directory containing custom templates
+  --plugins-dir DIRECTORY         Path to directory containing custom plugins
+  --static MOUNT:DIRECTORY        Serve static files from this directory at /MOUNT/...
+  --install TEXT                  Additional packages (e.g. plugins) to install
+  --plugin-secret <TEXT TEXT TEXT>...
+                                  Secrets to pass to plugins, e.g. --plugin-secret
+                                  datasette-auth-github client_id xxx
+  --version-note TEXT             Additional note to show on /-/versions
+  --secret TEXT                   Secret used for signing secure values, such as signed
+                                  cookies
+  --title TEXT                    Title for metadata
+  --license TEXT                  License label for metadata
+  --license_url TEXT              License URL for metadata
+  --source TEXT                   Source label for metadata
+  --source_url TEXT               Source URL for metadata
+  --about TEXT                    About label for metadata
+  --about_url TEXT                About URL for metadata
+  --token TEXT                    Auth token to use for deploy
+  --project PROJECT               Vercel project name to use  [required]
+  --scope TEXT                    Optional Vercel scope (e.g. a team name)
+  --no-prod                       Don't deploy directly to production
+  --debug                         Enable Vercel CLI debug output
+  --public                        Publish source with Vercel CLI --public
+  --generate-dir DIRECTORY        Output generated application files and stop without
+                                  deploying
+  --generate-vercel-json          Output generated vercel.json file and stop without
+                                  deploying
+  --vercel-json FILENAME          Custom vercel.json file to use instead of generating
+                                  one
+  --setting SETTING...            Setting, see docs.datasette.io/en/stable/settings.html
+  --crossdb                       Enable cross-database SQL queries
+  --help                          Show this message and exit."><pre class="notranslate"><code>$ datasette publish vercel --help
+
+Usage: datasette publish vercel [OPTIONS] [FILES]...
+
+  Publish to https://vercel.com/
+
+Options:
+  -m, --metadata FILENAME         Path to JSON/YAML file containing metadata to publish
+  --extra-options TEXT            Extra options to pass to datasette serve
+  --branch TEXT                   Install datasette from a GitHub branch e.g. main
+  --template-dir DIRECTORY        Path to directory containing custom templates
+  --plugins-dir DIRECTORY         Path to directory containing custom plugins
+  --static MOUNT:DIRECTORY        Serve static files from this directory at /MOUNT/...
+  --install TEXT                  Additional packages (e.g. plugins) to install
+  --plugin-secret <TEXT TEXT TEXT>...
+                                  Secrets to pass to plugins, e.g. --plugin-secret
+                                  datasette-auth-github client_id xxx
+  --version-note TEXT             Additional note to show on /-/versions
+  --secret TEXT                   Secret used for signing secure values, such as signed
+                                  cookies
+  --title TEXT                    Title for metadata
+  --license TEXT                  License label for metadata
+  --license_url TEXT              License URL for metadata
+  --source TEXT                   Source label for metadata
+  --source_url TEXT               Source URL for metadata
+  --about TEXT                    About label for metadata
+  --about_url TEXT                About URL for metadata
+  --token TEXT                    Auth token to use for deploy
+  --project PROJECT               Vercel project name to use  [required]
+  --scope TEXT                    Optional Vercel scope (e.g. a team name)
+  --no-prod                       Don't deploy directly to production
+  --debug                         Enable Vercel CLI debug output
+  --public                        Publish source with Vercel CLI --public
+  --generate-dir DIRECTORY        Output generated application files and stop without
+                                  deploying
+  --generate-vercel-json          Output generated vercel.json file and stop without
+                                  deploying
+  --vercel-json FILENAME          Custom vercel.json file to use instead of generating
+                                  one
+  --setting SETTING...            Setting, see docs.datasette.io/en/stable/settings.html
+  --crossdb                       Enable cross-database SQL queries
+  --help                          Show this message and exit.
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Using a custom <code>vercel.json</code> file</h2><a id="user-content-using-a-custom-verceljson-file" class="anchor" aria-label="Permalink: Using a custom vercel.json file" href="#using-a-custom-verceljson-file"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">If you want to add additional redirects or similar to your Vercel configuration you may want to provide a custom <code>vercel.json</code> file.</p>
+<p dir="auto">To do this, first generate a configuration file (without running a deploy) using the <code>--generate-vercel-json</code> option:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="datasette publish vercel my-database.db \
+  --project=my-database \
+  --generate-vercel-json > vercel.json"><pre class="notranslate"><code>datasette publish vercel my-database.db \
+  --project=my-database \
+  --generate-vercel-json > vercel.json
+</code></pre></div>
+<p dir="auto">You can now edit the <code>vercel.json</code> file that this creates to add your custom options.</p>
+<p dir="auto">Then run the deploy using:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="datasette publish vercel my-database.db \
+  --project=my-database \
+  --vercel-json=vercel.json"><pre class="notranslate"><code>datasette publish vercel my-database.db \
+  --project=my-database \
+  --vercel-json=vercel.json
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Setting a <code>DATASETTE_SECRET</code></h2><a id="user-content-setting-a-datasette_secret" class="anchor" aria-label="Permalink: Setting a DATASETTE_SECRET" href="#setting-a-datasette_secret"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Datasette uses <a href="https://docs.datasette.io/en/stable/settings.html#configuring-the-secret" rel="nofollow">a secret string</a> for purposes such as signing authentication cookies. This secret is reset when the server restarts, which will sign out any users who are authenticated using a signed cookie.</p>
+<p dir="auto">You can avoid this by generating a <code>DATASETTE_SECRET</code> secret string and setting that as a <a href="https://vercel.com/docs/concepts/projects/environment-variables" rel="nofollow">Vercel environment variable</a>. If you do this the secret will stay consistent and your users will not be signed out.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Using this with GitHub Actions</h2><a id="user-content-using-this-with-github-actions" class="anchor" aria-label="Permalink: Using this with GitHub Actions" href="#using-this-with-github-actions"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">This plugin can be used together with <a href="https://github.com/features/actions">GitHub Actions</a> to deploy Datasette instances automatically on new pushes to a repo, or on a schedule.</p>
+<p dir="auto">The GitHub Actions runners already have the Vercel deployment tool installed. You'll need to create an API token for your account at <a href="https://vercel.com/account/tokens" rel="nofollow">vercel.com/account/tokens</a>, and store that as a secret in your GitHub repository called <code>VERCEL_TOKEN</code>.</p>
+<p dir="auto">Make sure your workflow has installed <code>datasette</code> and <code>datasette-publish-vercel</code> using <code>pip</code>, then add the following step to your GitHub Actions workflow:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="    - name: Deploy Datasette using Vercel
+      env:
+        VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      run: |-
+        datasette publish vercel mydb.db \
+          --token $VERCEL_TOKEN \
+          --project my-vercel-project"><pre class="notranslate"><code>    - name: Deploy Datasette using Vercel
+      env:
+        VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      run: |-
+        datasette publish vercel mydb.db \
+          --token $VERCEL_TOKEN \
+          --project my-vercel-project
+</code></pre></div>
+<p dir="auto">You can see a full example of a workflow that uses Vercel in this way <a href="https://github.com/simonw/til/blob/12b3f0d3679320cbeafa5df164bbc08ba703625d/.github/workflows/build.yml">in the simonw/til repository</a>.</p>
+</article></div>

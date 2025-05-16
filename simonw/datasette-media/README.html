@@ -1,0 +1,261 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">datasette-media</h1><a id="user-content-datasette-media" class="anchor" aria-label="Permalink: datasette-media" href="#datasette-media"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://pypi.org/project/datasette-media/" rel="nofollow"><img src="https://img.shields.io/pypi/v/datasette-media.svg" alt="PyPI" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/f4799178424abd16231e47c62e422c06665acfe27a900b59767dd53e27b759c7/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f6461746173657474652d6d656469612e737667"></a>
+<a href="https://github.com/simonw/datasette-media/releases"><img src="https://img.shields.io/github/v/release/simonw/datasette-media?include_prereleases&label=changelog" alt="Changelog" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/f0e1ff55363acb140c4762185071b41f0b2d173a0c14ca480bf210f0b8ab3981/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f72656c656173652f73696d6f6e772f6461746173657474652d6d656469613f696e636c7564655f70726572656c6561736573266c6162656c3d6368616e67656c6f67"></a>
+<a href="https://github.com/simonw/datasette-media/actions?query=workflow%3ATest"><img src="https://github.com/simonw/datasette-media/workflows/Test/badge.svg" alt="Tests" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/datasette-media/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" alt="License" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/c355f200ea90fddaa407b6eaab303663a669248ea3ca7b1fcf77dbe04ff5f48c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d417061636865253230322e302d626c75652e737667"></a></p>
+<p dir="auto">Datasette plugin for serving media based on a SQL query.</p>
+<p dir="auto">Use this when you have a database table containing references to files on disk - or binary content stored in BLOB columns - that you would like to be able to serve to your users.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Installation</h2><a id="user-content-installation" class="anchor" aria-label="Permalink: Installation" href="#installation"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Install this plugin in the same environment as Datasette.</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ pip install datasette-media"><pre class="notranslate"><code>$ pip install datasette-media
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">HEIC image support</h3><a id="user-content-heic-image-support" class="anchor" aria-label="Permalink: HEIC image support" href="#heic-image-support"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Modern iPhones save their photos using the <a href="https://en.wikipedia.org/wiki/High_Efficiency_Image_File_Format" rel="nofollow">HEIC image format</a>. Processing these images requires an additional dependency, <a href="https://pypi.org/project/pyheif/" rel="nofollow">pyheif</a>. You can include this dependency by running:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ pip install datasette-media[heif]"><pre class="notranslate"><code>$ pip install datasette-media[heif]
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Usage</h2><a id="user-content-usage" class="anchor" aria-label="Permalink: Usage" href="#usage"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">You can use this plugin to configure Datasette to serve static media based on SQL queries to an underlying database table.</p>
+<p dir="auto">Media will be served from URLs that start with <code>/-/media/</code>. The full URL to each media asset will look like this:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="/-/media/type-of-media/media-key"><pre class="notranslate"><code>/-/media/type-of-media/media-key
+</code></pre></div>
+<p dir="auto"><code>type-of-media</code> will correspond to a configured SQL query, and might be something like <code>photo</code>. <code>media-key</code> will be an identifier that is used as part of the underlying SQL query to find which file should be served.</p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Serving static files from disk</h3><a id="user-content-serving-static-files-from-disk" class="anchor" aria-label="Permalink: Serving static files from disk" href="#serving-static-files-from-disk"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The following <code>metadata.json</code> configuration will cause this plugin to serve files from disk, based on queries to a database table called <code>apple_photos</code>.</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    "plugins": {
+        "datasette-media": {
+            "photo": {
+                "sql": "select filepath from apple_photos where uuid=:key"
+            }
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"plugins"</span>: {
+        <span class="pl-ent">"datasette-media"</span>: {
+            <span class="pl-ent">"photo"</span>: {
+                <span class="pl-ent">"sql"</span>: <span class="pl-s"><span class="pl-pds">"</span>select filepath from apple_photos where uuid=:key<span class="pl-pds">"</span></span>
+            }
+        }
+    }
+}</pre></div>
+<p dir="auto">A request to <code>/-/media/photo/CF972D33-5324-44F2-8DAE-22CB3182CD31</code> will execute the following SQL query:</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="select filepath from apple_photos where uuid=:key"><pre><span class="pl-k">select</span> filepath <span class="pl-k">from</span> apple_photos <span class="pl-k">where</span> uuid<span class="pl-k">=</span>:key</pre></div>
+<p dir="auto">The value from the URL -  in this case <code>CF972D33-5324-44F2-8DAE-22CB3182CD31</code> - will be passed as the <code>:key</code> parameter to the query.</p>
+<p dir="auto">The query returns a <code>filepath</code> value that has been read from the table. The plugin will then read that file from disk and serve it in response to the request.</p>
+<p dir="auto">SQL queries default to running against the first connected database. You can specify a different database to execute the query against using <code>"database": "name_of_db"</code>. To execute against <code>photos.db</code>, use this:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    "plugins": {
+        "datasette-media": {
+            "photo": {
+                "sql": "select filepath from apple_photos where uuid=:key",
+                "database": "photos"
+            }
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"plugins"</span>: {
+        <span class="pl-ent">"datasette-media"</span>: {
+            <span class="pl-ent">"photo"</span>: {
+                <span class="pl-ent">"sql"</span>: <span class="pl-s"><span class="pl-pds">"</span>select filepath from apple_photos where uuid=:key<span class="pl-pds">"</span></span>,
+                <span class="pl-ent">"database"</span>: <span class="pl-s"><span class="pl-pds">"</span>photos<span class="pl-pds">"</span></span>
+            }
+        }
+    }
+}</pre></div>
+<p dir="auto">See <a href="https://github.com/dogsheep/dogsheep-photos">dogsheep-photos</a> for an example of an application that can benefit from this plugin.</p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Serving binary content from BLOB columns</h3><a id="user-content-serving-binary-content-from-blob-columns" class="anchor" aria-label="Permalink: Serving binary content from BLOB columns" href="#serving-binary-content-from-blob-columns"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">If your SQL query returns a <code>content</code> column, this will be served directly to the user:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    "plugins": {
+        "datasette-media": {
+            "photo": {
+                "sql": "select thumbnail as content from photos where uuid=:key",
+                "database": "thumbs"
+            }
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"plugins"</span>: {
+        <span class="pl-ent">"datasette-media"</span>: {
+            <span class="pl-ent">"photo"</span>: {
+                <span class="pl-ent">"sql"</span>: <span class="pl-s"><span class="pl-pds">"</span>select thumbnail as content from photos where uuid=:key<span class="pl-pds">"</span></span>,
+                <span class="pl-ent">"database"</span>: <span class="pl-s"><span class="pl-pds">"</span>thumbs<span class="pl-pds">"</span></span>
+            }
+        }
+    }
+}</pre></div>
+<p dir="auto">You can also return a <code>content_type</code> column which will be used as the <code>Content-Type</code> header served to the user:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    "plugins": {
+        "datasette-media": {
+            "photo": {
+                "sql": "select body as content, 'text/html;charset=utf-8' as content_type from documents where id=:key",
+                "database": "documents"
+            }
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"plugins"</span>: {
+        <span class="pl-ent">"datasette-media"</span>: {
+            <span class="pl-ent">"photo"</span>: {
+                <span class="pl-ent">"sql"</span>: <span class="pl-s"><span class="pl-pds">"</span>select body as content, 'text/html;charset=utf-8' as content_type from documents where id=:key<span class="pl-pds">"</span></span>,
+                <span class="pl-ent">"database"</span>: <span class="pl-s"><span class="pl-pds">"</span>documents<span class="pl-pds">"</span></span>
+            }
+        }
+    }
+}</pre></div>
+<p dir="auto">If you do not specify a <code>content_type</code> the default of <code>application/octet-stream</code> will be used.</p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Serving content proxied from a URL</h3><a id="user-content-serving-content-proxied-from-a-url" class="anchor" aria-label="Permalink: Serving content proxied from a URL" href="#serving-content-proxied-from-a-url"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">To serve content that is itself fetched from elsewhere, return a <code>content_url</code> column. This can be particularly useful when combined with the ability to resize images (described in the next section).</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    "plugins": {
+        "datasette-media": {
+            "photos": {
+                "sql": "select photo_url as content_url from photos where id=:key",
+                "database": "photos",
+                "enable_transform": true
+            }
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"plugins"</span>: {
+        <span class="pl-ent">"datasette-media"</span>: {
+            <span class="pl-ent">"photos"</span>: {
+                <span class="pl-ent">"sql"</span>: <span class="pl-s"><span class="pl-pds">"</span>select photo_url as content_url from photos where id=:key<span class="pl-pds">"</span></span>,
+                <span class="pl-ent">"database"</span>: <span class="pl-s"><span class="pl-pds">"</span>photos<span class="pl-pds">"</span></span>,
+                <span class="pl-ent">"enable_transform"</span>: <span class="pl-c1">true</span>
+            }
+        }
+    }
+}</pre></div>
+<p dir="auto">Now you can access resized versions of images from that URL like so:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="/-/media/photos/13?w=200"><pre class="notranslate"><code>/-/media/photos/13?w=200
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Setting a download file name</h3><a id="user-content-setting-a-download-file-name" class="anchor" aria-label="Permalink: Setting a download file name" href="#setting-a-download-file-name"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The <code>content_filename</code> column can be returned to force browsers to download the content using a specific file name.</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    "plugins": {
+        "datasette-media": {
+            "hello": {
+                "sql": "select 'Hello ' || :key as content, 'hello.txt' as content_filename"
+            }
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"plugins"</span>: {
+        <span class="pl-ent">"datasette-media"</span>: {
+            <span class="pl-ent">"hello"</span>: {
+                <span class="pl-ent">"sql"</span>: <span class="pl-s"><span class="pl-pds">"</span>select 'Hello ' || :key as content, 'hello.txt' as content_filename<span class="pl-pds">"</span></span>
+            }
+        }
+    }
+}</pre></div>
+<p dir="auto">Visiting <code>/-/media/hello/Groot</code> will cause your browser to download a file called <code>hello.txt</code> containing the text <code>Hello Groot</code>.</p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Resizing or transforming images</h3><a id="user-content-resizing-or-transforming-images" class="anchor" aria-label="Permalink: Resizing or transforming images" href="#resizing-or-transforming-images"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Your SQL query can specify that an image should be resized and/or converted to another format by returning additional columns. All three are optional.</p>
+<ul dir="auto">
+<li><code>resize_width</code> - the width to resize the image to</li>
+<li><code>resize_width</code> - the height to resize the image to</li>
+<li><code>output_format</code> - the output format to use (e.g. <code>jpeg</code> or <code>png</code>) - any output format <a href="https://pillow.readthedocs.io/en/stable/handbook/image-file-formats.html" rel="nofollow">supported by Pillow</a> is allowed here.</li>
+</ul>
+<p dir="auto">If you specify one but not the other of <code>resize_width</code> or <code>resize_height</code> the unspecified one will be calculated automatically to maintain the aspect ratio of the image.</p>
+<p dir="auto">Here's an example configuration that will resize all images to be JPEGs that are 200 pixels in height:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    "plugins": {
+        "datasette-media": {
+            "photo": {
+                "sql": "select filepath, 200 as resize_height, 'jpeg' as output_format from apple_photos where uuid=:key",
+                "database": "photos"
+            }
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"plugins"</span>: {
+        <span class="pl-ent">"datasette-media"</span>: {
+            <span class="pl-ent">"photo"</span>: {
+                <span class="pl-ent">"sql"</span>: <span class="pl-s"><span class="pl-pds">"</span>select filepath, 200 as resize_height, 'jpeg' as output_format from apple_photos where uuid=:key<span class="pl-pds">"</span></span>,
+                <span class="pl-ent">"database"</span>: <span class="pl-s"><span class="pl-pds">"</span>photos<span class="pl-pds">"</span></span>
+            }
+        }
+    }
+}</pre></div>
+<p dir="auto">If you enable the <code>enable_transform</code> configuration option you can instead specify transform parameters at runtime using querystring parameters. For example:</p>
+<ul dir="auto">
+<li><code>/-/media/photo/CF972D33?w=200</code> to resize to a fixed width</li>
+<li><code>/-/media/photo/CF972D33?h=200</code> to resize to a fixed height</li>
+<li><code>/-/media/photo/CF972D33?format=jpeg</code> to convert to JPEG</li>
+</ul>
+<p dir="auto">That option is added like so:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    "plugins": {
+        "datasette-media": {
+            "photo": {
+                "sql": "select filepath from apple_photos where uuid=:key",
+                "database": "photos",
+                "enable_transform": true
+            }
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"plugins"</span>: {
+        <span class="pl-ent">"datasette-media"</span>: {
+            <span class="pl-ent">"photo"</span>: {
+                <span class="pl-ent">"sql"</span>: <span class="pl-s"><span class="pl-pds">"</span>select filepath from apple_photos where uuid=:key<span class="pl-pds">"</span></span>,
+                <span class="pl-ent">"database"</span>: <span class="pl-s"><span class="pl-pds">"</span>photos<span class="pl-pds">"</span></span>,
+                <span class="pl-ent">"enable_transform"</span>: <span class="pl-c1">true</span>
+            }
+        }
+    }
+}</pre></div>
+<p dir="auto">The maximum allowed height or width is 4000 pixels. You can change this limit using the <code>"max_width_height"</code> option:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    "plugins": {
+        "datasette-media": {
+            "photo": {
+                "sql": "select filepath from apple_photos where uuid=:key",
+                "database": "photos",
+                "enable_transform": true,
+                "max_width_height": 1000
+            }
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"plugins"</span>: {
+        <span class="pl-ent">"datasette-media"</span>: {
+            <span class="pl-ent">"photo"</span>: {
+                <span class="pl-ent">"sql"</span>: <span class="pl-s"><span class="pl-pds">"</span>select filepath from apple_photos where uuid=:key<span class="pl-pds">"</span></span>,
+                <span class="pl-ent">"database"</span>: <span class="pl-s"><span class="pl-pds">"</span>photos<span class="pl-pds">"</span></span>,
+                <span class="pl-ent">"enable_transform"</span>: <span class="pl-c1">true</span>,
+                <span class="pl-ent">"max_width_height"</span>: <span class="pl-c1">1000</span>
+            }
+        }
+    }
+}</pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Configuration</h2><a id="user-content-configuration" class="anchor" aria-label="Permalink: Configuration" href="#configuration"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">In addition to the different named content types, the following special plugin configuration setting is available:</p>
+<ul dir="auto">
+<li><code>transform_threads</code> - number of threads to use for running transformations (e.g. resizing). Defaults to 4.</li>
+</ul>
+<p dir="auto">This can be used like this:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    "plugins": {
+        "datasette-media": {
+            "photo": {
+                "sql": "select filepath from apple_photos where uuid=:key",
+                "database": "photos"
+            },
+            "transform_threads": 8
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"plugins"</span>: {
+        <span class="pl-ent">"datasette-media"</span>: {
+            <span class="pl-ent">"photo"</span>: {
+                <span class="pl-ent">"sql"</span>: <span class="pl-s"><span class="pl-pds">"</span>select filepath from apple_photos where uuid=:key<span class="pl-pds">"</span></span>,
+                <span class="pl-ent">"database"</span>: <span class="pl-s"><span class="pl-pds">"</span>photos<span class="pl-pds">"</span></span>
+            },
+            <span class="pl-ent">"transform_threads"</span>: <span class="pl-c1">8</span>
+        }
+    }
+}</pre></div>
+</article></div>

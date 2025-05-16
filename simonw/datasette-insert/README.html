@@ -1,0 +1,292 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">datasette-insert</h1><a id="user-content-datasette-insert" class="anchor" aria-label="Permalink: datasette-insert" href="#datasette-insert"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://pypi.org/project/datasette-insert/" rel="nofollow"><img src="https://img.shields.io/pypi/v/datasette-insert.svg" alt="PyPI" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/42198b67f4ca0d480bfc98732016f006690b019434109b7bcc3afbfe9cfe70f0/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f6461746173657474652d696e736572742e737667"></a>
+<a href="https://github.com/simonw/datasette-insert/releases"><img src="https://img.shields.io/github/v/release/simonw/datasette-insert?include_prereleases&label=changelog" alt="Changelog" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/066a8cf461e60749bda905e31920cb9fca8d178e96b0d9e6f406453a0cbfd21f/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f72656c656173652f73696d6f6e772f6461746173657474652d696e736572743f696e636c7564655f70726572656c6561736573266c6162656c3d6368616e67656c6f67"></a>
+<a href="https://github.com/simonw/datasette-insert/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" alt="License" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/c355f200ea90fddaa407b6eaab303663a669248ea3ca7b1fcf77dbe04ff5f48c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d417061636865253230322e302d626c75652e737667"></a></p>
+<p dir="auto">Datasette plugin for inserting and updating data</p>
+<p dir="auto"><strong>No longer necessary with Datasette 1.0</strong>. Use the <a href="https://docs.datasette.io/en/latest/json_api.html#the-json-write-api" rel="nofollow">JSON write API</a> instead.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Installation</h2><a id="user-content-installation" class="anchor" aria-label="Permalink: Installation" href="#installation"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Install this plugin in the same environment as Datasette.</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ pip install datasette-insert"><pre class="notranslate"><code>$ pip install datasette-insert
+</code></pre></div>
+<p dir="auto">This plugin should always be deployed with additional configuration to prevent unauthenticated access, see notes below.</p>
+<p dir="auto">If you are trying it out on your own local machine, you can <code>pip install</code> the <a href="https://github.com/simonw/datasette-insert-unsafe">datasette-insert-unsafe</a> plugin to allow access without needing to set up authentication or permissions separately.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Inserting data and creating tables</h2><a id="user-content-inserting-data-and-creating-tables" class="anchor" aria-label="Permalink: Inserting data and creating tables" href="#inserting-data-and-creating-tables"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Start datasette and make sure it has a writable SQLite database attached to it. If you have not yet created a database file you can use this:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="datasette data.db --create"><pre class="notranslate"><code>datasette data.db --create
+</code></pre></div>
+<p dir="auto">The <code>--create</code> option will create a new empty <code>data.db</code> database file if it does not already exist.</p>
+<p dir="auto">The plugin adds an endpoint that allows data to be inserted or updated and tables to be created by POSTing JSON data to the following URL:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="/-/insert/name-of-database/name-of-table"><pre class="notranslate"><code>/-/insert/name-of-database/name-of-table
+</code></pre></div>
+<p dir="auto">The JSON should look like this:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="[
+    {
+        "id": 1,
+        "name": "Cleopaws",
+        "age": 5
+    },
+    {
+        "id": 2,
+        "name": "Pancakes",
+        "age": 5
+    }
+]"><pre>[
+    {
+        <span class="pl-ent">"id"</span>: <span class="pl-c1">1</span>,
+        <span class="pl-ent">"name"</span>: <span class="pl-s"><span class="pl-pds">"</span>Cleopaws<span class="pl-pds">"</span></span>,
+        <span class="pl-ent">"age"</span>: <span class="pl-c1">5</span>
+    },
+    {
+        <span class="pl-ent">"id"</span>: <span class="pl-c1">2</span>,
+        <span class="pl-ent">"name"</span>: <span class="pl-s"><span class="pl-pds">"</span>Pancakes<span class="pl-pds">"</span></span>,
+        <span class="pl-ent">"age"</span>: <span class="pl-c1">5</span>
+    }
+]</pre></div>
+<p dir="auto">The first time data is posted to the URL a table of that name will be created if it does not aready exist, with the desired columns.</p>
+<p dir="auto">You can specify which column should be used as the primary key using the <code>?pk=</code> URL argument.</p>
+<p dir="auto">Here's how to POST to a database and create a new table using the Python <code>requests</code> library:</p>
+<div class="highlight highlight-source-python notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="import requests
+
+requests.post("http://localhost:8001/-/insert/data/dogs?pk=id", json=[
+    {
+        "id": 1,
+        "name": "Cleopaws",
+        "age": 5
+    },
+    {
+        "id": 2,
+        "name": "Pancakes",
+        "age": 4
+    }
+])"><pre><span class="pl-k">import</span> <span class="pl-s1">requests</span>
+
+<span class="pl-s1">requests</span>.<span class="pl-c1">post</span>(<span class="pl-s">"http://localhost:8001/-/insert/data/dogs?pk=id"</span>, <span class="pl-s1">json</span><span class="pl-c1">=</span>[
+    {
+        <span class="pl-s">"id"</span>: <span class="pl-c1">1</span>,
+        <span class="pl-s">"name"</span>: <span class="pl-s">"Cleopaws"</span>,
+        <span class="pl-s">"age"</span>: <span class="pl-c1">5</span>
+    },
+    {
+        <span class="pl-s">"id"</span>: <span class="pl-c1">2</span>,
+        <span class="pl-s">"name"</span>: <span class="pl-s">"Pancakes"</span>,
+        <span class="pl-s">"age"</span>: <span class="pl-c1">4</span>
+    }
+])</pre></div>
+<p dir="auto">And here's how to do the same thing using <code>curl</code>:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="curl --request POST \
+  --data '[
+      {
+        "id": 1,
+        "name": "Cleopaws",
+        "age": 5
+      },
+      {
+        "id": 2,
+        "name": "Pancakes",
+        "age": 4
+      }
+    ]' \
+    'http://localhost:8001/-/insert/data/dogs?pk=id'"><pre class="notranslate"><code>curl --request POST \
+  --data '[
+      {
+        "id": 1,
+        "name": "Cleopaws",
+        "age": 5
+      },
+      {
+        "id": 2,
+        "name": "Pancakes",
+        "age": 4
+      }
+    ]' \
+    'http://localhost:8001/-/insert/data/dogs?pk=id'
+</code></pre></div>
+<p dir="auto">Or by piping in JSON like so:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="cat dogs.json | curl --request POST -d @- \
+    'http://localhost:8001/-/insert/data/dogs?pk=id'"><pre class="notranslate"><code>cat dogs.json | curl --request POST -d @- \
+    'http://localhost:8001/-/insert/data/dogs?pk=id'
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Inserting a single row</h3><a id="user-content-inserting-a-single-row" class="anchor" aria-label="Permalink: Inserting a single row" href="#inserting-a-single-row"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">If you are inserting a single row you can optionally send it as a dictionary rather than a list with a single item:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="curl --request POST \
+  --data '{
+      "id": 1,
+      "name": "Cleopaws",
+      "age": 5
+    }' \
+    'http://localhost:8001/-/insert/data/dogs?pk=id'"><pre class="notranslate"><code>curl --request POST \
+  --data '{
+      "id": 1,
+      "name": "Cleopaws",
+      "age": 5
+    }' \
+    'http://localhost:8001/-/insert/data/dogs?pk=id'
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Automatically adding new columns</h3><a id="user-content-automatically-adding-new-columns" class="anchor" aria-label="Permalink: Automatically adding new columns" href="#automatically-adding-new-columns"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">If you send data to an existing table with keys that are not reflected by the existing columns, you will get an HTTP 400 error with a JSON response like this:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    "status": 400,
+    "error": "Unknown keys: 'foo'",
+    "error_code": "unknown_keys"
+}"><pre>{
+    <span class="pl-ent">"status"</span>: <span class="pl-c1">400</span>,
+    <span class="pl-ent">"error"</span>: <span class="pl-s"><span class="pl-pds">"</span>Unknown keys: 'foo'<span class="pl-pds">"</span></span>,
+    <span class="pl-ent">"error_code"</span>: <span class="pl-s"><span class="pl-pds">"</span>unknown_keys<span class="pl-pds">"</span></span>
+}</pre></div>
+<p dir="auto">If you add <code>?alter=1</code> to the URL you are posting to any missing columns will be automatically added:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="curl --request POST \
+  --data '[
+      {
+        "id": 3,
+        "name": "Boris",
+        "age": 1,
+        "breed": "Husky"
+      }
+    ]' \
+    'http://localhost:8001/-/insert/data/dogs?alter=1'"><pre class="notranslate"><code>curl --request POST \
+  --data '[
+      {
+        "id": 3,
+        "name": "Boris",
+        "age": 1,
+        "breed": "Husky"
+      }
+    ]' \
+    'http://localhost:8001/-/insert/data/dogs?alter=1'
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Upserting data</h2><a id="user-content-upserting-data" class="anchor" aria-label="Permalink: Upserting data" href="#upserting-data"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">An "upsert" operation can be used to partially update a record. With upserts you can send a subset of the keys and, if the ID matches the specified primary key, they will be used to update an existing record.</p>
+<p dir="auto">Upserts can be sent to the <code>/-/upsert</code> API endpoint.</p>
+<p dir="auto">This example will update the dog with ID=1's age from 5 to 7:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="curl --request POST \
+  --data '{
+      "id": 1,
+      "age": 7
+    }' \
+    'http://localhost:3322/-/upsert/data/dogs?pk=id'"><pre class="notranslate"><code>curl --request POST \
+  --data '{
+      "id": 1,
+      "age": 7
+    }' \
+    'http://localhost:3322/-/upsert/data/dogs?pk=id'
+</code></pre></div>
+<p dir="auto">Like the <code>/-/insert</code> endpoint, the <code>/-/upsert</code> endpoint can accept an array of objects too. It also supports the <code>?alter=1</code> option.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Permissions and authentication</h2><a id="user-content-permissions-and-authentication" class="anchor" aria-label="Permalink: Permissions and authentication" href="#permissions-and-authentication"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">This plugin defaults to denying all access, to help ensure people don't accidentally deploy it on the open internet in an unsafe configuration.</p>
+<p dir="auto">You can read about <a href="https://datasette.readthedocs.io/en/stable/authentication.html" rel="nofollow">Datasette's approach to authentication</a> in the Datasette manual.</p>
+<p dir="auto">You can install the <code>datasette-insert-unsafe</code> plugin to run in unsafe mode, where all access is allowed by default.</p>
+<p dir="auto">I recommend using this plugin in conjunction with <a href="https://github.com/simonw/datasette-auth-tokens">datasette-auth-tokens</a>, which provides a mechanism for making authenticated calls using API tokens.</p>
+<p dir="auto">You can then use <a href="https://datasette.readthedocs.io/en/stable/authentication.html#defining-permissions-with-allow-blocks" rel="nofollow">"allow" blocks</a> in the <code>datasette-insert</code> plugin configuration to specify which authenticated tokens are allowed to make use of the API.</p>
+<p dir="auto">Here's an example <code>metadata.json</code> file which restricts access to the <code>/-/insert</code> API to an API token defined in an <code>INSERT_TOKEN</code> environment variable:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    "plugins": {
+        "datasette-insert": {
+            "allow": {
+                "bot": "insert-bot"
+            }
+        },
+        "datasette-auth-tokens": {
+            "tokens": [
+                {
+                    "token": {
+                        "$env": "INSERT_TOKEN"
+                    },
+                    "actor": {
+                        "bot": "insert-bot"
+                    }
+                }
+            ]
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"plugins"</span>: {
+        <span class="pl-ent">"datasette-insert"</span>: {
+            <span class="pl-ent">"allow"</span>: {
+                <span class="pl-ent">"bot"</span>: <span class="pl-s"><span class="pl-pds">"</span>insert-bot<span class="pl-pds">"</span></span>
+            }
+        },
+        <span class="pl-ent">"datasette-auth-tokens"</span>: {
+            <span class="pl-ent">"tokens"</span>: [
+                {
+                    <span class="pl-ent">"token"</span>: {
+                        <span class="pl-ent">"$env"</span>: <span class="pl-s"><span class="pl-pds">"</span>INSERT_TOKEN<span class="pl-pds">"</span></span>
+                    },
+                    <span class="pl-ent">"actor"</span>: {
+                        <span class="pl-ent">"bot"</span>: <span class="pl-s"><span class="pl-pds">"</span>insert-bot<span class="pl-pds">"</span></span>
+                    }
+                }
+            ]
+        }
+    }
+}</pre></div>
+<p dir="auto">With this configuration in place you can start Datasette like this:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="INSERT_TOKEN=abc123 datasette data.db -m metadata.json"><pre class="notranslate"><code>INSERT_TOKEN=abc123 datasette data.db -m metadata.json
+</code></pre></div>
+<p dir="auto">You can now send data to the API using <code>curl</code> like this:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="curl --request POST \
+  -H "Authorization: Bearer abc123" \
+  --data '[
+      {
+        "id": 3,
+        "name": "Boris",
+        "age": 1,
+        "breed": "Husky"
+      }
+    ]' \
+    'http://localhost:8001/-/insert/data/dogs'"><pre class="notranslate"><code>curl --request POST \
+  -H "Authorization: Bearer abc123" \
+  --data '[
+      {
+        "id": 3,
+        "name": "Boris",
+        "age": 1,
+        "breed": "Husky"
+      }
+    ]' \
+    'http://localhost:8001/-/insert/data/dogs'
+</code></pre></div>
+<p dir="auto">Or using the Python <code>requests</code> library like so:</p>
+<div class="highlight highlight-source-python notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="requests.post(
+    "http://localhost:8001/-/insert/data/dogs",
+    json={"id": 1, "name": "Cleopaws", "age": 5},
+    headers={"Authorization": "bearer abc123"},
+)"><pre><span class="pl-s1">requests</span>.<span class="pl-c1">post</span>(
+    <span class="pl-s">"http://localhost:8001/-/insert/data/dogs"</span>,
+    <span class="pl-s1">json</span><span class="pl-c1">=</span>{<span class="pl-s">"id"</span>: <span class="pl-c1">1</span>, <span class="pl-s">"name"</span>: <span class="pl-s">"Cleopaws"</span>, <span class="pl-s">"age"</span>: <span class="pl-c1">5</span>},
+    <span class="pl-s1">headers</span><span class="pl-c1">=</span>{<span class="pl-s">"Authorization"</span>: <span class="pl-s">"bearer abc123"</span>},
+)</pre></div>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Finely grained permissions</h3><a id="user-content-finely-grained-permissions" class="anchor" aria-label="Permalink: Finely grained permissions" href="#finely-grained-permissions"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Using an <code>"allow"</code> block as described above grants full permission to the features enabled by the API.</p>
+<p dir="auto">The API implements several new Datasett permissions, which other plugins can use to make more finely grained decisions.</p>
+<p dir="auto">The full set of permissions are as follows:</p>
+<ul dir="auto">
+<li><code>insert:all</code> - all permissions - this is used by the <code>"allow"</code> block described above. Argument: <code>database_name</code></li>
+<li><code>insert:insert-update</code> - the ability to insert data into an existing table, or to update data by its primary key. Arguments: <code>(database_name, table_name)</code></li>
+<li><code>insert:create-table</code> - the ability to create a new table. Argument: <code>database_name</code></li>
+<li><code>insert:alter-table</code> - the ability to add columns to an existing table (using <code>?alter=1</code>). Arguments: <code>(database_name, table_name)</code></li>
+</ul>
+<p dir="auto">You can use plugins like <a href="https://github.com/simonw/datasette-permissions-sql">datasette-permissions-sql</a> to hook into these more detailed permissions for finely grained control over what actions each authenticated actor can take.</p>
+<p dir="auto">Plugins that implement the <a href="https://datasette.readthedocs.io/en/stable/plugin_hooks.html#plugin-hook-permission-allowed" rel="nofollow">permission_allowed()</a> plugin hook can take full control over these permission decisions.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">CORS</h2><a id="user-content-cors" class="anchor" aria-label="Permalink: CORS" href="#cors"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">If you start Datasette with the <code>datasette --cors</code> option the following HTTP headers will be added to resources served by this plugin:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="Access-Control-Allow-Origin: *
+Access-Control-Allow-Headers: content-type,authorization
+Access-Control-Allow-Methods: POST"><pre class="notranslate"><code>Access-Control-Allow-Origin: *
+Access-Control-Allow-Headers: content-type,authorization
+Access-Control-Allow-Methods: POST
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Development</h2><a id="user-content-development" class="anchor" aria-label="Permalink: Development" href="#development"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">To set up this plugin locally, first checkout the code. Then create a new virtual environment:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="cd datasette-insert
+python3 -m venv venv
+source venv/bin/activate"><pre class="notranslate"><code>cd datasette-insert
+python3 -m venv venv
+source venv/bin/activate
+</code></pre></div>
+<p dir="auto">Now install the dependencies and tests:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pip install -e '.[test]'"><pre class="notranslate"><code>pip install -e '.[test]'
+</code></pre></div>
+<p dir="auto">To run the tests:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pytest"><pre class="notranslate"><code>pytest
+</code></pre></div>
+</article></div>

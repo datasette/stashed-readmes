@@ -1,0 +1,152 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">datasette-dateutil</h1><a id="user-content-datasette-dateutil" class="anchor" aria-label="Permalink: datasette-dateutil" href="#datasette-dateutil"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://pypi.org/project/datasette-dateutil/" rel="nofollow"><img src="https://img.shields.io/pypi/v/datasette-dateutil.svg" alt="PyPI" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/b460380da3ba1e605909df42ac32b78d6435e6f1c27406319b46c98a53e44fb2/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f6461746173657474652d646174657574696c2e737667"></a>
+<a href="https://github.com/simonw/datasette-dateutil/releases"><img src="https://img.shields.io/github/v/release/simonw/datasette-dateutil?include_prereleases&label=changelog" alt="Changelog" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/dca0030e9c84bf7cbb79c2d695aa50cc493986fc4002651f178cffcab2150f93/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f72656c656173652f73696d6f6e772f6461746173657474652d646174657574696c3f696e636c7564655f70726572656c6561736573266c6162656c3d6368616e67656c6f67"></a>
+<a href="https://github.com/simonw/datasette-dateutil/actions?query=workflow%3ATest"><img src="https://github.com/simonw/datasette-dateutil/workflows/Test/badge.svg" alt="Tests" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/datasette-dateutil/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" alt="License" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/c355f200ea90fddaa407b6eaab303663a669248ea3ca7b1fcf77dbe04ff5f48c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d417061636865253230322e302d626c75652e737667"></a></p>
+<p dir="auto">dateutil functions for Datasette</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Installation</h2><a id="user-content-installation" class="anchor" aria-label="Permalink: Installation" href="#installation"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Install this plugin in the same environment as Datasette.</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ datasette install datasette-dateutil"><pre class="notranslate"><code>$ datasette install datasette-dateutil
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Usage</h2><a id="user-content-usage" class="anchor" aria-label="Permalink: Usage" href="#usage"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">This function adds custom SQL functions that expose functionality from the <a href="https://dateutil.readthedocs.io/" rel="nofollow">dateutil</a> Python library.</p>
+<p dir="auto">Once installed, the following SQL functions become available:</p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Parsing date strings</h3><a id="user-content-parsing-date-strings" class="anchor" aria-label="Permalink: Parsing date strings" href="#parsing-date-strings"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li><code>dateutil_parse(text)</code> - returns an ISO8601 date string parsed from the text, or <code>null</code> if the input could not be parsed. <code>dateutil_parse("10 october 2020 3pm")</code> returns <code>2020-10-10T15:00:00</code>.</li>
+<li><code>dateutil_parse_fuzzy(text)</code> - same as <code>dateutil_parse()</code> but this also works against strings that contain a date somewhere within them - that date will be returned, or <code>null</code> if no dates could be found. <code>dateutil_parse_fuzzy("This is due 10 september")</code> returns <code>2020-09-10T00:00:00</code> (but will start returning the 2021 version of that if the year is 2021).</li>
+</ul>
+<p dir="auto">The <code>dateutil_parse()</code> and <code>dateutil_parse_fuzzy()</code> functions both follow the American convention of assuming that <code>1/2/2020</code> lists the month first, evaluating this example to the 2nd of January.</p>
+<p dir="auto">If you want to assume that the day comes first, use these two functions instead:</p>
+<ul dir="auto">
+<li><code>dateutil_parse_dayfirst(text)</code></li>
+<li><code>dateutil_parse_fuzzy_dayfirst(text)</code></li>
+</ul>
+<p dir="auto">Here's a query demonstrating these functions:</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="select
+  dateutil_parse("10 october 2020 3pm"),
+  dateutil_parse_fuzzy("This is due 10 september"),
+  dateutil_parse("1/2/2020"),
+  dateutil_parse("2020-03-04"),
+  dateutil_parse_dayfirst("2020-03-04");"><pre><span class="pl-k">select</span>
+  dateutil_parse(<span class="pl-s"><span class="pl-pds">"</span>10 october 2020 3pm<span class="pl-pds">"</span></span>),
+  dateutil_parse_fuzzy(<span class="pl-s"><span class="pl-pds">"</span>This is due 10 september<span class="pl-pds">"</span></span>),
+  dateutil_parse(<span class="pl-s"><span class="pl-pds">"</span>1/2/2020<span class="pl-pds">"</span></span>),
+  dateutil_parse(<span class="pl-s"><span class="pl-pds">"</span>2020-03-04<span class="pl-pds">"</span></span>),
+  dateutil_parse_dayfirst(<span class="pl-s"><span class="pl-pds">"</span>2020-03-04<span class="pl-pds">"</span></span>);</pre></div>
+<p dir="auto"><a href="https://latest-with-plugins.datasette.io/fixtures?sql=select%0D%0A++dateutil_parse%28%2210+october+2020+3pm%22%29%2C%0D%0A++dateutil_parse_fuzzy%28%22This+is+due+10+september%22%29%2C%0D%0A++dateutil_parse%28%221%2F2%2F2020%22%29%2C%0D%0A++dateutil_parse%28%222020-03-04%22%29%2C%0D%0A++dateutil_parse_dayfirst%28%222020-03-04%22%29%3B" rel="nofollow">Try that query</a></p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Optional default dates</h3><a id="user-content-optional-default-dates" class="anchor" aria-label="Permalink: Optional default dates" href="#optional-default-dates"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The <code>dateutil_parse()</code>, <code>dateutil_parse_fuzzy()</code>, <code>dateutil_parse_dayfirst()</code> and <code>dateutil_parse_fuzzy_dayfirst()</code> functions all accept an optional second argument specifying a "default" datetime to consider if some of the details are missing. For example, the following:</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="select dateutil_parse('1st october', '1985-01-01')"><pre><span class="pl-k">select</span> dateutil_parse(<span class="pl-s"><span class="pl-pds">'</span>1st october<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>1985-01-01<span class="pl-pds">'</span></span>)</pre></div>
+<p dir="auto">Will return <code>1985-10-01T00:00:00</code> - the missing year is replaced with the year from the default date.</p>
+<p dir="auto"><a href="https://latest-with-plugins.datasette.io/fixtures?sql=with+times+as+%28%0D%0A++select%0D%0A++++datetime%28%27now%27%29+as+t%0D%0A++union%0D%0A++select%0D%0A++++datetime%28%27now%27%2C+%27-1+year%27%29%0D%0A++union%0D%0A++select%0D%0A++++datetime%28%27now%27%2C+%27-3+years%27%29%0D%0A%29%0D%0Aselect+t%2C+dateutil_parse_fuzzy%28%22This+is+due+10+september%22%2C+t%29+from+times" rel="nofollow">Example query demonstrating the default date argument</a></p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Calculating Easter</h3><a id="user-content-calculating-easter" class="anchor" aria-label="Permalink: Calculating Easter" href="#calculating-easter"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li><code>dateutil_easter(year)</code> - returns the date for Easter in that year, for example <code>dateutil_easter("2020")</code> returns <code>2020-04-12</code>.</li>
+</ul>
+<p dir="auto"><a href="https://latest-with-plugins.datasette.io/fixtures?sql=select%0D%0A++dateutil_easter%282019%29%2C%0D%0A++dateutil_easter%282020%29%2C%0D%0A++dateutil_easter%282021%29" rel="nofollow">Example Easter query</a></p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">JSON arrays of dates</h3><a id="user-content-json-arrays-of-dates" class="anchor" aria-label="Permalink: JSON arrays of dates" href="#json-arrays-of-dates"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Several functions return JSON arrays of date strings. These can be used with SQLite's <code>json_each()</code> function to perform joins against dates from a specific date range or recurrence rule.</p>
+<p dir="auto">These functions can return up to 10,000 results. They will return an error if more than 10,000 dates would be returned - this is to protect against denial of service attacks.</p>
+<ul dir="auto">
+<li><code>dateutil_dates_between('1 january 2020', '5 jan 2020')</code> - given two dates (in any format that can be handled by <code>dateutil_parse()</code>) this function returns a JSON string containing the dates between those two days, inclusive. This example returns <code>["2020-01-01", "2020-01-02", "2020-01-03", "2020-01-04", "2020-01-05"]</code>.</li>
+<li><code>dateutil_dates_between('1 january 2020', '5 jan 2020', 0)</code> - set the optional third argument to <code>0</code> to specify that you would like this to be exclusive of the last day. This example returns <code>["2020-01-01", "2020-01-02", "2020-01-03", "2020-01-04"]</code>.</li>
+</ul>
+<p dir="auto"><a href="https://latest-with-plugins.datasette.io/fixtures?sql=select%0D%0A++dateutil_dates_between%28%271+january+2020%27%2C+%275+jan+2020%27%29%2C%0D%0A++dateutil_dates_between%28%271+january+2020%27%2C+%275+jan+2020%27%2C+0%29" rel="nofollow">Try these queries</a></p>
+<p dir="auto">The <code>dateutil_rrule()</code> and <code>dateutil_rrule_date()</code> functions accept the iCalendar standard <code>rrule</code> format - see <a href="https://dateutil.readthedocs.io/en/stable/rrule.html#rrulestr-examples" rel="nofollow">the dateutil documentation</a> for more examples.</p>
+<p dir="auto">This format lets you specify recurrence rules such as "the next four last mondays of the month".</p>
+<ul dir="auto">
+<li><code>dateutil_rrule(rrule, optional_dtsart)</code> - given an rrule returns a JSON array of ISO datetimes. The second argument is optional and will be treated as the start date for the rule.</li>
+<li><code>dateutil_rrule_date(rrule, optional_dtsart)</code> - same as <code>dateutil_rrule()</code> but returns ISO dates.</li>
+</ul>
+<p dir="auto">Example query:</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="select
+  dateutil_rrule('FREQ=HOURLY;COUNT=5'),
+  dateutil_rrule_date(
+    'FREQ=DAILY;COUNT=3',
+    '1st jan 2020'
+  );"><pre><span class="pl-k">select</span>
+  dateutil_rrule(<span class="pl-s"><span class="pl-pds">'</span>FREQ=HOURLY;COUNT=5<span class="pl-pds">'</span></span>),
+  dateutil_rrule_date(
+    <span class="pl-s"><span class="pl-pds">'</span>FREQ=DAILY;COUNT=3<span class="pl-pds">'</span></span>,
+    <span class="pl-s"><span class="pl-pds">'</span>1st jan 2020<span class="pl-pds">'</span></span>
+  );</pre></div>
+<p dir="auto"><a href="https://latest-with-plugins.datasette.io/fixtures?sql=select%0D%0A++dateutil_rrule('FREQ%3DHOURLY%3BCOUNT%3D5')%2C%0D%0A++dateutil_rrule_date(%0D%0A++++'FREQ%3DDAILY%3BCOUNT%3D3'%2C%0D%0A++++'1st+jan+2020'%0D%0A++)%3B" rel="nofollow">Try the rrule example query</a></p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Joining data using json_each()</h3><a id="user-content-joining-data-using-json_each" class="anchor" aria-label="Permalink: Joining data using json_each()" href="#joining-data-using-json_each"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">SQLite's <a href="https://www.sqlite.org/json1.html#jeach" rel="nofollow">json_each() function</a> can be used to turn a JSON array of dates into a table that can be joined against other data. Here's a query that returns a table showing every day in January 2019:</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="select
+  value as date
+from
+  json_each(
+    dateutil_dates_between('1 Jan 2019', '31 Jan 2019')
+  )"><pre><span class="pl-k">select</span>
+  value <span class="pl-k">as</span> <span class="pl-k">date</span>
+<span class="pl-k">from</span>
+  json_each(
+    dateutil_dates_between(<span class="pl-s"><span class="pl-pds">'</span>1 Jan 2019<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>31 Jan 2019<span class="pl-pds">'</span></span>)
+  )</pre></div>
+<p dir="auto"><a href="https://latest-with-plugins.datasette.io/fixtures?sql=select%0D%0A++value+as+date%0D%0Afrom%0D%0A++json_each%28%0D%0A++++dateutil_dates_between%28%271+Jan+2019%27%2C+%2731+Jan+2019%27%29%0D%0A++%29" rel="nofollow">Try that query</a></p>
+<p dir="auto">You can run joins against this table by assigning it a name using SQLite's <a href="https://sqlite.org/lang_with.html" rel="nofollow">support for Common Table Expressions (CTEs)</a>.</p>
+<p dir="auto">This example query uses <code>substr(created, 0, 11)</code> to retrieve the date portion of the <code>created</code> column in the <a href="https://latest-with-plugins.datasette.io/fixtures/facetable" rel="nofollow">facetable demo table</a>, then joins that against the table of days in January to calculate the count of rows created on each day. The <code>LEFT JOIN</code> against <code>days_in_january</code> ensures that days which had no created records are still returned in the results, with a count of 0.</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="with created_dates as (
+  select
+    substr(created, 0, 11) as date
+  from
+    facetable
+),
+days_in_january as (
+  select
+    value as date
+  from
+    json_each(
+      dateutil_dates_between('1 Jan 2019', '31 Jan 2019')
+    )
+)
+select
+  days_in_january.date,
+  count(created_dates.date) as total
+from
+  days_in_january
+  left join created_dates on days_in_january.date = created_dates.date
+group by
+  days_in_january.date;"><pre>with created_dates <span class="pl-k">as</span> (
+  <span class="pl-k">select</span>
+    substr(created, <span class="pl-c1">0</span>, <span class="pl-c1">11</span>) <span class="pl-k">as</span> <span class="pl-k">date</span>
+  <span class="pl-k">from</span>
+    facetable
+),
+days_in_january <span class="pl-k">as</span> (
+  <span class="pl-k">select</span>
+    value <span class="pl-k">as</span> <span class="pl-k">date</span>
+  <span class="pl-k">from</span>
+    json_each(
+      dateutil_dates_between(<span class="pl-s"><span class="pl-pds">'</span>1 Jan 2019<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>31 Jan 2019<span class="pl-pds">'</span></span>)
+    )
+)
+<span class="pl-k">select</span>
+  <span class="pl-c1">days_in_january</span>.<span class="pl-c1">date</span>,
+  <span class="pl-c1">count</span>(<span class="pl-c1">created_dates</span>.<span class="pl-c1">date</span>) <span class="pl-k">as</span> total
+<span class="pl-k">from</span>
+  days_in_january
+  <span class="pl-k">left join</span> created_dates <span class="pl-k">on</span> <span class="pl-c1">days_in_january</span>.<span class="pl-c1">date</span> <span class="pl-k">=</span> <span class="pl-c1">created_dates</span>.<span class="pl-c1">date</span>
+<span class="pl-k">group by</span>
+  <span class="pl-c1">days_in_january</span>.<span class="pl-c1">date</span>;</pre></div>
+<p dir="auto"><a href="https://latest-with-plugins.datasette.io/fixtures?sql=with+created_dates+as+%28%0D%0A++select%0D%0A++++substr%28created%2C+0%2C+11%29+as+date%0D%0A++from%0D%0A++++facetable%0D%0A%29%2C%0D%0Adays_in_january+as+%28%0D%0A++select%0D%0A++++value+as+date%0D%0A++from%0D%0A++++json_each%28%0D%0A++++++dateutil_dates_between%28%271+Jan+2019%27%2C+%2731+Jan+2019%27%29%0D%0A++++%29%0D%0A%29%0D%0Aselect%0D%0A++days_in_january.date%2C%0D%0A++count%28created_dates.date%29+as+total%0D%0Afrom%0D%0A++days_in_january%0D%0A++left+join+created_dates+on+days_in_january.date+%3D+created_dates.date%0D%0Agroup+by%0D%0A++days_in_january.date%3B#g.mark=bar&g.x_column=date&g.x_type=ordinal&g.y_column=total&g.y_type=quantitative" rel="nofollow">Try that query</a> with a bar chart rendered using the <a href="https://github.com/simonw/datasette-vega">datasette-vega</a> plugin.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Development</h2><a id="user-content-development" class="anchor" aria-label="Permalink: Development" href="#development"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">To set up this plugin locally, first checkout the code. Then create a new virtual environment:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="cd datasette-dateutil
+python3 -mvenv venv
+source venv/bin/activate"><pre class="notranslate"><code>cd datasette-dateutil
+python3 -mvenv venv
+source venv/bin/activate
+</code></pre></div>
+<p dir="auto">Or if you are using <code>pipenv</code>:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pipenv shell"><pre class="notranslate"><code>pipenv shell
+</code></pre></div>
+<p dir="auto">Now install the dependencies and tests:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pip install -e '.[test]'"><pre class="notranslate"><code>pip install -e '.[test]'
+</code></pre></div>
+<p dir="auto">To run the tests:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pytest"><pre class="notranslate"><code>pytest
+</code></pre></div>
+</article></div>

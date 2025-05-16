@@ -1,0 +1,292 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">datasette-auth-tokens</h1><a id="user-content-datasette-auth-tokens" class="anchor" aria-label="Permalink: datasette-auth-tokens" href="#datasette-auth-tokens"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://pypi.org/project/datasette-auth-tokens/" rel="nofollow"><img src="https://img.shields.io/pypi/v/datasette-auth-tokens.svg" alt="PyPI" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/1c2eb8b55b38961e0358dd141a16e1aa22d7d22d5752e01ee9903c57a993ecde/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f6461746173657474652d617574682d746f6b656e732e737667"></a>
+<a href="https://github.com/simonw/datasette-auth-tokens/releases"><img src="https://img.shields.io/github/v/release/simonw/datasette-auth-tokens?include_prereleases&label=changelog" alt="Changelog" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/bbd9652e447d981474d97e2ba8c08e899fec4753d8dfdfb642c5dfe05238d11f/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f72656c656173652f73696d6f6e772f6461746173657474652d617574682d746f6b656e733f696e636c7564655f70726572656c6561736573266c6162656c3d6368616e67656c6f67"></a>
+<a href="https://github.com/simonw/datasette-auth-tokens/actions?query=workflow%3ATest"><img src="https://github.com/simonw/datasette-auth-tokens/workflows/Test/badge.svg" alt="Tests" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/datasette-auth-tokens/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" alt="License" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/c355f200ea90fddaa407b6eaab303663a669248ea3ca7b1fcf77dbe04ff5f48c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d417061636865253230322e302d626c75652e737667"></a></p>
+<p dir="auto">Datasette plugin for authenticating access using API tokens</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Installation</h2><a id="user-content-installation" class="anchor" aria-label="Permalink: Installation" href="#installation"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Install this plugin in the same environment as Datasette.</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="datasette install datasette-auth-tokens"><pre>datasette install datasette-auth-tokens</pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Hard-coded tokens</h2><a id="user-content-hard-coded-tokens" class="anchor" aria-label="Permalink: Hard-coded tokens" href="#hard-coded-tokens"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Read about Datasette's <a href="https://datasette.readthedocs.io/en/latest/authentication.html" rel="nofollow">authentication and permissions system</a>.</p>
+<p dir="auto">This plugin lets you configure secret API tokens which can be used to make authenticated requests to Datasette.</p>
+<p dir="auto">First, create a random API token. A useful recipe for doing that is the following:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="python -c 'import secrets; print(secrets.token_hex(32))'"><pre>python -c <span class="pl-s"><span class="pl-pds">'</span>import secrets; print(secrets.token_hex(32))<span class="pl-pds">'</span></span></pre></div>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="5f9a486dd807de632200b17508c75002bb66ca6fde1993db1de6cbd446362589"><pre class="notranslate"><code>5f9a486dd807de632200b17508c75002bb66ca6fde1993db1de6cbd446362589
+</code></pre></div>
+<p dir="auto">Decide on the actor that this token should represent, for example:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    "bot_id": "my-bot"
+}"><pre>{
+    <span class="pl-ent">"bot_id"</span>: <span class="pl-s"><span class="pl-pds">"</span>my-bot<span class="pl-pds">"</span></span>
+}</pre></div>
+<p dir="auto">You can then use <code>"allow"</code> blocks to provide that token with permission to access specific actions. To enable access to a configured writable SQL query you could use this in your <code>config.json</code> (for Datasette 1.0) or <code>metadata.json</code>:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    "plugins": {
+        "datasette-auth-tokens": {
+            "tokens": [
+                {
+                    "token": {
+                        "$env": "BOT_TOKEN"
+                    },
+                    "actor": {
+                        "bot_id": "my-bot"
+                    }
+                }
+            ]
+        }
+    },
+    "databases": {
+        ":memory:": {
+            "queries": {
+                "show_version": {
+                    "sql": "select sqlite_version()",
+                    "allow": {
+                        "bot_id": "my-bot"
+                    }
+                }
+            }
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"plugins"</span>: {
+        <span class="pl-ent">"datasette-auth-tokens"</span>: {
+            <span class="pl-ent">"tokens"</span>: [
+                {
+                    <span class="pl-ent">"token"</span>: {
+                        <span class="pl-ent">"$env"</span>: <span class="pl-s"><span class="pl-pds">"</span>BOT_TOKEN<span class="pl-pds">"</span></span>
+                    },
+                    <span class="pl-ent">"actor"</span>: {
+                        <span class="pl-ent">"bot_id"</span>: <span class="pl-s"><span class="pl-pds">"</span>my-bot<span class="pl-pds">"</span></span>
+                    }
+                }
+            ]
+        }
+    },
+    <span class="pl-ent">"databases"</span>: {
+        <span class="pl-ent">":memory:"</span>: {
+            <span class="pl-ent">"queries"</span>: {
+                <span class="pl-ent">"show_version"</span>: {
+                    <span class="pl-ent">"sql"</span>: <span class="pl-s"><span class="pl-pds">"</span>select sqlite_version()<span class="pl-pds">"</span></span>,
+                    <span class="pl-ent">"allow"</span>: {
+                        <span class="pl-ent">"bot_id"</span>: <span class="pl-s"><span class="pl-pds">"</span>my-bot<span class="pl-pds">"</span></span>
+                    }
+                }
+            }
+        }
+    }
+}</pre></div>
+<p dir="auto">This uses Datasette's <a href="https://datasette.readthedocs.io/en/stable/plugins.html#secret-configuration-values" rel="nofollow">secret configuration values mechanism</a> to allow the secret token to be passed as an environment variable.</p>
+<p dir="auto">Run Datasette like this:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="BOT_TOKEN="this-is-the-secret-token" \
+    datasette -c config.json"><pre>BOT_TOKEN=<span class="pl-s"><span class="pl-pds">"</span>this-is-the-secret-token<span class="pl-pds">"</span></span> \
+    datasette -c config.json</pre></div>
+<p dir="auto">You can now run authenticated API queries like this:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="curl -H 'Authorization: Bearer this-is-the-secret-token' \
+  'http://127.0.0.1:8001/:memory:/show_version.json?_shape=array'"><pre>curl -H <span class="pl-s"><span class="pl-pds">'</span>Authorization: Bearer this-is-the-secret-token<span class="pl-pds">'</span></span> \
+  <span class="pl-s"><span class="pl-pds">'</span>http://127.0.0.1:8001/:memory:/show_version.json?_shape=array<span class="pl-pds">'</span></span></pre></div>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="[{"sqlite_version()": "3.31.1"}]"><pre>[{<span class="pl-ent">"sqlite_version()"</span>: <span class="pl-s"><span class="pl-pds">"</span>3.31.1<span class="pl-pds">"</span></span>}]</pre></div>
+<p dir="auto">Additionally you can allow passing the token as a query string parameter, although that's disabled by default given the security implications of URLs with secret tokens included. This may be useful to easily allow embedding data between different services.</p>
+<p dir="auto">Enable it using the <code>param</code> config value:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    "plugins": {
+        "datasette-auth-tokens": {
+            "tokens": [
+                {
+                    "token": {
+                        "$env": "BOT_TOKEN"
+                    },
+                    "actor": {
+                        "bot_id": "my-bot"
+                    },
+                }
+            ],
+            "param": "_auth_token"
+        }
+    },
+    "databases": {
+        ":memory:": {
+            "queries": {
+                "show_version": {
+                    "sql": "select sqlite_version()",
+                    "allow": {
+                        "bot_id": "my-bot"
+                    }
+                }
+            }
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"plugins"</span>: {
+        <span class="pl-ent">"datasette-auth-tokens"</span>: {
+            <span class="pl-ent">"tokens"</span>: [
+                {
+                    <span class="pl-ent">"token"</span>: {
+                        <span class="pl-ent">"$env"</span>: <span class="pl-s"><span class="pl-pds">"</span>BOT_TOKEN<span class="pl-pds">"</span></span>
+                    },
+                    <span class="pl-ent">"actor"</span>: {
+                        <span class="pl-ent">"bot_id"</span>: <span class="pl-s"><span class="pl-pds">"</span>my-bot<span class="pl-pds">"</span></span>
+                    },
+                }
+            ],
+            <span class="pl-ent">"param"</span>: <span class="pl-s"><span class="pl-pds">"</span>_auth_token<span class="pl-pds">"</span></span>
+        }
+    },
+    <span class="pl-ent">"databases"</span>: {
+        <span class="pl-ent">":memory:"</span>: {
+            <span class="pl-ent">"queries"</span>: {
+                <span class="pl-ent">"show_version"</span>: {
+                    <span class="pl-ent">"sql"</span>: <span class="pl-s"><span class="pl-pds">"</span>select sqlite_version()<span class="pl-pds">"</span></span>,
+                    <span class="pl-ent">"allow"</span>: {
+                        <span class="pl-ent">"bot_id"</span>: <span class="pl-s"><span class="pl-pds">"</span>my-bot<span class="pl-pds">"</span></span>
+                    }
+                }
+            }
+        }
+    }
+}</pre></div>
+<p dir="auto">You can now run authenticated API queries like this:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="curl http://127.0.0.1:8001/:memory:/show_version.json?_shape=array&_auth_token=this-is-the-secret-token"><pre>curl http://127.0.0.1:8001/:memory:/show_version.json<span class="pl-k">?</span>_shape=array<span class="pl-k">&</span>_auth_token=this-is-the-secret-token</pre></div>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="[{"sqlite_version()": "3.31.1"}]"><pre>[{<span class="pl-ent">"sqlite_version()"</span>: <span class="pl-s"><span class="pl-pds">"</span>3.31.1<span class="pl-pds">"</span></span>}]</pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Managed tokens mode</h2><a id="user-content-managed-tokens-mode" class="anchor" aria-label="Permalink: Managed tokens mode" href="#managed-tokens-mode"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><code>datasette-auth-tokens</code> provides a managed tokens mode, where tokens are stored in a SQLite database table and the plugin provides an interface for creating and revoking tokens.</p>
+<p dir="auto">To turn this mode on, add <code>"manage_tokens": true</code> to your plugin configuration:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    "plugins": {
+        "datasette-auth-tokens": {
+            "manage_tokens": true
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"plugins"</span>: {
+        <span class="pl-ent">"datasette-auth-tokens"</span>: {
+            <span class="pl-ent">"manage_tokens"</span>: <span class="pl-c1">true</span>
+        }
+    }
+}</pre></div>
+<p dir="auto">This will add a "Create API token" option to the Datasette menu.</p>
+<p dir="auto">Tokens that are created will be kept in a new <code>_datasette_auth_tokens</code> table.</p>
+<p dir="auto">Users need the <code>auth-tokens-create</code> permission to create tokens. One way to grant that is to add this <code>"permissions"</code> block to your configuration:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    "permissions": {
+        "auth-tokens-create": {
+            "id": "*"
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"permissions"</span>: {
+        <span class="pl-ent">"auth-tokens-create"</span>: {
+            <span class="pl-ent">"id"</span>: <span class="pl-s"><span class="pl-pds">"</span>*<span class="pl-pds">"</span></span>
+        }
+    }
+}</pre></div>
+<p dir="auto">Use the "Create API token" option in the Datasette menu or navigate to <code>/-/api/tokens</code> to create tokens and manage tokens.</p>
+<p dir="auto">When you create a new token a signed token string will be presented to you. You need to store this, as it is not stored directly in the database table and can only be retrieved once.</p>
+<p dir="auto">If you have multiple databases attached to Datasette you will need to specify which database should be used for the <code>_datasette_auth_tokens</code> table. You can do this with the <code>manage_tokens_database</code> setting:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    "plugins": {
+        "datasette-auth-tokens": {
+            "manage_tokens": true,
+            "manage_tokens_database": "tokens"
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"plugins"</span>: {
+        <span class="pl-ent">"datasette-auth-tokens"</span>: {
+            <span class="pl-ent">"manage_tokens"</span>: <span class="pl-c1">true</span>,
+            <span class="pl-ent">"manage_tokens_database"</span>: <span class="pl-s"><span class="pl-pds">"</span>tokens<span class="pl-pds">"</span></span>
+        }
+    }
+}</pre></div>
+<p dir="auto">Now start Datasette like this:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="datasette -c config.json mydb.db tokens.db --create"><pre>datasette -c config.json mydb.db tokens.db --create</pre></div>
+<p dir="auto">The <code>--create</code> option can be used to tell Datasette to create the <code>tokens.db</code> database file if it does not already exist.</p>
+<p dir="auto">In Datasette 1.0 you can instead use the <code>-s</code> option like this:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="datasette \
+  -s plugins.datasette-auth-tokens.manage_tokens true \
+  -s plugins.datasette-auth-tokens.manage_tokens_database tokens \
+  -s permissions.auth-tokens-create.id '*' # to enable token creation"><pre>datasette \
+  -s plugins.datasette-auth-tokens.manage_tokens <span class="pl-c1">true</span> \
+  -s plugins.datasette-auth-tokens.manage_tokens_database tokens \
+  -s permissions.auth-tokens-create.id <span class="pl-s"><span class="pl-pds">'</span>*<span class="pl-pds">'</span></span> <span class="pl-c"><span class="pl-c">#</span> to enable token creation</span></pre></div>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Viewing tokens</h3><a id="user-content-viewing-tokens" class="anchor" aria-label="Permalink: Viewing tokens" href="#viewing-tokens"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">By default, users can only view tokens that they themselves have created on the <code>/-/api/tokens</code> page.</p>
+<p dir="auto">Grant the <code>auth-tokens-view-all</code> permission to allow a user to view all tokens, even those created by other users.</p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Revoking tokens</h3><a id="user-content-revoking-tokens" class="anchor" aria-label="Permalink: Revoking tokens" href="#revoking-tokens"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">A token can be revoked by the user that created it by clicking the "Revoke this token" button at the bottom of the token page that is linked to from <code>/-/api/tokens</code>.</p>
+<p dir="auto">A user with the <code>auth-tokens-revoke-all</code> permission can revoke any token.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Custom tokens from your database</h2><a id="user-content-custom-tokens-from-your-database" class="anchor" aria-label="Permalink: Custom tokens from your database" href="#custom-tokens-from-your-database"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">If you decide not to use managed tokens mode, you can instead configure <code>datasette-auth-tokens</code> to use tokens that are stored in your own custom database tables.</p>
+<p dir="auto">You can do this by configuring a custom SQL query that will execute to test if an incoming token is valid.</p>
+<p dir="auto">Your query needs to take a <code>:token_id</code> parameter and return at least two columns: one called <code>token_secret</code> and one called <code>actor_*</code> - usually <code>actor_id</code>. Further <code>actor_</code> prefixed columns can be returned to provide more details for the authenticated actor.</p>
+<p dir="auto">Here's a simple example of a configuration query:</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="select actor_id, actor_name, token_secret from tokens where token_id = :token_id"><pre><span class="pl-k">select</span> actor_id, actor_name, token_secret <span class="pl-k">from</span> tokens <span class="pl-k">where</span> token_id <span class="pl-k">=</span> :token_id</pre></div>
+<p dir="auto">This can run against a table like this one:</p>
+<markdown-accessiblity-table><table>
+<thead>
+<tr>
+<th>token_id</th>
+<th>token_secret</th>
+<th>actor_id</th>
+<th>actor_name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>bd3c94f51fcd</td>
+<td>78</td>
+<td>Cleopaws</td>
+</tr>
+<tr>
+<td>2</td>
+<td>86681b4d6f66</td>
+<td>32</td>
+<td>Pancakes</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p dir="auto">The tokens are formed as the token ID, then a hyphen, then the token secret. For example:</p>
+<ul dir="auto">
+<li><code>1-bd3c94f51fcd</code></li>
+<li><code>2-86681b4d6f66</code></li>
+</ul>
+<p dir="auto">The SQL query will be executed with the portion before the hyphen as the <code>:token_id</code> parameter.</p>
+<p dir="auto">The <code>token_secret</code> value returned by the query will be compared to the portion of the token after the hyphen to check if the token is valid.</p>
+<p dir="auto">Columns with a prefix of <code>actor_</code> will be used to populate the actor dictionary. In the above example, a token of <code>2-86681b4d6f66</code> will become an actor dictionary of <code>{"id": 32, "name": "Pancakes"}</code>.</p>
+<p dir="auto">To configure this, use a <code>"query"</code> block in your plugin configuration like this:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    "plugins": {
+        "datasette-auth-tokens": {
+            "query": {
+                "sql": "select actor_id, actor_name, token_secret from tokens where token_id = :token_id",
+                "database": "tokens"
+            }
+        }
+    },
+    "databases": {
+        "tokens": {
+            "allow": false
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"plugins"</span>: {
+        <span class="pl-ent">"datasette-auth-tokens"</span>: {
+            <span class="pl-ent">"query"</span>: {
+                <span class="pl-ent">"sql"</span>: <span class="pl-s"><span class="pl-pds">"</span>select actor_id, actor_name, token_secret from tokens where token_id = :token_id<span class="pl-pds">"</span></span>,
+                <span class="pl-ent">"database"</span>: <span class="pl-s"><span class="pl-pds">"</span>tokens<span class="pl-pds">"</span></span>
+            }
+        }
+    },
+    <span class="pl-ent">"databases"</span>: {
+        <span class="pl-ent">"tokens"</span>: {
+            <span class="pl-ent">"allow"</span>: <span class="pl-c1">false</span>
+        }
+    }
+}</pre></div>
+<p dir="auto">The <code>"sql"</code> key here contains the SQL query. The <code>"database"</code> key has the name of the attached database file that the query should be executed against - in this case it would execute against <code>tokens.db</code>.</p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Securing your custom tokens</h3><a id="user-content-securing-your-custom-tokens" class="anchor" aria-label="Permalink: Securing your custom tokens" href="#securing-your-custom-tokens"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">If you implement the custom pattern above which reads <code>token_secret</code> from your own <code>tokens</code> table, you need to be aware that anyone with read access to your Datasette instance could read those tokens from your table. This probably isn't what you want!</p>
+<p dir="auto">To avoid this, you should lock down access to that table. The configuration example above shows how to do this using an <code>"allow": false</code> block to deny all access to that <code>tokens</code> database.</p>
+<p dir="auto">Consult Datasette's <a href="https://datasette.readthedocs.io/en/stable/authentication.html#permissions" rel="nofollow">Permissions documentation</a> for more information about how to lock down this kind of access.</p>
+</article></div>

@@ -1,0 +1,153 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">dogsheep-photos</h1><a id="user-content-dogsheep-photos" class="anchor" aria-label="Permalink: dogsheep-photos" href="#dogsheep-photos"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://pypi.org/project/dogsheep-photos/" rel="nofollow"><img src="https://img.shields.io/pypi/v/dogsheep-photos.svg" alt="PyPI" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/b431261b4b7b1762ea89cefaa326e20a27840e80338f455ae95b0a39ee445efb/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f646f6773686565702d70686f746f732e737667"></a>
+<a href="https://github.com/dogsheep/dogsheep-photos/releases"><img src="https://img.shields.io/github/v/release/dogsheep/dogsheep-photos?include_prereleases&label=changelog" alt="Changelog" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/83c0f939dc71c6aa99dd6fb530f84f4b8300841722948b83818eec9a25aee61d/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f72656c656173652f646f6773686565702f646f6773686565702d70686f746f733f696e636c7564655f70726572656c6561736573266c6162656c3d6368616e67656c6f67"></a>
+<a href="https://circleci.com/gh/dogsheep/dogsheep-photos" rel="nofollow"><img src="https://circleci.com/gh/dogsheep/dogsheep-photos.svg?style=svg" alt="CircleCI" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/0e29645be05a7354e3e16bbc97ab30c7edbbacde1b7de4add00828d4d7e2dc1c/68747470733a2f2f636972636c6563692e636f6d2f67682f646f6773686565702f646f6773686565702d70686f746f732e7376673f7374796c653d737667"></a>
+<a href="https://github.com/dogsheep/dogsheep-photos/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" alt="License" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/c355f200ea90fddaa407b6eaab303663a669248ea3ca7b1fcf77dbe04ff5f48c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d417061636865253230322e302d626c75652e737667"></a></p>
+<p dir="auto">Save details of your photos to a SQLite database and upload them to S3.</p>
+<p dir="auto">See <a href="https://simonwillison.net/2020/May/21/apple-photos-sqlite/" rel="nofollow">Using SQL to find my best photo of a pelican according to Apple Photos</a> for background information on this project.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">What these tools do</h2><a id="user-content-what-these-tools-do" class="anchor" aria-label="Permalink: What these tools do" href="#what-these-tools-do"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">These tools are a work-in-progress mechanism for taking full ownership of your photos. The core idea is to help implement the following:</p>
+<ul dir="auto">
+<li>Every photo you have taken lives in a single, private Amazon S3 bucket</li>
+<li>You have a single SQLite database file which stores metadata about those photos - potentially pulled from multiple different places. This may include EXIF data, Apple Photos, the results of running machine learning APIs against photos and much more besides.</li>
+<li>You can then use <a href="https://github.com/simonw/datasette">Datasette</a> to explore your own photos.</li>
+</ul>
+<p dir="auto">I'm a heavy user of Apple Photos so the initial releases of this tool will have a bias towards that, but ideally I would like a subset of these tools to be useful to people no matter which core photo solution they are using.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Installation</h2><a id="user-content-installation" class="anchor" aria-label="Permalink: Installation" href="#installation"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ pip install dogsheep-photos"><pre class="notranslate"><code>$ pip install dogsheep-photos
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Authentication (if using S3)</h2><a id="user-content-authentication-if-using-s3" class="anchor" aria-label="Permalink: Authentication (if using S3)" href="#authentication-if-using-s3"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">If you want to use S3 to store your photos, you will need to first create S3 credentials for a new, dedicated bucket.</p>
+<p dir="auto">You may find the <a href="https://github.com/simonw/s3-credentials">s3-credentials tool</a> useful for this.</p>
+<p dir="auto">Run this command and paste in your credentials. You will need three values: the name of your S3 bucket, your Access key ID and your Secret access key.</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ dogsheep-photos s3-auth"><pre class="notranslate"><code>$ dogsheep-photos s3-auth
+</code></pre></div>
+<p dir="auto">This will create a file called <code>auth.json</code> in your current directory containing the required values. To save the file at a different path or filename, use the <code>--auth=myauth.json</code> option.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Uploading photos</h2><a id="user-content-uploading-photos" class="anchor" aria-label="Permalink: Uploading photos" href="#uploading-photos"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Run this command to upload every photo in a specific directory to your S3 bucket:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ dogsheep-photos upload photos.db \
+    ~/Pictures/Photos\ Library.photoslibrary/original"><pre class="notranslate"><code>$ dogsheep-photos upload photos.db \
+    ~/Pictures/Photos\ Library.photoslibrary/original
+</code></pre></div>
+<p dir="auto">The command will only upload photos that have not yet been uploaded, based on their sha256 hash.</p>
+<p dir="auto"><code>photos.db</code> will be created with an <code>uploads</code> table containing details of which files were uploaded.</p>
+<p dir="auto">To see what the command would do without uploading any files, use the <code>--dry-run</code> option.</p>
+<p dir="auto">The sha256 hash of the photo contents will be used as the name of the file in the bucket, with an extension matching the type of file. This is an implementation of the <a href="https://en.wikipedia.org/wiki/Content-addressable_storage" rel="nofollow">Content addressable storage</a> pattern.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Importing Apple Photos metadata</h2><a id="user-content-importing-apple-photos-metadata" class="anchor" aria-label="Permalink: Importing Apple Photos metadata" href="#importing-apple-photos-metadata"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The <code>apple-photos</code> command imports metadata from your Apple Photos library.</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ photo-to-sqlite apple-photos photos.db"><pre class="notranslate"><code>$ photo-to-sqlite apple-photos photos.db
+</code></pre></div>
+<p dir="auto">Imported metadata includes places, people, albums, quality scores and machine learning labels for the photo contents.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Creating a subset database</h2><a id="user-content-creating-a-subset-database" class="anchor" aria-label="Permalink: Creating a subset database" href="#creating-a-subset-database"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">You can create a new, subset database of photos using the <code>create-subset</code> command.</p>
+<p dir="auto">This is useful for creating a shareable SQLite database that only contains metadata for a selected set of photos.</p>
+<p dir="auto">Since photo metadata contains latitude and longitude you may not want to share a database that includes photos taken at your home address.</p>
+<p dir="auto"><code>create-subset</code> takes three arguments: an existing database file created using the <code>apple-photos</code> command, the name of the new, shareable database file you would like to create and a SQL query that returns the <code>sha256</code> hash values of the photos you would like to include in that database.</p>
+<p dir="auto">For example, here's how to create a shareable database of just the photos that have been added to albums containing the word "Public":</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ dogsheep-photos create-subset \
+    photos.db \
+    public.db \
+    "select sha256 from apple_photos where albums like '%Public%'""><pre class="notranslate"><code>$ dogsheep-photos create-subset \
+    photos.db \
+    public.db \
+    "select sha256 from apple_photos where albums like '%Public%'"
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Serving photos locally with datasette-media</h2><a id="user-content-serving-photos-locally-with-datasette-media" class="anchor" aria-label="Permalink: Serving photos locally with datasette-media" href="#serving-photos-locally-with-datasette-media"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">If you don't want to upload your photos to S3 but you still want to browse them using Datasette you can do so using the <a href="https://github.com/simonw/datasette-media">datasette-media</a> plugin. This plugin adds the ability to serve images and other static files directly from disk, configured using a SQL query.</p>
+<p dir="auto">To use it, first install Datasette and the plugin:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ pip install datasette datasette-media"><pre class="notranslate"><code>$ pip install datasette datasette-media
+</code></pre></div>
+<p dir="auto">If any of your photos are <code>.HEIC</code> images taken by an iPhone you should also install the optional <code>pyheif</code> dependency:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ pip install pyheif"><pre class="notranslate"><code>$ pip install pyheif
+</code></pre></div>
+<p dir="auto">Now create a <code>metadata.yaml</code> file configuring the plugin:</p>
+<div class="highlight highlight-source-yaml notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="plugins:
+  datasette-media:
+    thumbnail:
+      sql: |-
+        select path as filepath, 200 as resize_height from apple_photos where uuid = :key
+    large:
+      sql: |-
+        select path as filepath, 1024 as resize_height from apple_photos where uuid = :key"><pre><span class="pl-ent">plugins</span>:
+  <span class="pl-ent">datasette-media</span>:
+    <span class="pl-ent">thumbnail</span>:
+      <span class="pl-ent">sql</span>: <span class="pl-s">|-</span>
+<span class="pl-s">        select path as filepath, 200 as resize_height from apple_photos where uuid = :key</span>
+<span class="pl-s"></span>    <span class="pl-ent">large</span>:
+      <span class="pl-ent">sql</span>: <span class="pl-s">|-</span>
+<span class="pl-s">        select path as filepath, 1024 as resize_height from apple_photos where uuid = :key</span></pre></div>
+<p dir="auto">This will configure two URL endpoints - one for 200 pixel high thumbnails and one for 1024 pixel high larger images.</p>
+<p dir="auto">Create your <code>photos.db</code> database using the <code>apple-photos</code> command, then run Datasette like this:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ datasette -m metadata.yaml"><pre class="notranslate"><code>$ datasette -m metadata.yaml
+</code></pre></div>
+<p dir="auto">Your photos will be served on URLs that look like this:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="http://127.0.0.1:8001/-/media/thumbnail/F4469918-13F3-43D8-9EC1-734C0E6B60AD
+http://127.0.0.1:8001/-/media/large/F4469918-13F3-43D8-9EC1-734C0E6B60AD"><pre class="notranslate"><code>http://127.0.0.1:8001/-/media/thumbnail/F4469918-13F3-43D8-9EC1-734C0E6B60AD
+http://127.0.0.1:8001/-/media/large/F4469918-13F3-43D8-9EC1-734C0E6B60AD
+</code></pre></div>
+<p dir="auto">You can find the UUIDs for use in these URLs by running <code>select uuid from photos_with_apple_metadata</code>.</p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Displaying images using datasette-json-html</h3><a id="user-content-displaying-images-using-datasette-json-html" class="anchor" aria-label="Permalink: Displaying images using datasette-json-html" href="#displaying-images-using-datasette-json-html"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">If you are using <code>datasette-media</code> to serve photos you can include images directly in Datasette query results using the <a href="https://github.com/simonw/datasette-json-html">datasette-json-html</a> plugin.</p>
+<p dir="auto">Run <code>pip install datasette-json-html</code> to install the plugin, then use queries like this to view your images:</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="select
+    json_object(
+        'img_src',
+        '/-/media/thumbnail/' || uuid
+    ) as photo,
+    uuid,
+    date
+from
+    apple_photos
+order by
+    date desc
+limit 10;"><pre><span class="pl-k">select</span>
+    json_object(
+        <span class="pl-s"><span class="pl-pds">'</span>img_src<span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>/-/media/thumbnail/<span class="pl-pds">'</span></span> <span class="pl-k">||</span> uuid
+    ) <span class="pl-k">as</span> photo,
+    uuid,
+    <span class="pl-k">date</span>
+<span class="pl-k">from</span>
+    apple_photos
+<span class="pl-k">order by</span>
+    <span class="pl-k">date</span> <span class="pl-k">desc</span>
+<span class="pl-k">limit</span> <span class="pl-c1">10</span>;</pre></div>
+<p dir="auto">The <code>photo</code> column returned by this query should render as image tags that display the correct images.</p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Displaying images using custom template pages</h3><a id="user-content-displaying-images-using-custom-template-pages" class="anchor" aria-label="Permalink: Displaying images using custom template pages" href="#displaying-images-using-custom-template-pages"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Datasette's <a href="https://datasette.readthedocs.io/en/stable/custom_templates.html#custom-pages" rel="nofollow">custom pages</a> feature lets you create custom pages for a Datasette instance by dropping HTML templates into a <code>templates/pages</code> directory and then running Datasette using <code>datasette --template-dir=templates/</code>.</p>
+<p dir="auto">You can combine that ability with the <a href="https://github.com/simonw/datasette-template-sql">datasette-template-sql</a> plugin to create custom template pages that directly display photos served by <code>datasette-media</code>.</p>
+<p dir="auto">Install the plugin using <code>pip install datasette-template-sql</code>.</p>
+<p dir="auto">Create a <code>templates/pages</code> folder and add the following files:</p>
+<p dir="auto"><code>recent-photos.html</code></p>
+<div class="highlight highlight-text-html-django notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="<h1>Recent photos</h1>
+
+<div>
+{% for photo in sql("select * from apple_photos order by date desc limit 20") %}
+    <img src="/-/media/photo/{{ photo['uuid'] }}">
+{% endfor %}
+</div>"><pre><<span class="pl-ent">h1</span>>Recent photos</<span class="pl-ent">h1</span>>
+
+<<span class="pl-ent">div</span>>
+<span class="pl-e">{%</span> <span class="pl-k">for</span> <span class="pl-s">photo</span> <span class="pl-k">in</span> <span class="pl-s">sql</span>(<span class="pl-s">"select * from apple_photos order by date desc limit 20"</span>) <span class="pl-e">%}</span>
+    <<span class="pl-ent">img</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>/-/media/photo/{{ photo['uuid'] }}<span class="pl-pds">"</span></span>>
+<span class="pl-e">{%</span> <span class="pl-k">endfor</span> <span class="pl-e">%}</span>
+</<span class="pl-ent">div</span>></pre></div>
+<p dir="auto"><code>random-photos.html</code></p>
+<div class="highlight highlight-text-html-django notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="<h1>Random photos</h1>
+
+<div>
+{% for photo in sql("with foo as (select * from apple_photos order by date desc limit 5000) select * from foo order by random() limit 20") %}
+    <img src="/-/media/photo/{{ photo['uuid'] }}">
+{% endfor %}
+</div>"><pre><<span class="pl-ent">h1</span>>Random photos</<span class="pl-ent">h1</span>>
+
+<<span class="pl-ent">div</span>>
+<span class="pl-e">{%</span> <span class="pl-k">for</span> <span class="pl-s">photo</span> <span class="pl-k">in</span> <span class="pl-s">sql</span>(<span class="pl-s">"with foo as (select * from apple_photos order by date desc limit 5000) select * from foo order by random() limit 20"</span>) <span class="pl-e">%}</span>
+    <<span class="pl-ent">img</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>/-/media/photo/{{ photo['uuid'] }}<span class="pl-pds">"</span></span>>
+<span class="pl-e">{%</span> <span class="pl-k">endfor</span> <span class="pl-e">%}</span>
+</<span class="pl-ent">div</span>></pre></div>
+<p dir="auto">Now run Datasette like this:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ datasette photos.db -m metadata.yaml --template-dir=templates/"><pre class="notranslate"><code>$ datasette photos.db -m metadata.yaml --template-dir=templates/
+</code></pre></div>
+<p dir="auto">Visiting <code>http://localhost:8001/recent-photos</code> will display 20 recent photos. Visiting <code>http://localhost:8001/random-photos</code> will display 20 photos randomly selected from your 5,000 most recent.</p>
+</article></div>

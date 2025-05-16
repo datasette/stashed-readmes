@@ -110,5 +110,237 @@
   {
     "repo": "dogsheep/github-to-sqlite",
     "pushed_at": "2024-01-15T05:56:13Z"
+  },
+  {
+    "repo": "simonw/datasette-rure",
+    "pushed_at": "2019-09-11T22:59:38Z"
+  },
+  {
+    "repo": "simonw/datasette-atom",
+    "pushed_at": "2023-03-14T03:50:25Z"
+  },
+  {
+    "repo": "dogsheep/genome-to-sqlite",
+    "pushed_at": "2019-09-19T15:41:17Z"
+  },
+  {
+    "repo": "dogsheep/pocket-to-sqlite",
+    "pushed_at": "2023-07-10T19:24:26Z"
+  },
+  {
+    "repo": "simonw/datasette-render-timestamps",
+    "pushed_at": "2023-04-01T04:58:29Z"
+  },
+  {
+    "repo": "simonw/datasette-haversine",
+    "pushed_at": "2023-12-29T18:04:33Z"
+  },
+  {
+    "repo": "simonw/sqlite-transform",
+    "pushed_at": "2021-08-02T22:07:57Z"
+  },
+  {
+    "repo": "simonw/datasette-render-markdown",
+    "pushed_at": "2023-08-15T03:10:29Z"
+  },
+  {
+    "repo": "simonw/datasette-template-sql",
+    "pushed_at": "2021-05-18T17:58:44Z"
+  },
+  {
+    "repo": "simonw/datasette-upload-csvs",
+    "pushed_at": "2024-04-08T09:50:53Z"
+  },
+  {
+    "repo": "simonw/datasette-auth-existing-cookies",
+    "pushed_at": "2025-03-28T05:21:36Z"
+  },
+  {
+    "repo": "simonw/datasette-sentry",
+    "pushed_at": "2023-11-21T19:22:42Z"
+  },
+  {
+    "repo": "simonw/geojson-to-sqlite",
+    "pushed_at": "2022-04-13T23:39:25Z"
+  },
+  {
+    "repo": "simonw/datasette-debug-asgi",
+    "pushed_at": "2021-08-17T23:41:03Z"
+  },
+  {
+    "repo": "simonw/shapefile-to-sqlite",
+    "pushed_at": "2023-01-08T20:24:46Z"
+  },
+  {
+    "repo": "simonw/datasette-mask-columns",
+    "pushed_at": "2024-01-25T05:08:09Z"
+  },
+  {
+    "repo": "simonw/datasette-ics",
+    "pushed_at": "2022-07-12T02:08:10Z"
+  },
+  {
+    "repo": "simonw/datasette-configure-fts",
+    "pushed_at": "2024-09-03T17:27:22Z"
+  },
+  {
+    "repo": "simonw/fec-to-sqlite",
+    "pushed_at": "2023-08-10T17:00:47Z"
+  },
+  {
+    "repo": "simonw/datasette-search-all",
+    "pushed_at": "2024-09-06T03:10:30Z"
+  },
+  {
+    "repo": "simonw/datasette-column-inspect",
+    "pushed_at": "2020-12-09T21:47:38Z"
+  },
+  {
+    "repo": "simonw/datasette-edit-schema",
+    "pushed_at": "2024-09-03T16:35:13Z"
+  },
+  {
+    "repo": "simonw/datasette-publish-fly",
+    "pushed_at": "2023-08-21T18:59:10Z"
+  },
+  {
+    "repo": "dogsheep/hacker-news-to-sqlite",
+    "pushed_at": "2023-03-26T22:22:39Z"
+  },
+  {
+    "repo": "simonw/datasette-show-errors",
+    "pushed_at": "2020-09-01T00:32:23Z"
+  },
+  {
+    "repo": "simonw/datasette-publish-vercel",
+    "pushed_at": "2022-08-24T17:43:41Z"
+  },
+  {
+    "repo": "simonw/datasette-clone",
+    "pushed_at": "2021-02-22T19:32:36Z"
+  },
+  {
+    "repo": "dogsheep/dogsheep-photos",
+    "pushed_at": "2024-01-05T18:52:26Z"
+  },
+  {
+    "repo": "simonw/datasette-media",
+    "pushed_at": "2022-12-13T20:03:51Z"
+  },
+  {
+    "repo": "simonw/datasette-permissions-sql",
+    "pushed_at": "2020-06-12T07:06:15Z"
+  },
+  {
+    "repo": "simonw/datasette-auth-tokens",
+    "pushed_at": "2024-09-03T17:04:44Z"
+  },
+  {
+    "repo": "simonw/datasette-psutil",
+    "pushed_at": "2022-03-07T15:35:57Z"
+  },
+  {
+    "repo": "simonw/datasette-saved-queries",
+    "pushed_at": "2024-03-07T14:33:33Z"
+  },
+  {
+    "repo": "simonw/sqlite-generate",
+    "pushed_at": "2021-02-27T15:25:24Z"
+  },
+  {
+    "repo": "simonw/datasette-block-robots",
+    "pushed_at": "2022-08-30T16:25:38Z"
+  },
+  {
+    "repo": "simonw/datasette-glitch",
+    "pushed_at": "2020-07-01T22:49:22Z"
+  },
+  {
+    "repo": "simonw/datasette-init",
+    "pushed_at": "2020-07-01T22:47:09Z"
+  },
+  {
+    "repo": "simonw/datasette-write",
+    "pushed_at": "2024-09-04T04:49:02Z"
+  },
+  {
+    "repo": "simonw/datasette-auth-passwords",
+    "pushed_at": "2024-09-03T17:53:00Z"
+  },
+  {
+    "repo": "simonw/datasette-insert",
+    "pushed_at": "2024-03-29T19:04:49Z"
+  },
+  {
+    "repo": "simonw/datasette-copyable",
+    "pushed_at": "2024-02-17T23:11:29Z"
+  },
+  {
+    "repo": "simonw/datasette-graphql",
+    "pushed_at": "2024-04-09T12:09:15Z"
+  },
+  {
+    "repo": "simonw/datasette-schema-versions",
+    "pushed_at": "2024-03-01T02:45:22Z"
+  },
+  {
+    "repo": "simonw/airtable-export",
+    "pushed_at": "2024-04-26T01:24:23Z"
+  },
+  {
+    "repo": "simonw/datasette-yaml",
+    "pushed_at": "2022-07-12T22:21:17Z"
+  },
+  {
+    "repo": "simonw/datasette-backup",
+    "pushed_at": "2020-09-07T02:27:30Z"
+  },
+  {
+    "repo": "eyeseast/geocode-sqlite",
+    "pushed_at": "2022-11-07T17:31:05Z"
+  },
+  {
+    "repo": "simonw/datasette-seaborn",
+    "pushed_at": "2022-03-22T01:49:36Z"
+  },
+  {
+    "repo": "simonw/datasette-dateutil",
+    "pushed_at": "2025-03-24T15:58:43Z"
+  },
+  {
+    "repo": "datasette/datasette-import-table",
+    "pushed_at": "2025-01-30T17:20:33Z"
+  },
+  {
+    "repo": "dogsheep/evernote-to-sqlite",
+    "pushed_at": "2021-11-02T20:04:32Z"
+  },
+  {
+    "repo": "simonw/sphinx-to-sqlite",
+    "pushed_at": "2020-10-22T04:55:45Z"
+  },
+  {
+    "repo": "drkane/datasette-reconcile",
+    "pushed_at": "2024-02-02T17:16:05Z"
+  },
+  {
+    "repo": "simonw/datasette-edit-templates",
+    "pushed_at": "2024-02-07T16:44:31Z"
+  },
+  {
+    "repo": "simonw/datasette-indieauth",
+    "pushed_at": "2022-11-18T06:48:02Z"
+  },
+  {
+    "repo": "simonw/datasette-ripgrep",
+    "pushed_at": "2023-10-25T02:06:56Z"
+  },
+  {
+    "repo": "simonw/datasette-css-properties",
+    "pushed_at": "2021-01-07T22:07:19Z"
+  },
+  {
+    "repo": "simonw/datasette-export-notebook",
+    "pushed_at": "2023-09-15T18:59:37Z"
   }
 ]

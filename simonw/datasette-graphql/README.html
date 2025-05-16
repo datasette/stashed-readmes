@@ -1,0 +1,585 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">datasette-graphql</h1><a id="user-content-datasette-graphql" class="anchor" aria-label="Permalink: datasette-graphql" href="#datasette-graphql"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://pypi.org/project/datasette-graphql/" rel="nofollow"><img src="https://img.shields.io/pypi/v/datasette-graphql.svg" alt="PyPI" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/2e6f4569a022c397e96f99d2ff1fb6ac6144ee1d015b2ef9c3c524c7c390be7d/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f6461746173657474652d6772617068716c2e737667"></a>
+<a href="https://github.com/simonw/datasette-graphql/releases"><img src="https://img.shields.io/github/v/release/simonw/datasette-graphql?include_prereleases&label=changelog" alt="Changelog" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/94d60a0a452c14932972afad3f6edfa1822c6193369b6d31dc751b88a5be95e1/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f72656c656173652f73696d6f6e772f6461746173657474652d6772617068716c3f696e636c7564655f70726572656c6561736573266c6162656c3d6368616e67656c6f67"></a>
+<a href="https://github.com/simonw/datasette-graphql/actions?query=workflow%3ATest"><img src="https://github.com/simonw/datasette-graphql/workflows/Test/badge.svg" alt="Tests" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/datasette-graphql/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" alt="License" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/c355f200ea90fddaa407b6eaab303663a669248ea3ca7b1fcf77dbe04ff5f48c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d417061636865253230322e302d626c75652e737667"></a></p>
+<p dir="auto"><strong>Datasette plugin providing an automatic GraphQL API for your SQLite databases</strong></p>
+<p dir="auto">Read more about this project: <a href="https://simonwillison.net/2020/Aug/7/datasette-graphql/" rel="nofollow">GraphQL in Datasette with the new datasette-graphql plugin</a></p>
+<p dir="auto">Try out a live demo at <a href="https://datasette-graphql-demo.datasette.io/graphql?query=%7B%0A%20%20repos(first%3A10%2C%20search%3A%20%22sql%22%2C%20sort_desc%3A%20created_at)%20%7B%0A%20%20%20%20totalCount%0A%20%20%20%20pageInfo%20%7B%0A%20%20%20%20%20%20endCursor%0A%20%20%20%20%20%20hasNextPage%0A%20%20%20%20%7D%0A%20%20%20%20nodes%20%7B%0A%20%20%20%20%20%20full_name%0A%20%20%20%20%20%20description_%0A%20%20%20%20%09stargazers_count%0A%20%20%20%20%20%20created_at%0A%20%20%20%20%20%20owner%20%7B%0A%20%20%20%20%20%20%20%20name%0A%20%20%20%20%20%20%20%20html_url%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A" rel="nofollow">datasette-graphql-demo.datasette.io/graphql</a></p>
+
+<ul dir="auto">
+<li><a href="#installation">Installation</a></li>
+<li><a href="#configuration">Configuration</a></li>
+<li><a href="#usage">Usage</a>
+<ul dir="auto">
+<li><a href="#querying-for-tables-and-columns">Querying for tables and columns</a></li>
+<li><a href="#fetching-a-single-record">Fetching a single record</a></li>
+<li><a href="#accessing-nested-objects">Accessing nested objects</a></li>
+<li><a href="#accessing-related-objects">Accessing related objects</a></li>
+<li><a href="#filtering-tables">Filtering tables</a></li>
+<li><a href="#sorting">Sorting</a></li>
+<li><a href="#pagination">Pagination</a></li>
+<li><a href="#search">Search</a></li>
+<li><a href="#columns-containing-json-strings">Columns containing JSON strings</a></li>
+<li><a href="#auto-camelcase">Auto camelCase</a></li>
+<li><a href="#cors">CORS</a></li>
+<li><a href="#execution-limits">Execution limits</a></li>
+</ul>
+</li>
+<li><a href="#the-graphql-template-function">The graphql() template function</a></li>
+<li><a href="#adding-custom-fields-with-plugins">Adding custom fields with plugins</a></li>
+<li><a href="#development">Development</a></li>
+</ul>
+
+<p dir="auto"><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/accf29f83b9e94f31b93301c5af63ccd929258a9704d4138e72352c1f5d66850/68747470733a2f2f7374617469632e73696d6f6e77696c6c69736f6e2e6e65742f7374617469632f323032302f677261706869716c2e676966"><img src="https://static.simonwillison.net/static/2020/graphiql.gif" alt="Animated demo showing autocomplete while typing a GraphQL query into the GraphiQL interface" data-animated-image="" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/accf29f83b9e94f31b93301c5af63ccd929258a9704d4138e72352c1f5d66850/68747470733a2f2f7374617469632e73696d6f6e77696c6c69736f6e2e6e65742f7374617469632f323032302f677261706869716c2e676966"></a></p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Installation</h2><a id="user-content-installation" class="anchor" aria-label="Permalink: Installation" href="#installation"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Install this plugin in the same environment as Datasette.</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ datasette install datasette-graphql"><pre class="notranslate"><code>$ datasette install datasette-graphql
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Configuration</h2><a id="user-content-configuration" class="anchor" aria-label="Permalink: Configuration" href="#configuration"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">By default this plugin adds the GraphQL API at <code>/graphql</code>. You can configure a different path using the <code>path</code> plugin setting, for example by adding this to <code>metadata.json</code>:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+  "plugins": {
+    "datasette-graphql": {
+      "path": "/-/graphql"
+    }
+  }
+}"><pre>{
+  <span class="pl-ent">"plugins"</span>: {
+    <span class="pl-ent">"datasette-graphql"</span>: {
+      <span class="pl-ent">"path"</span>: <span class="pl-s"><span class="pl-pds">"</span>/-/graphql<span class="pl-pds">"</span></span>
+    }
+  }
+}</pre></div>
+<p dir="auto">This will set the GraphQL API to live at <code>/-/graphql</code> instead.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Usage</h2><a id="user-content-usage" class="anchor" aria-label="Permalink: Usage" href="#usage"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">This plugin sets up <code>/graphql</code> as a GraphQL endpoint for the first attached database.</p>
+<p dir="auto">If you have multiple attached databases each will get its own endpoint at <code>/graphql/name_of_database</code>.</p>
+<p dir="auto">The automatically generated GraphQL schema is available at <code>/graphql/name_of_database.graphql</code> - here's <a href="https://datasette-graphql-demo.datasette.io/graphql/github.graphql" rel="nofollow">an example</a>.</p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Querying for tables and columns</h3><a id="user-content-querying-for-tables-and-columns" class="anchor" aria-label="Permalink: Querying for tables and columns" href="#querying-for-tables-and-columns"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Individual tables (and SQL views) can be queried like this:</p>
+<div class="highlight highlight-source-graphql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+  repos {
+    nodes {
+      id
+      full_name
+      description_
+    }
+  }
+}"><pre>{
+  <span class="pl-v">repos</span> {
+    <span class="pl-v">nodes</span> {
+      <span class="pl-v">id</span>
+      <span class="pl-v">full_name</span>
+      <span class="pl-v">description_</span>
+    }
+  }
+}</pre></div>
+<p dir="auto"><a href="https://datasette-graphql-demo.datasette.io/graphql?query=%0A%7B%0A%20%20repos%20%7B%0A%20%20%20%20nodes%20%7B%0A%20%20%20%20%20%20id%0A%20%20%20%20%20%20full_name%0A%20%20%20%20%20%20description_%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A" rel="nofollow">Try this query</a></p>
+<p dir="auto">In this example query the underlying database table is called <code>repos</code> and its columns include <code>id</code>, <code>full_name</code> and <code>description</code>. Since <code>description</code> is a reserved word the query needs to ask for <code>description_</code> instead.</p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Fetching a single record</h3><a id="user-content-fetching-a-single-record" class="anchor" aria-label="Permalink: Fetching a single record" href="#fetching-a-single-record"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">If you only want to fetch a single record - for example if you want to fetch a row by its primary key - you can use the <code>tablename_row</code> field:</p>
+<div class="highlight highlight-source-graphql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+  repos_row(id: 107914493) {
+    id
+    full_name
+    description_
+  }
+}"><pre>{
+  <span class="pl-v">repos_row</span>(<span class="pl-v">id</span>: <span class="pl-c1">107914493</span>) {
+    <span class="pl-v">id</span>
+    <span class="pl-v">full_name</span>
+    <span class="pl-v">description_</span>
+  }
+}</pre></div>
+<p dir="auto"><a href="https://datasette-graphql-demo.datasette.io/graphql?query=%0A%7B%0A%20%20repos_row%28id%3A%20107914493%29%20%7B%0A%20%20%20%20id%0A%20%20%20%20full_name%0A%20%20%20%20description_%0A%20%20%7D%0A%7D%0A" rel="nofollow">Try this query</a></p>
+<p dir="auto">The <code>tablename_row</code> field accepts the primary key column (or columns) as arguments. It also supports the same <code>filter:</code>, <code>search:</code>, <code>sort:</code> and <code>sort_desc:</code> arguments as the <code>tablename</code> field, described below.</p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Accessing nested objects</h3><a id="user-content-accessing-nested-objects" class="anchor" aria-label="Permalink: Accessing nested objects" href="#accessing-nested-objects"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">If a column is a foreign key to another table, you can request columns from the table pointed to by that foreign key using a nested query like this:</p>
+<div class="highlight highlight-source-graphql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+  repos {
+    nodes {
+      id
+      full_name
+      owner {
+        id
+        login
+      }
+    }
+  }
+}"><pre>{
+  <span class="pl-v">repos</span> {
+    <span class="pl-v">nodes</span> {
+      <span class="pl-v">id</span>
+      <span class="pl-v">full_name</span>
+      <span class="pl-v">owner</span> {
+        <span class="pl-v">id</span>
+        <span class="pl-v">login</span>
+      }
+    }
+  }
+}</pre></div>
+<p dir="auto"><a href="https://datasette-graphql-demo.datasette.io/graphql?query=%0A%7B%0A%20%20repos%20%7B%0A%20%20%20%20nodes%20%7B%0A%20%20%20%20%20%20id%0A%20%20%20%20%20%20full_name%0A%20%20%20%20%20%20owner%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20login%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A" rel="nofollow">Try this query</a></p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Accessing related objects</h3><a id="user-content-accessing-related-objects" class="anchor" aria-label="Permalink: Accessing related objects" href="#accessing-related-objects"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">If another table has a foreign key back to the table you are accessing, you can fetch rows from that related table.</p>
+<p dir="auto">Consider a <code>users</code> table which is related to <code>repos</code> - a repo has a foreign key back to the user that owns the repository. The <code>users</code> object type will have a <code>repos_by_owner_list</code> field which can be used to access those related repos:</p>
+<div class="highlight highlight-source-graphql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+  users(first: 1, search: "simonw") {
+    nodes {
+      name
+      repos_by_owner_list(first: 5) {
+        totalCount
+        nodes {
+          full_name
+        }
+      }
+    }
+  }
+}"><pre>{
+  <span class="pl-v">users</span>(<span class="pl-v">first</span>: <span class="pl-c1">1</span>, <span class="pl-v">search</span>: <span class="pl-s"><span class="pl-pds">"</span>simonw<span class="pl-pds">"</span></span>) {
+    <span class="pl-v">nodes</span> {
+      <span class="pl-v">name</span>
+      <span class="pl-v">repos_by_owner_list</span>(<span class="pl-v">first</span>: <span class="pl-c1">5</span>) {
+        <span class="pl-v">totalCount</span>
+        <span class="pl-v">nodes</span> {
+          <span class="pl-v">full_name</span>
+        }
+      }
+    }
+  }
+}</pre></div>
+<p dir="auto"><a href="https://datasette-graphql-demo.datasette.io/graphql?query=%0A%7B%0A%20%20users%28first%3A%201%2C%20search%3A%20%22simonw%22%29%20%7B%0A%20%20%20%20nodes%20%7B%0A%20%20%20%20%20%20name%0A%20%20%20%20%20%20repos_by_owner_list%28first%3A%205%29%20%7B%0A%20%20%20%20%20%20%20%20totalCount%0A%20%20%20%20%20%20%20%20nodes%20%7B%0A%20%20%20%20%20%20%20%20%20%20full_name%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A" rel="nofollow">Try this query</a></p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Filtering tables</h3><a id="user-content-filtering-tables" class="anchor" aria-label="Permalink: Filtering tables" href="#filtering-tables"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">You can filter the rows returned for a specific table using the <code>filter:</code> argument. This accepts a filter object mapping columns to operations. For example, to return just repositories with the Apache 2 license and more than 10 stars:</p>
+<div class="highlight highlight-source-graphql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+  repos(filter: {license: {eq: "apache-2.0"}, stargazers_count: {gt: 10}}) {
+    nodes {
+      full_name
+      stargazers_count
+      license {
+        key
+      }
+    }
+  }
+}"><pre>{
+  <span class="pl-v">repos</span>(<span class="pl-v">filter</span>: {<span class="pl-c1"><span class="pl-s">license</span></span>: {<span class="pl-c1"><span class="pl-s">eq</span></span>: <span class="pl-s"><span class="pl-pds">"</span>apache-2.0<span class="pl-pds">"</span></span>}, <span class="pl-c1"><span class="pl-s">stargazers_count</span></span>: {<span class="pl-c1"><span class="pl-s">gt</span></span>: <span class="pl-c1">10</span>}}) {
+    <span class="pl-v">nodes</span> {
+      <span class="pl-v">full_name</span>
+      <span class="pl-v">stargazers_count</span>
+      <span class="pl-v">license</span> {
+        <span class="pl-v">key</span>
+      }
+    }
+  }
+}</pre></div>
+<p dir="auto"><a href="https://datasette-graphql-demo.datasette.io/graphql?query=%0A%7B%0A%20%20repos%28filter%3A%20%7Blicense%3A%20%7Beq%3A%20%22apache-2.0%22%7D%2C%20stargazers_count%3A%20%7Bgt%3A%2010%7D%7D%29%20%7B%0A%20%20%20%20nodes%20%7B%0A%20%20%20%20%20%20full_name%0A%20%20%20%20%20%20stargazers_count%0A%20%20%20%20%20%20license%20%7B%0A%20%20%20%20%20%20%20%20key%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A" rel="nofollow">Try this query</a></p>
+<p dir="auto">See <a href="https://github.com/simonw/datasette-graphql/blob/main/examples/filters.md">table filters examples</a> for more operations, and <a href="https://docs.datasette.io/en/stable/json_api.html#column-filter-arguments" rel="nofollow">column filter arguments</a> in the Datasette documentation for details of how those operations work.</p>
+<p dir="auto">These same filters can be used on nested relationships, like so:</p>
+<div class="highlight highlight-source-graphql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+  users_row(id: 9599) {
+    name
+    repos_by_owner_list(filter: {name: {startswith: "datasette-"}}) {
+      totalCount
+      nodes {
+        full_name
+      }
+    }
+  }
+}"><pre>{
+  <span class="pl-v">users_row</span>(<span class="pl-v">id</span>: <span class="pl-c1">9599</span>) {
+    <span class="pl-v">name</span>
+    <span class="pl-v">repos_by_owner_list</span>(<span class="pl-v">filter</span>: {<span class="pl-c1"><span class="pl-s">name</span></span>: {<span class="pl-c1"><span class="pl-s">startswith</span></span>: <span class="pl-s"><span class="pl-pds">"</span>datasette-<span class="pl-pds">"</span></span>}}) {
+      <span class="pl-v">totalCount</span>
+      <span class="pl-v">nodes</span> {
+        <span class="pl-v">full_name</span>
+      }
+    }
+  }
+}</pre></div>
+<p dir="auto"><a href="https://datasette-graphql-demo.datasette.io/graphql?query=%0A%7B%0A%20%20users_row%28id%3A%209599%29%20%7B%0A%20%20%20%20name%0A%20%20%20%20repos_by_owner_list%28filter%3A%20%7Bname%3A%20%7Bstartswith%3A%20%22datasette-%22%7D%7D%29%20%7B%0A%20%20%20%20%20%20totalCount%0A%20%20%20%20%20%20nodes%20%7B%0A%20%20%20%20%20%20%20%20full_name%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A" rel="nofollow">Try this query</a></p>
+<p dir="auto">The <code>where:</code> argument can be used as an alternative to <code>filter:</code> when the thing you are expressing is too complex to be modeled using a filter expression. It accepts a string fragment of SQL that will be included in the <code>WHERE</code> clause of the SQL query.</p>
+<div class="highlight highlight-source-graphql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+  repos(where: "name='sqlite-utils' or name like 'datasette-%'") {
+    totalCount
+    nodes {
+      full_name
+    }
+  }
+}"><pre>{
+  <span class="pl-v">repos</span>(<span class="pl-v">where</span>: <span class="pl-s"><span class="pl-pds">"</span>name='sqlite-utils' or name like 'datasette-%'<span class="pl-pds">"</span></span>) {
+    <span class="pl-v">totalCount</span>
+    <span class="pl-v">nodes</span> {
+      <span class="pl-v">full_name</span>
+    }
+  }
+}</pre></div>
+<p dir="auto"><a href="https://datasette-graphql-demo.datasette.io/graphql?query=%0A%7B%0A%20%20repos%28where%3A%20%22name%3D%27sqlite-utils%27%20or%20name%20like%20%27datasette-%25%27%22%29%20%7B%0A%20%20%20%20totalCount%0A%20%20%20%20nodes%20%7B%0A%20%20%20%20%20%20full_name%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A" rel="nofollow">Try this query</a></p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Sorting</h3><a id="user-content-sorting" class="anchor" aria-label="Permalink: Sorting" href="#sorting"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">You can set a sort order for results from a table using the <code>sort:</code> or <code>sort_desc:</code> arguments. The value for this argument should be the name of the column you wish to sort (or sort-descending) by.</p>
+<div class="highlight highlight-source-graphql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+  repos(sort_desc: stargazers_count) {
+    nodes {
+      full_name
+      stargazers_count
+    }
+  }
+}"><pre>{
+  <span class="pl-v">repos</span>(<span class="pl-v">sort_desc</span>:<span class="pl-c1"> stargazers_count</span>) {
+    <span class="pl-v">nodes</span> {
+      <span class="pl-v">full_name</span>
+      <span class="pl-v">stargazers_count</span>
+    }
+  }
+}</pre></div>
+<p dir="auto"><a href="https://datasette-graphql-demo.datasette.io/graphql?query=%0A%7B%0A%20%20repos%28sort_desc%3A%20stargazers_count%29%20%7B%0A%20%20%20%20nodes%20%7B%0A%20%20%20%20%20%20full_name%0A%20%20%20%20%20%20stargazers_count%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A" rel="nofollow">Try this query</a></p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Pagination</h3><a id="user-content-pagination" class="anchor" aria-label="Permalink: Pagination" href="#pagination"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">By default the first 10 rows will be returned. You can control this using the <code>first:</code> argument.</p>
+<div class="highlight highlight-source-graphql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+  repos(first: 20) {
+    totalCount
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    nodes {
+      full_name
+      stargazers_count
+      license {
+        key
+      }
+    }
+  }
+}"><pre>{
+  <span class="pl-v">repos</span>(<span class="pl-v">first</span>: <span class="pl-c1">20</span>) {
+    <span class="pl-v">totalCount</span>
+    <span class="pl-v">pageInfo</span> {
+      <span class="pl-v">hasNextPage</span>
+      <span class="pl-v">endCursor</span>
+    }
+    <span class="pl-v">nodes</span> {
+      <span class="pl-v">full_name</span>
+      <span class="pl-v">stargazers_count</span>
+      <span class="pl-v">license</span> {
+        <span class="pl-v">key</span>
+      }
+    }
+  }
+}</pre></div>
+<p dir="auto"><a href="https://datasette-graphql-demo.datasette.io/graphql?query=%0A%7B%0A%20%20repos%28first%3A%2020%29%20%7B%0A%20%20%20%20totalCount%0A%20%20%20%20pageInfo%20%7B%0A%20%20%20%20%20%20hasNextPage%0A%20%20%20%20%20%20endCursor%0A%20%20%20%20%7D%0A%20%20%20%20nodes%20%7B%0A%20%20%20%20%20%20full_name%0A%20%20%20%20%20%20stargazers_count%0A%20%20%20%20%20%20license%20%7B%0A%20%20%20%20%20%20%20%20key%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A" rel="nofollow">Try this query</a></p>
+<p dir="auto">The <code>totalCount</code> field returns the total number of records that match the query.</p>
+<p dir="auto">Requesting the <code>pageInfo.endCursor</code> field provides you with the value you need to request the next page. You can pass this to the <code>after:</code> argument to request the next page.</p>
+<div class="highlight highlight-source-graphql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+  repos(first: 20, after: "134874019") {
+    totalCount
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    nodes {
+      full_name
+      stargazers_count
+      license {
+        key
+      }
+    }
+  }
+}"><pre>{
+  <span class="pl-v">repos</span>(<span class="pl-v">first</span>: <span class="pl-c1">20</span>, <span class="pl-v">after</span>: <span class="pl-s"><span class="pl-pds">"</span>134874019<span class="pl-pds">"</span></span>) {
+    <span class="pl-v">totalCount</span>
+    <span class="pl-v">pageInfo</span> {
+      <span class="pl-v">hasNextPage</span>
+      <span class="pl-v">endCursor</span>
+    }
+    <span class="pl-v">nodes</span> {
+      <span class="pl-v">full_name</span>
+      <span class="pl-v">stargazers_count</span>
+      <span class="pl-v">license</span> {
+        <span class="pl-v">key</span>
+      }
+    }
+  }
+}</pre></div>
+<p dir="auto"><a href="https://datasette-graphql-demo.datasette.io/graphql?query=%0A%7B%0A%20%20repos%28first%3A%2020%2C%20after%3A%20%22134874019%22%29%20%7B%0A%20%20%20%20totalCount%0A%20%20%20%20pageInfo%20%7B%0A%20%20%20%20%20%20hasNextPage%0A%20%20%20%20%20%20endCursor%0A%20%20%20%20%7D%0A%20%20%20%20nodes%20%7B%0A%20%20%20%20%20%20full_name%0A%20%20%20%20%20%20stargazers_count%0A%20%20%20%20%20%20license%20%7B%0A%20%20%20%20%20%20%20%20key%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A" rel="nofollow">Try this query</a></p>
+<p dir="auto">The <code>hasNextPage</code> field tells you if there are any more records.</p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Search</h3><a id="user-content-search" class="anchor" aria-label="Permalink: Search" href="#search"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">If a table has been configured to use SQLite full-text search you can execute searches against it using the <code>search:</code> argument:</p>
+<div class="highlight highlight-source-graphql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+  repos(search: "datasette") {
+    totalCount
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    nodes {
+      full_name
+      description_
+    }
+  }
+}"><pre>{
+  <span class="pl-v">repos</span>(<span class="pl-v">search</span>: <span class="pl-s"><span class="pl-pds">"</span>datasette<span class="pl-pds">"</span></span>) {
+    <span class="pl-v">totalCount</span>
+    <span class="pl-v">pageInfo</span> {
+      <span class="pl-v">hasNextPage</span>
+      <span class="pl-v">endCursor</span>
+    }
+    <span class="pl-v">nodes</span> {
+      <span class="pl-v">full_name</span>
+      <span class="pl-v">description_</span>
+    }
+  }
+}</pre></div>
+<p dir="auto"><a href="https://datasette-graphql-demo.datasette.io/graphql?query=%0A%7B%0A%20%20repos%28search%3A%20%22datasette%22%29%20%7B%0A%20%20%20%20totalCount%0A%20%20%20%20pageInfo%20%7B%0A%20%20%20%20%20%20hasNextPage%0A%20%20%20%20%20%20endCursor%0A%20%20%20%20%7D%0A%20%20%20%20nodes%20%7B%0A%20%20%20%20%20%20full_name%0A%20%20%20%20%20%20description_%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A" rel="nofollow">Try this query</a></p>
+<p dir="auto">The <a href="https://sqlite-utils.datasette.io/" rel="nofollow">sqlite-utils</a> Python library and CLI tool can be used to add full-text search to an existing database table.</p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Columns containing JSON strings</h3><a id="user-content-columns-containing-json-strings" class="anchor" aria-label="Permalink: Columns containing JSON strings" href="#columns-containing-json-strings"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">If your table has a column that contains data encoded as JSON, <code>datasette-graphql</code> will make that column available as an encoded JSON string. Clients calling your API will need to parse the string as JSON in order to access the data.</p>
+<p dir="auto">You can return the data as a nested structure by configuring that column to be treated as a JSON column. The <a href="https://docs.datasette.io/en/stable/plugins.html#plugin-configuration" rel="nofollow">plugin configuration</a> for that in <code>metadata.json</code> looks like this:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    "databases": {
+        "test": {
+            "tables": {
+                "repos": {
+                    "plugins": {
+                        "datasette-graphql": {
+                            "json_columns": [
+                                "tags"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"databases"</span>: {
+        <span class="pl-ent">"test"</span>: {
+            <span class="pl-ent">"tables"</span>: {
+                <span class="pl-ent">"repos"</span>: {
+                    <span class="pl-ent">"plugins"</span>: {
+                        <span class="pl-ent">"datasette-graphql"</span>: {
+                            <span class="pl-ent">"json_columns"</span>: [
+                                <span class="pl-s"><span class="pl-pds">"</span>tags<span class="pl-pds">"</span></span>
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}</pre></div>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Auto camelCase</h3><a id="user-content-auto-camelcase" class="anchor" aria-label="Permalink: Auto camelCase" href="#auto-camelcase"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The names of your columns and tables default to being matched by their representations in GraphQL.</p>
+<p dir="auto">If you have tables with <code>names_like_this</code> you may want to work with them in GraphQL using <code>namesLikeThis</code>, for consistency with GraphQL and JavaScript conventions.</p>
+<p dir="auto">You can turn on automatic camelCase using the <code>"auto_camelcase"</code> plugin configuration setting in <code>metadata.json</code>, like this:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    "plugins": {
+        "datasette-graphql": {
+            "auto_camelcase": true
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"plugins"</span>: {
+        <span class="pl-ent">"datasette-graphql"</span>: {
+            <span class="pl-ent">"auto_camelcase"</span>: <span class="pl-c1">true</span>
+        }
+    }
+}</pre></div>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">CORS</h3><a id="user-content-cors" class="anchor" aria-label="Permalink: CORS" href="#cors"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">This plugin obeys the <code>--cors</code> option passed to the <code>datasette</code> command-line tool. If you pass <code>--cors</code> it adds the following CORS HTTP headers to allow JavaScript running on other domains to access the GraphQL API:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="access-control-allow-headers: content-type
+access-control-allow-method: POST
+access-control-allow-origin: *"><pre class="notranslate"><code>access-control-allow-headers: content-type
+access-control-allow-method: POST
+access-control-allow-origin: *
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Execution limits</h3><a id="user-content-execution-limits" class="anchor" aria-label="Permalink: Execution limits" href="#execution-limits"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The plugin implements two limits by default:</p>
+<ul dir="auto">
+<li>The total time spent executing all of the underlying SQL queries that make up the GraphQL execution must not exceed 1000ms (one second)</li>
+<li>The total number of SQL table queries executed as a result of nested GraphQL fields must not exceed 100</li>
+</ul>
+<p dir="auto">These limits can be customized using the <code>num_queries_limit</code> and <code>time_limit_ms</code> plugin configuration settings, for example in <code>metadata.json</code>:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    "plugins": {
+        "datasette-graphql": {
+            "num_queries_limit": 200,
+            "time_limit_ms": 5000
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"plugins"</span>: {
+        <span class="pl-ent">"datasette-graphql"</span>: {
+            <span class="pl-ent">"num_queries_limit"</span>: <span class="pl-c1">200</span>,
+            <span class="pl-ent">"time_limit_ms"</span>: <span class="pl-c1">5000</span>
+        }
+    }
+}</pre></div>
+<p dir="auto">Setting these to <code>0</code> will disable the limit checks entirely.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">The graphql() template function</h2><a id="user-content-the-graphql-template-function" class="anchor" aria-label="Permalink: The graphql() template function" href="#the-graphql-template-function"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The plugin also makes a Jinja template function available called <code>graphql()</code>. You can use that function in your Datasette <a href="https://docs.datasette.io/en/stable/custom_templates.html#custom-templates" rel="nofollow">custom templates</a> like so:</p>
+<div class="highlight highlight-text-html-django notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{% set users = graphql("""
+{
+    users {
+        nodes {
+            name
+            points
+            score
+        }
+    }
+}
+""")["users"] %}
+{% for user in users.nodes %}
+    <p>{{ user.name }} - points: {{ user.points }}, score = {{ user.score }}</p>
+{% endfor %}"><pre><span class="pl-e">{%</span> <span class="pl-s">set</span> <span class="pl-s">users</span> = <span class="pl-s">graphql</span>(<span class="pl-s">"""</span>
+<span class="pl-s">{</span>
+<span class="pl-s">    users {</span>
+<span class="pl-s">        nodes {</span>
+<span class="pl-s">            name</span>
+<span class="pl-s">            points</span>
+<span class="pl-s">            score</span>
+<span class="pl-s">        }</span>
+<span class="pl-s">    }</span>
+<span class="pl-s">}</span>
+<span class="pl-s">"""</span>)[<span class="pl-s">"users"</span>] <span class="pl-e">%}</span>
+<span class="pl-e">{%</span> <span class="pl-k">for</span> <span class="pl-s">user</span> <span class="pl-k">in</span> <span class="pl-s">users</span>.<span class="pl-s">nodes</span> <span class="pl-e">%}</span>
+    <<span class="pl-ent">p</span>>{{ user.name }} - points: {{ user.points }}, score = {{ user.score }}</<span class="pl-ent">p</span>>
+<span class="pl-e">{%</span> <span class="pl-k">endfor</span> <span class="pl-e">%}</span></pre></div>
+<p dir="auto">The function executes a GraphQL query against the generated schema and returns the results. You can assign those results to a variable in your template and then loop through and display them.</p>
+<p dir="auto">By default the query will be run against the first attached database. You can use the optional second argument to the function to specify a different database - for example, to run against an attached <code>github.db</code> database you would do this:</p>
+<div class="highlight highlight-text-html-django notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{% set user = graphql("""
+{
+    users_row(id:9599) {
+        name
+        login
+        avatar_url
+    }
+}
+""", "github")["users_row"] %}
+
+<h1>Hello, {{ user.name }}</h1>"><pre><span class="pl-e">{%</span> <span class="pl-s">set</span> <span class="pl-s">user</span> = <span class="pl-s">graphql</span>(<span class="pl-s">"""</span>
+<span class="pl-s">{</span>
+<span class="pl-s">    users_row(id:9599) {</span>
+<span class="pl-s">        name</span>
+<span class="pl-s">        login</span>
+<span class="pl-s">        avatar_url</span>
+<span class="pl-s">    }</span>
+<span class="pl-s">}</span>
+<span class="pl-s">"""</span>, <span class="pl-s">"github"</span>)[<span class="pl-s">"users_row"</span>] <span class="pl-e">%}</span>
+
+<<span class="pl-ent">h1</span>>Hello, {{ user.name }}</<span class="pl-ent">h1</span>></pre></div>
+<p dir="auto">You can use <a href="https://graphql.org/learn/queries/#variables" rel="nofollow">GraphQL variables</a> in these template calls by passing them to the <code>variables=</code> argument:</p>
+<div class="highlight highlight-text-html-django notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{% set user = graphql("""
+query ($id: Int) {
+    users_row(id: $id) {
+        name
+        login
+        avatar_url
+    }
+}
+""", database="github", variables={"id": 9599})["users_row"] %}
+
+<h1>Hello, {{ user.name }}</h1>"><pre><span class="pl-e">{%</span> <span class="pl-s">set</span> <span class="pl-s">user</span> = <span class="pl-s">graphql</span>(<span class="pl-s">"""</span>
+<span class="pl-s">query ($id: Int) {</span>
+<span class="pl-s">    users_row(id: $id) {</span>
+<span class="pl-s">        name</span>
+<span class="pl-s">        login</span>
+<span class="pl-s">        avatar_url</span>
+<span class="pl-s">    }</span>
+<span class="pl-s">}</span>
+<span class="pl-s">"""</span>, <span class="pl-s">database</span>=<span class="pl-s">"github"</span>, <span class="pl-s">variables</span>={<span class="pl-s">"id"</span>: 9599})[<span class="pl-s">"users_row"</span>] <span class="pl-e">%}</span>
+
+<<span class="pl-ent">h1</span>>Hello, {{ user.name }}</<span class="pl-ent">h1</span>></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Adding custom fields with plugins</h2><a id="user-content-adding-custom-fields-with-plugins" class="anchor" aria-label="Permalink: Adding custom fields with plugins" href="#adding-custom-fields-with-plugins"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><code>datasette-graphql</code> adds a new <a href="https://docs.datasette.io/en/stable/writing_plugins.html" rel="nofollow">plugin hook</a> to Datasette which can be used to add custom fields to your GraphQL schema.</p>
+<p dir="auto">The plugin hook looks like this:</p>
+<div class="highlight highlight-source-python notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="@hookimpl
+def graphql_extra_fields(datasette, database):
+    "A list of (name, field_type) tuples to include in the GraphQL schema""><pre><span class="pl-en">@<span class="pl-s1">hookimpl</span></span>
+<span class="pl-k">def</span> <span class="pl-en">graphql_extra_fields</span>(<span class="pl-s1">datasette</span>, <span class="pl-s1">database</span>):
+    <span class="pl-s">"A list of (name, field_type) tuples to include in the GraphQL schema"</span></pre></div>
+<p dir="auto">You can use this hook to return a list of tuples describing additional fields that should be exposed in your schema. Each tuple should consist of a string naming the new field, plus a <a href="https://docs.graphene-python.org/en/latest/types/objecttypes/" rel="nofollow">Graphene Field object</a> that specifies the schema and provides a <code>resolver</code> function.</p>
+<p dir="auto">This example implementation uses <code>pkg_resources</code> to return a list of currently installed Python packages:</p>
+<div class="highlight highlight-source-python notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="import graphene
+from datasette import hookimpl
+import pkg_resources
+
+
+@hookimpl
+def graphql_extra_fields():
+    class Package(graphene.ObjectType):
+        "An installed package"
+        name = graphene.String()
+        version = graphene.String()
+
+    def resolve_packages(root, info):
+        return [
+            {"name": d.project_name, "version": d.version}
+            for d in pkg_resources.working_set
+        ]
+
+    return [
+        (
+            "packages",
+            graphene.Field(
+                graphene.List(Package),
+                description="List of installed packages",
+                resolver=resolve_packages,
+            ),
+        ),
+    ]"><pre><span class="pl-k">import</span> <span class="pl-s1">graphene</span>
+<span class="pl-k">from</span> <span class="pl-s1">datasette</span> <span class="pl-k">import</span> <span class="pl-s1">hookimpl</span>
+<span class="pl-k">import</span> <span class="pl-s1">pkg_resources</span>
+
+
+<span class="pl-en">@<span class="pl-s1">hookimpl</span></span>
+<span class="pl-k">def</span> <span class="pl-en">graphql_extra_fields</span>():
+    <span class="pl-k">class</span> <span class="pl-v">Package</span>(<span class="pl-s1">graphene</span>.<span class="pl-c1">ObjectType</span>):
+        <span class="pl-s">"An installed package"</span>
+        <span class="pl-s1">name</span> <span class="pl-c1">=</span> <span class="pl-s1">graphene</span>.<span class="pl-c1">String</span>()
+        <span class="pl-s1">version</span> <span class="pl-c1">=</span> <span class="pl-s1">graphene</span>.<span class="pl-c1">String</span>()
+
+    <span class="pl-k">def</span> <span class="pl-en">resolve_packages</span>(<span class="pl-s1">root</span>, <span class="pl-s1">info</span>):
+        <span class="pl-k">return</span> [
+            {<span class="pl-s">"name"</span>: <span class="pl-s1">d</span>.<span class="pl-c1">project_name</span>, <span class="pl-s">"version"</span>: <span class="pl-s1">d</span>.<span class="pl-c1">version</span>}
+            <span class="pl-k">for</span> <span class="pl-s1">d</span> <span class="pl-c1">in</span> <span class="pl-s1">pkg_resources</span>.<span class="pl-c1">working_set</span>
+        ]
+
+    <span class="pl-k">return</span> [
+        (
+            <span class="pl-s">"packages"</span>,
+            <span class="pl-s1">graphene</span>.<span class="pl-c1">Field</span>(
+                <span class="pl-s1">graphene</span>.<span class="pl-c1">List</span>(<span class="pl-v">Package</span>),
+                <span class="pl-s1">description</span><span class="pl-c1">=</span><span class="pl-s">"List of installed packages"</span>,
+                <span class="pl-s1">resolver</span><span class="pl-c1">=</span><span class="pl-s1">resolve_packages</span>,
+            ),
+        ),
+    ]</pre></div>
+<p dir="auto">With this plugin installed, the following GraphQL query can be used to retrieve a list of installed packages:</p>
+<div class="highlight highlight-source-graphql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+  packages {
+    name
+    version
+  }
+}"><pre>{
+  <span class="pl-v">packages</span> {
+    <span class="pl-v">name</span>
+    <span class="pl-v">version</span>
+  }
+}</pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Development</h2><a id="user-content-development" class="anchor" aria-label="Permalink: Development" href="#development"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">To set up this plugin locally, first checkout the code. Then create a new virtual environment:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="cd datasette-graphql
+python3 -mvenv venv
+source venv/bin/activate"><pre class="notranslate"><code>cd datasette-graphql
+python3 -mvenv venv
+source venv/bin/activate
+</code></pre></div>
+<p dir="auto">Or if you are using <code>pipenv</code>:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pipenv shell"><pre class="notranslate"><code>pipenv shell
+</code></pre></div>
+<p dir="auto">Now install the dependencies and tests:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pip install -e '.[test]'"><pre class="notranslate"><code>pip install -e '.[test]'
+</code></pre></div>
+<p dir="auto">To run the tests:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pytest"><pre class="notranslate"><code>pytest
+</code></pre></div>
+</article></div>
