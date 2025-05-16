@@ -1,0 +1,183 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">strip-tags</h1><a id="user-content-strip-tags" class="anchor" aria-label="Permalink: strip-tags" href="#strip-tags"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://pypi.org/project/strip-tags/" rel="nofollow"><img src="https://img.shields.io/pypi/v/strip-tags.svg" alt="PyPI" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/7d1a969afbeaf91a1c6f25492b2cc5d476f18b9a583c8f4987a59589697fc5d2/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f73747269702d746167732e737667"></a>
+<a href="https://github.com/simonw/strip-tags/releases"><img src="https://img.shields.io/github/v/release/simonw/strip-tags?include_prereleases&label=changelog" alt="Changelog" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/d97dc3eb63b5efc35d2b296da1183af4b2bdb622a5050856b4be5f63c1cceb09/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f72656c656173652f73696d6f6e772f73747269702d746167733f696e636c7564655f70726572656c6561736573266c6162656c3d6368616e67656c6f67"></a>
+<a href="https://github.com/simonw/strip-tags/actions?query=workflow%3ATest"><img src="https://github.com/simonw/strip-tags/workflows/Test/badge.svg" alt="Tests" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/strip-tags/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" alt="License" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/c355f200ea90fddaa407b6eaab303663a669248ea3ca7b1fcf77dbe04ff5f48c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d417061636865253230322e302d626c75652e737667"></a></p>
+<p dir="auto">Strip tags from HTML, optionally from areas identified by CSS selectors</p>
+<p dir="auto">See <a href="https://simonwillison.net/2023/May/18/cli-tools-for-llms/" rel="nofollow">llm, ttok and strip-tags—CLI tools for working with ChatGPT and other LLMs</a> for more on this project.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Installation</h2><a id="user-content-installation" class="anchor" aria-label="Permalink: Installation" href="#installation"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Install this tool using <code>pip</code>:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="pip install strip-tags"><pre>pip install strip-tags</pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Usage</h2><a id="user-content-usage" class="anchor" aria-label="Permalink: Usage" href="#usage"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Pipe content into this tool to strip tags from it:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="cat input.html | strip-tags > output.txt"><pre>cat input.html <span class="pl-k">|</span> strip-tags <span class="pl-k">></span> output.txt</pre></div>
+<p dir="auto">Or pass a filename:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="strip-tags -i input.html > output.txt"><pre>strip-tags -i input.html <span class="pl-k">></span> output.txt</pre></div>
+<p dir="auto">To run against just specific areas identified by CSS selectors:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="strip-tags '.content' -i input.html > output.txt"><pre>strip-tags <span class="pl-s"><span class="pl-pds">'</span>.content<span class="pl-pds">'</span></span> -i input.html <span class="pl-k">></span> output.txt</pre></div>
+<p dir="auto">This can be called with multiple selectors:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="cat input.html | strip-tags '.content' '.sidebar' > output.txt"><pre>cat input.html <span class="pl-k">|</span> strip-tags <span class="pl-s"><span class="pl-pds">'</span>.content<span class="pl-pds">'</span></span> <span class="pl-s"><span class="pl-pds">'</span>.sidebar<span class="pl-pds">'</span></span> <span class="pl-k">></span> output.txt</pre></div>
+<p dir="auto">To return just the first element on the page that matches one of the selectors, use <code>--first</code>:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="cat input.html | strip-tags .content --first > output.txt"><pre>cat input.html <span class="pl-k">|</span> strip-tags .content --first <span class="pl-k">></span> output.txt</pre></div>
+<p dir="auto">To remove content contained by specific selectors - e.g. the <code><nav></code> section of a page, use <code>-r</code> or <code>--remove</code>:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="cat input.html | strip-tags -r nav > output.txt"><pre>cat input.html <span class="pl-k">|</span> strip-tags -r nav <span class="pl-k">></span> output.txt</pre></div>
+<p dir="auto">To minify whitespace - reducing multiple space and tab characters to a single space, removing any remaining blank lines - add <code>-m</code> or <code>--minify</code>:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="cat input.html | strip-tags -m > output.txt"><pre>cat input.html <span class="pl-k">|</span> strip-tags -m <span class="pl-k">></span> output.txt</pre></div>
+<p dir="auto">You can also run this command using <code>python -m</code> like this:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="python -m strip_tags --help"><pre>python -m strip_tags --help</pre></div>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Keeping the markup for specified tags</h3><a id="user-content-keeping-the-markup-for-specified-tags" class="anchor" aria-label="Permalink: Keeping the markup for specified tags" href="#keeping-the-markup-for-specified-tags"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">When passing content to a language model, it can sometimes be useful to leave in a subset of HTML tags - <code><h1>This is the heading</h1></code> for example - to provide extra hints to the model.</p>
+<p dir="auto">The <code>-t/--keep-tag</code> option can be passed multiple times to specify tags that should be kept.</p>
+<p dir="auto">This example looks at the <code><header></code> section of <a href="https://datasette.io/" rel="nofollow">https://datasette.io/</a> and keeps the tags around the list items and <code><h1></code> elements:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="curl -s https://datasette.io/ | strip-tags header -t h1 -t li"><pre class="notranslate"><code>curl -s https://datasette.io/ | strip-tags header -t h1 -t li
+</code></pre></div>
+<div class="highlight highlight-text-html-basic notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="<li>Uses</li>
+<li>Documentation Docs</li>
+<li>Tutorials</li>
+<li>Examples</li>
+<li>Plugins</li>
+<li>Tools</li>
+<li>News</li>
+<h1>
+    Datasette
+</h1>
+Find stories in data"><pre><span class="pl-kos"><</span><span class="pl-ent">li</span><span class="pl-kos">></span>Uses<span class="pl-kos"></</span><span class="pl-ent">li</span><span class="pl-kos">></span>
+<span class="pl-kos"><</span><span class="pl-ent">li</span><span class="pl-kos">></span>Documentation Docs<span class="pl-kos"></</span><span class="pl-ent">li</span><span class="pl-kos">></span>
+<span class="pl-kos"><</span><span class="pl-ent">li</span><span class="pl-kos">></span>Tutorials<span class="pl-kos"></</span><span class="pl-ent">li</span><span class="pl-kos">></span>
+<span class="pl-kos"><</span><span class="pl-ent">li</span><span class="pl-kos">></span>Examples<span class="pl-kos"></</span><span class="pl-ent">li</span><span class="pl-kos">></span>
+<span class="pl-kos"><</span><span class="pl-ent">li</span><span class="pl-kos">></span>Plugins<span class="pl-kos"></</span><span class="pl-ent">li</span><span class="pl-kos">></span>
+<span class="pl-kos"><</span><span class="pl-ent">li</span><span class="pl-kos">></span>Tools<span class="pl-kos"></</span><span class="pl-ent">li</span><span class="pl-kos">></span>
+<span class="pl-kos"><</span><span class="pl-ent">li</span><span class="pl-kos">></span>News<span class="pl-kos"></</span><span class="pl-ent">li</span><span class="pl-kos">></span>
+<span class="pl-kos"><</span><span class="pl-ent">h1</span><span class="pl-kos">></span>
+    Datasette
+<span class="pl-kos"></</span><span class="pl-ent">h1</span><span class="pl-kos">></span>
+Find stories in data</pre></div>
+<p dir="auto">All attributes will be removed from the tags, except for the <code>id=</code> and <code>class=</code> attribute since those may provide further useful hints to the language model.</p>
+<p dir="auto">The <code>href</code> attribute on links, the <code>alt</code> attribute on images and the <code>name</code> and <code>value</code> attributes on <code>meta</code> tags are kept as well.</p>
+<p dir="auto">You can also specify a bundle of tags. For example, <code>strip-tags -t hs</code> will keep the tag markup for all levels of headings.</p>
+<p dir="auto">The following bundles can be used:</p>
+
+<ul dir="auto">
+<li><code>-t hs</code>: <code><h1></code>, <code><h2></code>, <code><h3></code>, <code><h4></code>, <code><h5></code>, <code><h6></code></li>
+<li><code>-t metadata</code>: <code><title></code>, <code><meta></code></li>
+<li><code>-t structure</code>: <code><header></code>, <code><nav></code>, <code><main></code>, <code><article></code>, <code><section></code>, <code><aside></code>, <code><footer></code></li>
+<li><code>-t tables</code>: <code><table></code>, <code><tr></code>, <code><td></code>, <code><th></code>, <code><thead></code>, <code><tbody></code>, <code><tfoot></code>, <code><caption></code>, <code><colgroup></code>, <code><col></code></li>
+<li><code>-t lists</code>: <code><ul></code>, <code><ol></code>, <code><li></code>, <code><dl></code>, <code><dd></code>, <code><dt></code></li>
+</ul>
+
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">As a Python library</h2><a id="user-content-as-a-python-library" class="anchor" aria-label="Permalink: As a Python library" href="#as-a-python-library"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">You can use <code>strip-tags</code> from Python code too. The function signature looks like this:</p>
+
+<div class="highlight highlight-source-python notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="def strip_tags(
+    input: str,
+    selectors: Optional[Iterable[str]]=None,
+    *,
+    removes: Optional[Iterable[str]]=None,
+    minify: bool=False,
+    remove_blank_lines: bool=False,
+    first: bool=False,
+    keep_tags: Optional[Iterable[str]]=None,
+    all_attrs: bool=False
+) -> str:"><pre><span class="pl-k">def</span> <span class="pl-en">strip_tags</span>(
+    <span class="pl-s1">input</span>: <span class="pl-smi">str</span>,
+    <span class="pl-s1">selectors</span>: <span class="pl-v">Optional</span>[<span class="pl-v">Iterable</span>[<span class="pl-smi">str</span>]]<span class="pl-c1">=</span><span class="pl-c1">None</span>,
+    <span class="pl-c1">*</span>,
+    <span class="pl-s1">removes</span>: <span class="pl-v">Optional</span>[<span class="pl-v">Iterable</span>[<span class="pl-smi">str</span>]]<span class="pl-c1">=</span><span class="pl-c1">None</span>,
+    <span class="pl-s1">minify</span>: <span class="pl-smi">bool</span><span class="pl-c1">=</span><span class="pl-c1">False</span>,
+    <span class="pl-s1">remove_blank_lines</span>: <span class="pl-smi">bool</span><span class="pl-c1">=</span><span class="pl-c1">False</span>,
+    <span class="pl-s1">first</span>: <span class="pl-smi">bool</span><span class="pl-c1">=</span><span class="pl-c1">False</span>,
+    <span class="pl-s1">keep_tags</span>: <span class="pl-v">Optional</span>[<span class="pl-v">Iterable</span>[<span class="pl-smi">str</span>]]<span class="pl-c1">=</span><span class="pl-c1">None</span>,
+    <span class="pl-s1">all_attrs</span>: <span class="pl-smi">bool</span><span class="pl-c1">=</span><span class="pl-c1">False</span>
+) <span class="pl-c1">-></span> <span class="pl-smi">str</span>:</pre></div>
+
+<p dir="auto">Here's an example:</p>
+<div class="highlight highlight-source-python notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="from strip_tags import strip_tags
+
+html = """
+<div>
+<h1>This has tags</h1>
+
+<p>And whitespace too</p>
+</div>
+Ignore this bit.
+"""
+stripped = strip_tags(html, ["div"], minify=True, keep_tags=["h1"])
+print(stripped)"><pre><span class="pl-k">from</span> <span class="pl-s1">strip_tags</span> <span class="pl-k">import</span> <span class="pl-s1">strip_tags</span>
+
+<span class="pl-s1">html</span> <span class="pl-c1">=</span> <span class="pl-s">"""</span>
+<span class="pl-s"><div></span>
+<span class="pl-s"><h1>This has tags</h1></span>
+<span class="pl-s"></span>
+<span class="pl-s"><p>And whitespace too</p></span>
+<span class="pl-s"></div></span>
+<span class="pl-s">Ignore this bit.</span>
+<span class="pl-s">"""</span>
+<span class="pl-s1">stripped</span> <span class="pl-c1">=</span> <span class="pl-en">strip_tags</span>(<span class="pl-s1">html</span>, [<span class="pl-s">"div"</span>], <span class="pl-s1">minify</span><span class="pl-c1">=</span><span class="pl-c1">True</span>, <span class="pl-s1">keep_tags</span><span class="pl-c1">=</span>[<span class="pl-s">"h1"</span>])
+<span class="pl-en">print</span>(<span class="pl-s1">stripped</span>)</pre></div>
+<p dir="auto">Output:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="<h1>This has tags</h1>
+
+And whitespace too"><pre class="notranslate"><code><h1>This has tags</h1>
+
+And whitespace too
+</code></pre></div>
+<p dir="auto">Use <code>remove_blank_lines=True</code> to remove any remaining blank lines from the output.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">strip-tags --help</h2><a id="user-content-strip-tags---help" class="anchor" aria-label="Permalink: strip-tags --help" href="#strip-tags---help"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="Usage: strip-tags [OPTIONS] [SELECTORS]...
+
+  Strip tags from HTML, optionally from areas identified by CSS selectors
+
+  Example usage:
+
+      cat input.html | strip-tags > output.txt
+
+  To run against just specific areas identified by CSS selectors:
+
+      cat input.html | strip-tags .entry .footer > output.txt
+
+Options:
+  --version             Show the version and exit.
+  -r, --remove TEXT     Remove content in these selectors
+  -i, --input FILENAME  Input file
+  -m, --minify          Minify whitespace
+  -t, --keep-tag TEXT   Keep these <tags>
+  --all-attrs           Include all attributes on kept tags
+  --first               First element matching the selectors
+  --help                Show this message and exit.
+"><pre class="notranslate"><code>Usage: strip-tags [OPTIONS] [SELECTORS]...
+
+  Strip tags from HTML, optionally from areas identified by CSS selectors
+
+  Example usage:
+
+      cat input.html | strip-tags > output.txt
+
+  To run against just specific areas identified by CSS selectors:
+
+      cat input.html | strip-tags .entry .footer > output.txt
+
+Options:
+  --version             Show the version and exit.
+  -r, --remove TEXT     Remove content in these selectors
+  -i, --input FILENAME  Input file
+  -m, --minify          Minify whitespace
+  -t, --keep-tag TEXT   Keep these <tags>
+  --all-attrs           Include all attributes on kept tags
+  --first               First element matching the selectors
+  --help                Show this message and exit.
+
+</code></pre></div>
+
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Development</h2><a id="user-content-development" class="anchor" aria-label="Permalink: Development" href="#development"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">To contribute to this tool, first checkout the code. Then create a new virtual environment:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="cd strip-tags
+python -m venv venv
+source venv/bin/activate"><pre><span class="pl-c1">cd</span> strip-tags
+python -m venv venv
+<span class="pl-c1">source</span> venv/bin/activate</pre></div>
+<p dir="auto">Now install the dependencies and test dependencies:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="pip install -e '.[test]'"><pre>pip install -e <span class="pl-s"><span class="pl-pds">'</span>.[test]<span class="pl-pds">'</span></span></pre></div>
+<p dir="auto">To run the tests:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="pytest"><pre>pytest</pre></div>
+</article></div>

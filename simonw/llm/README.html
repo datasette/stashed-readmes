@@ -1,0 +1,87 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">LLM</h1><a id="user-content-llm" class="anchor" aria-label="Permalink: LLM" href="#llm"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://pypi.org/project/llm/" rel="nofollow"><img src="https://img.shields.io/pypi/v/llm.svg" alt="PyPI" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/6c9ef699a3c2efe71383382274e70fc5e84a3911297fc536ea67c29579ddb3d9/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f6c6c6d2e737667"></a>
+<a href="https://llm.datasette.io/" rel="nofollow"><img src="https://readthedocs.org/projects/llm/badge/?version=latest" alt="Documentation" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/72c43cf95ce9fa5c585419b1cd579cdf208dbcd3221b267e6d99b425411cd2cc/68747470733a2f2f72656164746865646f63732e6f72672f70726f6a656374732f6c6c6d2f62616467652f3f76657273696f6e3d6c6174657374"></a>
+<a href="https://llm.datasette.io/en/stable/changelog.html" rel="nofollow"><img src="https://img.shields.io/github/v/release/simonw/llm?include_prereleases&label=changelog" alt="Changelog" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/4a64d6e4de982cad92be96faf5efbd77a505bdb8e594a6bc303416efdfdc78a1/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f72656c656173652f73696d6f6e772f6c6c6d3f696e636c7564655f70726572656c6561736573266c6162656c3d6368616e67656c6f67"></a>
+<a href="https://github.com/simonw/llm/actions?query=workflow%3ATest"><img src="https://github.com/simonw/llm/workflows/Test/badge.svg" alt="Tests" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/llm/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" alt="License" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/c355f200ea90fddaa407b6eaab303663a669248ea3ca7b1fcf77dbe04ff5f48c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d417061636865253230322e302d626c75652e737667"></a>
+<a href="https://datasette.io/discord-llm" rel="nofollow"><img src="https://img.shields.io/discord/823971286308356157?label=discord" alt="Discord" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/94e396359356f1b1dd8fed242a2f694cb88a3b94a9eef104404225094357e912/68747470733a2f2f696d672e736869656c64732e696f2f646973636f72642f3832333937313238363330383335363135373f6c6162656c3d646973636f7264"></a>
+<a href="https://formulae.brew.sh/formula/llm" rel="nofollow"><img src="https://img.shields.io/homebrew/installs/dy/llm?color=yellow&label=homebrew&logo=homebrew" alt="Homebrew" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/dbee90cd77c9cfffdc83b95c51d566d88c97f699c965f64f2dbad11acc74582f/68747470733a2f2f696d672e736869656c64732e696f2f686f6d65627265772f696e7374616c6c732f64792f6c6c6d3f636f6c6f723d79656c6c6f77266c6162656c3d686f6d6562726577266c6f676f3d686f6d6562726577"></a></p>
+<p dir="auto">A CLI utility and Python library for interacting with Large Language Models, both via remote APIs and models that can be installed and run on your own machine.</p>
+<p dir="auto"><a href="https://llm.datasette.io/en/stable/usage.html#executing-a-prompt" rel="nofollow">Run prompts from the command-line</a>, <a href="https://llm.datasette.io/en/stable/logging.html" rel="nofollow">store the results in SQLite</a>, <a href="https://llm.datasette.io/en/stable/embeddings/index.html" rel="nofollow">generate embeddings</a> and more.</p>
+<p dir="auto">Consult the <strong><a href="https://llm.datasette.io/en/stable/plugins/directory.html" rel="nofollow">LLM plugins directory</a></strong> for plugins that provide access to remote and local models.</p>
+<p dir="auto">Full documentation: <strong><a href="https://llm.datasette.io/" rel="nofollow">llm.datasette.io</a></strong></p>
+<p dir="auto">Background on this project:</p>
+<ul dir="auto">
+<li><a href="https://simonwillison.net/2023/May/18/cli-tools-for-llms/" rel="nofollow">llm, ttok and strip-tags—CLI tools for working with ChatGPT and other LLMs</a></li>
+<li><a href="https://simonwillison.net/2023/Jul/12/llm/" rel="nofollow">The LLM CLI tool now supports self-hosted language models via plugins</a></li>
+<li><a href="https://simonwillison.net/2023/Sep/4/llm-embeddings/" rel="nofollow">LLM now provides tools for working with embeddings</a></li>
+<li><a href="https://simonwillison.net/2023/Sep/12/llm-clip-and-chat/" rel="nofollow">Build an image search engine with llm-clip, chat with models with llm chat</a></li>
+<li><a href="https://simonwillison.net/2024/Oct/29/llm-multi-modal/" rel="nofollow">You can now run prompts against images, audio and video in your terminal using LLM</a></li>
+<li><a href="https://simonwillison.net/2025/Feb/28/llm-schemas/" rel="nofollow">Structured data extraction from unstructured content using LLM schemas</a></li>
+<li><a href="https://simonwillison.net/2025/Apr/7/long-context-llm/" rel="nofollow">Long context support in LLM 0.24 using fragments and template plugins</a></li>
+</ul>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Installation</h2><a id="user-content-installation" class="anchor" aria-label="Permalink: Installation" href="#installation"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Install this tool using <code>pip</code>:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="pip install llm"><pre>pip install llm</pre></div>
+<p dir="auto">Or using <a href="https://brew.sh/" rel="nofollow">Homebrew</a>:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="brew install llm"><pre>brew install llm</pre></div>
+<p dir="auto"><a href="https://llm.datasette.io/en/stable/setup.html" rel="nofollow">Detailed installation instructions</a>.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Getting started</h2><a id="user-content-getting-started" class="anchor" aria-label="Permalink: Getting started" href="#getting-started"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">If you have an <a href="https://platform.openai.com/api-keys" rel="nofollow">OpenAI API key</a> you can get started using the OpenAI models right away.</p>
+<p dir="auto">As an alternative to OpenAI, you can <a href="https://llm.datasette.io/en/stable/plugins/installing-plugins.html" rel="nofollow">install plugins</a> to access models by other providers, including models that can be installed and run on your own device.</p>
+<p dir="auto">Save your OpenAI API key like this:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="llm keys set openai"><pre>llm keys <span class="pl-c1">set</span> openai</pre></div>
+<p dir="auto">This will prompt you for your key like so:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="Enter key: <paste here>"><pre class="notranslate"><code>Enter key: <paste here>
+</code></pre></div>
+<p dir="auto">Now that you've saved a key you can run a prompt like this:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="llm "Five cute names for a pet penguin""><pre>llm <span class="pl-s"><span class="pl-pds">"</span>Five cute names for a pet penguin<span class="pl-pds">"</span></span></pre></div>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="1. Waddles
+2. Pebbles
+3. Bubbles
+4. Flappy
+5. Chilly"><pre class="notranslate"><code>1. Waddles
+2. Pebbles
+3. Bubbles
+4. Flappy
+5. Chilly
+</code></pre></div>
+<p dir="auto">Read the <a href="https://llm.datasette.io/en/stable/usage.html" rel="nofollow">usage instructions</a> for more.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Installing a model that runs on your own machine</h2><a id="user-content-installing-a-model-that-runs-on-your-own-machine" class="anchor" aria-label="Permalink: Installing a model that runs on your own machine" href="#installing-a-model-that-runs-on-your-own-machine"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://llm.datasette.io/en/stable/plugins/index.html" rel="nofollow">LLM plugins</a> can add support for alternative models, including models that run on your own machine.</p>
+<p dir="auto">To download and run Mistral 7B Instruct locally, you can install the <a href="https://github.com/simonw/llm-gpt4all">llm-gpt4all</a> plugin:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="llm install llm-gpt4all"><pre>llm install llm-gpt4all</pre></div>
+<p dir="auto">Then run this command to see which models it makes available:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="llm models"><pre>llm models</pre></div>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="gpt4all: all-MiniLM-L6-v2-f16 - SBert, 43.76MB download, needs 1GB RAM
+gpt4all: orca-mini-3b-gguf2-q4_0 - Mini Orca (Small), 1.84GB download, needs 4GB RAM
+gpt4all: mistral-7b-instruct-v0 - Mistral Instruct, 3.83GB download, needs 8GB RAM
+..."><pre class="notranslate"><code>gpt4all: all-MiniLM-L6-v2-f16 - SBert, 43.76MB download, needs 1GB RAM
+gpt4all: orca-mini-3b-gguf2-q4_0 - Mini Orca (Small), 1.84GB download, needs 4GB RAM
+gpt4all: mistral-7b-instruct-v0 - Mistral Instruct, 3.83GB download, needs 8GB RAM
+...
+</code></pre></div>
+<p dir="auto">Each model file will be downloaded once the first time you use it. Try Mistral out like this:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="llm -m mistral-7b-instruct-v0 'difference between a pelican and a walrus'"><pre>llm -m mistral-7b-instruct-v0 <span class="pl-s"><span class="pl-pds">'</span>difference between a pelican and a walrus<span class="pl-pds">'</span></span></pre></div>
+<p dir="auto">You can also start a chat session with the model using the <code>llm chat</code> command:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="llm chat -m mistral-7b-instruct-v0"><pre>llm chat -m mistral-7b-instruct-v0</pre></div>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="Chatting with mistral-7b-instruct-v0
+Type 'exit' or 'quit' to exit
+Type '!multi' to enter multiple lines, then '!end' to finish
+> "><pre class="notranslate"><code>Chatting with mistral-7b-instruct-v0
+Type 'exit' or 'quit' to exit
+Type '!multi' to enter multiple lines, then '!end' to finish
+> 
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Using a system prompt</h2><a id="user-content-using-a-system-prompt" class="anchor" aria-label="Permalink: Using a system prompt" href="#using-a-system-prompt"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">You can use the <code>-s/--system</code> option to set a system prompt, providing instructions for processing other input to the tool.</p>
+<p dir="auto">To describe how the code in a file works, try this:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="cat mycode.py | llm -s "Explain this code""><pre>cat mycode.py <span class="pl-k">|</span> llm -s <span class="pl-s"><span class="pl-pds">"</span>Explain this code<span class="pl-pds">"</span></span></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Help</h2><a id="user-content-help" class="anchor" aria-label="Permalink: Help" href="#help"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">For help, run:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="llm --help"><pre class="notranslate"><code>llm --help
+</code></pre></div>
+<p dir="auto">You can also use:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="python -m llm --help"><pre class="notranslate"><code>python -m llm --help
+</code></pre></div>
+</article></div>

@@ -1,0 +1,60 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">datasette-llm-embed</h1><a id="user-content-datasette-llm-embed" class="anchor" aria-label="Permalink: datasette-llm-embed" href="#datasette-llm-embed"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://pypi.org/project/datasette-llm-embed/" rel="nofollow"><img src="https://img.shields.io/pypi/v/datasette-llm-embed.svg" alt="PyPI" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/48e48cbdd7910718be4d14cd223a05558f4951dc9efaf91d3ee523c923620ae3/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f6461746173657474652d6c6c6d2d656d6265642e737667"></a>
+<a href="https://github.com/simonw/datasette-llm-embed/releases"><img src="https://img.shields.io/github/v/release/simonw/datasette-llm-embed?include_prereleases&label=changelog" alt="Changelog" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/bc7f16a995ce1d6da0bad0e55ed31d6ebd03862f22078c0ce8f800c0bfa20b11/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f72656c656173652f73696d6f6e772f6461746173657474652d6c6c6d2d656d6265643f696e636c7564655f70726572656c6561736573266c6162656c3d6368616e67656c6f67"></a>
+<a href="https://github.com/simonw/datasette-llm-embed/actions?query=workflow%3ATest"><img src="https://github.com/simonw/datasette-llm-embed/workflows/Test/badge.svg" alt="Tests" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/datasette-llm-embed/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" alt="License" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/c355f200ea90fddaa407b6eaab303663a669248ea3ca7b1fcf77dbe04ff5f48c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d417061636865253230322e302d626c75652e737667"></a></p>
+<p dir="auto">Datasette plugin adding a <code>llm_embed(model_id, text)</code> SQL function.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Installation</h2><a id="user-content-installation" class="anchor" aria-label="Permalink: Installation" href="#installation"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="datasette install datasette-llm-embed"><pre>datasette install datasette-llm-embed</pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Usage</h2><a id="user-content-usage" class="anchor" aria-label="Permalink: Usage" href="#usage"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Adds a SQL function that can be called like this:</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="select llm_embed('sentence-transformers/all-mpnet-base-v2', 'This is some text')"><pre><span class="pl-k">select</span> llm_embed(<span class="pl-s"><span class="pl-pds">'</span>sentence-transformers/all-mpnet-base-v2<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>This is some text<span class="pl-pds">'</span></span>)</pre></div>
+<p dir="auto">This embeds the provided text using the specified embedding model and returns a binary blob, suitable for use with plugins such as <a href="https://datasette.io/plugins/datasette-faiss" rel="nofollow">datasette-faiss</a>.</p>
+<p dir="auto">The models need to be installed using <a href="https://llm.datasette.io/" rel="nofollow">LLM</a> plugins such as <a href="https://github.com/simonw/llm-sentence-transformers">llm-sentence-transformers</a>.</p>
+<p dir="auto">Use <code>llm_embed_cosine(a, b)</code> to calculate cosine similarity between two vector blobs:</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="select llm_embed_cosine(
+    llm_embed('sentence-transformers/all-mpnet-base-v2', 'This is some text'),
+    llm_embed('sentence-transformers/all-mpnet-base-v2', 'This is some other text')
+)"><pre><span class="pl-k">select</span> llm_embed_cosine(
+    llm_embed(<span class="pl-s"><span class="pl-pds">'</span>sentence-transformers/all-mpnet-base-v2<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>This is some text<span class="pl-pds">'</span></span>),
+    llm_embed(<span class="pl-s"><span class="pl-pds">'</span>sentence-transformers/all-mpnet-base-v2<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>This is some other text<span class="pl-pds">'</span></span>)
+)</pre></div>
+<p dir="auto">The <code>llm_embed_decode()</code> function can be used to decode a binary BLOB into a JSON array of floats:</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="select llm_embed_decode(
+    llm_embed('sentence-transformers/all-mpnet-base-v2', 'This is some text')
+)"><pre><span class="pl-k">select</span> llm_embed_decode(
+    llm_embed(<span class="pl-s"><span class="pl-pds">'</span>sentence-transformers/all-mpnet-base-v2<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>This is some text<span class="pl-pds">'</span></span>)
+)</pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Models that require API keys</h2><a id="user-content-models-that-require-api-keys" class="anchor" aria-label="Permalink: Models that require API keys" href="#models-that-require-api-keys"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">If your embedding model needs an API key - for example the <code>ada-002</code> model from OpenAI - you can configure that key in <code>metadata.yml</code> (or JSON) like this:</p>
+<div class="highlight highlight-source-yaml notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="plugins:
+  datasette-llm-embed:
+    keys:
+      ada-002:
+        $env: OPENAI_API_KEY"><pre><span class="pl-ent">plugins</span>:
+  <span class="pl-ent">datasette-llm-embed</span>:
+    <span class="pl-ent">keys</span>:
+      <span class="pl-ent">ada-002</span>:
+        <span class="pl-ent">$env</span>: <span class="pl-s">OPENAI_API_KEY</span></pre></div>
+<p dir="auto">The key here should be the full model ID of the model - not an alias.</p>
+<p dir="auto">You can then set the <code>OPENAI_API_KEY</code> environment variable to the key you want to use before starting Datasette:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="export OPENAI_API_KEY=sk-1234567890"><pre><span class="pl-k">export</span> OPENAI_API_KEY=sk-1234567890</pre></div>
+<p dir="auto">Once configured, calls like this will use the API key that has been provided:</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="select llm_embed('ada-002', 'This is some text')"><pre><span class="pl-k">select</span> llm_embed(<span class="pl-s"><span class="pl-pds">'</span>ada-002<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>This is some text<span class="pl-pds">'</span></span>)</pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Development</h2><a id="user-content-development" class="anchor" aria-label="Permalink: Development" href="#development"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">To set up this plugin locally, first checkout the code. Then create a new virtual environment:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="cd datasette-llm-embed
+python3 -m venv venv
+source venv/bin/activate"><pre><span class="pl-c1">cd</span> datasette-llm-embed
+python3 -m venv venv
+<span class="pl-c1">source</span> venv/bin/activate</pre></div>
+<p dir="auto">Now install the dependencies and test dependencies:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pip install -e '.[test]'"><pre class="notranslate"><code>pip install -e '.[test]'
+</code></pre></div>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="To run the tests:
+```bash
+pytest"><pre class="notranslate"><code>To run the tests:
+```bash
+pytest
+</code></pre></div>
+</article></div>

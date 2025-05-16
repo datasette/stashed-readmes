@@ -1,0 +1,215 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">ttok</h1><a id="user-content-ttok" class="anchor" aria-label="Permalink: ttok" href="#ttok"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://pypi.org/project/ttok/" rel="nofollow"><img src="https://img.shields.io/pypi/v/ttok.svg" alt="PyPI" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/7d87e9f1867c0f6892ee93994da7f30a421fdc5c9fa707d23da5e14db6580d5e/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f74746f6b2e737667"></a>
+<a href="https://github.com/simonw/ttok/releases"><img src="https://img.shields.io/github/v/release/simonw/ttok?include_prereleases&label=changelog" alt="Changelog" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/bb85ac35bf6f7c4b7656ff69370a17885b49b2dae1eab796da4b1672e192939a/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f72656c656173652f73696d6f6e772f74746f6b3f696e636c7564655f70726572656c6561736573266c6162656c3d6368616e67656c6f67"></a>
+<a href="https://github.com/simonw/ttok/actions?query=workflow%3ATest"><img src="https://github.com/simonw/ttok/workflows/Test/badge.svg" alt="Tests" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/ttok/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" alt="License" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/c355f200ea90fddaa407b6eaab303663a669248ea3ca7b1fcf77dbe04ff5f48c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d417061636865253230322e302d626c75652e737667"></a></p>
+<p dir="auto">Count and truncate text based on tokens</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Background</h2><a id="user-content-background" class="anchor" aria-label="Permalink: Background" href="#background"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Large language models such as GPT-3.5 and GPT-4 work in terms of tokens.</p>
+<p dir="auto">This tool can count tokens, using OpenAI's <a href="https://github.com/openai/tiktoken">tiktoken</a> library.</p>
+<p dir="auto">It can also truncate text to a specified number of tokens.</p>
+<p dir="auto">See <a href="https://simonwillison.net/2023/May/18/cli-tools-for-llms/" rel="nofollow">llm, ttok and strip-tags—CLI tools for working with ChatGPT and other LLMs</a> for more on this project.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Installation</h2><a id="user-content-installation" class="anchor" aria-label="Permalink: Installation" href="#installation"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Install this tool using <code>pip</code>:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="pip install ttok"><pre>pip install ttok</pre></div>
+<p dir="auto">Or using Homebrew:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="brew install simonw/llm/ttok"><pre>brew install simonw/llm/ttok</pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Counting tokens</h2><a id="user-content-counting-tokens" class="anchor" aria-label="Permalink: Counting tokens" href="#counting-tokens"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Provide text as arguments to this tool to count tokens:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="ttok Hello world"><pre>ttok Hello world</pre></div>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="2"><pre class="notranslate"><code>2
+</code></pre></div>
+<p dir="auto">You can also pipe text into the tool:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="echo -n "Hello world" | ttok"><pre><span class="pl-c1">echo</span> -n <span class="pl-s"><span class="pl-pds">"</span>Hello world<span class="pl-pds">"</span></span> <span class="pl-k">|</span> ttok</pre></div>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="2"><pre class="notranslate"><code>2
+</code></pre></div>
+<p dir="auto">Here the <code>echo -n</code> option prevents echo from adding a newline - without that you would get a token count of 3.</p>
+<p dir="auto">To pipe in text and then append extra tokens from arguments, use the <code>-i -</code> option:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="echo -n "Hello world" | ttok more text -i -"><pre><span class="pl-c1">echo</span> -n <span class="pl-s"><span class="pl-pds">"</span>Hello world<span class="pl-pds">"</span></span> <span class="pl-k">|</span> ttok more text -i -</pre></div>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="6"><pre class="notranslate"><code>6
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Different models</h2><a id="user-content-different-models" class="anchor" aria-label="Permalink: Different models" href="#different-models"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">By default, the tokenizer model for GPT-3.5 and GPT-4 is used.</p>
+<p dir="auto">To use the model for GPT-2 and GPT-3, add <code>--model gpt2</code>:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="ttok boo Hello there this is -m gpt2"><pre>ttok boo Hello there this is -m gpt2</pre></div>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="6"><pre class="notranslate"><code>6
+</code></pre></div>
+<p dir="auto">Compared to GPT-3.5:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="ttok boo Hello there this is"><pre>ttok boo Hello there this is</pre></div>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="5"><pre class="notranslate"><code>5
+</code></pre></div>
+<p dir="auto">Further model options are <a href="https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb">documented here</a>.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Truncating text</h2><a id="user-content-truncating-text" class="anchor" aria-label="Permalink: Truncating text" href="#truncating-text"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Use the <code>-t 10</code> or <code>--truncate 10</code> option to truncate text to a specified number of tokens:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="ttok This is too many tokens -t 3"><pre>ttok This is too many tokens -t 3</pre></div>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="This is too"><pre class="notranslate"><code>This is too
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Viewing tokens</h2><a id="user-content-viewing-tokens" class="anchor" aria-label="Permalink: Viewing tokens" href="#viewing-tokens"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The <code>--encode</code> option can be used to view the integer token IDs for the incoming text:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="ttok Hello world --encode"><pre>ttok Hello world --encode</pre></div>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="9906 1917"><pre class="notranslate"><code>9906 1917
+</code></pre></div>
+<p dir="auto">The <code>--decode</code> method reverses this process:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="ttok 9906 1917 --decode"><pre>ttok 9906 1917 --decode</pre></div>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="Hello world"><pre class="notranslate"><code>Hello world
+</code></pre></div>
+<p dir="auto">Add <code>--tokens</code> to either of these options to see a detailed breakdown of the tokens:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="ttok Hello world --encode --tokens"><pre>ttok Hello world --encode --tokens</pre></div>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="[b'Hello', b' world']"><pre class="notranslate"><code>[b'Hello', b' world']
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Available models</h2><a id="user-content-available-models" class="anchor" aria-label="Permalink: Available models" href="#available-models"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">This is the full list of available models and their corresponding encodings. Model names and encoding names are valid for the <code>-m/--model</code> option.</p>
+
+<ul dir="auto">
+<li><code>gpt-4</code> (<code>cl100k_base</code>)</li>
+<li><code>gpt-3.5-turbo</code> (<code>cl100k_base</code>)</li>
+<li><code>gpt-3.5</code> (<code>cl100k_base</code>)</li>
+<li><code>gpt-35-turbo</code> (<code>cl100k_base</code>)</li>
+<li><code>davinci-002</code> (<code>cl100k_base</code>)</li>
+<li><code>babbage-002</code> (<code>cl100k_base</code>)</li>
+<li><code>text-embedding-ada-002</code> (<code>cl100k_base</code>)</li>
+<li><code>text-embedding-3-small</code> (<code>cl100k_base</code>)</li>
+<li><code>text-embedding-3-large</code> (<code>cl100k_base</code>)</li>
+<li><code>text-davinci-003</code> (<code>p50k_base</code>)</li>
+<li><code>text-davinci-002</code> (<code>p50k_base</code>)</li>
+<li><code>text-davinci-001</code> (<code>r50k_base</code>)</li>
+<li><code>text-curie-001</code> (<code>r50k_base</code>)</li>
+<li><code>text-babbage-001</code> (<code>r50k_base</code>)</li>
+<li><code>text-ada-001</code> (<code>r50k_base</code>)</li>
+<li><code>davinci</code> (<code>r50k_base</code>)</li>
+<li><code>curie</code> (<code>r50k_base</code>)</li>
+<li><code>babbage</code> (<code>r50k_base</code>)</li>
+<li><code>ada</code> (<code>r50k_base</code>)</li>
+<li><code>code-davinci-002</code> (<code>p50k_base</code>)</li>
+<li><code>code-davinci-001</code> (<code>p50k_base</code>)</li>
+<li><code>code-cushman-002</code> (<code>p50k_base</code>)</li>
+<li><code>code-cushman-001</code> (<code>p50k_base</code>)</li>
+<li><code>davinci-codex</code> (<code>p50k_base</code>)</li>
+<li><code>cushman-codex</code> (<code>p50k_base</code>)</li>
+<li><code>text-davinci-edit-001</code> (<code>p50k_edit</code>)</li>
+<li><code>code-davinci-edit-001</code> (<code>p50k_edit</code>)</li>
+<li><code>text-similarity-davinci-001</code> (<code>r50k_base</code>)</li>
+<li><code>text-similarity-curie-001</code> (<code>r50k_base</code>)</li>
+<li><code>text-similarity-babbage-001</code> (<code>r50k_base</code>)</li>
+<li><code>text-similarity-ada-001</code> (<code>r50k_base</code>)</li>
+<li><code>text-search-davinci-doc-001</code> (<code>r50k_base</code>)</li>
+<li><code>text-search-curie-doc-001</code> (<code>r50k_base</code>)</li>
+<li><code>text-search-babbage-doc-001</code> (<code>r50k_base</code>)</li>
+<li><code>text-search-ada-doc-001</code> (<code>r50k_base</code>)</li>
+<li><code>code-search-babbage-code-001</code> (<code>r50k_base</code>)</li>
+<li><code>code-search-ada-code-001</code> (<code>r50k_base</code>)</li>
+<li><code>gpt2</code> (<code>gpt2</code>)</li>
+<li><code>gpt-2</code> (<code>gpt2</code>)</li>
+</ul>
+
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">ttok --help</h2><a id="user-content-ttok---help" class="anchor" aria-label="Permalink: ttok --help" href="#ttok---help"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="Usage: ttok [OPTIONS] [PROMPT]...
+
+  Count and truncate text based on tokens
+
+  To count tokens for text passed as arguments:
+
+      ttok one two three
+
+  To count tokens from stdin:
+
+      cat input.txt | ttok
+
+  To truncate to 100 tokens:
+
+      cat input.txt | ttok -t 100
+
+  To truncate to 100 tokens using the gpt2 model:
+
+      cat input.txt | ttok -t 100 -m gpt2
+
+  To view token integers:
+
+      cat input.txt | ttok --encode
+
+  To convert tokens back to text:
+
+      ttok 9906 1917 --decode
+
+  To see the details of the tokens:
+
+      ttok "hello world" --tokens
+
+  Outputs:
+
+      [b'hello', b' world']
+
+Options:
+  --version               Show the version and exit.
+  -i, --input FILENAME
+  -t, --truncate INTEGER  Truncate to this many tokens
+  -m, --model TEXT        Which model to use
+  --encode, --tokens      Output token integers
+  --decode                Convert token integers to text
+  --tokens                Output full tokens
+  --allow-special         Do not error on special tokens
+  --help                  Show this message and exit.
+"><pre class="notranslate"><code>Usage: ttok [OPTIONS] [PROMPT]...
+
+  Count and truncate text based on tokens
+
+  To count tokens for text passed as arguments:
+
+      ttok one two three
+
+  To count tokens from stdin:
+
+      cat input.txt | ttok
+
+  To truncate to 100 tokens:
+
+      cat input.txt | ttok -t 100
+
+  To truncate to 100 tokens using the gpt2 model:
+
+      cat input.txt | ttok -t 100 -m gpt2
+
+  To view token integers:
+
+      cat input.txt | ttok --encode
+
+  To convert tokens back to text:
+
+      ttok 9906 1917 --decode
+
+  To see the details of the tokens:
+
+      ttok "hello world" --tokens
+
+  Outputs:
+
+      [b'hello', b' world']
+
+Options:
+  --version               Show the version and exit.
+  -i, --input FILENAME
+  -t, --truncate INTEGER  Truncate to this many tokens
+  -m, --model TEXT        Which model to use
+  --encode, --tokens      Output token integers
+  --decode                Convert token integers to text
+  --tokens                Output full tokens
+  --allow-special         Do not error on special tokens
+  --help                  Show this message and exit.
+
+</code></pre></div>
+
+<p dir="auto">You can also run this command using:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="python -m ttok --help"><pre>python -m ttok --help</pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Development</h2><a id="user-content-development" class="anchor" aria-label="Permalink: Development" href="#development"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">To contribute to this tool, first checkout the code. Then create a new virtual environment:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="cd ttok
+python -m venv venv
+source venv/bin/activate"><pre><span class="pl-c1">cd</span> ttok
+python -m venv venv
+<span class="pl-c1">source</span> venv/bin/activate</pre></div>
+<p dir="auto">Now install the dependencies and test dependencies:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="pip install -e '.[test]'"><pre>pip install -e <span class="pl-s"><span class="pl-pds">'</span>.[test]<span class="pl-pds">'</span></span></pre></div>
+<p dir="auto">To run the tests:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="pytest"><pre>pytest</pre></div>
+</article></div>

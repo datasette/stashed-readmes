@@ -1,0 +1,126 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">datasette-secrets</h1><a id="user-content-datasette-secrets" class="anchor" aria-label="Permalink: datasette-secrets" href="#datasette-secrets"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://pypi.org/project/datasette-secrets/" rel="nofollow"><img src="https://img.shields.io/pypi/v/datasette-secrets.svg" alt="PyPI" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/bdbcad9f0848899cc13f4db003438d023df49d04339830dd0d8d633c3484435d/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f6461746173657474652d736563726574732e737667"></a>
+<a href="https://github.com/datasette/datasette-secrets/releases"><img src="https://img.shields.io/github/v/release/datasette/datasette-secrets?include_prereleases&label=changelog" alt="Changelog" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/0c70f75f439624fa87033fa269239daaf440b5aef3f7875a61caf43fd7cb5dde/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f72656c656173652f6461746173657474652f6461746173657474652d736563726574733f696e636c7564655f70726572656c6561736573266c6162656c3d6368616e67656c6f67"></a>
+<a href="https://github.com/datasette/datasette-secrets/actions/workflows/test.yml"><img src="https://github.com/datasette/datasette-secrets/actions/workflows/test.yml/badge.svg" alt="Tests" style="max-width: 100%;"></a>
+<a href="https://github.com/datasette/datasette-secrets/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" alt="License" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/c355f200ea90fddaa407b6eaab303663a669248ea3ca7b1fcf77dbe04ff5f48c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d417061636865253230322e302d626c75652e737667"></a></p>
+<p dir="auto">Manage secrets such as API keys for use with other Datasette plugins</p>
+<p dir="auto">This plugin requires a <strong>Datasette 1.0 alpha</strong> release.</p>
+<p dir="auto">Datasette plugins sometimes need access to secrets, such as API keys used to integrate with tools hosted outside of Datasette - things like geocoders or hosted AI language models.</p>
+<p dir="auto">This plugin provides ways to configure those secrets:</p>
+<ul dir="auto">
+<li>Secrets can be configured using environment variables, such as <code>DATASETTE_SECRETS_OPENAI_API_KEY</code></li>
+<li>Secrets can be stored, encrypted, in a SQLite database table which administrator users can then update through the Datasette web interface</li>
+</ul>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Installation</h2><a id="user-content-installation" class="anchor" aria-label="Permalink: Installation" href="#installation"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Install this plugin in the same environment as Datasette.</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="datasette install datasette-secrets"><pre>datasette install datasette-secrets</pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Configuration</h2><a id="user-content-configuration" class="anchor" aria-label="Permalink: Configuration" href="#configuration"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">First you will need to generate an encryption key for this plugin to use. Run this command:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="datasette secrets generate-encryption-key"><pre>datasette secrets generate-encryption-key</pre></div>
+<p dir="auto">Store this secret somewhere secure. It will be used to both encrypt and decrypt secrets stored by this plugin - if you lose it you will not be able to recover your secrets.</p>
+<p dir="auto">Configure the plugin with these these two plugin settings:</p>
+<div class="highlight highlight-source-yaml notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="plugins:
+  datasette-secrets:
+    encryption-key:
+      $env: DATASETTE_SECRETS_ENCRYPTION_KEY
+    database: name_of_database"><pre><span class="pl-ent">plugins</span>:
+  <span class="pl-ent">datasette-secrets</span>:
+    <span class="pl-ent">encryption-key</span>:
+      <span class="pl-ent">$env</span>: <span class="pl-s">DATASETTE_SECRETS_ENCRYPTION_KEY</span>
+    <span class="pl-ent">database</span>: <span class="pl-s">name_of_database</span></pre></div>
+<p dir="auto">The <code>encryption_key</code> setting should be set to the encryption key you generated earlier. You can store it in an environment variable if you prefer.</p>
+<p dir="auto"><code>database</code> is the name of the database that the encrypted keys should be stored in. Omit this setting to use the internal database.</p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Using the internal database</h3><a id="user-content-using-the-internal-database" class="anchor" aria-label="Permalink: Using the internal database" href="#using-the-internal-database"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">While the secrets stored in the <code>datasette_secrets</code> table are encrypted, we still recommend hiding that table from view.</p>
+<p dir="auto">One way to do that is to keep the table in Datasette's internal database, which is invisible to all users, even users who are logged in.</p>
+<p dir="auto">By default, the internal database is an in-memory database that is reset when Datasette restarts. This is no good for persistent secret storage!</p>
+<p dir="auto">Instead, you should switch Datasette to using an on-disk internal database. You can do this by starting Datasette with the <code>--internal</code> option:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="datasette data.db --internal internal.db"><pre>datasette data.db --internal internal.db</pre></div>
+<p dir="auto">Your secrets will be stored in the <code>datasette_secrets</code> table in that database file.</p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Permissions</h3><a id="user-content-permissions" class="anchor" aria-label="Permalink: Permissions" href="#permissions"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Only users with the <code>manage-secrets</code> permission will have access to manage secrets through the Datasette web interface.</p>
+<p dir="auto">You can grant that permission to the <code>root</code> user (or the user with an ID of your choice) by including this in your <code>datasette.yml</code> file:</p>
+<div class="highlight highlight-source-yaml notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="permissions:
+  manage-secrets:
+    id: root"><pre><span class="pl-ent">permissions</span>:
+  <span class="pl-ent">manage-secrets</span>:
+    <span class="pl-ent">id</span>: <span class="pl-s">root</span></pre></div>
+<p dir="auto">Then start Datasette like this (with <code>--root</code> to get a URL to login as the root user):</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="datasette data.db --internal internal.db -c datasette.yml --root"><pre>datasette data.db --internal internal.db -c datasette.yml --root</pre></div>
+<p dir="auto">Alternatively, use the <code>-s</code> option to set that setting without creating a configuration file:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="datasette data.db --internal internal.db \
+  -s permissions.manage-secrets.id root \
+  --root"><pre>datasette data.db --internal internal.db \
+  -s permissions.manage-secrets.id root \
+  --root</pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Usage</h2><a id="user-content-usage" class="anchor" aria-label="Permalink: Usage" href="#usage"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">users with the <code>manage-secrets</code> permission will see a new "Manage secrets" link in the Datasette navigation menu. This interface can also be accessed at <code>/-/secrets</code>.</p>
+<p dir="auto">The page with the list of secrets will show the user who last updated each secret. This will use the <a href="https://docs.datasette.io/en/latest/plugin_hooks.html#actors-from-ids-datasette-actor-ids" rel="nofollow">actors_from_ids()</a> mechanism, displaying the actor's <code>username</code> if available, otherwise the <code>name</code>, otherwise the <code>id</code>.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">For plugin authors</h2><a id="user-content-for-plugin-authors" class="anchor" aria-label="Permalink: For plugin authors" href="#for-plugin-authors"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Plugins can depend on this plugin if they want to implement secrets.</p>
+<p dir="auto"><code>datasette-secrets</code> to the <code>dependencies</code> list in <code>pyproject.toml</code>.</p>
+<p dir="auto">Then declare the name and description of any secrets you need using the <code>register_secrets()</code> plugin hook:</p>
+<div class="highlight highlight-source-python notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="from datasette import hookimpl
+from datasette_secrets import Secret
+
+@hookimpl
+def register_secrets():
+    return [
+        Secret(
+            name="OPENAI_API_KEY",
+            description="An OpenAI API key"
+        ),
+    ]"><pre><span class="pl-k">from</span> <span class="pl-s1">datasette</span> <span class="pl-k">import</span> <span class="pl-s1">hookimpl</span>
+<span class="pl-k">from</span> <span class="pl-s1">datasette_secrets</span> <span class="pl-k">import</span> <span class="pl-v">Secret</span>
+
+<span class="pl-en">@<span class="pl-s1">hookimpl</span></span>
+<span class="pl-k">def</span> <span class="pl-en">register_secrets</span>():
+    <span class="pl-k">return</span> [
+        <span class="pl-en">Secret</span>(
+            <span class="pl-s1">name</span><span class="pl-c1">=</span><span class="pl-s">"OPENAI_API_KEY"</span>,
+            <span class="pl-s1">description</span><span class="pl-c1">=</span><span class="pl-s">"An OpenAI API key"</span>
+        ),
+    ]</pre></div>
+<p dir="auto">You can also provide optional <code>obtain_url</code> and <code>obtain_label</code> fields to link to a page where a user can obtain an API key:</p>
+<div class="highlight highlight-source-python notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="@hookimpl
+def register_secrets():
+    return [
+        Secret(
+            name="OPENAI_API_KEY",
+            obtain_url="https://platform.openai.com/api-keys",
+            obtain_label="Get an OpenAI API key"
+        ),
+    ]"><pre><span class="pl-en">@<span class="pl-s1">hookimpl</span></span>
+<span class="pl-k">def</span> <span class="pl-en">register_secrets</span>():
+    <span class="pl-k">return</span> [
+        <span class="pl-en">Secret</span>(
+            <span class="pl-s1">name</span><span class="pl-c1">=</span><span class="pl-s">"OPENAI_API_KEY"</span>,
+            <span class="pl-s1">obtain_url</span><span class="pl-c1">=</span><span class="pl-s">"https://platform.openai.com/api-keys"</span>,
+            <span class="pl-s1">obtain_label</span><span class="pl-c1">=</span><span class="pl-s">"Get an OpenAI API key"</span>
+        ),
+    ]</pre></div>
+<p dir="auto">The hook can take an optional <code>datasette</code> argument. It can return a list or an <code>async def</code> function that, when awaited, returns a list.</p>
+<p dir="auto">The list should consist of <code>Secret()</code> instances, each with a name and an optional description. The description can contain HTML.</p>
+<p dir="auto">To obtain the current value of the secret, use the <code>await get_secret()</code> method:</p>
+<div class="highlight highlight-source-python notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="from datasette_secrets import get_secret
+
+# Third argument is the actor_id, optional
+secret = await get_secret(datasette, "OPENAI_API_KEY", "root")"><pre><span class="pl-k">from</span> <span class="pl-s1">datasette_secrets</span> <span class="pl-k">import</span> <span class="pl-s1">get_secret</span>
+
+<span class="pl-c"># Third argument is the actor_id, optional</span>
+<span class="pl-s1">secret</span> <span class="pl-c1">=</span> <span class="pl-k">await</span> <span class="pl-en">get_secret</span>(<span class="pl-s1">datasette</span>, <span class="pl-s">"OPENAI_API_KEY"</span>, <span class="pl-s">"root"</span>)</pre></div>
+<p dir="auto">If the Datasette administrator set a <code>DATASETTE_SECRETS_OPENAI_API_KEY</code> environment variable, that will be returned.</p>
+<p dir="auto">Otherwise the encrypted value in the database table will be decrypted and returned - or <code>None</code> if there is no configured secret.</p>
+<p dir="auto">The <code>last_used_at</code> column is updated every time a secret is accessed. The <code>last_used_by</code> column will be set to the actor ID passed to <code>get_secret()</code>, or <code>null</code> if no actor ID was passed.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Development</h2><a id="user-content-development" class="anchor" aria-label="Permalink: Development" href="#development"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">To set up this plugin locally, first checkout the code. Then create a new virtual environment:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="cd datasette-secrets
+python3 -m venv venv
+source venv/bin/activate"><pre><span class="pl-c1">cd</span> datasette-secrets
+python3 -m venv venv
+<span class="pl-c1">source</span> venv/bin/activate</pre></div>
+<p dir="auto">Now install the dependencies and test dependencies:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="pip install -e '.[test]'"><pre>pip install -e <span class="pl-s"><span class="pl-pds">'</span>.[test]<span class="pl-pds">'</span></span></pre></div>
+<p dir="auto">To run the tests:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="pytest"><pre>pytest</pre></div>
+</article></div>

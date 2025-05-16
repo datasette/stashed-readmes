@@ -1,0 +1,80 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">datasette-extract</h1><a id="user-content-datasette-extract" class="anchor" aria-label="Permalink: datasette-extract" href="#datasette-extract"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://pypi.org/project/datasette-extract/" rel="nofollow"><img src="https://img.shields.io/pypi/v/datasette-extract.svg" alt="PyPI" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/3264fccfc83d0cf2e7a0dc024aed75994f487a647c792af58bab5cf3cc31915c/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f6461746173657474652d657874726163742e737667"></a>
+<a href="https://github.com/datasette/datasette-extract/releases"><img src="https://img.shields.io/github/v/release/datasette/datasette-extract?include_prereleases&label=changelog" alt="Changelog" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/c319012b9de441a037cb8b4f7ee5d3405cff9118e265e74dd681f4df77a9a4c4/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f72656c656173652f6461746173657474652f6461746173657474652d657874726163743f696e636c7564655f70726572656c6561736573266c6162656c3d6368616e67656c6f67"></a>
+<a href="https://github.com/datasette/datasette-extract/actions?query=workflow%3ATest"><img src="https://github.com/datasette/datasette-extract/workflows/Test/badge.svg" alt="Tests" style="max-width: 100%;"></a>
+<a href="https://github.com/datasette/datasette-extract/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" alt="License" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/c355f200ea90fddaa407b6eaab303663a669248ea3ca7b1fcf77dbe04ff5f48c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d417061636865253230322e302d626c75652e737667"></a></p>
+<p dir="auto">Import unstructured data (text and images) into structured tables</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Installation</h2><a id="user-content-installation" class="anchor" aria-label="Permalink: Installation" href="#installation"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Install this plugin in the same environment as <a href="https://datasette.io/" rel="nofollow">Datasette</a>.</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="datasette install datasette-extract"><pre>datasette install datasette-extract</pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Configuration</h2><a id="user-content-configuration" class="anchor" aria-label="Permalink: Configuration" href="#configuration"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">This plugin requires an <a href="https://platform.openai.com/api-keys" rel="nofollow">OpenAI API key</a>.</p>
+<p dir="auto">You can set this using the <code>DATASETTE_SECRETS_OPENAI_API_KEY</code> environment variable, or you can configure the <a href="https://github.com/datasette/datasette-secrets">datasette-secrets</a> plugin to allow users to enter their own plugin and save it, encrypted, in their database.</p>
+<p dir="auto">Here's how to start using Datasette with that environment variable:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="DATASETTE_SECRETS_OPENAI_API_KEY="xxx" datasette data.db --root --create
+# Now click or command-click the URL containing .../-/auth-token?token=..."><pre>DATASETTE_SECRETS_OPENAI_API_KEY=<span class="pl-s"><span class="pl-pds">"</span>xxx<span class="pl-pds">"</span></span> datasette data.db --root --create
+<span class="pl-c"><span class="pl-c">#</span> Now click or command-click the URL containing .../-/auth-token?token=...</span></pre></div>
+<ul dir="auto">
+<li>Replace <code>xxx</code> with your OpenAI API key</li>
+<li>The <code>--root</code> flag causes Datasette to output a link that will sign you in as root</li>
+<li>The <code>--create</code> flag will create the <code>data.db</code> SQLite database file if it does not exist</li>
+</ul>
+<p dir="auto">If you are using other models from plugins you should consult those LLM plugins for documentation on how to configure their API keys, if they need one.</p>
+<p dir="auto">By default all asyncio and schema supporting LLM models will be provided as options for the user. You can restrict that to a subset of models using the <code>models</code> setting:</p>
+<div class="highlight highlight-source-yaml notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="plugins:
+ datasette-extract:
+  models:
+  - openai/gpt-4.1-nano"><pre><span class="pl-ent">plugins</span>:
+ <span class="pl-ent">datasette-extract</span>:
+  <span class="pl-ent">models</span>:
+  - <span class="pl-s">openai/gpt-4.1-nano</span></pre></div>
+<p dir="auto">If you only list a single model users will not get an option to select the model when they use the extraction tool.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Usage</h2><a id="user-content-usage" class="anchor" aria-label="Permalink: Usage" href="#usage"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">This plugin provides the following features:</p>
+<ul dir="auto">
+<li>In the database action cog menu for a database select "Create table with extracted data" to create a new table with data extracted from text or an image</li>
+<li>In the table action cog menu select "Extract data into this table" to extract data into an existing table</li>
+</ul>
+<p dir="auto">When creating a table you can specify the column names, types and provide an optional hint (like "YYYY-MM-DD" for dates) to influence how the data should be extracted.</p>
+<p dir="auto">When populating an existing table you can provide hints and select which columns should be populated.</p>
+<p dir="auto">Text input can be pasted directly into the textarea.</p>
+<p dir="auto">Drag and drop a PDF or text file onto the textarea to populate it with the contents of that file. PDF files will have their text extracted, but only if the file contains text as opposed to scanned images.</p>
+<p dir="auto">Drag and drop a single image onto the textarea - or select it with the image file input box - to process an image.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Permissions</h2><a id="user-content-permissions" class="anchor" aria-label="Permalink: Permissions" href="#permissions"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Users must have the <code>datasette-extract</code> permission to use this tool.</p>
+<p dir="auto">In order to create tables they also need the <code>create-table</code> permission.</p>
+<p dir="auto">To insert rows into an existing table they need <code>insert-row</code>.</p>
+<p dir="auto">Run this to grant those permissions to the root user:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="datasette . --root \
+  -s permissions.insert-row.id root \
+  -s permissions.create-table.id root \
+  -s permissions.datasette-extract.id root \"><pre>datasette <span class="pl-c1">.</span> --root \
+  -s permissions.insert-row.id root \
+  -s permissions.create-table.id root \
+  -s permissions.datasette-extract.id root \</pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Development</h2><a id="user-content-development" class="anchor" aria-label="Permalink: Development" href="#development"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">To set up this plugin locally, first checkout the code. Then create a new virtual environment:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="cd datasette-extract
+python3 -m venv venv
+source venv/bin/activate"><pre><span class="pl-c1">cd</span> datasette-extract
+python3 -m venv venv
+<span class="pl-c1">source</span> venv/bin/activate</pre></div>
+<p dir="auto">Now install the dependencies and test dependencies:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="pip install -e '.[test]'"><pre>pip install -e <span class="pl-s"><span class="pl-pds">'</span>.[test]<span class="pl-pds">'</span></span></pre></div>
+<p dir="auto">To run the tests:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="pytest"><pre>pytest</pre></div>
+<p dir="auto">One option to run this in development is to use this recipe:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="DATASETTE_SECRETS_OPENAI_API_KEY="$(llm keys get openai)" \
+  datasette . --root --secret 1 \
+  -s permissions.insert-row.id root \
+  -s permissions.create-table.id root \
+  -s permissions.datasette-extract.id root \
+  -s plugins.datasette-extract.models '["openai/gpt-4.1-nano", "openai/gpt-4.1-mini"]' \
+  --internal internal.db --reload"><pre>DATASETTE_SECRETS_OPENAI_API_KEY=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-s"><span class="pl-pds">$(</span>llm keys get openai<span class="pl-pds">)</span></span><span class="pl-pds">"</span></span> \
+  datasette <span class="pl-c1">.</span> --root --secret 1 \
+  -s permissions.insert-row.id root \
+  -s permissions.create-table.id root \
+  -s permissions.datasette-extract.id root \
+  -s plugins.datasette-extract.models <span class="pl-s"><span class="pl-pds">'</span>["openai/gpt-4.1-nano", "openai/gpt-4.1-mini"]<span class="pl-pds">'</span></span> \
+  --internal internal.db --reload</pre></div>
+</article></div>
