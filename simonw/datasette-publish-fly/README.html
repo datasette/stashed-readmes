@@ -1,0 +1,220 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">datasette-publish-fly</h1><a id="user-content-datasette-publish-fly" class="anchor" aria-label="Permalink: datasette-publish-fly" href="#datasette-publish-fly"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://pypi.org/project/datasette-publish-fly/" rel="nofollow"><img src="https://camo.githubusercontent.com/21e9e342ac86518e46c22e12ea6ed81e4edcc2f4c18b0cffb6a605c023a9b184/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f6461746173657474652d7075626c6973682d666c792e737667" alt="PyPI" data-canonical-src="https://img.shields.io/pypi/v/datasette-publish-fly.svg" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/datasette-publish-fly/releases"><img src="https://camo.githubusercontent.com/a7f57bd306fc359357023ddf4cdd4229cef6ceebe9ba56872396ec7adc72a25a/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f72656c656173652f73696d6f6e772f6461746173657474652d7075626c6973682d666c793f696e636c7564655f70726572656c6561736573266c6162656c3d6368616e67656c6f67" alt="Changelog" data-canonical-src="https://img.shields.io/github/v/release/simonw/datasette-publish-fly?include_prereleases&amp;label=changelog" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/datasette-publish-fly/actions?query=workflow%3ATest"><img src="https://github.com/simonw/datasette-publish-fly/workflows/Test/badge.svg" alt="Tests" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/datasette-publish-fly/blob/main/LICENSE"><img src="https://camo.githubusercontent.com/c355f200ea90fddaa407b6eaab303663a669248ea3ca7b1fcf77dbe04ff5f48c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d417061636865253230322e302d626c75652e737667" alt="License" data-canonical-src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" style="max-width: 100%;"></a></p>
+<p dir="auto"><a href="https://datasette.io/" rel="nofollow">Datasette</a> plugin for deploying Datasette instances to <a href="https://fly.io/" rel="nofollow">Fly.io</a>.</p>
+<p dir="auto">Project background: <a href="https://simonwillison.net/2022/Feb/15/fly-volumes/" rel="nofollow">Using SQLite and Datasette with Fly Volumes</a></p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Installation</h2><a id="user-content-installation" class="anchor" aria-label="Permalink: Installation" href="#installation"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Install this plugin in the same environment as Datasette.</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ datasette install datasette-publish-fly"><pre class="notranslate"><code>$ datasette install datasette-publish-fly
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Deploying read-only data</h2><a id="user-content-deploying-read-only-data" class="anchor" aria-label="Permalink: Deploying read-only data" href="#deploying-read-only-data"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">First, install the <code>flyctl</code> command-line tool by <a href="https://fly.io/docs/getting-started/installing-flyctl/" rel="nofollow">following their instructions</a>.</p>
+<p dir="auto">Run <code>flyctl auth signup</code> to create an account there, or <code>flyctl auth login</code> if you already have one.</p>
+<p dir="auto">You can now use <code>datasette publish fly</code> to publish one or more SQLite database files:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="datasette publish fly my-database.db --app=&quot;my-data-app&quot;"><pre class="notranslate"><code>datasette publish fly my-database.db --app="my-data-app"
+</code></pre></div>
+<p dir="auto">The argument you pass to <code>--app</code> will be used for the URL of your application: <code>my-data-app.fly.dev</code>.</p>
+<p dir="auto">To update an application, run the publish command passing the same application name to the <code>--app</code> option.</p>
+<p dir="auto">Fly have <a href="https://fly.io/docs/about/pricing/#free-allowances" rel="nofollow">a free tier</a>, beyond which they will charge you monthly for each application you have live.  Details of their pricing can be <a href="https://fly.io/docs/pricing/" rel="nofollow">found on their site</a>.</p>
+<p dir="auto">Your application will be deployed at <code>https://your-app-name.fly.io/</code> - be aware that it may take several minutes to start working the first time you deploy it.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Using Fly volumes for writable databases</h2><a id="user-content-using-fly-volumes-for-writable-databases" class="anchor" aria-label="Permalink: Using Fly volumes for writable databases" href="#using-fly-volumes-for-writable-databases"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Fly <a href="https://fly.io/docs/reference/volumes/" rel="nofollow">Volumes</a> provide persistant disk storage for Fly applications. Volumes can be 1GB or more in size and the Fly free tier includes 3GB of volume space.</p>
+<p dir="auto">Datasette plugins such as <a href="https://datasette.io/plugins/datasette-upload-csvs" rel="nofollow">datasette-uploads-csvs</a> and <a href="https://datasette.io/plugins/datasette-tiddlywiki" rel="nofollow">datasette-tiddlywiki</a> can be deployed to Fly and store their mutable data in a volume.</p>
+<blockquote>
+<p dir="auto"><g-emoji class="g-emoji" alias="warning">⚠️</g-emoji> <strong>You should only run a single instance of your application</strong> if your database accepts writes. Fly has excellent support for running multiple instances in different geographical regions, but <code>datasette-publish-fly</code> with volumes is not yet compatible with that model. You should probably <a href="https://fly.io/blog/globally-distributed-postgres/" rel="nofollow">use Fly PostgreSQL instead</a>.</p>
+</blockquote>
+<p dir="auto">Here's how to deploy <code>datasette-tiddlywiki</code> with authentication provided by <code>datasette-auth-passwords</code>.</p>
+<p dir="auto">First, you'll need to create a root password hash to use to sign into the instance.</p>
+<p dir="auto">You can do that by installing the plugin and running the <code>datasette hash-password</code> command, or by using <a href="https://datasette-auth-passwords-demo.datasette.io/-/password-tool" rel="nofollow">this hosted tool</a>.</p>
+<p dir="auto">The hash should look like <code>pbkdf2_sha256$...</code> - you'll need this for the next step.</p>
+<p dir="auto">In this example we're also deploying a read-only database called <code>content.db</code>.</p>
+<p dir="auto">Pick a name for your new application, then run the following:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="datasette publish fly \
+content.db \
+--app your-application-name \
+--create-volume 1 \
+--create-db tiddlywiki \
+--install datasette-auth-passwords \
+--install datasette-tiddlywiki \
+--plugin-secret datasette-auth-passwords root_password_hash 'pbkdf2_sha256$...'"><pre class="notranslate"><code>datasette publish fly \
+content.db \
+--app your-application-name \
+--create-volume 1 \
+--create-db tiddlywiki \
+--install datasette-auth-passwords \
+--install datasette-tiddlywiki \
+--plugin-secret datasette-auth-passwords root_password_hash 'pbkdf2_sha256$...'
+</code></pre></div>
+<p dir="auto">This will create the new application, deploy the <code>content.db</code> read-only database, create a 1GB volume for that application, create a new database in that volume called <code>tiddlywiki.db</code>, then install the two plugins and configure the password you specified.</p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Updating applications that use a volume</h3><a id="user-content-updating-applications-that-use-a-volume" class="anchor" aria-label="Permalink: Updating applications that use a volume" href="#updating-applications-that-use-a-volume"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Once you have deployed an application using a volume, you can update that application without needing the <code>--create-volume</code> or <code>--create-db</code> options. To add the <a href="https://datasette.io/plugins/datasette-graphql" rel="nofollow">datasette-graphq</a> plugin to your deployed application you would run the following:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="datasette publish fly \
+content.db \
+--app your-application-name \
+--install datasette-auth-passwords \
+--install datasette-tiddlywiki \
+--install datasette-graphql \
+--plugin-secret datasette-auth-passwords root_password_hash 'pbkdf2_sha256$...' \"><pre class="notranslate"><code>datasette publish fly \
+content.db \
+--app your-application-name \
+--install datasette-auth-passwords \
+--install datasette-tiddlywiki \
+--install datasette-graphql \
+--plugin-secret datasette-auth-passwords root_password_hash 'pbkdf2_sha256$...' \
+</code></pre></div>
+<p dir="auto">Since the application name is the same you don't need the <code>--create-volume</code> or <code>--create-db</code> options - these are persisted automatically between deploys.</p>
+<p dir="auto">You do need to specify the full list of plugins that you want to have installed, and any plugin secrets.</p>
+<p dir="auto">You also need to include any read-only database files that are part of the instance - <code>content.db</code> in this example - otherwise the new deployment will not include them.</p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Advanced volume usage</h3><a id="user-content-advanced-volume-usage" class="anchor" aria-label="Permalink: Advanced volume usage" href="#advanced-volume-usage"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><code>datasette publish fly</code> will add a volume called <code>datasette</code> to your Fly application. You can customize the name using the <code>--volume name custom_name</code> option.</p>
+<p dir="auto">Fly can be used to scale applications to run multiple instances in multiple regions around the world. This works well with read-only Datasette but is not currently recommended using Datasette with volumes, since each Fly replica would need its own volume and data stored in one instance would not be visible in others.</p>
+<p dir="auto">If you want to use multiple instances with volumes you will need to switch to using the <code>flyctl</code> command directly. The <code>--generate-dir</code> option, described below, can help with this.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Generating without deploying</h2><a id="user-content-generating-without-deploying" class="anchor" aria-label="Permalink: Generating without deploying" href="#generating-without-deploying"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Use the <code>--generate-dir</code> option to generate a directory that can be deployed to Fly rather than deploying directly:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="datasette publish fly my-database.db \
+  --app=&quot;my-generated-app&quot; \
+  --generate-dir /tmp/deploy-this"><pre class="notranslate"><code>datasette publish fly my-database.db \
+  --app="my-generated-app" \
+  --generate-dir /tmp/deploy-this
+</code></pre></div>
+<p dir="auto">You can then manually deploy your generated application using the following:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="cd /tmp/deploy-this
+flyctl apps create my-generated-app
+flyctl deploy"><pre class="notranslate"><code>cd /tmp/deploy-this
+flyctl apps create my-generated-app
+flyctl deploy
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">datasette publish fly --help</h2><a id="user-content-datasette-publish-fly---help" class="anchor" aria-label="Permalink: datasette publish fly --help" href="#datasette-publish-fly---help"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="Usage: datasette publish fly [OPTIONS] [FILES]...
+
+  Deploy an application to Fly that runs Datasette against the provided database
+  files.
+
+  Usage example:
+
+      datasette publish fly my-database.db --app=&quot;my-data-app&quot;
+
+  Full documentation: https://datasette.io/plugins/datasette-publish-fly
+
+Options:
+  -m, --metadata FILENAME         Path to JSON/YAML file containing metadata to
+                                  publish
+  --extra-options TEXT            Extra options to pass to datasette serve
+  --branch TEXT                   Install datasette from a GitHub branch e.g.
+                                  main
+  --template-dir DIRECTORY        Path to directory containing custom templates
+  --plugins-dir DIRECTORY         Path to directory containing custom plugins
+  --static MOUNT:DIRECTORY        Serve static files from this directory at
+                                  /MOUNT/...
+  --install TEXT                  Additional packages (e.g. plugins) to install
+  --plugin-secret &lt;TEXT TEXT TEXT&gt;...
+                                  Secrets to pass to plugins, e.g. --plugin-
+                                  secret datasette-auth-github client_id xxx
+  --version-note TEXT             Additional note to show on /-/versions
+  --secret TEXT                   Secret used for signing secure values, such as
+                                  signed cookies
+  --title TEXT                    Title for metadata
+  --license TEXT                  License label for metadata
+  --license_url TEXT              License URL for metadata
+  --source TEXT                   Source label for metadata
+  --source_url TEXT               Source URL for metadata
+  --about TEXT                    About label for metadata
+  --about_url TEXT                About URL for metadata
+  --spatialite                    Enable SpatialLite extension
+  --region TEXT                   Fly region to deploy to, e.g sjc - see
+                                  https://fly.io/docs/reference/regions/
+  --create-volume INTEGER RANGE   Create and attach volume of this size in GB
+                                  [x&gt;=1]
+  --create-db TEXT                Names of read-write database files to create
+  --volume-name TEXT              Volume name to use
+  -a, --app TEXT                  Name of Fly app to deploy  [required]
+  -o, --org TEXT                  Name of Fly org to deploy to
+  --generate-dir DIRECTORY        Output generated application files and stop
+                                  without deploying
+  --show-files                    Output the generated Dockerfile, metadata.json
+                                  and fly.toml
+  --setting SETTING...            Setting, see
+                                  docs.datasette.io/en/stable/settings.html
+  --crossdb                       Enable cross-database SQL queries
+  --help                          Show this message and exit."><pre class="notranslate"><code>Usage: datasette publish fly [OPTIONS] [FILES]...
+
+  Deploy an application to Fly that runs Datasette against the provided database
+  files.
+
+  Usage example:
+
+      datasette publish fly my-database.db --app="my-data-app"
+
+  Full documentation: https://datasette.io/plugins/datasette-publish-fly
+
+Options:
+  -m, --metadata FILENAME         Path to JSON/YAML file containing metadata to
+                                  publish
+  --extra-options TEXT            Extra options to pass to datasette serve
+  --branch TEXT                   Install datasette from a GitHub branch e.g.
+                                  main
+  --template-dir DIRECTORY        Path to directory containing custom templates
+  --plugins-dir DIRECTORY         Path to directory containing custom plugins
+  --static MOUNT:DIRECTORY        Serve static files from this directory at
+                                  /MOUNT/...
+  --install TEXT                  Additional packages (e.g. plugins) to install
+  --plugin-secret &lt;TEXT TEXT TEXT&gt;...
+                                  Secrets to pass to plugins, e.g. --plugin-
+                                  secret datasette-auth-github client_id xxx
+  --version-note TEXT             Additional note to show on /-/versions
+  --secret TEXT                   Secret used for signing secure values, such as
+                                  signed cookies
+  --title TEXT                    Title for metadata
+  --license TEXT                  License label for metadata
+  --license_url TEXT              License URL for metadata
+  --source TEXT                   Source label for metadata
+  --source_url TEXT               Source URL for metadata
+  --about TEXT                    About label for metadata
+  --about_url TEXT                About URL for metadata
+  --spatialite                    Enable SpatialLite extension
+  --region TEXT                   Fly region to deploy to, e.g sjc - see
+                                  https://fly.io/docs/reference/regions/
+  --create-volume INTEGER RANGE   Create and attach volume of this size in GB
+                                  [x&gt;=1]
+  --create-db TEXT                Names of read-write database files to create
+  --volume-name TEXT              Volume name to use
+  -a, --app TEXT                  Name of Fly app to deploy  [required]
+  -o, --org TEXT                  Name of Fly org to deploy to
+  --generate-dir DIRECTORY        Output generated application files and stop
+                                  without deploying
+  --show-files                    Output the generated Dockerfile, metadata.json
+                                  and fly.toml
+  --setting SETTING...            Setting, see
+                                  docs.datasette.io/en/stable/settings.html
+  --crossdb                       Enable cross-database SQL queries
+  --help                          Show this message and exit.
+</code></pre></div>
+
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Development</h2><a id="user-content-development" class="anchor" aria-label="Permalink: Development" href="#development"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">To contribute to this tool, first checkout the code. Then create a new virtual environment:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="cd datasette-publish-fly
+python -m venv venv
+source venv/bin/activate"><pre class="notranslate"><code>cd datasette-publish-fly
+python -m venv venv
+source venv/bin/activate
+</code></pre></div>
+<p dir="auto">Or if you are using <code>pipenv</code>:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pipenv shell"><pre class="notranslate"><code>pipenv shell
+</code></pre></div>
+<p dir="auto">Now install the dependencies and test dependencies:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pip install -e '.[test]'"><pre class="notranslate"><code>pip install -e '.[test]'
+</code></pre></div>
+<p dir="auto">To run the tests:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pytest"><pre class="notranslate"><code>pytest
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Integration tests</h3><a id="user-content-integration-tests" class="anchor" aria-label="Permalink: Integration tests" href="#integration-tests"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The tests in <code>tests/test_integration.py</code> make actual calls to Fly to deploy a test application.</p>
+<p dir="auto">These tests are skipped by default. If you have <code>flyctl</code> installed and configured, you can run the integration tests like this:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pytest --integration -s"><pre class="notranslate"><code>pytest --integration -s
+</code></pre></div>
+<p dir="auto">The <code>-s</code> option here ensures that output from the deploys will be visible to you - otherwise it can look like the tests have hung.</p>
+<p dir="auto">The tests will create applications on Fly that start with the prefix <code>publish-fly-temp-</code> and then delete them at the end of the run.</p>
+</article></div>

@@ -1,0 +1,243 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">datasette-render-markdown</h1><a id="user-content-datasette-render-markdown" class="anchor" aria-label="Permalink: datasette-render-markdown" href="#datasette-render-markdown"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://pypi.org/project/datasette-render-markdown/" rel="nofollow"><img src="https://camo.githubusercontent.com/5f6cc294ca00068e1623317da168640302a0e9a69d637a930f6c873a346c5359/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f6461746173657474652d72656e6465722d6d61726b646f776e2e737667" alt="PyPI" data-canonical-src="https://img.shields.io/pypi/v/datasette-render-markdown.svg" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/datasette-render-markdown/releases"><img src="https://camo.githubusercontent.com/2bec036af2e86342b47e73d26b4e1655de2fd092ba27e55e05003195893f93d6/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f72656c656173652f73696d6f6e772f6461746173657474652d72656e6465722d6d61726b646f776e3f696e636c7564655f70726572656c6561736573266c6162656c3d6368616e67656c6f67" alt="Changelog" data-canonical-src="https://img.shields.io/github/v/release/simonw/datasette-render-markdown?include_prereleases&amp;label=changelog" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/datasette-render-markdown/actions?query=workflow%3ATest"><img src="https://github.com/simonw/datasette-render-markdown/workflows/Test/badge.svg" alt="Tests" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/datasette-render-markdown/blob/main/LICENSE"><img src="https://camo.githubusercontent.com/c355f200ea90fddaa407b6eaab303663a669248ea3ca7b1fcf77dbe04ff5f48c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d417061636865253230322e302d626c75652e737667" alt="License" data-canonical-src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" style="max-width: 100%;"></a></p>
+<p dir="auto"><a href="https://datasette.io/" rel="nofollow">Datasette</a> plugin for rendering Markdown.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Installation</h2><a id="user-content-installation" class="anchor" aria-label="Permalink: Installation" href="#installation"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Install this plugin in the same environment as Datasette to enable this new functionality:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="datasette install datasette-render-markdown"><pre>datasette install datasette-render-markdown</pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Usage</h2><a id="user-content-usage" class="anchor" aria-label="Permalink: Usage" href="#usage"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">You can explicitly list the columns you would like to treat as Markdown using <a href="https://datasette.readthedocs.io/en/stable/plugins.html#plugin-configuration" rel="nofollow">plugin configuration</a> in a <code>metadata.json</code> file.</p>
+<p dir="auto">Add a <code>"datasette-render-markdown"</code> configuration block and use a <code>"columns"</code> key to list the columns you would like to treat as Markdown values:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    &quot;plugins&quot;: {
+        &quot;datasette-render-markdown&quot;: {
+            &quot;columns&quot;: [&quot;body&quot;]
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"plugins"</span>: {
+        <span class="pl-ent">"datasette-render-markdown"</span>: {
+            <span class="pl-ent">"columns"</span>: [<span class="pl-s"><span class="pl-pds">"</span>body<span class="pl-pds">"</span></span>]
+        }
+    }
+}</pre></div>
+<p dir="auto">This will cause any <code>body</code> column in any table to be treated as markdown and safely rendered using <a href="https://python-markdown.github.io/" rel="nofollow">Python-Markdown</a>. The resulting HTML is then run through <a href="https://bleach.readthedocs.io/" rel="nofollow">Bleach</a> to avoid the risk of XSS security problems.</p>
+<p dir="auto">Save this to <code>metadata.json</code> and run Datasette with the <code>--metadata</code> flag to load this configuration:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ datasette serve mydata.db --metadata metadata.json"><pre class="notranslate"><code>$ datasette serve mydata.db --metadata metadata.json
+</code></pre></div>
+<p dir="auto">The configuration block can be used at the top level, or it can be applied just to specific databases or tables. Here's how to apply it to just the <code>entries</code> table in the <code>news.db</code> database:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    &quot;databases&quot;: {
+        &quot;news&quot;: {
+            &quot;tables&quot;: {
+                &quot;entries&quot;: {
+                    &quot;plugins&quot;: {
+                        &quot;datasette-render-markdown&quot;: {
+                            &quot;columns&quot;: [&quot;body&quot;]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"databases"</span>: {
+        <span class="pl-ent">"news"</span>: {
+            <span class="pl-ent">"tables"</span>: {
+                <span class="pl-ent">"entries"</span>: {
+                    <span class="pl-ent">"plugins"</span>: {
+                        <span class="pl-ent">"datasette-render-markdown"</span>: {
+                            <span class="pl-ent">"columns"</span>: [<span class="pl-s"><span class="pl-pds">"</span>body<span class="pl-pds">"</span></span>]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}</pre></div>
+<p dir="auto">And here's how to apply it to every <code>body</code> column in every table in the <code>news.db</code> database:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    &quot;databases&quot;: {
+        &quot;news&quot;: {
+            &quot;plugins&quot;: {
+                &quot;datasette-render-markdown&quot;: {
+                    &quot;columns&quot;: [&quot;body&quot;]
+                }
+            }
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"databases"</span>: {
+        <span class="pl-ent">"news"</span>: {
+            <span class="pl-ent">"plugins"</span>: {
+                <span class="pl-ent">"datasette-render-markdown"</span>: {
+                    <span class="pl-ent">"columns"</span>: [<span class="pl-s"><span class="pl-pds">"</span>body<span class="pl-pds">"</span></span>]
+                }
+            }
+        }
+    }
+}</pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Columns that match a naming convention</h2><a id="user-content-columns-that-match-a-naming-convention" class="anchor" aria-label="Permalink: Columns that match a naming convention" href="#columns-that-match-a-naming-convention"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">This plugin can also render markdown in any columns that match a specific naming convention.</p>
+<p dir="auto">By default, columns that have a name ending in <code>_markdown</code> will be rendered.</p>
+<p dir="auto">You can try this out using the following query:</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="select '# Hello there
+
+* This is a list
+* of items
+
+[And a link](https://github.com/simonw/datasette-render-markdown).'
+as demo_markdown"><pre><span class="pl-k">select</span> <span class="pl-s"><span class="pl-pds">'</span># Hello there</span>
+<span class="pl-s"></span>
+<span class="pl-s">* This is a list</span>
+<span class="pl-s">* of items</span>
+<span class="pl-s"></span>
+<span class="pl-s">[And a link](https://github.com/simonw/datasette-render-markdown).<span class="pl-pds">'</span></span>
+<span class="pl-k">as</span> demo_markdown</pre></div>
+<p dir="auto">You can configure a different list of wildcard patterns using the <code>"patterns"</code> configuration key. Here's how to render columns that end in either <code>_markdown</code> or <code>_md</code>:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    &quot;plugins&quot;: {
+        &quot;datasette-render-markdown&quot;: {
+            &quot;patterns&quot;: [&quot;*_markdown&quot;, &quot;*_md&quot;]
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"plugins"</span>: {
+        <span class="pl-ent">"datasette-render-markdown"</span>: {
+            <span class="pl-ent">"patterns"</span>: [<span class="pl-s"><span class="pl-pds">"</span>*_markdown<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>*_md<span class="pl-pds">"</span></span>]
+        }
+    }
+}</pre></div>
+<p dir="auto">To disable wildcard column matching entirely, set <code>"patterns": []</code> in your plugin metadata configuration.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Markdown extensions</h2><a id="user-content-markdown-extensions" class="anchor" aria-label="Permalink: Markdown extensions" href="#markdown-extensions"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The <a href="https://python-markdown.github.io/" rel="nofollow">Python-Markdown library</a> that powers this plugin supports extensions, both <a href="https://python-markdown.github.io/extensions/" rel="nofollow">bundled</a> and <a href="https://github.com/Python-Markdown/markdown/wiki/Third-Party-Extensions">third-party</a>. These can be used to enable additional Markdown features such as <a href="https://python-markdown.github.io/extensions/tables/" rel="nofollow">table support</a>.</p>
+<p dir="auto">You can configure support for extensions using the <code>"extensions"</code> key in your plugin metadata configuration.</p>
+<p dir="auto">Since extensions may introduce new HTML tags, you will also need to add those tags to the list of tags that are allowed by the <a href="https://bleach.readthedocs.io/" rel="nofollow">Bleach</a> sanitizer. You can do that using the <code>"extra_tags"</code> key, and you can allow-list additional HTML attributes using <code>"extra_attrs"</code>. See <a href="https://bleach.readthedocs.io/en/latest/clean.html#allowed-tags-tags" rel="nofollow">the Bleach documentation</a> for more information on this.</p>
+<p dir="auto">Here's how to enable support for <a href="https://python-markdown.github.io/extensions/tables/" rel="nofollow">Markdown tables</a>:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    &quot;plugins&quot;: {
+        &quot;datasette-render-markdown&quot;: {
+            &quot;extensions&quot;: [&quot;tables&quot;],
+            &quot;extra_tags&quot;: [&quot;table&quot;, &quot;thead&quot;, &quot;tr&quot;, &quot;th&quot;, &quot;td&quot;, &quot;tbody&quot;]
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"plugins"</span>: {
+        <span class="pl-ent">"datasette-render-markdown"</span>: {
+            <span class="pl-ent">"extensions"</span>: [<span class="pl-s"><span class="pl-pds">"</span>tables<span class="pl-pds">"</span></span>],
+            <span class="pl-ent">"extra_tags"</span>: [<span class="pl-s"><span class="pl-pds">"</span>table<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>thead<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>tr<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>th<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>td<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>tbody<span class="pl-pds">"</span></span>]
+        }
+    }
+}</pre></div>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">GitHub-Flavored Markdown</h3><a id="user-content-github-flavored-markdown" class="anchor" aria-label="Permalink: GitHub-Flavored Markdown" href="#github-flavored-markdown"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Enabling <a href="https://help.github.com/en/github/writing-on-github">GitHub-Flavored Markdown</a> (useful for if you are working with data imported from GitHub using <a href="https://github.com/dogsheep/github-to-sqlite">github-to-sqlite</a>) is a little more complicated.</p>
+<p dir="auto">First, you will need to install the <a href="https://py-gfm.readthedocs.io" rel="nofollow">py-gfm</a> package:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ pip install py-gfm"><pre class="notranslate"><code>$ pip install py-gfm
+</code></pre></div>
+<p dir="auto">Note that <code>py-gfm</code> has <a href="https://github.com/Zopieux/py-gfm/issues/13" data-hovercard-type="issue" data-hovercard-url="/zopieux/py-gfm/issues/13/hovercard">a bug</a> that causes it to pin to <code>Markdown&lt;3.0</code> - so if you are using it you should install it <em>before</em> installing <code>datasette-render-markdown</code> to ensure you get a compatibly version of that dependency.</p>
+<p dir="auto">Now you can configure it like this. Note that the extension name is <code>mdx_gfm:GithubFlavoredMarkdownExtension</code> and you need to allow-list several extra HTML tags and attributes:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    &quot;plugins&quot;: {
+        &quot;datasette-render-markdown&quot;: {
+            &quot;extra_tags&quot;: [
+                &quot;hr&quot;,
+                &quot;br&quot;,
+                &quot;details&quot;,
+                &quot;summary&quot;,
+                &quot;input&quot;
+            ],
+            &quot;extra_attrs&quot;: {
+                &quot;input&quot;: [
+                    &quot;type&quot;,
+                    &quot;disabled&quot;,
+                    &quot;checked&quot;
+                ],
+            },
+            &quot;extensions&quot;: [
+                &quot;mdx_gfm:GithubFlavoredMarkdownExtension&quot;
+            ]
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"plugins"</span>: {
+        <span class="pl-ent">"datasette-render-markdown"</span>: {
+            <span class="pl-ent">"extra_tags"</span>: [
+                <span class="pl-s"><span class="pl-pds">"</span>hr<span class="pl-pds">"</span></span>,
+                <span class="pl-s"><span class="pl-pds">"</span>br<span class="pl-pds">"</span></span>,
+                <span class="pl-s"><span class="pl-pds">"</span>details<span class="pl-pds">"</span></span>,
+                <span class="pl-s"><span class="pl-pds">"</span>summary<span class="pl-pds">"</span></span>,
+                <span class="pl-s"><span class="pl-pds">"</span>input<span class="pl-pds">"</span></span>
+            ],
+            <span class="pl-ent">"extra_attrs"</span>: {
+                <span class="pl-ent">"input"</span>: [
+                    <span class="pl-s"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span>,
+                    <span class="pl-s"><span class="pl-pds">"</span>disabled<span class="pl-pds">"</span></span>,
+                    <span class="pl-s"><span class="pl-pds">"</span>checked<span class="pl-pds">"</span></span>
+                ],
+            },
+            <span class="pl-ent">"extensions"</span>: [
+                <span class="pl-s"><span class="pl-pds">"</span>mdx_gfm:GithubFlavoredMarkdownExtension<span class="pl-pds">"</span></span>
+            ]
+        }
+    }
+}</pre></div>
+<p dir="auto">The <code>&lt;input type="" checked disabled&gt;</code> attributes are needed to support rendering checkboxes in issue descriptions.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Markdown in templates</h2><a id="user-content-markdown-in-templates" class="anchor" aria-label="Permalink: Markdown in templates" href="#markdown-in-templates"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The plugin introduces a new template tag: <code>{% markdown %}...{% endmarkdown %}</code> - which can be used to render Markdown in your Jinja templates.</p>
+<div class="highlight highlight-text-html-django notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{% markdown %}
+# This will be rendered as markdown
+{% endmarkdown %}"><pre><span class="pl-e">{%</span> <span class="pl-s">markdown</span> <span class="pl-e">%}</span>
+# This will be rendered as markdown
+<span class="pl-e">{%</span> <span class="pl-s">endmarkdown</span> <span class="pl-e">%}</span></pre></div>
+<p dir="auto">You can use attributes on the <code>{% markdown %}</code> tag to enable extensions and allow-list additional tags and attributes:</p>
+<div class="highlight highlight-text-html-django notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{% markdown
+  extensions=&quot;tables&quot;
+  extra_tags=&quot;table thead tr th td tbody&quot; 
+  extra_attrs=&quot;p:id,class a:name,href&quot; %}
+## Markdown table
+
+First Header  | Second Header
+------------- | -------------
+Content Cell  | Content Cell
+Content Cell  | Content Cell
+
+&lt;a href=&quot;https://www.example.com/&quot; name=&quot;namehere&quot;&gt;Example&lt;/a&gt;
+&lt;p id=&quot;paragraph&quot; class=&quot;klass&quot;&gt;Paragraph&lt;/p&gt;
+{% endmarkdown %}"><pre><span class="pl-e">{%</span> <span class="pl-s">markdown</span>
+  <span class="pl-s">extensions</span>=<span class="pl-s">"tables"</span>
+  <span class="pl-s">extra_tags</span>=<span class="pl-s">"table thead tr th td tbody"</span> 
+  <span class="pl-s">extra_attrs</span>=<span class="pl-s">"p:id,class a:name,href"</span> <span class="pl-e">%}</span>
+## Markdown table
+
+First Header  | Second Header
+------------- | -------------
+Content Cell  | Content Cell
+Content Cell  | Content Cell
+
+&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span>https://www.example.com/<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>namehere<span class="pl-pds">"</span></span>&gt;Example&lt;/<span class="pl-ent">a</span>&gt;
+&lt;<span class="pl-ent">p</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>paragraph<span class="pl-pds">"</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>klass<span class="pl-pds">"</span></span>&gt;Paragraph&lt;/<span class="pl-ent">p</span>&gt;
+<span class="pl-e">{%</span> <span class="pl-s">endmarkdown</span> <span class="pl-e">%}</span></pre></div>
+<p dir="auto">The <code>extensions=</code> and <code>extra_tags=</code> attributes accept a space-separated list of values.</p>
+<p dir="auto">The <code>extra_attrs=</code> attribute accepts a space-separated list of <code>tag:attr1,attr2</code> values - each tag can specify one or more attributes that should be allowed.</p>
+<p dir="auto">You can also use the <code>{{ render_markdown(...) }}</code> function, like this:</p>
+<div class="highlight highlight-text-html-django notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{{ render_markdown(&quot;&quot;&quot;
+## Markdown table
+
+First Header  | Second Header
+------------- | -------------
+Content Cell  | Content Cell
+Content Cell  | Content Cell
+&quot;&quot;&quot;, extensions=[&quot;tables&quot;],
+    extra_tags=[&quot;table&quot;, &quot;thead&quot;, &quot;tr&quot;, &quot;th&quot;, &quot;td&quot;, &quot;tbody&quot;])) }}"><pre>{{ render_markdown("""
+## Markdown table
+
+First Header  | Second Header
+------------- | -------------
+Content Cell  | Content Cell
+Content Cell  | Content Cell
+""", extensions=["tables<span class="pl-smi">"]</span>,
+    extra_tags=["table", "thead", "tr", "th", "td", "tbody<span class="pl-smi">"]</span>)) }}</pre></div>
+<p dir="auto">The <code>{% markdown %}</code> tag is recommended, as it avoids the need to <code>\"</code> escape quotes in your Markdown content.</p>
+</article></div>

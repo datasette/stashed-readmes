@@ -1,0 +1,54 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">datasette-jellyfish</h1><a id="user-content-datasette-jellyfish" class="anchor" aria-label="Permalink: datasette-jellyfish" href="#datasette-jellyfish"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://pypi.org/project/datasette-jellyfish/" rel="nofollow"><img src="https://camo.githubusercontent.com/9d9a8466663760cffae546ecb1ea34e3fb15a789efb19a51c1a1355a7d13c0ee/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f6461746173657474652d6a656c6c79666973682e737667" alt="PyPI" data-canonical-src="https://img.shields.io/pypi/v/datasette-jellyfish.svg" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/datasette-jellyfish/releases"><img src="https://camo.githubusercontent.com/574cb554aee752a1985538f1b1c83e9c12b05fa3096c5b0ecf1c930a0e9d30c6/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f72656c656173652f73696d6f6e772f6461746173657474652d6a656c6c79666973683f696e636c7564655f70726572656c6561736573266c6162656c3d6368616e67656c6f67" alt="Changelog" data-canonical-src="https://img.shields.io/github/v/release/simonw/datasette-jellyfish?include_prereleases&amp;label=changelog" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/datasette-jellyfish/actions?query=workflow%3ATest"><img src="https://github.com/simonw/datasette-jellyfish/workflows/Test/badge.svg" alt="Tests" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/datasette-jellyfish/blob/main/LICENSE"><img src="https://camo.githubusercontent.com/c355f200ea90fddaa407b6eaab303663a669248ea3ca7b1fcf77dbe04ff5f48c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d417061636865253230322e302d626c75652e737667" alt="License" data-canonical-src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" style="max-width: 100%;"></a></p>
+<p dir="auto">Datasette plugin that adds custom SQL functions for fuzzy string matching, built on top of the <a href="https://github.com/jamesturk/jellyfish">Jellyfish</a> Python library by James Turk and Michael Stephens.</p>
+<p dir="auto">Interactive demos:</p>
+<ul dir="auto">
+<li><a href="https://latest-with-plugins.datasette.io/fixtures?sql=SELECT%0D%0A++++soundex%28%3As%29%2C+%0D%0A++++metaphone%28%3As%29%2C+%0D%0A++++nysiis%28%3As%29%2C+%0D%0A++++match_rating_codex%28%3As%29&amp;s=demo" rel="nofollow">soundex, metaphone, nysiis, match_rating_codex comparison</a>.</li>
+<li><a href="https://latest-with-plugins.datasette.io/fixtures?sql=SELECT%0D%0A++++levenshtein_distance%28%3As1%2C+%3As2%29%2C%0D%0A++++damerau_levenshtein_distance%28%3As1%2C+%3As2%29%2C%0D%0A++++hamming_distance%28%3As1%2C+%3As2%29%2C%0D%0A++++jaro_similarity%28%3As1%2C+%3As2%29%2C%0D%0A++++jaro_winkler_similarity%28%3As1%2C+%3As2%29%2C%0D%0A++++match_rating_comparison%28%3As1%2C+%3As2%29%3B&amp;s1=barrack+obama&amp;s2=barrack+h+obama" rel="nofollow">distance functions comparison</a></li>
+</ul>
+<p dir="auto">Examples:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="SELECT soundex(&quot;hello&quot;);
+    -- Outputs H400
+SELECT metaphone(&quot;hello&quot;);
+    -- Outputs HL
+SELECT nysiis(&quot;hello&quot;);
+    -- Outputs HAL
+SELECT match_rating_codex(&quot;hello&quot;);
+    -- Outputs HLL
+SELECT levenshtein_distance(&quot;hello&quot;, &quot;hello world&quot;);
+    -- Outputs 6
+SELECT damerau_levenshtein_distance(&quot;hello&quot;, &quot;hello world&quot;);
+    -- Outputs 6
+SELECT hamming_distance(&quot;hello&quot;, &quot;hello world&quot;);
+    -- Outputs 6
+SELECT jaro_similarity(&quot;hello&quot;, &quot;hello world&quot;);
+    -- Outputs 0.8181818181818182
+SELECT jaro_winkler_similarity(&quot;hello&quot;, &quot;hello world&quot;);
+    -- Outputs 0.890909090909091
+SELECT match_rating_comparison(&quot;hello&quot;, &quot;helloo&quot;);
+    -- Outputs 1"><pre class="notranslate"><code>SELECT soundex("hello");
+    -- Outputs H400
+SELECT metaphone("hello");
+    -- Outputs HL
+SELECT nysiis("hello");
+    -- Outputs HAL
+SELECT match_rating_codex("hello");
+    -- Outputs HLL
+SELECT levenshtein_distance("hello", "hello world");
+    -- Outputs 6
+SELECT damerau_levenshtein_distance("hello", "hello world");
+    -- Outputs 6
+SELECT hamming_distance("hello", "hello world");
+    -- Outputs 6
+SELECT jaro_similarity("hello", "hello world");
+    -- Outputs 0.8181818181818182
+SELECT jaro_winkler_similarity("hello", "hello world");
+    -- Outputs 0.890909090909091
+SELECT match_rating_comparison("hello", "helloo");
+    -- Outputs 1
+</code></pre></div>
+<p dir="auto">See <a href="https://jellyfish.readthedocs.io/en/latest/" rel="nofollow">the Jellyfish documentation</a> for an explanation of each of these functions.</p>
+</article></div>

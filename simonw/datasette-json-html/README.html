@@ -1,0 +1,260 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">datasette-json-html</h1><a id="user-content-datasette-json-html" class="anchor" aria-label="Permalink: datasette-json-html" href="#datasette-json-html"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://pypi.org/project/datasette-json-html/" rel="nofollow"><img src="https://camo.githubusercontent.com/0ba84cbf350e26d32701ac23d28024488afe2073e4c0557dfccb7c4623792221/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f6461746173657474652d6a736f6e2d68746d6c2e737667" alt="PyPI" data-canonical-src="https://img.shields.io/pypi/v/datasette-json-html.svg" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/datasette-json-html/releases"><img src="https://camo.githubusercontent.com/a6be05629ebfb4b6c04d44064ed5769c00f9c442bf5e07a5dd1d0f4e3daf19ab/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f72656c656173652f73696d6f6e772f6461746173657474652d6a736f6e2d68746d6c3f696e636c7564655f70726572656c6561736573266c6162656c3d6368616e67656c6f67" alt="Changelog" data-canonical-src="https://img.shields.io/github/v/release/simonw/datasette-json-html?include_prereleases&amp;label=changelog" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/datasette-remote-metadata/actions?query=workflow%3ATest"><img src="https://github.com/simonw/datasette-json-html/workflows/Test/badge.svg" alt="Tests" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/datasette-json-html/blob/main/LICENSE"><img src="https://camo.githubusercontent.com/c355f200ea90fddaa407b6eaab303663a669248ea3ca7b1fcf77dbe04ff5f48c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d417061636865253230322e302d626c75652e737667" alt="License" data-canonical-src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" style="max-width: 100%;"></a></p>
+<p dir="auto">Datasette plugin for rendering HTML based on JSON values, using the <a href="https://docs.datasette.io/en/stable/plugin_hooks.html#render-cell-value-column-table-database-datasette" rel="nofollow">render_cell plugin hook</a>.</p>
+<p dir="auto">This plugin looks for cell values that match a very specific JSON format and converts them into HTML when they are rendered by the Datasette interface.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Links</h2><a id="user-content-links" class="anchor" aria-label="Permalink: Links" href="#links"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="{
+    &quot;href&quot;: &quot;https://simonwillison.net/&quot;,
+    &quot;label&quot;: &quot;Simon Willison&quot;
+}"><pre class="notranslate"><code>{
+    "href": "https://simonwillison.net/",
+    "label": "Simon Willison"
+}
+</code></pre></div>
+<p dir="auto">Will be rendered as an <code>&lt;a href=""&gt;</code> link:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="&lt;a href=&quot;https://simonwillison.net/&quot;&gt;Simon Willison&lt;/a&gt;"><pre class="notranslate"><code>&lt;a href="https://simonwillison.net/"&gt;Simon Willison&lt;/a&gt;
+</code></pre></div>
+<p dir="auto">You can set a tooltip on the link using a <code>"title"</code> key:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="{
+    &quot;href&quot;: &quot;https://simonwillison.net/&quot;,
+    &quot;label&quot;: &quot;Simon Willison&quot;,
+    &quot;title&quot;: &quot;My blog&quot;
+}"><pre class="notranslate"><code>{
+    "href": "https://simonwillison.net/",
+    "label": "Simon Willison",
+    "title": "My blog"
+}
+</code></pre></div>
+<p dir="auto">Produces:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="&lt;a href=&quot;https://simonwillison.net/&quot; title=&quot;My blog&quot;&gt;Simon Willison&lt;/a&gt;"><pre class="notranslate"><code>&lt;a href="https://simonwillison.net/" title="My blog"&gt;Simon Willison&lt;/a&gt;
+</code></pre></div>
+<p dir="auto">You can also include a description, which will be displayed below the link. If descriptions include newlines they will be converted to <code>&lt;br&gt;</code> elements:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="select json_object(
+    &quot;href&quot;, &quot;https://simonwillison.net/&quot;,
+    &quot;label&quot;, &quot;Simon Willison&quot;,
+    &quot;description&quot;, &quot;This can contain&quot; || x'0a' || &quot;newlines&quot;
+)"><pre class="notranslate"><code>select json_object(
+    "href", "https://simonwillison.net/",
+    "label", "Simon Willison",
+    "description", "This can contain" || x'0a' || "newlines"
+)
+</code></pre></div>
+<p dir="auto">Produces:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="&lt;strong&gt;&lt;a href=&quot;https://simonwillison.net/&quot;&gt;Simon Willison&lt;/a&gt;&lt;/strong&gt;&lt;br&gt;This can contain&lt;br&gt;newlines"><pre class="notranslate"><code>&lt;strong&gt;&lt;a href="https://simonwillison.net/"&gt;Simon Willison&lt;/a&gt;&lt;/strong&gt;&lt;br&gt;This can contain&lt;br&gt;newlines
+</code></pre></div>
+<ul dir="auto">
+<li><a href="https://datasette-json-html.datasette.io/demo?sql=select+%27%7B%0D%0A++++%22href%22%3A+%22https%3A%2F%2Fsimonwillison.net%2F%22%2C%0D%0A++++%22label%22%3A+%22Simon+Willison%22%2C%0D%0A++++%22title%22%3A+%22My+blog%22%0D%0A%7D%27" rel="nofollow">Literal JSON link demo</a></li>
+</ul>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">List of links</h2><a id="user-content-list-of-links" class="anchor" aria-label="Permalink: List of links" href="#list-of-links"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="[
+    {
+        &quot;href&quot;: &quot;https://simonwillison.net/&quot;,
+        &quot;label&quot;: &quot;Simon Willison&quot;
+    },
+    {
+        &quot;href&quot;: &quot;https://github.com/simonw/datasette&quot;,
+        &quot;label&quot;: &quot;Datasette&quot;
+    }
+]"><pre class="notranslate"><code>[
+    {
+        "href": "https://simonwillison.net/",
+        "label": "Simon Willison"
+    },
+    {
+        "href": "https://github.com/simonw/datasette",
+        "label": "Datasette"
+    }
+]
+</code></pre></div>
+<p dir="auto">Will be rendered as a comma-separated list of <code>&lt;a href=""&gt;</code> links:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="&lt;a href=&quot;https://simonwillison.net/&quot;&gt;Simon Willison&lt;/a&gt;,
+&lt;a href=&quot;https://github.com/simonw/datasette&quot;&gt;Datasette&lt;/a&gt;"><pre class="notranslate"><code>&lt;a href="https://simonwillison.net/"&gt;Simon Willison&lt;/a&gt;,
+&lt;a href="https://github.com/simonw/datasette"&gt;Datasette&lt;/a&gt;
+</code></pre></div>
+<p dir="auto">The <code>href</code> property must begin with <code>https://</code> or <code>http://</code> or <code>/</code>, to avoid potential XSS injection attacks (for example URLs that begin with <code>javascript:</code>).</p>
+<p dir="auto">Lists of links cannot include <code>"description"</code> keys.</p>
+<ul dir="auto">
+<li><a href="https://datasette-json-html.datasette.io/demo?sql=select+%27%5B%0D%0A++++%7B%0D%0A++++++++%22href%22%3A+%22https%3A%2F%2Fsimonwillison.net%2F%22%2C%0D%0A++++++++%22label%22%3A+%22Simon+Willison%22%0D%0A++++%7D%2C%0D%0A++++%7B%0D%0A++++++++%22href%22%3A+%22https%3A%2F%2Fgithub.com%2Fsimonw%2Fdatasette%22%2C%0D%0A++++++++%22label%22%3A+%22Datasette%22%0D%0A++++%7D%0D%0A%5D%27" rel="nofollow">Literal list of links demo</a></li>
+</ul>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Images</h2><a id="user-content-images" class="anchor" aria-label="Permalink: Images" href="#images"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The image tag is more complex. The most basic version looks like this:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="{
+    &quot;img_src&quot;: &quot;https://placekitten.com/200/300&quot;
+}"><pre class="notranslate"><code>{
+    "img_src": "https://placekitten.com/200/300"
+}
+</code></pre></div>
+<p dir="auto">This will render as:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="&lt;img src=&quot;https://placekitten.com/200/300&quot;&gt;"><pre class="notranslate"><code>&lt;img src="https://placekitten.com/200/300"&gt;
+</code></pre></div>
+<p dir="auto">But you can also include one or more of <code>alt</code>, <code>caption</code>, <code>width</code> and <code>href</code>.</p>
+<p dir="auto">If you include width or alt, they will be added as attributes:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="{
+    &quot;img_src&quot;: &quot;https://placekitten.com/200/300&quot;,
+    &quot;alt&quot;: &quot;Kitten&quot;,
+    &quot;width&quot;: 200
+}"><pre class="notranslate"><code>{
+    "img_src": "https://placekitten.com/200/300",
+    "alt": "Kitten",
+    "width": 200
+}
+</code></pre></div>
+<p dir="auto">Produces:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="&lt;img src=&quot;https://placekitten.com/200/300&quot;
+    alt=&quot;Kitten&quot; width=&quot;200&quot;&gt;"><pre class="notranslate"><code>&lt;img src="https://placekitten.com/200/300"
+    alt="Kitten" width="200"&gt;
+</code></pre></div>
+<ul dir="auto">
+<li><a href="https://datasette-json-html.datasette.io/demo?sql=select+%27%7B%0D%0A++++%22img_src%22%3A+%22https%3A%2F%2Fplacekitten.com%2F200%2F300%22%2C%0D%0A++++%22alt%22%3A+%22Kitten%22%2C%0D%0A++++%22width%22%3A+200%0D%0A%7D%27" rel="nofollow">Literal image demo</a></li>
+</ul>
+<p dir="auto">The <code>href</code> key will cause the image to be wrapped in a link:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="{
+    &quot;img_src&quot;: &quot;https://placekitten.com/200/300&quot;,
+    &quot;href&quot;: &quot;http://www.example.com&quot;
+}"><pre class="notranslate"><code>{
+    "img_src": "https://placekitten.com/200/300",
+    "href": "http://www.example.com"
+}
+</code></pre></div>
+<p dir="auto">Produces:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="&lt;a href=&quot;http://www.example.com&quot;&gt;
+    &lt;img src=&quot;https://placekitten.com/200/300&quot;&gt;
+&lt;/a&gt;"><pre class="notranslate"><code>&lt;a href="http://www.example.com"&gt;
+    &lt;img src="https://placekitten.com/200/300"&gt;
+&lt;/a&gt;
+</code></pre></div>
+<p dir="auto">The <code>caption</code> key wraps everything in a fancy figure/figcaption block:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="{
+    &quot;img_src&quot;: &quot;https://placekitten.com/200/300&quot;,
+    &quot;caption&quot;: &quot;Kitten caption&quot;
+}"><pre class="notranslate"><code>{
+    "img_src": "https://placekitten.com/200/300",
+    "caption": "Kitten caption"
+}
+</code></pre></div>
+<p dir="auto">Produces:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="&lt;figure&gt;
+    &lt;img src=&quot;https://placekitten.com/200/300&quot;&gt;&lt;/a&gt;
+    &lt;figcaption&gt;Kitten caption&lt;/figcaption&gt;
+&lt;/figure&gt;"><pre class="notranslate"><code>&lt;figure&gt;
+    &lt;img src="https://placekitten.com/200/300"&gt;&lt;/a&gt;
+    &lt;figcaption&gt;Kitten caption&lt;/figcaption&gt;
+&lt;/figure&gt;
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Preformatted text</h2><a id="user-content-preformatted-text" class="anchor" aria-label="Permalink: Preformatted text" href="#preformatted-text"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">You can use <code>{"pre": "text"}</code> to render text in a <code>&lt;pre&gt;</code> HTML tag:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="{
+    &quot;pre&quot;: &quot;This\nhas\nnewlines&quot;
+}"><pre class="notranslate"><code>{
+    "pre": "This\nhas\nnewlines"
+}
+</code></pre></div>
+<p dir="auto">Produces:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="&lt;pre&gt;This
+has
+newlines&lt;/pre&gt;"><pre class="notranslate"><code>&lt;pre&gt;This
+has
+newlines&lt;/pre&gt;
+</code></pre></div>
+<p dir="auto">If the value attached to the <code>"pre"</code> key is itself a JSON object, that JSON will be pretty-printed:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="{
+    &quot;pre&quot;: {
+        &quot;this&quot;: {
+            &quot;object&quot;: [&quot;is&quot;, &quot;nested&quot;]
+        }
+    }
+}"><pre class="notranslate"><code>{
+    "pre": {
+        "this": {
+            "object": ["is", "nested"]
+        }
+    }
+}
+</code></pre></div>
+<p dir="auto">Produces:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="&lt;pre&gt;{
+  &amp;#34;this&amp;#34;: {
+    &amp;#34;object&amp;#34;: [
+      &amp;#34;is&amp;#34;,
+      &amp;#34;nested&amp;#34;
+    ]
+  }
+}&lt;/pre&gt;"><pre class="notranslate"><code>&lt;pre&gt;{
+  &amp;#34;this&amp;#34;: {
+    &amp;#34;object&amp;#34;: [
+      &amp;#34;is&amp;#34;,
+      &amp;#34;nested&amp;#34;
+    ]
+  }
+}&lt;/pre&gt;
+</code></pre></div>
+<ul dir="auto">
+<li><a href="https://datasette-json-html.datasette.io/demo?sql=select+%27%7B%0D%0A++++%22pre%22%3A+%7B%0D%0A++++++++%22this%22%3A+%7B%0D%0A++++++++++++%22object%22%3A+%5B%22is%22%2C+%22nested%22%5D%0D%0A++++++++%7D%0D%0A++++%7D%0D%0A%7D%27" rel="nofollow">Preformatted text with JSON demo</a></li>
+<li><a href="https://datasette-json-html.datasette.io/demo?sql=WITH+RECURSIVE%0D%0A++xaxis%28x%29+AS+%28VALUES%28-2.0%29+UNION+ALL+SELECT+x%2B0.05+FROM+xaxis+WHERE+x%3C1.2%29%2C%0D%0A++yaxis%28y%29+AS+%28VALUES%28-1.0%29+UNION+ALL+SELECT+y%2B0.1+FROM+yaxis+WHERE+y%3C1.0%29%2C%0D%0A++m%28iter%2C+cx%2C+cy%2C+x%2C+y%29+AS+%28%0D%0A++++SELECT+0%2C+x%2C+y%2C+0.0%2C+0.0+FROM+xaxis%2C+yaxis%0D%0A++++UNION+ALL%0D%0A++++SELECT+iter%2B1%2C+cx%2C+cy%2C+x*x-y*y+%2B+cx%2C+2.0*x*y+%2B+cy+FROM+m+%0D%0A+++++WHERE+%28x*x+%2B+y*y%29+%3C+4.0+AND+iter%3C28%0D%0A++%29%2C%0D%0A++m2%28iter%2C+cx%2C+cy%29+AS+%28%0D%0A++++SELECT+max%28iter%29%2C+cx%2C+cy+FROM+m+GROUP+BY+cx%2C+cy%0D%0A++%29%2C%0D%0A++a%28t%29+AS+%28%0D%0A++++SELECT+group_concat%28+substr%28%27+.%2B*%23%27%2C+1%2Bmin%28iter%2F7%2C4%29%2C+1%29%2C+%27%27%29+%0D%0A++++FROM+m2+GROUP+BY+cy%0D%0A++%29%0D%0ASELECT+json_object%28%27pre%27%2C+group_concat%28rtrim%28t%29%2Cx%270a%27%29%29+FROM+a%3B" rel="nofollow">Preformatted text demo showing the Mandelbrot Set</a> using <a href="https://www.sqlite.org/lang_with.html#outlandish_recursive_query_examples" rel="nofollow">this example</a> from the SQLite documentation</li>
+</ul>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Using these with SQLite JSON functions</h2><a id="user-content-using-these-with-sqlite-json-functions" class="anchor" aria-label="Permalink: Using these with SQLite JSON functions" href="#using-these-with-sqlite-json-functions"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The most powerful way to make use of this plugin is in conjunction with SQLite's <a href="https://www.sqlite.org/json1.html" rel="nofollow">JSON functions</a>. For example:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="select json_object(
+    &quot;href&quot;, &quot;https://simonwillison.net/&quot;,
+    &quot;label&quot;, &quot;Simon Willison&quot;
+);"><pre class="notranslate"><code>select json_object(
+    "href", "https://simonwillison.net/",
+    "label", "Simon Willison"
+);
+</code></pre></div>
+<ul dir="auto">
+<li><a href="https://datasette-json-html.datasette.io/demo?sql=select+json_object%28%0D%0A++++%22href%22%2C+%22https%3A%2F%2Fsimonwillison.net%2F%22%2C%0D%0A++++%22label%22%2C+%22Simon+Willison%22%0D%0A%29%3B" rel="nofollow">json_object() link demo</a></li>
+</ul>
+<p dir="auto">You can use these functions to construct JSON objects that work with the plugin from data in a table:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="select id, json_object(
+    &quot;href&quot;, url, &quot;label&quot;, text
+) from mytable;"><pre class="notranslate"><code>select id, json_object(
+    "href", url, "label", text
+) from mytable;
+</code></pre></div>
+<ul dir="auto">
+<li><a href="https://datasette-json-html.datasette.io/demo?sql=select+json_object%28%22href%22%2C+url%2C+%22label%22%2C+package%2C+%22title%22%2C+package+%7C%7C+%22+%22+%7C%7C+url%29+as+package+from+packages" rel="nofollow">Demo that builds links against a table</a></li>
+</ul>
+<p dir="auto">The <code>json_group_array()</code> function is an aggregate function similar to <code>group_concat()</code> - it allows you to construct lists of JSON objects in conjunction with a <code>GROUP BY</code> clause.</p>
+<p dir="auto">This means you can use it to construct dynamic lists of links, for example:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="select
+    substr(package, 0, 12) as prefix,
+    json_group_array(
+        json_object(
+            &quot;href&quot;, url,
+            &quot;label&quot;, package
+        )
+    ) as package_links
+from packages
+group by prefix"><pre class="notranslate"><code>select
+    substr(package, 0, 12) as prefix,
+    json_group_array(
+        json_object(
+            "href", url,
+            "label", package
+        )
+    ) as package_links
+from packages
+group by prefix
+</code></pre></div>
+<ul dir="auto">
+<li><a href="https://datasette-json-html.datasette.io/demo?sql=select%0D%0A++++substr%28package%2C+0%2C+12%29+as+prefix%2C%0D%0A++++json_group_array%28%0D%0A++++++++json_object%28%0D%0A++++++++++++%22href%22%2C+url%2C%0D%0A++++++++++++%22label%22%2C+package%0D%0A++++++++%29%0D%0A++++%29+as+package_links%0D%0Afrom+packages%0D%0Agroup+by+prefix" rel="nofollow">Demo of json_group_array()</a></li>
+</ul>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">The <code>urllib_quote_plus()</code> SQL function</h2><a id="user-content-the-urllib_quote_plus-sql-function" class="anchor" aria-label="Permalink: The urllib_quote_plus() SQL function" href="#the-urllib_quote_plus-sql-function"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Since this plugin is designed to be used with SQL that constructs the underlying JSON structure, it is likely you will need to construct dynamic URLs from results returned by a SQL query.</p>
+<p dir="auto">This plugin registers a custom SQLite function called <code>urllib_quote_plus()</code> to help you do that. It lets you use Python's <a href="https://docs.python.org/3/library/urllib.parse.html#urllib.parse.quote_plus" rel="nofollow">urllib.parse.quote_plus() function</a> from within a SQL query.</p>
+<p dir="auto">Here's an example of how you might use it:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="select id, json_object(
+    &quot;href&quot;,
+    &quot;/mydatabase/other_table?_search=&quot; || urllib_quote_plus(text),
+    &quot;label&quot;, text
+) from mytable;"><pre class="notranslate"><code>select id, json_object(
+    "href",
+    "/mydatabase/other_table?_search=" || urllib_quote_plus(text),
+    "label", text
+) from mytable;
+</code></pre></div>
+</article></div>

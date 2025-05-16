@@ -1,0 +1,117 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">datasette-bplist</h1><a id="user-content-datasette-bplist" class="anchor" aria-label="Permalink: datasette-bplist" href="#datasette-bplist"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://pypi.org/project/datasette-bplist/" rel="nofollow"><img src="https://camo.githubusercontent.com/bc728f100110ba61f365e2315f1aaa38f49c56c58da9b8fe4a1770e3a8ae6778/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f6461746173657474652d62706c6973742e737667" alt="PyPI" data-canonical-src="https://img.shields.io/pypi/v/datasette-bplist.svg" style="max-width: 100%;"></a>
+<a href="https://circleci.com/gh/simonw/datasette-bplist" rel="nofollow"><img src="https://camo.githubusercontent.com/eb6376ad0af308a8d0c21c94bf450734e5b4ed63edb8901bdc45ae39ffcde84b/68747470733a2f2f636972636c6563692e636f6d2f67682f73696d6f6e772f6461746173657474652d62706c6973742e7376673f7374796c653d737667" alt="CircleCI" data-canonical-src="https://circleci.com/gh/simonw/datasette-bplist.svg?style=svg" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/datasette-bplist/blob/master/LICENSE"><img src="https://camo.githubusercontent.com/c355f200ea90fddaa407b6eaab303663a669248ea3ca7b1fcf77dbe04ff5f48c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d417061636865253230322e302d626c75652e737667" alt="License" data-canonical-src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" style="max-width: 100%;"></a></p>
+<p dir="auto">Datasette plugin for working with Apple's <a href="https://en.wikipedia.org/wiki/Property_list" rel="nofollow">binary plist</a> format.</p>
+<p dir="auto">This plugin adds two features: a display hook and a SQL function.</p>
+<p dir="auto">The display hook will detect any database values that are encoded using the binary plist format. It will decode them, convert them into JSON and display them pretty-printed in the Datasette UI.</p>
+<p dir="auto">The SQL function <code>bplist_to_json(value)</code> can be used inside a SQL query to convert a binary plist value into a JSON string. This can then be used with SQLite's <code>json_extract()</code> function or with the <a href="https://github.com/simonw/datasette-jq">datasette-jq</a> plugin to further analyze that data as part of a SQL query.</p>
+<p dir="auto">Install this plugin in the same environment as Datasette to enable this new functionality:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pip install datasette-bplist"><pre class="notranslate"><code>pip install datasette-bplist
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Trying it out</h2><a id="user-content-trying-it-out" class="anchor" aria-label="Permalink: Trying it out" href="#trying-it-out"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">If you use a Mac you already have plenty of SQLite databases that contain binary plist data.</p>
+<p dir="auto">One example is the database that powers the Apple Photos app.</p>
+<p dir="auto">This database tends to be locked, so you will need to create a copy of the database in order to run queries against it:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="cp ~/Pictures/Photos\ Library.photoslibrary/database/photos.db /tmp/photos.db"><pre class="notranslate"><code>cp ~/Pictures/Photos\ Library.photoslibrary/database/photos.db /tmp/photos.db
+</code></pre></div>
+<p dir="auto">The database also makes use of custom SQLite extensions which prevent it from opening in Datasette.</p>
+<p dir="auto">You can work around this by exporting the data that you want to experiment with into a new SQLite file.</p>
+<p dir="auto">I recommend trying this plugin against the <code>RKMaster_dataNote</code> table, which contains plist-encoded EXIF metadata about the photos you have taken.</p>
+<p dir="auto">You can export that table into a fresh database like so:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="sqlite3 /tmp/photos.db &quot;.dump RKMaster_dataNote&quot; | sqlite3 /tmp/exif.db"><pre class="notranslate"><code>sqlite3 /tmp/photos.db ".dump RKMaster_dataNote" | sqlite3 /tmp/exif.db
+</code></pre></div>
+<p dir="auto">Now run <code>datasette /tmp/exif.db</code> and you can start trying out the plugin.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Using the bplist_to_json() SQL function</h2><a id="user-content-using-the-bplist_to_json-sql-function" class="anchor" aria-label="Permalink: Using the bplist_to_json() SQL function" href="#using-the-bplist_to_json-sql-function"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Once you have the <code>exif.db</code> demo working, you can try the <code>bplist_to_json()</code> SQL function.</p>
+<p dir="auto">Here's a query that shows the camera lenses you have used the most often to take photos:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="select
+    json_extract(
+        bplist_to_json(value),
+        &quot;$.{Exif}.LensModel&quot;
+    ) as lens,
+    count(*) as n
+from RKMaster_dataNote
+group by lens
+order by n desc;"><pre class="notranslate"><code>select
+    json_extract(
+        bplist_to_json(value),
+        "$.{Exif}.LensModel"
+    ) as lens,
+    count(*) as n
+from RKMaster_dataNote
+group by lens
+order by n desc;
+</code></pre></div>
+<p dir="auto">If you have a large number of photos this query can take a long time to execute, so you may need to increase the SQL time limit enforced by Datasette like so:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ datasette /tmp/exif.db \
+    --config sql_time_limit_ms:10000"><pre class="notranslate"><code>$ datasette /tmp/exif.db \
+    --config sql_time_limit_ms:10000
+</code></pre></div>
+<p dir="auto">Here's another query, showing the time at which you took every photo in your library which is classified as as screenshot:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="select
+    attachedToId,
+    json_extract(
+        bplist_to_json(value),
+        &quot;$.{Exif}.DateTimeOriginal&quot;
+    )
+from RKMaster_dataNote
+where
+    json_extract(
+        bplist_to_json(value),
+        &quot;$.{Exif}.UserComment&quot;
+    ) = &quot;Screenshot&quot;"><pre class="notranslate"><code>select
+    attachedToId,
+    json_extract(
+        bplist_to_json(value),
+        "$.{Exif}.DateTimeOriginal"
+    )
+from RKMaster_dataNote
+where
+    json_extract(
+        bplist_to_json(value),
+        "$.{Exif}.UserComment"
+    ) = "Screenshot"
+</code></pre></div>
+<p dir="auto">And if you install the <a href="https://github.com/simonw/datasette-cluster-map">datasette-cluster-map</a> plugin, this query will show you a map of your most recent 1000 photos:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="select
+    *, 
+    json_extract(
+        bplist_to_json(value),
+        &quot;$.{GPS}.Latitude&quot;
+    ) as latitude,
+    -json_extract(
+        bplist_to_json(value),
+        &quot;$.{GPS}.Longitude&quot;
+    ) as longitude,
+    json_extract(
+        bplist_to_json(value),
+        &quot;$.{Exif}.DateTimeOriginal&quot;
+    ) as datetime
+from
+    RKMaster_dataNote
+where
+    latitude is not null
+order by
+    attachedToId desc"><pre class="notranslate"><code>select
+    *, 
+    json_extract(
+        bplist_to_json(value),
+        "$.{GPS}.Latitude"
+    ) as latitude,
+    -json_extract(
+        bplist_to_json(value),
+        "$.{GPS}.Longitude"
+    ) as longitude,
+    json_extract(
+        bplist_to_json(value),
+        "$.{Exif}.DateTimeOriginal"
+    ) as datetime
+from
+    RKMaster_dataNote
+where
+    latitude is not null
+order by
+    attachedToId desc
+</code></pre></div>
+</article></div>

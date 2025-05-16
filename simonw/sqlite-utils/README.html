@@ -1,0 +1,112 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">sqlite-utils</h1><a id="user-content-sqlite-utils" class="anchor" aria-label="Permalink: sqlite-utils" href="#sqlite-utils"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://pypi.org/project/sqlite-utils/" rel="nofollow"><img src="https://camo.githubusercontent.com/f0fdc22916d7814f085f303a7e71af95a03bb3443467f9ea1a33d6df693a3bb6/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f73716c6974652d7574696c732e737667" alt="PyPI" data-canonical-src="https://img.shields.io/pypi/v/sqlite-utils.svg" style="max-width: 100%;"></a>
+<a href="https://sqlite-utils.datasette.io/en/stable/changelog.html" rel="nofollow"><img src="https://camo.githubusercontent.com/168846796f4f720b7e88978c1e677781a14f74c7940886a6f67aed4419977abe/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f72656c656173652f73696d6f6e772f73716c6974652d7574696c733f696e636c7564655f70726572656c6561736573266c6162656c3d6368616e67656c6f67" alt="Changelog" data-canonical-src="https://img.shields.io/github/v/release/simonw/sqlite-utils?include_prereleases&amp;label=changelog" style="max-width: 100%;"></a>
+<a href="https://pypi.org/project/sqlite-utils/" rel="nofollow"><img src="https://camo.githubusercontent.com/62c68f7db551b609c8b020fc1072c2eddbb2e59ac33f30b6eb4a931e9f7d7dcf/68747470733a2f2f696d672e736869656c64732e696f2f707970692f707976657273696f6e732f73716c6974652d7574696c732e7376673f6c6f676f3d707974686f6e266c6f676f436f6c6f723d7768697465" alt="Python 3.x" data-canonical-src="https://img.shields.io/pypi/pyversions/sqlite-utils.svg?logo=python&amp;logoColor=white" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/sqlite-utils/actions?query=workflow%3ATest"><img src="https://github.com/simonw/sqlite-utils/workflows/Test/badge.svg" alt="Tests" style="max-width: 100%;"></a>
+<a href="http://sqlite-utils.datasette.io/en/stable/?badge=stable" rel="nofollow"><img src="https://camo.githubusercontent.com/ed6f39d15e1e159f94594cc8e0a89d064b28a598bdb1134dd920c254da75b541/68747470733a2f2f72656164746865646f63732e6f72672f70726f6a656374732f73716c6974652d7574696c732f62616467652f3f76657273696f6e3d737461626c65" alt="Documentation Status" data-canonical-src="https://readthedocs.org/projects/sqlite-utils/badge/?version=stable" style="max-width: 100%;"></a>
+<a href="https://codecov.io/gh/simonw/sqlite-utils" rel="nofollow"><img src="https://camo.githubusercontent.com/c748046f78d5cb475ef7fa682b9d2638427d5fb5ec085109e5890c5187e76b70/68747470733a2f2f636f6465636f762e696f2f67682f73696d6f6e772f73716c6974652d7574696c732f6272616e63682f6d61696e2f67726170682f62616467652e737667" alt="codecov" data-canonical-src="https://codecov.io/gh/simonw/sqlite-utils/branch/main/graph/badge.svg" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/sqlite-utils/blob/main/LICENSE"><img src="https://camo.githubusercontent.com/c355f200ea90fddaa407b6eaab303663a669248ea3ca7b1fcf77dbe04ff5f48c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d417061636865253230322e302d626c75652e737667" alt="License" data-canonical-src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" style="max-width: 100%;"></a>
+<a href="https://discord.gg/Ass7bCAMDw" rel="nofollow"><img src="https://camo.githubusercontent.com/94e396359356f1b1dd8fed242a2f694cb88a3b94a9eef104404225094357e912/68747470733a2f2f696d672e736869656c64732e696f2f646973636f72642f3832333937313238363330383335363135373f6c6162656c3d646973636f7264" alt="discord" data-canonical-src="https://img.shields.io/discord/823971286308356157?label=discord" style="max-width: 100%;"></a></p>
+<p dir="auto">Python CLI utility and library for manipulating SQLite databases.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Some feature highlights</h2><a id="user-content-some-feature-highlights" class="anchor" aria-label="Permalink: Some feature highlights" href="#some-feature-highlights"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li><a href="https://sqlite-utils.datasette.io/en/stable/cli.html#inserting-json-data" rel="nofollow">Pipe JSON</a> (or <a href="https://sqlite-utils.datasette.io/en/stable/cli.html#inserting-csv-or-tsv-data" rel="nofollow">CSV or TSV</a>) directly into a new SQLite database file, automatically creating a table with the appropriate schema</li>
+<li><a href="https://sqlite-utils.datasette.io/en/stable/cli.html#querying-data-directly-using-an-in-memory-database" rel="nofollow">Run in-memory SQL queries</a>, including joins, directly against data in CSV, TSV or JSON files and view the results</li>
+<li><a href="https://sqlite-utils.datasette.io/en/stable/cli.html#configuring-full-text-search" rel="nofollow">Configure SQLite full-text search</a> against your database tables and run search queries against them, ordered by relevance</li>
+<li>Run <a href="https://sqlite-utils.datasette.io/en/stable/cli.html#transforming-tables" rel="nofollow">transformations against your tables</a> to make schema changes that SQLite <code>ALTER TABLE</code> does not directly support, such as changing the type of a column</li>
+<li><a href="https://sqlite-utils.datasette.io/en/stable/cli.html#extracting-columns-into-a-separate-table" rel="nofollow">Extract columns</a> into separate tables to better normalize your existing data</li>
+<li><a href="https://sqlite-utils.datasette.io/en/stable/plugins.html" rel="nofollow">Install plugins</a> to add custom SQL functions and additional features</li>
+</ul>
+<p dir="auto">Read more on my blog, in this series of posts on <a href="https://simonwillison.net/series/sqlite-utils-features/" rel="nofollow">New features in sqlite-utils</a> and other <a href="https://simonwillison.net/tags/sqliteutils/" rel="nofollow">entries tagged sqliteutils</a>.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Installation</h2><a id="user-content-installation" class="anchor" aria-label="Permalink: Installation" href="#installation"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pip install sqlite-utils"><pre class="notranslate"><code>pip install sqlite-utils
+</code></pre></div>
+<p dir="auto">Or if you use <a href="https://brew.sh/" rel="nofollow">Homebrew</a> for macOS:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="brew install sqlite-utils"><pre class="notranslate"><code>brew install sqlite-utils
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Using as a CLI tool</h2><a id="user-content-using-as-a-cli-tool" class="anchor" aria-label="Permalink: Using as a CLI tool" href="#using-as-a-cli-tool"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Now you can do things with the CLI utility like this:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ sqlite-utils memory dogs.csv &quot;select * from t&quot;
+[{&quot;id&quot;: 1, &quot;age&quot;: 4, &quot;name&quot;: &quot;Cleo&quot;},
+ {&quot;id&quot;: 2, &quot;age&quot;: 2, &quot;name&quot;: &quot;Pancakes&quot;}]
+
+$ sqlite-utils insert dogs.db dogs dogs.csv --csv
+[####################################]  100%
+
+$ sqlite-utils tables dogs.db --counts
+[{&quot;table&quot;: &quot;dogs&quot;, &quot;count&quot;: 2}]
+
+$ sqlite-utils dogs.db &quot;select id, name from dogs&quot;
+[{&quot;id&quot;: 1, &quot;name&quot;: &quot;Cleo&quot;},
+ {&quot;id&quot;: 2, &quot;name&quot;: &quot;Pancakes&quot;}]
+
+$ sqlite-utils dogs.db &quot;select * from dogs&quot; --csv
+id,age,name
+1,4,Cleo
+2,2,Pancakes
+
+$ sqlite-utils dogs.db &quot;select * from dogs&quot; --table
+  id    age  name
+----  -----  --------
+   1      4  Cleo
+   2      2  Pancakes"><pre class="notranslate"><code>$ sqlite-utils memory dogs.csv "select * from t"
+[{"id": 1, "age": 4, "name": "Cleo"},
+ {"id": 2, "age": 2, "name": "Pancakes"}]
+
+$ sqlite-utils insert dogs.db dogs dogs.csv --csv
+[####################################]  100%
+
+$ sqlite-utils tables dogs.db --counts
+[{"table": "dogs", "count": 2}]
+
+$ sqlite-utils dogs.db "select id, name from dogs"
+[{"id": 1, "name": "Cleo"},
+ {"id": 2, "name": "Pancakes"}]
+
+$ sqlite-utils dogs.db "select * from dogs" --csv
+id,age,name
+1,4,Cleo
+2,2,Pancakes
+
+$ sqlite-utils dogs.db "select * from dogs" --table
+  id    age  name
+----  -----  --------
+   1      4  Cleo
+   2      2  Pancakes
+</code></pre></div>
+<p dir="auto">You can import JSON data into a new database table like this:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ curl https://api.github.com/repos/simonw/sqlite-utils/releases \
+    | sqlite-utils insert releases.db releases - --pk id"><pre class="notranslate"><code>$ curl https://api.github.com/repos/simonw/sqlite-utils/releases \
+    | sqlite-utils insert releases.db releases - --pk id
+</code></pre></div>
+<p dir="auto">Or for data in a CSV file:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ sqlite-utils insert dogs.db dogs dogs.csv --csv"><pre class="notranslate"><code>$ sqlite-utils insert dogs.db dogs dogs.csv --csv
+</code></pre></div>
+<p dir="auto"><code>sqlite-utils memory</code> lets you import CSV or JSON data into an in-memory database and run SQL queries against it in a single command:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ cat dogs.csv | sqlite-utils memory - &quot;select name, age from stdin&quot;"><pre class="notranslate"><code>$ cat dogs.csv | sqlite-utils memory - "select name, age from stdin"
+</code></pre></div>
+<p dir="auto">See the <a href="https://sqlite-utils.datasette.io/en/stable/cli.html" rel="nofollow">full CLI documentation</a> for comprehensive coverage of many more commands.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Using as a library</h2><a id="user-content-using-as-a-library" class="anchor" aria-label="Permalink: Using as a library" href="#using-as-a-library"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">You can also <code>import sqlite_utils</code> and use it as a Python library like this:</p>
+<div class="highlight highlight-source-python notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="import sqlite_utils
+db = sqlite_utils.Database(&quot;demo_database.db&quot;)
+# This line creates a &quot;dogs&quot; table if one does not already exist:
+db[&quot;dogs&quot;].insert_all([
+    {&quot;id&quot;: 1, &quot;age&quot;: 4, &quot;name&quot;: &quot;Cleo&quot;},
+    {&quot;id&quot;: 2, &quot;age&quot;: 2, &quot;name&quot;: &quot;Pancakes&quot;}
+], pk=&quot;id&quot;)"><pre><span class="pl-k">import</span> <span class="pl-s1">sqlite_utils</span>
+<span class="pl-s1">db</span> <span class="pl-c1">=</span> <span class="pl-s1">sqlite_utils</span>.<span class="pl-c1">Database</span>(<span class="pl-s">"demo_database.db"</span>)
+<span class="pl-c"># This line creates a "dogs" table if one does not already exist:</span>
+<span class="pl-s1">db</span>[<span class="pl-s">"dogs"</span>].<span class="pl-c1">insert_all</span>([
+    {<span class="pl-s">"id"</span>: <span class="pl-c1">1</span>, <span class="pl-s">"age"</span>: <span class="pl-c1">4</span>, <span class="pl-s">"name"</span>: <span class="pl-s">"Cleo"</span>},
+    {<span class="pl-s">"id"</span>: <span class="pl-c1">2</span>, <span class="pl-s">"age"</span>: <span class="pl-c1">2</span>, <span class="pl-s">"name"</span>: <span class="pl-s">"Pancakes"</span>}
+], <span class="pl-s1">pk</span><span class="pl-c1">=</span><span class="pl-s">"id"</span>)</pre></div>
+<p dir="auto">Check out the <a href="https://sqlite-utils.datasette.io/en/stable/python-api.html" rel="nofollow">full library documentation</a> for everything else you can do with the Python library.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Related projects</h2><a id="user-content-related-projects" class="anchor" aria-label="Permalink: Related projects" href="#related-projects"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li><a href="https://datasette.io/" rel="nofollow">Datasette</a>: A tool for exploring and publishing data</li>
+<li><a href="https://github.com/simonw/csvs-to-sqlite">csvs-to-sqlite</a>: Convert CSV files into a SQLite database</li>
+<li><a href="https://github.com/simonw/db-to-sqlite">db-to-sqlite</a>: CLI tool for exporting a MySQL or PostgreSQL database as a SQLite file</li>
+<li><a href="https://dogsheep.github.io/" rel="nofollow">dogsheep</a>: A family of tools for personal analytics, built on top of <code>sqlite-utils</code></li>
+</ul>
+</article></div>

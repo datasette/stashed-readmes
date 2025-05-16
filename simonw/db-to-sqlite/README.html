@@ -1,0 +1,192 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">db-to-sqlite</h1><a id="user-content-db-to-sqlite" class="anchor" aria-label="Permalink: db-to-sqlite" href="#db-to-sqlite"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://pypi.python.org/pypi/db-to-sqlite" rel="nofollow"><img src="https://camo.githubusercontent.com/4745ee4e3efcb2d58ec635fa8b1845f6cae7fa75a617d903456e1b39cf45a01b/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f64622d746f2d73716c6974652e737667" alt="PyPI" data-canonical-src="https://img.shields.io/pypi/v/db-to-sqlite.svg" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/db-to-sqlite/releases"><img src="https://camo.githubusercontent.com/35a8d7d7ef60c27a3049b807c7c33b92bc96e0ee59481716ae793250c4131ee5/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f72656c656173652f73696d6f6e772f64622d746f2d73716c6974653f696e636c7564655f70726572656c6561736573266c6162656c3d6368616e67656c6f67" alt="Changelog" data-canonical-src="https://img.shields.io/github/v/release/simonw/db-to-sqlite?include_prereleases&amp;label=changelog" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/db-to-sqlite/actions?query=workflow%3ATest"><img src="https://github.com/simonw/db-to-sqlite/workflows/Test/badge.svg" alt="Tests" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/db-to-sqlite/blob/main/LICENSE"><img src="https://camo.githubusercontent.com/c355f200ea90fddaa407b6eaab303663a669248ea3ca7b1fcf77dbe04ff5f48c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d417061636865253230322e302d626c75652e737667" alt="License" data-canonical-src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" style="max-width: 100%;"></a></p>
+<p dir="auto">CLI tool for exporting tables or queries from any SQL database to a SQLite file.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Installation</h2><a id="user-content-installation" class="anchor" aria-label="Permalink: Installation" href="#installation"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Install from PyPI like so:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pip install db-to-sqlite"><pre class="notranslate"><code>pip install db-to-sqlite
+</code></pre></div>
+<p dir="auto">If you want to use it with MySQL, you can install the extra dependency like this:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pip install 'db-to-sqlite[mysql]'"><pre class="notranslate"><code>pip install 'db-to-sqlite[mysql]'
+</code></pre></div>
+<p dir="auto">Installing the <code>mysqlclient</code> library on OS X can be tricky - I've found <a href="https://gist.github.com/simonw/90ac0afd204cd0d6d9c3135c3888d116">this recipe</a> to work (run that before installing <code>db-to-sqlite</code>).</p>
+<p dir="auto">For PostgreSQL, use this:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pip install 'db-to-sqlite[postgresql]'"><pre class="notranslate"><code>pip install 'db-to-sqlite[postgresql]'
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Usage</h2><a id="user-content-usage" class="anchor" aria-label="Permalink: Usage" href="#usage"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="Usage: db-to-sqlite [OPTIONS] CONNECTION PATH
+
+  Load data from any database into SQLite.
+
+  PATH is a path to the SQLite file to create, e.c. /tmp/my_database.db
+
+  CONNECTION is a SQLAlchemy connection string, for example:
+
+      postgresql://localhost/my_database
+      postgresql://username:passwd@localhost/my_database
+
+      mysql://root@localhost/my_database
+      mysql://username:passwd@localhost/my_database
+
+  More: https://docs.sqlalchemy.org/en/13/core/engines.html#database-urls
+
+Options:
+  --version                     Show the version and exit.
+  --all                         Detect and copy all tables
+  --table TEXT                  Specific tables to copy
+  --skip TEXT                   When using --all skip these tables
+  --redact TEXT...              (table, column) pairs to redact with ***
+  --sql TEXT                    Optional SQL query to run
+  --output TEXT                 Table in which to save --sql query results
+  --pk TEXT                     Optional column to use as a primary key
+  --index-fks / --no-index-fks  Should foreign keys have indexes? Default on
+  -p, --progress                Show progress bar
+  --postgres-schema TEXT        PostgreSQL schema to use
+  --help                        Show this message and exit."><pre class="notranslate"><code>Usage: db-to-sqlite [OPTIONS] CONNECTION PATH
+
+  Load data from any database into SQLite.
+
+  PATH is a path to the SQLite file to create, e.c. /tmp/my_database.db
+
+  CONNECTION is a SQLAlchemy connection string, for example:
+
+      postgresql://localhost/my_database
+      postgresql://username:passwd@localhost/my_database
+
+      mysql://root@localhost/my_database
+      mysql://username:passwd@localhost/my_database
+
+  More: https://docs.sqlalchemy.org/en/13/core/engines.html#database-urls
+
+Options:
+  --version                     Show the version and exit.
+  --all                         Detect and copy all tables
+  --table TEXT                  Specific tables to copy
+  --skip TEXT                   When using --all skip these tables
+  --redact TEXT...              (table, column) pairs to redact with ***
+  --sql TEXT                    Optional SQL query to run
+  --output TEXT                 Table in which to save --sql query results
+  --pk TEXT                     Optional column to use as a primary key
+  --index-fks / --no-index-fks  Should foreign keys have indexes? Default on
+  -p, --progress                Show progress bar
+  --postgres-schema TEXT        PostgreSQL schema to use
+  --help                        Show this message and exit.
+</code></pre></div>
+<p dir="auto">For example, to save the content of the <code>blog_entry</code> table from a PostgreSQL database to a local file called <code>blog.db</code> you could do this:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="db-to-sqlite &quot;postgresql://localhost/myblog&quot; blog.db \
+    --table=blog_entry"><pre class="notranslate"><code>db-to-sqlite "postgresql://localhost/myblog" blog.db \
+    --table=blog_entry
+</code></pre></div>
+<p dir="auto">You can specify <code>--table</code> more than once.</p>
+<p dir="auto">You can also save the data from all of your tables, effectively creating a SQLite copy of your entire database. Any foreign key relationships will be detected and added to the SQLite database. For example:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="db-to-sqlite &quot;postgresql://localhost/myblog&quot; blog.db \
+    --all"><pre class="notranslate"><code>db-to-sqlite "postgresql://localhost/myblog" blog.db \
+    --all
+</code></pre></div>
+<p dir="auto">When running <code>--all</code> you can specify tables to skip using <code>--skip</code>:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="db-to-sqlite &quot;postgresql://localhost/myblog&quot; blog.db \
+    --all \
+    --skip=django_migrations"><pre class="notranslate"><code>db-to-sqlite "postgresql://localhost/myblog" blog.db \
+    --all \
+    --skip=django_migrations
+</code></pre></div>
+<p dir="auto">If you want to save the results of a custom SQL query, do this:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="db-to-sqlite &quot;postgresql://localhost/myblog&quot; output.db \
+    --output=query_results \
+    --sql=&quot;select id, title, created from blog_entry&quot; \
+    --pk=id"><pre class="notranslate"><code>db-to-sqlite "postgresql://localhost/myblog" output.db \
+    --output=query_results \
+    --sql="select id, title, created from blog_entry" \
+    --pk=id
+</code></pre></div>
+<p dir="auto">The <code>--output</code> option specifies the table that should contain the results of the query.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Using db-to-sqlite with PostgreSQL schemas</h2><a id="user-content-using-db-to-sqlite-with-postgresql-schemas" class="anchor" aria-label="Permalink: Using db-to-sqlite with PostgreSQL schemas" href="#using-db-to-sqlite-with-postgresql-schemas"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">If the tables you want to copy from your PostgreSQL database aren't in the default schema, you can specify an alternate one with the <code>--postgres-schema</code> option:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="db-to-sqlite &quot;postgresql://localhost/myblog&quot; blog.db \
+    --all \
+    --postgres-schema my_schema"><pre class="notranslate"><code>db-to-sqlite "postgresql://localhost/myblog" blog.db \
+    --all \
+    --postgres-schema my_schema
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Using db-to-sqlite with MS SQL</h2><a id="user-content-using-db-to-sqlite-with-ms-sql" class="anchor" aria-label="Permalink: Using db-to-sqlite with MS SQL" href="#using-db-to-sqlite-with-ms-sql"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The best way to get the connection string needed for the MS SQL connections below is to use urllib from the Standard Library as below</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="params = urllib.parse.quote_plus(
+    &quot;DRIVER={SQL Server Native Client 11.0};&quot;
+    &quot;SERVER=localhost;&quot;
+    &quot;DATABASE=my_database;&quot;
+    &quot;Trusted_Connection=yes;&quot;
+)"><pre class="notranslate"><code>params = urllib.parse.quote_plus(
+    "DRIVER={SQL Server Native Client 11.0};"
+    "SERVER=localhost;"
+    "DATABASE=my_database;"
+    "Trusted_Connection=yes;"
+)
+</code></pre></div>
+<p dir="auto">The above will resolve to</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="DRIVER%3D%7BSQL+Server+Native+Client+11.0%7D%3B+SERVER%3Dlocalhost%3B+DATABASE%3Dmy_database%3B+Trusted_Connection%3Dyes"><pre class="notranslate"><code>DRIVER%3D%7BSQL+Server+Native+Client+11.0%7D%3B+SERVER%3Dlocalhost%3B+DATABASE%3Dmy_database%3B+Trusted_Connection%3Dyes
+</code></pre></div>
+<p dir="auto">You can then use the string above in the odbc_connect below</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="mssql+pyodbc:///?odbc_connect=DRIVER%3D%7BSQL+Server+Native+Client+11.0%7D%3B+SERVER%3Dlocalhost%3B+DATABASE%3Dmy_database%3B+Trusted_Connection%3Dyes
+mssql+pyodbc:///?odbc_connect=DRIVER%3D%7BSQL+Server+Native+Client+11.0%7D%3B+SERVER%3Dlocalhost%3B+DATABASE%3Dmy_database%3B+UID%3Dusername%3B+PWD%3Dpasswd"><pre class="notranslate"><code>mssql+pyodbc:///?odbc_connect=DRIVER%3D%7BSQL+Server+Native+Client+11.0%7D%3B+SERVER%3Dlocalhost%3B+DATABASE%3Dmy_database%3B+Trusted_Connection%3Dyes
+mssql+pyodbc:///?odbc_connect=DRIVER%3D%7BSQL+Server+Native+Client+11.0%7D%3B+SERVER%3Dlocalhost%3B+DATABASE%3Dmy_database%3B+UID%3Dusername%3B+PWD%3Dpasswd
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Using db-to-sqlite with Heroku Postgres</h2><a id="user-content-using-db-to-sqlite-with-heroku-postgres" class="anchor" aria-label="Permalink: Using db-to-sqlite with Heroku Postgres" href="#using-db-to-sqlite-with-heroku-postgres"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">If you run an application on <a href="https://www.heroku.com/" rel="nofollow">Heroku</a> using their <a href="https://www.heroku.com/postgres" rel="nofollow">Postgres database product</a>, you can use the <code>heroku config</code> command to access a compatible connection string:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ heroku config --app myappname | grep HEROKU_POSTG
+HEROKU_POSTGRESQL_OLIVE_URL: postgres://username:password@ec2-xxx-xxx-xxx-x.compute-1.amazonaws.com:5432/dbname"><pre class="notranslate"><code>$ heroku config --app myappname | grep HEROKU_POSTG
+HEROKU_POSTGRESQL_OLIVE_URL: postgres://username:password@ec2-xxx-xxx-xxx-x.compute-1.amazonaws.com:5432/dbname
+</code></pre></div>
+<p dir="auto">You can pass this to <code>db-to-sqlite</code> to create a local SQLite database with the data from your Heroku instance.</p>
+<p dir="auto">You can even do this using a bash one-liner:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ db-to-sqlite $(heroku config --app myappname | grep HEROKU_POSTG | cut -d: -f 2-) \
+    /tmp/heroku.db --all -p
+1/23: django_migrations
+...
+17/23: blog_blogmark
+[####################################]  100%
+..."><pre class="notranslate"><code>$ db-to-sqlite $(heroku config --app myappname | grep HEROKU_POSTG | cut -d: -f 2-) \
+    /tmp/heroku.db --all -p
+1/23: django_migrations
+...
+17/23: blog_blogmark
+[####################################]  100%
+...
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Related projects</h2><a id="user-content-related-projects" class="anchor" aria-label="Permalink: Related projects" href="#related-projects"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li><a href="https://github.com/simonw/datasette">Datasette</a>: A tool for exploring and publishing data. Works great with SQLite files generated using <code>db-to-sqlite</code>.</li>
+<li><a href="https://github.com/simonw/sqlite-utils">sqlite-utils</a>: Python CLI utility and library for manipulating SQLite databases.</li>
+<li><a href="https://github.com/simonw/csvs-to-sqlite">csvs-to-sqlite</a>: Convert CSV files into a SQLite database.</li>
+</ul>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Development</h2><a id="user-content-development" class="anchor" aria-label="Permalink: Development" href="#development"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">To set up this tool locally, first checkout the code. Then create a new virtual environment:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="cd db-to-sqlite
+python3 -m venv venv
+source venv/bin/activate"><pre class="notranslate"><code>cd db-to-sqlite
+python3 -m venv venv
+source venv/bin/activate
+</code></pre></div>
+<p dir="auto">Or if you are using <code>pipenv</code>:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pipenv shell"><pre class="notranslate"><code>pipenv shell
+</code></pre></div>
+<p dir="auto">Now install the dependencies and test dependencies:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pip install -e '.[test]'"><pre class="notranslate"><code>pip install -e '.[test]'
+</code></pre></div>
+<p dir="auto">To run the tests:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pytest"><pre class="notranslate"><code>pytest
+</code></pre></div>
+<p dir="auto">This will skip tests against MySQL or PostgreSQL if you do not have their additional dependencies installed.</p>
+<p dir="auto">You can install those extra dependencies like so:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pip install -e '.[test_mysql,test_postgresql]'"><pre class="notranslate"><code>pip install -e '.[test_mysql,test_postgresql]'
+</code></pre></div>
+<p dir="auto">You can alternative use <code>pip install psycopg2-binary</code> if you cannot install the <code>psycopg2</code> dependency used by the <code>test_postgresql</code> extra.</p>
+<p dir="auto">See <a href="https://til.simonwillison.net/homebrew/mysql-homebrew" rel="nofollow">Running a MySQL server using Homebrew</a> for tips on running the tests against MySQL on macOS, including how to install the <code>mysqlclient</code> dependency.</p>
+<p dir="auto">The PostgreSQL and MySQL tests default to expecting to run against servers on localhost. You can use environment variables to point them at different test database servers:</p>
+<ul dir="auto">
+<li><code>MYSQL_TEST_DB_CONNECTION</code> - defaults to <code>mysql://root@localhost/test_db_to_sqlite</code></li>
+<li><code>POSTGRESQL_TEST_DB_CONNECTION</code> - defaults to <code>postgresql://localhost/test_db_to_sqlite</code></li>
+</ul>
+<p dir="auto">The database you indicate in the environment variable - <code>test_db_to_sqlite</code> by default - will be deleted and recreated on every test run.</p>
+</article></div>

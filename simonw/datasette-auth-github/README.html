@@ -1,0 +1,191 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">datasette-auth-github</h1><a id="user-content-datasette-auth-github" class="anchor" aria-label="Permalink: datasette-auth-github" href="#datasette-auth-github"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://pypi.org/project/datasette-auth-github/" rel="nofollow"><img src="https://camo.githubusercontent.com/4395dab5dc19c503996915fb14d29cccdfa028aa579541685b16125d873d7550/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f6461746173657474652d617574682d6769746875622e737667" alt="PyPI" data-canonical-src="https://img.shields.io/pypi/v/datasette-auth-github.svg" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/datasette-auth-github/releases"><img src="https://camo.githubusercontent.com/4d3d97a67f0b78d5fdbcb7f0bcdd912d673bfc34c2b0a3f66f1256dcd021d37b/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f72656c656173652f73696d6f6e772f6461746173657474652d617574682d6769746875623f696e636c7564655f70726572656c6561736573266c6162656c3d6368616e67656c6f67" alt="Changelog" data-canonical-src="https://img.shields.io/github/v/release/simonw/datasette-auth-github?include_prereleases&amp;label=changelog" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/datasette-auth-github/actions?query=workflow%3ATest"><img src="https://github.com/simonw/datasette-auth-github/workflows/Test/badge.svg" alt="Tests" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/datasette-auth-github/blob/main/LICENSE"><img src="https://camo.githubusercontent.com/c355f200ea90fddaa407b6eaab303663a669248ea3ca7b1fcf77dbe04ff5f48c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d417061636865253230322e302d626c75652e737667" alt="License" data-canonical-src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" style="max-width: 100%;"></a></p>
+<p dir="auto">Datasette plugin that authenticates users against GitHub.</p>
+
+<ul dir="auto">
+<li><a href="#setup-instructions">Setup instructions</a></li>
+<li><a href="#the-authenticated-actor">The authenticated actor</a></li>
+<li><a href="#restricting-access-to-specific-users">Restricting access to specific users</a></li>
+<li><a href="#restricting-access-to-specific-github-organizations-or-teams">Restricting access to specific GitHub organizations or teams</a></li>
+<li><a href="#what-to-do-if-a-user-is-removed-from-an-organization-or-team">What to do if a user is removed from an organization or team</a></li>
+</ul>
+
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Setup instructions</h2><a id="user-content-setup-instructions" class="anchor" aria-label="Permalink: Setup instructions" href="#setup-instructions"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li>Install the plugin: <code>datasette install datasette-auth-github</code></li>
+<li>Create a GitHub OAuth app: <a href="https://github.com/settings/applications/new">https://github.com/settings/applications/new</a></li>
+<li>Set the Authorization callback URL to <code>http://127.0.0.1:8001/-/github-auth-callback</code></li>
+<li>Create a <code>metadata.json</code> file with the following structure:</li>
+</ul>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    &quot;title&quot;: &quot;datasette-auth-github demo&quot;,
+    &quot;plugins&quot;: {
+        &quot;datasette-auth-github&quot;: {
+            &quot;client_id&quot;: {&quot;$env&quot;: &quot;GITHUB_CLIENT_ID&quot;},
+            &quot;client_secret&quot;: {&quot;$env&quot;: &quot;GITHUB_CLIENT_SECRET&quot;}
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"title"</span>: <span class="pl-s"><span class="pl-pds">"</span>datasette-auth-github demo<span class="pl-pds">"</span></span>,
+    <span class="pl-ent">"plugins"</span>: {
+        <span class="pl-ent">"datasette-auth-github"</span>: {
+            <span class="pl-ent">"client_id"</span>: {<span class="pl-ent">"$env"</span>: <span class="pl-s"><span class="pl-pds">"</span>GITHUB_CLIENT_ID<span class="pl-pds">"</span></span>},
+            <span class="pl-ent">"client_secret"</span>: {<span class="pl-ent">"$env"</span>: <span class="pl-s"><span class="pl-pds">"</span>GITHUB_CLIENT_SECRET<span class="pl-pds">"</span></span>}
+        }
+    }
+}</pre></div>
+<p dir="auto">Now you can start Datasette like this, passing in the secrets as environment variables:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ GITHUB_CLIENT_ID=XXX GITHUB_CLIENT_SECRET=YYY datasette \
+    fixtures.db -m metadata.json"><pre class="notranslate"><code>$ GITHUB_CLIENT_ID=XXX GITHUB_CLIENT_SECRET=YYY datasette \
+    fixtures.db -m metadata.json
+</code></pre></div>
+<p dir="auto">Note that hard-coding secrets in <code>metadata.json</code> is a bad idea as they will be visible to anyone who can navigate to <code>/-/metadata</code>. Instead, we use Datasette's mechanism for <a href="https://docs.datasette.io/en/stable/plugins.html#secret-configuration-values" rel="nofollow">adding secret plugin configuration options</a>.</p>
+<p dir="auto">By default anonymous users will still be able to interact with Datasette. If you wish all users to have to sign in with a GitHub account first, add this to your <code>metadata.json</code>:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    &quot;allow&quot;: {
+        &quot;id&quot;: &quot;*&quot;
+    },
+    &quot;plugins&quot;: {
+        &quot;datasette-auth-github&quot;: {
+            &quot;...&quot;: &quot;...&quot;
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"allow"</span>: {
+        <span class="pl-ent">"id"</span>: <span class="pl-s"><span class="pl-pds">"</span>*<span class="pl-pds">"</span></span>
+    },
+    <span class="pl-ent">"plugins"</span>: {
+        <span class="pl-ent">"datasette-auth-github"</span>: {
+            <span class="pl-ent">"..."</span>: <span class="pl-s"><span class="pl-pds">"</span>...<span class="pl-pds">"</span></span>
+        }
+    }
+}</pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">The authenticated actor</h2><a id="user-content-the-authenticated-actor" class="anchor" aria-label="Permalink: The authenticated actor" href="#the-authenticated-actor"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Visit <code>/-/actor</code> when signed in to see the shape of the authenticated actor. It should look something like this:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    &quot;actor&quot;: {
+        &quot;display&quot;: &quot;simonw&quot;,
+        &quot;gh_id&quot;: &quot;9599&quot;,
+        &quot;gh_name&quot;: &quot;Simon Willison&quot;,
+        &quot;gh_login&quot;: &quot;simonw&quot;,
+        &quot;gh_email&quot;: &quot;...&quot;,
+        &quot;gh_orgs&quot;: [
+            &quot;dogsheep&quot;,
+            &quot;datasette-project&quot;
+        ],
+        &quot;gh_teams&quot;: [
+            &quot;dogsheep/test&quot;
+        ]
+    }
+}"><pre>{
+    <span class="pl-ent">"actor"</span>: {
+        <span class="pl-ent">"display"</span>: <span class="pl-s"><span class="pl-pds">"</span>simonw<span class="pl-pds">"</span></span>,
+        <span class="pl-ent">"gh_id"</span>: <span class="pl-s"><span class="pl-pds">"</span>9599<span class="pl-pds">"</span></span>,
+        <span class="pl-ent">"gh_name"</span>: <span class="pl-s"><span class="pl-pds">"</span>Simon Willison<span class="pl-pds">"</span></span>,
+        <span class="pl-ent">"gh_login"</span>: <span class="pl-s"><span class="pl-pds">"</span>simonw<span class="pl-pds">"</span></span>,
+        <span class="pl-ent">"gh_email"</span>: <span class="pl-s"><span class="pl-pds">"</span>...<span class="pl-pds">"</span></span>,
+        <span class="pl-ent">"gh_orgs"</span>: [
+            <span class="pl-s"><span class="pl-pds">"</span>dogsheep<span class="pl-pds">"</span></span>,
+            <span class="pl-s"><span class="pl-pds">"</span>datasette-project<span class="pl-pds">"</span></span>
+        ],
+        <span class="pl-ent">"gh_teams"</span>: [
+            <span class="pl-s"><span class="pl-pds">"</span>dogsheep/test<span class="pl-pds">"</span></span>
+        ]
+    }
+}</pre></div>
+<p dir="auto">The <code>gh_orgs</code> and <code>gh_teams</code> properties will only be present if you used <code>load_teams</code> or <code>load_orgs</code>, documented below.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Restricting access to specific users</h2><a id="user-content-restricting-access-to-specific-users" class="anchor" aria-label="Permalink: Restricting access to specific users" href="#restricting-access-to-specific-users"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">You can use Datasette's <a href="https://docs.datasette.io/en/stable/authentication.html" rel="nofollow">permissions mechanism</a> to specify which user or users are allowed to access your instance. Here's how to restrict access to just GitHub user <code>simonw</code>:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    &quot;allow&quot;: {
+        &quot;gh_login&quot;: &quot;simonw&quot;
+    },
+    &quot;plugins&quot;: {
+        &quot;datasette-auth-github&quot;: {
+            &quot;...&quot;: &quot;...&quot;
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"allow"</span>: {
+        <span class="pl-ent">"gh_login"</span>: <span class="pl-s"><span class="pl-pds">"</span>simonw<span class="pl-pds">"</span></span>
+    },
+    <span class="pl-ent">"plugins"</span>: {
+        <span class="pl-ent">"datasette-auth-github"</span>: {
+            <span class="pl-ent">"..."</span>: <span class="pl-s"><span class="pl-pds">"</span>...<span class="pl-pds">"</span></span>
+        }
+    }
+}</pre></div>
+<p dir="auto">This <code>"allow"</code> block can be positioned at the database, table or query level instead: see <a href="https://docs.datasette.io/en/stable/authentication.html#configuring-permissions-in-metadata-json" rel="nofollow">Configuring permissions in metadata.json</a> for details.</p>
+<p dir="auto">Note that GitHub allows users to change their username, and it is possible for other people to claim old usernames. If you are concerned that your users may change their usernames you can key the allow blocks against GitHub user IDs instead, which do not change:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    &quot;allow&quot;: {
+        &quot;gh_id&quot;: &quot;9599&quot;
+    }
+}"><pre>{
+    <span class="pl-ent">"allow"</span>: {
+        <span class="pl-ent">"gh_id"</span>: <span class="pl-s"><span class="pl-pds">"</span>9599<span class="pl-pds">"</span></span>
+    }
+}</pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Restricting access to specific GitHub organizations or teams</h2><a id="user-content-restricting-access-to-specific-github-organizations-or-teams" class="anchor" aria-label="Permalink: Restricting access to specific GitHub organizations or teams" href="#restricting-access-to-specific-github-organizations-or-teams"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">You can also restrict access to users who are members of a specific GitHub organization.</p>
+<p dir="auto">You'll need to configure the plugin to check if the user is a member of that organization when they first sign in. You can do that using the <code>"load_orgs"</code> plugin configuration option.</p>
+<p dir="auto">Then you can use <code>"allow": {"gh_orgs": [...]}</code> to specify which organizations are allowed access.</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    &quot;plugins&quot;: {
+        &quot;datasette-auth-github&quot;: {
+            &quot;...&quot;: &quot;...&quot;,
+            &quot;load_orgs&quot;: [&quot;your-organization&quot;]
+        }
+    },
+    &quot;allow&quot;: {
+        &quot;gh_orgs&quot;: &quot;your-organization&quot;
+    }
+}"><pre>{
+    <span class="pl-ent">"plugins"</span>: {
+        <span class="pl-ent">"datasette-auth-github"</span>: {
+            <span class="pl-ent">"..."</span>: <span class="pl-s"><span class="pl-pds">"</span>...<span class="pl-pds">"</span></span>,
+            <span class="pl-ent">"load_orgs"</span>: [<span class="pl-s"><span class="pl-pds">"</span>your-organization<span class="pl-pds">"</span></span>]
+        }
+    },
+    <span class="pl-ent">"allow"</span>: {
+        <span class="pl-ent">"gh_orgs"</span>: <span class="pl-s"><span class="pl-pds">"</span>your-organization<span class="pl-pds">"</span></span>
+    }
+}</pre></div>
+<p dir="auto">If your organization is <a href="https://help.github.com/en/articles/organizing-members-into-teams">arranged into teams</a> you can restrict access to a specific team like this:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    &quot;plugins&quot;: {
+        &quot;datasette-auth-github&quot;: {
+            &quot;...&quot;: &quot;...&quot;,
+            &quot;load_teams&quot;: [
+                &quot;your-organization/staff&quot;,
+                &quot;your-organization/engineering&quot;,
+            ]
+        }
+    },
+    &quot;allows&quot;: {
+        &quot;gh_team&quot;: &quot;your-organization/engineering&quot;
+    }
+}"><pre>{
+    <span class="pl-ent">"plugins"</span>: {
+        <span class="pl-ent">"datasette-auth-github"</span>: {
+            <span class="pl-ent">"..."</span>: <span class="pl-s"><span class="pl-pds">"</span>...<span class="pl-pds">"</span></span>,
+            <span class="pl-ent">"load_teams"</span>: [
+                <span class="pl-s"><span class="pl-pds">"</span>your-organization/staff<span class="pl-pds">"</span></span>,
+                <span class="pl-s"><span class="pl-pds">"</span>your-organization/engineering<span class="pl-pds">"</span></span>,
+            ]
+        }
+    },
+    <span class="pl-ent">"allows"</span>: {
+        <span class="pl-ent">"gh_team"</span>: <span class="pl-s"><span class="pl-pds">"</span>your-organization/engineering<span class="pl-pds">"</span></span>
+    }
+}</pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">What to do if a user is removed from an organization or team</h2><a id="user-content-what-to-do-if-a-user-is-removed-from-an-organization-or-team" class="anchor" aria-label="Permalink: What to do if a user is removed from an organization or team" href="#what-to-do-if-a-user-is-removed-from-an-organization-or-team"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">A user's organization and team memberships are checked once, when they first sign in. Those teams and organizations are then persisted in the user's signed <code>ds_actor</code> cookie.</p>
+<p dir="auto">This means that if a user is removed from an organization or team but still has a Datasette cookie, they will still be able to access that Datasette instance.</p>
+<p dir="auto">You can remedy this by rotating the <code>DATASETTE_SECRET</code> environment variable any time you make changes to your GitHub organization members.</p>
+<p dir="auto">Changing this value will cause all of your existing users to be signed out, by invalidating their cookies. When they sign back in again their new memberships will be recorded in a new cookie.</p>
+<p dir="auto">See <a href="https://docs.datasette.io/en/stable/settings.html?highlight=secret#configuring-the-secret" rel="nofollow">Configuring the secret</a> in the Datasette documentation for more details.</p>
+</article></div>

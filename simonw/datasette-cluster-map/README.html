@@ -1,0 +1,183 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">datasette-cluster-map</h1><a id="user-content-datasette-cluster-map" class="anchor" aria-label="Permalink: datasette-cluster-map" href="#datasette-cluster-map"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://pypi.org/project/datasette-cluster-map/" rel="nofollow"><img src="https://camo.githubusercontent.com/660c153cf92a4cd1f0c7f75ca564eddacdd234d35a86f4a93741f8c21e71ca6b/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f6461746173657474652d636c75737465722d6d61702e737667" alt="PyPI" data-canonical-src="https://img.shields.io/pypi/v/datasette-cluster-map.svg" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/datasette-cluster-map/releases"><img src="https://camo.githubusercontent.com/eea756791168d49c4fb62707ac50e78daf47bbd0dd468e6415b4dd419adef305/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f72656c656173652f73696d6f6e772f6461746173657474652d636c75737465722d6d61703f696e636c7564655f70726572656c6561736573266c6162656c3d6368616e67656c6f67" alt="Changelog" data-canonical-src="https://img.shields.io/github/v/release/simonw/datasette-cluster-map?include_prereleases&amp;label=changelog" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/datasette-cluster-map/blob/main/LICENSE"><img src="https://camo.githubusercontent.com/c355f200ea90fddaa407b6eaab303663a669248ea3ca7b1fcf77dbe04ff5f48c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d417061636865253230322e302d626c75652e737667" alt="License" data-canonical-src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" style="max-width: 100%;"></a></p>
+<p dir="auto">A <a href="https://docs.datasette.io/en/stable/plugins.html" rel="nofollow">Datasette plugin</a> that detects tables with <code>latitude</code> and <code>longitude</code> columns and then plots them on a map using <a href="https://github.com/Leaflet/Leaflet.markercluster">Leaflet.markercluster</a>.</p>
+<p dir="auto">More about this project: <a href="https://simonwillison.net/2018/Apr/20/datasette-plugins/" rel="nofollow">Datasette plugins, and building a clustered map visualization</a>.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Demo</h2><a id="user-content-demo" class="anchor" aria-label="Permalink: Demo" href="#demo"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://global-power-plants.datasettes.com/global-power-plants/global-power-plants" rel="nofollow">global-power-plants.datasettes.com</a> hosts a demo of this plugin running against a database of 33,000 power plants around the world.</p>
+<p dir="auto"><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/25ada088b85ce62c018a3b5e2597f669b4bbd61e46e43d86ff5635f84cc4f0f5/68747470733a2f2f7374617469632e73696d6f6e77696c6c69736f6e2e6e65742f7374617469632f323032302f676c6f62616c2d706f7765722d706c616e74732e706e67"><img src="https://camo.githubusercontent.com/25ada088b85ce62c018a3b5e2597f669b4bbd61e46e43d86ff5635f84cc4f0f5/68747470733a2f2f7374617469632e73696d6f6e77696c6c69736f6e2e6e65742f7374617469632f323032302f676c6f62616c2d706f7765722d706c616e74732e706e67" alt="Cluster map demo" data-canonical-src="https://static.simonwillison.net/static/2020/global-power-plants.png" style="max-width: 100%;"></a></p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Installation</h2><a id="user-content-installation" class="anchor" aria-label="Permalink: Installation" href="#installation"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Run <code>datasette install datasette-cluster-map</code> to add this plugin to your Datasette virtual environment. Datasette will automatically load the plugin if it is installed in this way.</p>
+<p dir="auto">If you are deploying using the <code>datasette publish</code> command you can use the <code>--install</code> option:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="datasette publish cloudrun mydb.db --install=datasette-cluster-map"><pre class="notranslate"><code>datasette publish cloudrun mydb.db --install=datasette-cluster-map
+</code></pre></div>
+<p dir="auto">If any of your tables have one of the following pairs of columns a map will be automatically displayed:</p>
+<ul dir="auto">
+<li><code>latitude</code> and <code>longitude</code></li>
+<li><code>lat</code> and <code>lng</code></li>
+<li><code>lat</code> and <code>lon</code></li>
+<li><code>lat</code> and <code>long</code></li>
+<li><code>*_latitude</code> and <code>*_longitude</code></li>
+<li><code>*_lat</code> and <code>*_lng</code> for any of the three variants of <code>lng</code></li>
+</ul>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Configuration</h2><a id="user-content-configuration" class="anchor" aria-label="Permalink: Configuration" href="#configuration"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">If your columns are called something else you can configure the column names using <a href="https://docs.datasette.io/en/stable/plugins.html#plugin-configuration" rel="nofollow">plugin configuration</a> in a <code>metadata.json</code> file. For example, if all of your columns are called <code>xlat</code> and <code>xlng</code> you can create a <code>metadata.json</code> file like this:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    &quot;title&quot;: &quot;Regular metadata keys can go here too&quot;,
+    &quot;plugins&quot;: {
+        &quot;datasette-cluster-map&quot;: {
+            &quot;latitude_column&quot;: &quot;xlat&quot;,
+            &quot;longitude_column&quot;: &quot;xlng&quot;
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"title"</span>: <span class="pl-s"><span class="pl-pds">"</span>Regular metadata keys can go here too<span class="pl-pds">"</span></span>,
+    <span class="pl-ent">"plugins"</span>: {
+        <span class="pl-ent">"datasette-cluster-map"</span>: {
+            <span class="pl-ent">"latitude_column"</span>: <span class="pl-s"><span class="pl-pds">"</span>xlat<span class="pl-pds">"</span></span>,
+            <span class="pl-ent">"longitude_column"</span>: <span class="pl-s"><span class="pl-pds">"</span>xlng<span class="pl-pds">"</span></span>
+        }
+    }
+}</pre></div>
+<p dir="auto">Then run Datasette like this:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="datasette mydata.db -m metadata.json"><pre class="notranslate"><code>datasette mydata.db -m metadata.json
+</code></pre></div>
+<p dir="auto">This will configure the required column names for every database loaded by that Datasette instance.</p>
+<p dir="auto">If you want to customize the column names for just one table in one database, you can do something like this:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    &quot;databases&quot;: {
+        &quot;polar-bears&quot;: {
+            &quot;tables&quot;: {
+                &quot;USGS_WC_eartag_deployments_2009-2011&quot;: {
+                    &quot;plugins&quot;: {
+                        &quot;datasette-cluster-map&quot;: {
+                            &quot;latitude_column&quot;: &quot;Capture Latitude&quot;,
+                            &quot;longitude_column&quot;: &quot;Capture Longitude&quot;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"databases"</span>: {
+        <span class="pl-ent">"polar-bears"</span>: {
+            <span class="pl-ent">"tables"</span>: {
+                <span class="pl-ent">"USGS_WC_eartag_deployments_2009-2011"</span>: {
+                    <span class="pl-ent">"plugins"</span>: {
+                        <span class="pl-ent">"datasette-cluster-map"</span>: {
+                            <span class="pl-ent">"latitude_column"</span>: <span class="pl-s"><span class="pl-pds">"</span>Capture Latitude<span class="pl-pds">"</span></span>,
+                            <span class="pl-ent">"longitude_column"</span>: <span class="pl-s"><span class="pl-pds">"</span>Capture Longitude<span class="pl-pds">"</span></span>
+                        }
+                    }
+                }
+            }
+        }
+    }
+}</pre></div>
+<p dir="auto">You can also use a custom SQL query to rename those columns to <code>latitude</code> and <code>longitude</code>, <a href="https://polar-bears.now.sh/polar-bears?sql=select+*%2C%0D%0A++++%22Capture+Latitude%22+as+latitude%2C%0D%0A++++%22Capture+Longitude%22+as+longitude%0D%0Afrom+%5BUSGS_WC_eartag_deployments_2009-2011%5D" rel="nofollow">for example</a>:</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="select *,
+    &quot;Capture Latitude&quot; as latitude,
+    &quot;Capture Longitude&quot; as longitude
+from [USGS_WC_eartag_deployments_2009-2011]"><pre><span class="pl-k">select</span> <span class="pl-k">*</span>,
+    <span class="pl-s"><span class="pl-pds">"</span>Capture Latitude<span class="pl-pds">"</span></span> <span class="pl-k">as</span> latitude,
+    <span class="pl-s"><span class="pl-pds">"</span>Capture Longitude<span class="pl-pds">"</span></span> <span class="pl-k">as</span> longitude
+<span class="pl-k">from</span> [USGS_WC_eartag_deployments_2009<span class="pl-k">-</span><span class="pl-c1">2011</span>]</pre></div>
+<p dir="auto">The map defaults to being displayed above the main results table on the page. You can use the <code>"container"</code> plugin setting to provide a CSS selector indicating an element that the map should be appended to instead.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Custom tile layers</h2><a id="user-content-custom-tile-layers" class="anchor" aria-label="Permalink: Custom tile layers" href="#custom-tile-layers"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">You can customize the tile layer used  by the maps using the <code>tile_layer</code> and <code>tile_layer_options</code> configuration settings. For example, to use the <a href="https://opentopomap.org/" rel="nofollow">OpenTopoMap</a> you can use these settings:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    &quot;plugins&quot;: {
+        &quot;datasette-cluster-map&quot;: {
+            &quot;tile_layer&quot;: &quot;https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png&quot;,
+            &quot;tile_layer_options&quot;: {
+                &quot;attribution&quot;: &quot;Map data: &amp;copy; &lt;a href='https://www.openstreetmap.org/copyright'&gt;OpenStreetMap&lt;/a&gt; contributors, &lt;a href='http://viewfinderpanoramas.org'&gt;SRTM&lt;/a&gt; | Map style: &amp;copy; &lt;a href='https://opentopomap.org'&gt;OpenTopoMap&lt;/a&gt; (&lt;a href='https://creativecommons.org/licenses/by-sa/3.0/'&gt;CC-BY-SA&lt;/a&gt;)&quot;,
+                &quot;maxZoom&quot;: 17
+            }
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"plugins"</span>: {
+        <span class="pl-ent">"datasette-cluster-map"</span>: {
+            <span class="pl-ent">"tile_layer"</span>: <span class="pl-s"><span class="pl-pds">"</span>https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png<span class="pl-pds">"</span></span>,
+            <span class="pl-ent">"tile_layer_options"</span>: {
+                <span class="pl-ent">"attribution"</span>: <span class="pl-s"><span class="pl-pds">"</span>Map data: &amp;copy; &lt;a href='https://www.openstreetmap.org/copyright'&gt;OpenStreetMap&lt;/a&gt; contributors, &lt;a href='http://viewfinderpanoramas.org'&gt;SRTM&lt;/a&gt; | Map style: &amp;copy; &lt;a href='https://opentopomap.org'&gt;OpenTopoMap&lt;/a&gt; (&lt;a href='https://creativecommons.org/licenses/by-sa/3.0/'&gt;CC-BY-SA&lt;/a&gt;)<span class="pl-pds">"</span></span>,
+                <span class="pl-ent">"maxZoom"</span>: <span class="pl-c1">17</span>
+            }
+        }
+    }
+}</pre></div>
+<p dir="auto">If your tile server provides retina tiles, add <code>"detectRetina": true</code> to <code>tile_layer_options</code> to enable them.</p>
+<p dir="auto">The <a href="https://leaflet-extras.github.io/leaflet-providers/preview/index.html" rel="nofollow">Leaflet Providers preview list</a> has details of many other tile layers you can use.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Custom marker popups</h2><a id="user-content-custom-marker-popups" class="anchor" aria-label="Permalink: Custom marker popups" href="#custom-marker-popups"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The marker popup defaults to displaying the data for the underlying database row.</p>
+<p dir="auto">You can customize this by including a <code>popup</code> column in your results containing JSON that defines a more useful popup.</p>
+<p dir="auto">The JSON in the popup column should look something like this:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    &quot;image&quot;: &quot;https://niche-museums.imgix.net/dodgems.heic?w=800&amp;h=400&amp;fit=crop&quot;,
+    &quot;alt&quot;: &quot;Dingles Fairground Heritage Centre&quot;,
+    &quot;title&quot;: &quot;Dingles Fairground Heritage Centre&quot;,
+    &quot;description&quot;: &quot;Home of the National Fairground Collection, Dingles has over 45,000 indoor square feet of vintage fairground rides... and you can go on them! Highlights include the last complete surviving and opera&quot;,
+    &quot;link&quot;: &quot;/browse/museums/26&quot;
+}"><pre>{
+    <span class="pl-ent">"image"</span>: <span class="pl-s"><span class="pl-pds">"</span>https://niche-museums.imgix.net/dodgems.heic?w=800&amp;h=400&amp;fit=crop<span class="pl-pds">"</span></span>,
+    <span class="pl-ent">"alt"</span>: <span class="pl-s"><span class="pl-pds">"</span>Dingles Fairground Heritage Centre<span class="pl-pds">"</span></span>,
+    <span class="pl-ent">"title"</span>: <span class="pl-s"><span class="pl-pds">"</span>Dingles Fairground Heritage Centre<span class="pl-pds">"</span></span>,
+    <span class="pl-ent">"description"</span>: <span class="pl-s"><span class="pl-pds">"</span>Home of the National Fairground Collection, Dingles has over 45,000 indoor square feet of vintage fairground rides... and you can go on them! Highlights include the last complete surviving and opera<span class="pl-pds">"</span></span>,
+    <span class="pl-ent">"link"</span>: <span class="pl-s"><span class="pl-pds">"</span>/browse/museums/26<span class="pl-pds">"</span></span>
+}</pre></div>
+<p dir="auto">Each of these columns is optional.</p>
+<ul dir="auto">
+<li><code>title</code> is the title to show at the top of the popup</li>
+<li><code>image</code> is the URL to an image to display in the popup</li>
+<li><code>alt</code> is the alt attribute to use for that image</li>
+<li><code>description</code> is a longer string of text to use as a description</li>
+<li><code>link</code> is a URL that the marker content should link to</li>
+</ul>
+<p dir="auto">You can use the SQLite <code>json_object()</code> function to construct this data dynamically as part of your SQL query. Here's an example:</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="select json_object(
+  'image', photo_url || '?w=800&amp;h=400&amp;fit=crop',
+  'title', name,
+  'description', substr(description, 0, 200),
+  'link', '/browse/museums/' || id
+  ) as popup,
+  latitude, longitude from museums
+where id in (26, 27) order by id"><pre><span class="pl-k">select</span> json_object(
+  <span class="pl-s"><span class="pl-pds">'</span>image<span class="pl-pds">'</span></span>, photo_url <span class="pl-k">||</span> <span class="pl-s"><span class="pl-pds">'</span>?w=800&amp;h=400&amp;fit=crop<span class="pl-pds">'</span></span>,
+  <span class="pl-s"><span class="pl-pds">'</span>title<span class="pl-pds">'</span></span>, name,
+  <span class="pl-s"><span class="pl-pds">'</span>description<span class="pl-pds">'</span></span>, substr(description, <span class="pl-c1">0</span>, <span class="pl-c1">200</span>),
+  <span class="pl-s"><span class="pl-pds">'</span>link<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>/browse/museums/<span class="pl-pds">'</span></span> <span class="pl-k">||</span> id
+  ) <span class="pl-k">as</span> popup,
+  latitude, longitude <span class="pl-k">from</span> museums
+<span class="pl-k">where</span> id <span class="pl-k">in</span> (<span class="pl-c1">26</span>, <span class="pl-c1">27</span>) <span class="pl-k">order by</span> id</pre></div>
+<p dir="auto"><a href="https://www.niche-museums.com/browse?sql=select+json_object%28%0D%0A++%27image%27%2C+photo_url+%7C%7C+%27%3Fw%3D800%26h%3D400%26fit%3Dcrop%27%2C%0D%0A++%27title%27%2C+name%2C%0D%0A++%27description%27%2C+substr%28description%2C+0%2C+200%29%2C%0D%0A++%27link%27%2C+%27%2Fbrowse%2Fmuseums%2F%27+%7C%7C+id%0D%0A++%29+as+popup%2C%0D%0A++latitude%2C+longitude+from+museums" rel="nofollow">Try that example here</a> or take a look at <a href="https://dogsheep-photos.dogsheep.net/public/photos_on_a_map" rel="nofollow">this demo built using a SQL view</a>.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">How I deployed the demo</h2><a id="user-content-how-i-deployed-the-demo" class="anchor" aria-label="Permalink: How I deployed the demo" href="#how-i-deployed-the-demo"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="datasette publish cloudrun global-power-plants.db \
+    --service global-power-plants \
+    --metadata metadata.json \
+    --install=datasette-cluster-map \
+    --extra-options=&quot;--config facet_time_limit_ms:1000&quot;"><pre class="notranslate"><code>datasette publish cloudrun global-power-plants.db \
+    --service global-power-plants \
+    --metadata metadata.json \
+    --install=datasette-cluster-map \
+    --extra-options="--config facet_time_limit_ms:1000"
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Development</h2><a id="user-content-development" class="anchor" aria-label="Permalink: Development" href="#development"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">To set up this plugin locally, first checkout the code. Then create a new virtual environment:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="cd datasette-cluster-map
+python3 -mvenv venv
+source venv/bin/activate"><pre class="notranslate"><code>cd datasette-cluster-map
+python3 -mvenv venv
+source venv/bin/activate
+</code></pre></div>
+<p dir="auto">Or if you are using <code>pipenv</code>:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pipenv shell"><pre class="notranslate"><code>pipenv shell
+</code></pre></div>
+<p dir="auto">Now install the dependencies and tests:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pip install -e '.[test]'"><pre class="notranslate"><code>pip install -e '.[test]'
+</code></pre></div>
+<p dir="auto">To run the tests:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pytest"><pre class="notranslate"><code>pytest
+</code></pre></div>
+</article></div>

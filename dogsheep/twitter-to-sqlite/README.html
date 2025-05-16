@@ -1,0 +1,323 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">twitter-to-sqlite</h1><a id="user-content-twitter-to-sqlite" class="anchor" aria-label="Permalink: twitter-to-sqlite" href="#twitter-to-sqlite"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://pypi.org/project/twitter-to-sqlite/" rel="nofollow"><img src="https://camo.githubusercontent.com/23ba852d891ae44346309a060302eb3c5d2eaea41868d074ec9cb1d67f6076a0/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f747769747465722d746f2d73716c6974652e737667" alt="PyPI" data-canonical-src="https://img.shields.io/pypi/v/twitter-to-sqlite.svg" style="max-width: 100%;"></a>
+<a href="https://github.com/dogsheep/twitter-to-sqlite/releases"><img src="https://camo.githubusercontent.com/4b688faaddb3af7489ec91a38d556bccc185ed5f4a285bbe490c7514a8e07a42/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f72656c656173652f646f6773686565702f747769747465722d746f2d73716c6974653f696e636c7564655f70726572656c6561736573266c6162656c3d6368616e67656c6f67" alt="Changelog" data-canonical-src="https://img.shields.io/github/v/release/dogsheep/twitter-to-sqlite?include_prereleases&amp;label=changelog" style="max-width: 100%;"></a>
+<a href="https://github.com/dogsheep/twitter-to-sqlite/actions?query=workflow%3ATest"><img src="https://github.com/dogsheep/twitter-to-sqlite/workflows/Test/badge.svg" alt="Tests" style="max-width: 100%;"></a>
+<a href="https://github.com/dogsheep/twitter-to-sqlite/blob/main/LICENSE"><img src="https://camo.githubusercontent.com/c355f200ea90fddaa407b6eaab303663a669248ea3ca7b1fcf77dbe04ff5f48c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d417061636865253230322e302d626c75652e737667" alt="License" data-canonical-src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" style="max-width: 100%;"></a></p>
+<p dir="auto">Save data from Twitter to a SQLite database.</p>
+<p dir="auto"><strong>This tool currently uses Twitter API v1</strong>. You may be unable to use it if you do not have an API key for that version of the API.</p>
+
+<ul dir="auto">
+<li><a href="#how-to-install">How to install</a></li>
+<li><a href="#authentication">Authentication</a></li>
+<li><a href="#retrieving-tweets-by-specific-accounts">Retrieving tweets by specific accounts</a></li>
+<li><a href="#retrieve-user-profiles-in-bulk">Retrieve user profiles in bulk</a></li>
+<li><a href="#retrieve-tweets-in-bulk">Retrieve tweets in bulk</a></li>
+<li><a href="#retrieving-twitter-followers">Retrieving Twitter followers</a></li>
+<li><a href="#retrieving-friends">Retrieving friends</a></li>
+<li><a href="#retrieving-favorited-tweets">Retrieving favorited tweets</a></li>
+<li><a href="#retrieving-twitter-lists">Retrieving Twitter lists</a></li>
+<li><a href="#retrieving-twitter-list-memberships">Retrieving Twitter list memberships</a></li>
+<li><a href="#retrieving-just-follower-and-friend-ids">Retrieving just follower and friend IDs</a></li>
+<li><a href="#retrieving-tweets-from-your-home-timeline">Retrieving tweets from your home timeline</a></li>
+<li><a href="#retrieving-your-mentions">Retrieving your mentions</a></li>
+<li><a href="#providing-input-from-a-sql-query-with---sql-and---attach">Providing input from a SQL query with --sql and --attach</a></li>
+<li><a href="#running-searches">Running searches</a></li>
+<li><a href="#capturing-tweets-in-real-time-with-track-and-follow">Capturing tweets in real-time with track and follow</a>
+<ul dir="auto">
+<li><a href="#track">track</a></li>
+<li><a href="#follow">follow</a></li>
+</ul>
+</li>
+<li><a href="#importing-data-from-your-twitter-archive">Importing data from your Twitter archive</a></li>
+<li><a href="#design-notes">Design notes</a></li>
+</ul>
+
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">How to install</h2><a id="user-content-how-to-install" class="anchor" aria-label="Permalink: How to install" href="#how-to-install"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ pip install twitter-to-sqlite"><pre class="notranslate"><code>$ pip install twitter-to-sqlite
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Authentication</h2><a id="user-content-authentication" class="anchor" aria-label="Permalink: Authentication" href="#authentication"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">First, you will need to create a Twitter application at <a href="https://developer.twitter.com/en/apps" rel="nofollow">https://developer.twitter.com/en/apps</a>. You may need to apply for a Twitter developer account - if so, you may find this <a href="https://raw.githubusercontent.com/dogsheep/twitter-to-sqlite/main/email.png" rel="nofollow">example of an email application</a> useful that has been approved in the past.</p>
+<p dir="auto">Once you have created your application, navigate to the "Keys and tokens" page and make note of the following:</p>
+<ul dir="auto">
+<li>Your API key</li>
+<li>Your API secret key</li>
+<li>Your access token</li>
+<li>Your access token secret</li>
+</ul>
+<p dir="auto">You will need to save all four of these values to a JSON file in order to use this tool.</p>
+<p dir="auto">You can create that JSON file by running the following command and pasting in the values at the prompts:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ twitter-to-sqlite auth
+Create an app here: https://developer.twitter.com/en/apps
+Then navigate to 'Keys and tokens' and paste in the following:
+
+API key: xxx
+API secret key: xxx
+Access token: xxx
+Access token secret: xxx"><pre class="notranslate"><code>$ twitter-to-sqlite auth
+Create an app here: https://developer.twitter.com/en/apps
+Then navigate to 'Keys and tokens' and paste in the following:
+
+API key: xxx
+API secret key: xxx
+Access token: xxx
+Access token secret: xxx
+</code></pre></div>
+<p dir="auto">This will create a file called <code>auth.json</code> in your current directory containing the required values. To save the file at a different path or filename, use the <code>--auth=myauth.json</code> option.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Retrieving tweets by specific accounts</h2><a id="user-content-retrieving-tweets-by-specific-accounts" class="anchor" aria-label="Permalink: Retrieving tweets by specific accounts" href="#retrieving-tweets-by-specific-accounts"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The <code>user-timeline</code> command retrieves all of the tweets posted by the specified user accounts. It defaults to the account belonging to the authenticated user:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ twitter-to-sqlite user-timeline twitter.db
+Importing tweets  [#####-------------------------------]  2799/17780  00:01:39"><pre class="notranslate"><code>$ twitter-to-sqlite user-timeline twitter.db
+Importing tweets  [#####-------------------------------]  2799/17780  00:01:39
+</code></pre></div>
+<p dir="auto">All of these commands assume that there is an <code>auth.json</code> file in the current directory. You can provide the path to your <code>auth.json</code> file using <code>-a</code>:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ twitter-to-sqlite user-timeline twitter.db -a /path/to/auth.json"><pre class="notranslate"><code>$ twitter-to-sqlite user-timeline twitter.db -a /path/to/auth.json
+</code></pre></div>
+<p dir="auto">To load tweets for other users, pass their screen names as arguments:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ twitter-to-sqlite user-timeline twitter.db cleopaws nichemuseums"><pre class="notranslate"><code>$ twitter-to-sqlite user-timeline twitter.db cleopaws nichemuseums
+</code></pre></div>
+<p dir="auto">Twitter's API only returns up to around 3,200 tweets for most user accounts, but you may find that it returns all available tweets for your own user account.</p>
+<p dir="auto">You can pass numeric Twitter user IDs instead of screen names using the <code>--ids</code> parameter.</p>
+<p dir="auto">You can use <code>--since</code> to retrieve every tweet since the last time you imported for that user, or <code>--since_id=xxx</code> to retrieve every tweet since a specific tweet ID.</p>
+<p dir="auto">This command also accepts <code>--sql</code> and <code>--attach</code> options, documented below.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Retrieve user profiles in bulk</h2><a id="user-content-retrieve-user-profiles-in-bulk" class="anchor" aria-label="Permalink: Retrieve user profiles in bulk" href="#retrieve-user-profiles-in-bulk"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">If you have a list of Twitter screen names (or user IDs) you can bulk fetch their fully inflated Twitter profiles using the <code>users-lookup</code> command:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ twitter-to-sqlite users-lookup users.db simonw cleopaws"><pre class="notranslate"><code>$ twitter-to-sqlite users-lookup users.db simonw cleopaws
+</code></pre></div>
+<p dir="auto">You can pass user IDs instead using the <code>--ids</code> option:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ twitter-to-sqlite users-lookup users.db 12497 3166449535 --ids"><pre class="notranslate"><code>$ twitter-to-sqlite users-lookup users.db 12497 3166449535 --ids
+</code></pre></div>
+<p dir="auto">This command also accepts <code>--sql</code> and <code>--attach</code> options, documented below.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Retrieve tweets in bulk</h2><a id="user-content-retrieve-tweets-in-bulk" class="anchor" aria-label="Permalink: Retrieve tweets in bulk" href="#retrieve-tweets-in-bulk"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">If you have a list of tweet IDS you can bulk fetch them using the <code>statuses-lookup</code> command:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ twitter-to-sqlite statuses-lookup tweets.db 1122154819815239680 1122154178493575169"><pre class="notranslate"><code>$ twitter-to-sqlite statuses-lookup tweets.db 1122154819815239680 1122154178493575169
+</code></pre></div>
+<p dir="auto">The <code>--sql</code> and <code>--attach</code> options are supported.</p>
+<p dir="auto">Here's a recipe to retrieve any tweets that existing tweets are in-reply-to which have not yet been stored in your database:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ twitter-to-sqlite statuses-lookup tweets.db \
+    --sql='
+        select in_reply_to_status_id
+        from tweets
+        where in_reply_to_status_id is not null' \
+    --skip-existing"><pre class="notranslate"><code>$ twitter-to-sqlite statuses-lookup tweets.db \
+    --sql='
+        select in_reply_to_status_id
+        from tweets
+        where in_reply_to_status_id is not null' \
+    --skip-existing
+</code></pre></div>
+<p dir="auto">The <code>--skip-existing</code> option means that tweets that have already been stored in the database will not be fetched again.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Retrieving Twitter followers</h2><a id="user-content-retrieving-twitter-followers" class="anchor" aria-label="Permalink: Retrieving Twitter followers" href="#retrieving-twitter-followers"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The <code>followers</code> command retrieves details of every follower of the specified accounts. You can use it to retrieve your own followers, or you can pass one or more screen names to pull the followers for other accounts.</p>
+<p dir="auto">The following command pulls your followers and saves them in a SQLite database file called <code>twitter.db</code>:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ twitter-to-sqlite followers twitter.db"><pre class="notranslate"><code>$ twitter-to-sqlite followers twitter.db
+</code></pre></div>
+<p dir="auto">This command is <strong>extremely slow</strong>, because Twitter impose a rate limit of no more than one request per minute to this endpoint! If you are running it against an account with thousands of followers you should expect this to take several hours.</p>
+<p dir="auto">To retrieve followers for another account, use:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ twitter-to-sqlite followers twitter.db cleopaws"><pre class="notranslate"><code>$ twitter-to-sqlite followers twitter.db cleopaws
+</code></pre></div>
+<p dir="auto">This command also accepts the <code>--ids</code>, <code>--sql</code> and <code>--attach</code> options.</p>
+<p dir="auto">See <a href="https://simonwillison.net/2018/Jan/28/analyzing-my-twitter-followers/" rel="nofollow">Analyzing my Twitter followers with Datasette</a> for the original inspiration for this command.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Retrieving friends</h2><a id="user-content-retrieving-friends" class="anchor" aria-label="Permalink: Retrieving friends" href="#retrieving-friends"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The <code>friends</code> command works like the <code>followers</code> command, but retrieves the specified (or currently authenticated) user's friends - defined as accounts that the user is following.</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ twitter-to-sqlite friends twitter.db"><pre class="notranslate"><code>$ twitter-to-sqlite friends twitter.db
+</code></pre></div>
+<p dir="auto">It takes the same options as the <code>followers</code> command.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Retrieving favorited tweets</h2><a id="user-content-retrieving-favorited-tweets" class="anchor" aria-label="Permalink: Retrieving favorited tweets" href="#retrieving-favorited-tweets"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The <code>favorites</code> command retrieves tweets that have been favorited by a specified user. Called without any extra arguments it retrieves tweets favorited by the currently authenticated user:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ twitter-to-sqlite favorites faves.db"><pre class="notranslate"><code>$ twitter-to-sqlite favorites faves.db
+</code></pre></div>
+<p dir="auto">You can also use the <code>--screen_name</code> or <code>--user_id</code> arguments to retrieve favorite tweets for another user:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ twitter-to-sqlite favorites faves-obama.db --screen_name=BarackObama"><pre class="notranslate"><code>$ twitter-to-sqlite favorites faves-obama.db --screen_name=BarackObama
+</code></pre></div>
+<p dir="auto">Use the <code>--stop_after=xxx</code> argument to retrieve only the most recent number of favorites, e.g. to get the authenticated user's 50 most recent favorites:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ twitter-to-sqlite favorites faves.db --stop_after=50"><pre class="notranslate"><code>$ twitter-to-sqlite favorites faves.db --stop_after=50
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Retrieving Twitter lists</h2><a id="user-content-retrieving-twitter-lists" class="anchor" aria-label="Permalink: Retrieving Twitter lists" href="#retrieving-twitter-lists"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The <code>lists</code> command retrieves all of the lists belonging to one or more users.</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ twitter-to-sqlite lists lists.db simonw dogsheep"><pre class="notranslate"><code>$ twitter-to-sqlite lists lists.db simonw dogsheep
+</code></pre></div>
+<p dir="auto">This command also accepts the <code>--sql</code> and <code>--attach</code> and <code>--ids</code> options.</p>
+<p dir="auto">To additionally fetch the list of members for each list, use <code>--members</code>.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Retrieving Twitter list memberships</h2><a id="user-content-retrieving-twitter-list-memberships" class="anchor" aria-label="Permalink: Retrieving Twitter list memberships" href="#retrieving-twitter-list-memberships"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The <code>list-members</code> command can be used to retrieve details of one or more Twitter lists, including all of their members.</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ twitter-to-sqlite list-members members.db simonw/the-good-place"><pre class="notranslate"><code>$ twitter-to-sqlite list-members members.db simonw/the-good-place
+</code></pre></div>
+<p dir="auto">You can pass multiple <code>screen_name/list_slug</code> identifiers.</p>
+<p dir="auto">If you know the numeric IDs of the lists instead, you can use <code>--ids</code>:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ twitter-to-sqlite list-members members.db 927913322841653248 --ids"><pre class="notranslate"><code>$ twitter-to-sqlite list-members members.db 927913322841653248 --ids
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Retrieving just follower and friend IDs</h2><a id="user-content-retrieving-just-follower-and-friend-ids" class="anchor" aria-label="Permalink: Retrieving just follower and friend IDs" href="#retrieving-just-follower-and-friend-ids"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">It's also possible to retrieve just the numeric Twitter IDs of the accounts that specific users are following ("friends" in Twitter's API terminology) or followed-by:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ twitter-to-sqlite followers-ids members.db simonw cleopaws"><pre class="notranslate"><code>$ twitter-to-sqlite followers-ids members.db simonw cleopaws
+</code></pre></div>
+<p dir="auto">This will populate the <code>following</code> table with <code>followed_id</code>/<code>follower_id</code> pairs for the two specified accounts, listing every account ID that is following either of those two accounts.</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ twitter-to-sqlite friends-ids members.db simonw cleopaws"><pre class="notranslate"><code>$ twitter-to-sqlite friends-ids members.db simonw cleopaws
+</code></pre></div>
+<p dir="auto">This will do the same thing but pull the IDs that those accounts are following.</p>
+<p dir="auto">Both of these commands also support <code>--sql</code> and <code>--attach</code> as an alternative to passing screen names as direct command-line arguments. You can use <code>--ids</code> to process the inputs as user IDs rather than screen names.</p>
+<p dir="auto">The underlying Twitter APIs have a rate limit of 15 requests every 15 minutes - though they do return up to 5,000 IDs in each call. By default both of these subcommands will wait for 61 seconds between API calls in order to stay within the rate limit - you can adjust this behaviour down to just one second delay if you know you will not be making many calls using <code>--sleep=1</code>.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Retrieving tweets from your home timeline</h2><a id="user-content-retrieving-tweets-from-your-home-timeline" class="anchor" aria-label="Permalink: Retrieving tweets from your home timeline" href="#retrieving-tweets-from-your-home-timeline"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The <code>home-timeline</code> command retrieves up to 800 tweets from the home timeline of the authenticated user - generally this means tweets from people you follow.</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ twitter-to-sqlite home-timeline twitter.db
+Importing timeline  [#################--------]  591/800  00:01:14"><pre class="notranslate"><code>$ twitter-to-sqlite home-timeline twitter.db
+Importing timeline  [#################--------]  591/800  00:01:14
+</code></pre></div>
+<p dir="auto">The tweets are stored in the <code>tweets</code> table, and a record is added to the <code>timeline_tweets</code> table noting that this tweet came in due to being spotted in the timeline of your user.</p>
+<p dir="auto">You can use <code>--since</code> to retrieve just tweets that have been posted since the last time this command was run, or <code>--since_id=xxx</code> to explicitly pass in a tweet ID to use as the last position.</p>
+<p dir="auto">You can then view your timeline in Datasette using the following URL:</p>
+<p dir="auto"><code>/tweets/tweets?_where=id+in+(select+tweet+from+[timeline_tweets])&amp;_sort_desc=id&amp;_facet=user</code></p>
+<p dir="auto">This will filter your tweets table to just tweets that appear in your timeline, ordered by most recent first and use faceting to show you which users are responsible for the most tweets.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Retrieving your mentions</h2><a id="user-content-retrieving-your-mentions" class="anchor" aria-label="Permalink: Retrieving your mentions" href="#retrieving-your-mentions"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The <code>mentions-timeline</code> command works like <code>home-timeline</code> except it retrieves tweets that mention the authenticated user's account. It records the user account that was mentioned in a <code>mentions_tweets</code> table.</p>
+<p dir="auto">It supports <code>--since</code> and <code>--since_id</code> in the same was as <code>home-timeline</code> does.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Providing input from a SQL query with --sql and --attach</h2><a id="user-content-providing-input-from-a-sql-query-with---sql-and---attach" class="anchor" aria-label="Permalink: Providing input from a SQL query with --sql and --attach" href="#providing-input-from-a-sql-query-with---sql-and---attach"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">This option is available for some subcommands - run <code>twitter-to-sqlite command-name --help</code> to check.</p>
+<p dir="auto">You can provide Twitter screen names (or user IDs or tweet IDs) directly as command-line arguments, or you can provide those screen names or IDs by executing a SQL query.</p>
+<p dir="auto">For example: consider a SQLite database with an <code>attendees</code> table listing names and Twitter accounts - something like this:</p>
+<markdown-accessiblity-table><table>
+<thead>
+<tr>
+<th>First</th>
+<th>Last</th>
+<th>Twitter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Simon</td>
+<td>Willison</td>
+<td>simonw</td>
+</tr>
+<tr>
+<td>Avril</td>
+<td>Lavigne</td>
+<td>AvrilLavigne</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p dir="auto">You can run the <code>users-lookup</code> command to pull the Twitter profile of every user listed in that database by loading the screen names using a <code>--sql</code> query:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ twitter-to-sqlite users-lookup my.db --sql=&quot;select Twitter from attendees&quot;"><pre class="notranslate"><code>$ twitter-to-sqlite users-lookup my.db --sql="select Twitter from attendees"
+</code></pre></div>
+<p dir="auto">If your database table contains Twitter IDs, you can select those IDs and pass the <code>--ids</code> argument. For example, to fetch the profiles of users who have had their user IDs inserted into the <code>following</code> table using the <code>twitter-to-sqlite friends-ids</code> command:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ twitter-to-sqlite users-lookup my.db --sql=&quot;select follower_id from following&quot; --ids"><pre class="notranslate"><code>$ twitter-to-sqlite users-lookup my.db --sql="select follower_id from following" --ids
+</code></pre></div>
+<p dir="auto">Or to avoid re-fetching users that have already been fetched:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ twitter-to-sqlite users-lookup my.db \
+    --sql=&quot;select followed_id from following where followed_id not in (
+        select id from users)&quot; --ids"><pre class="notranslate"><code>$ twitter-to-sqlite users-lookup my.db \
+    --sql="select followed_id from following where followed_id not in (
+        select id from users)" --ids
+</code></pre></div>
+<p dir="auto">If your data lives in a separate database file you can attach it using <code>--attach</code>. For example, consider the attendees example above but the data lives in an <code>attendees.db</code> file, and you want to fetch the user profiles into a <code>tweets.db</code> file. You could do that like this:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ twitter-to-sqlite users-lookup tweets.db \
+    --attach=attendees.db \
+    --sql=&quot;select Twitter from attendees.attendees&quot;"><pre class="notranslate"><code>$ twitter-to-sqlite users-lookup tweets.db \
+    --attach=attendees.db \
+    --sql="select Twitter from attendees.attendees"
+</code></pre></div>
+<p dir="auto">The filename (without the extension) will be used as the database alias within SQLite. If you want a different alias for some reason you can specify that with a colon like this:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ twitter-to-sqlite users-lookup tweets.db \
+    --attach=foo:attendees.db \
+    --sql=&quot;select Twitter from foo.attendees&quot;"><pre class="notranslate"><code>$ twitter-to-sqlite users-lookup tweets.db \
+    --attach=foo:attendees.db \
+    --sql="select Twitter from foo.attendees"
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Running searches</h2><a id="user-content-running-searches" class="anchor" aria-label="Permalink: Running searches" href="#running-searches"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The <code>search</code> command runs a search against the Twitter <a href="https://developer.twitter.com/en/docs/tweets/search/api-reference/get-search-tweets" rel="nofollow">standard search API</a>.</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ twitter-to-sqlite search tweets.db &quot;dogsheep&quot;"><pre class="notranslate"><code>$ twitter-to-sqlite search tweets.db "dogsheep"
+</code></pre></div>
+<p dir="auto">This will import up to around 320 tweets that match that search term into the <code>tweets</code> table. It will also create a record in the <code>search_runs</code> table recording that the search took place, and many-to-many records in the <code>search_runs_tweets</code> table recording which tweets were seen for that search at that time.</p>
+<p dir="auto">You can use the <code>--since</code> parameter to check for previous search runs with the same arguments and only retrieve tweets that were posted since the last retrieved matching tweet.</p>
+<p dir="auto">The following additional options for <code>search</code> are supported:</p>
+<ul dir="auto">
+<li><code>--geocode</code>: <code>latitude,longitude,radius</code> where radius is a number followed by mi or km</li>
+<li><code>--lang</code>: ISO 639-1 language code e.g. <code>en</code> or <code>es</code></li>
+<li><code>--locale</code>: Locale: only <code>ja</code> is currently effective</li>
+<li><code>--result_type</code>: <code>mixed</code>, <code>recent</code> or <code>popular</code>. Defaults to <code>mixed</code></li>
+<li><code>--count</code>: Number of results per page, defaults to the maximum of 100</li>
+<li><code>--stop_after</code>: Stop after this many results</li>
+<li><code>--since_id</code>: Pull tweets since this Tweet ID. You probably want to use <code>--since</code> instead of this.</li>
+</ul>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Capturing tweets in real-time with track and follow</h2><a id="user-content-capturing-tweets-in-real-time-with-track-and-follow" class="anchor" aria-label="Permalink: Capturing tweets in real-time with track and follow" href="#capturing-tweets-in-real-time-with-track-and-follow"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">This functionality is <strong>experimental</strong>. Please <a href="https://github.com/dogsheep/twitter-to-sqlite/issues">file bug reports</a> if you find any!</p>
+<p dir="auto">Twitter provides a real-time API which can be used to subscribe to tweets as they happen. <code>twitter-to-sqlite</code> can use this API to continually update a SQLite database with tweets matching certain keywords, or referencing specific users.</p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">track</h3><a id="user-content-track" class="anchor" aria-label="Permalink: track" href="#track"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">To track keywords, use the <code>track</code> command:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ twitter-to-sqlite track tweets.db kakapo"><pre class="notranslate"><code>$ twitter-to-sqlite track tweets.db kakapo
+</code></pre></div>
+<p dir="auto">This command will continue to run until you hit Ctrl+C. It will capture any tweets mentioning the keyword <a href="https://en.wikipedia.org/wiki/Kakapo" rel="nofollow">kakapo</a> and store them in the <code>tweets.db</code> database file.</p>
+<p dir="auto">You can pass multiple keywords as a space separated list. This will capture tweets matching either of those keywords:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ twitter-to-sqlite track tweets.db kakapo raccoon"><pre class="notranslate"><code>$ twitter-to-sqlite track tweets.db kakapo raccoon
+</code></pre></div>
+<p dir="auto">You can enclose phrases in quotes to search for tweets matching both of those keywords:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ twitter-to-sqlite track tweets.db 'trash panda'"><pre class="notranslate"><code>$ twitter-to-sqlite track tweets.db 'trash panda'
+</code></pre></div>
+<p dir="auto">See <a href="https://developer.twitter.com/en/docs/tweets/filter-realtime/guides/basic-stream-parameters#track" rel="nofollow">the Twitter track documentation</a> for advanced tips on using this command.</p>
+<p dir="auto">Add the <code>--verbose</code> option to see matching tweets (in their verbose JSON form) displayed to the terminal as they are captured:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ twitter-to-sqlite track tweets.db raccoon --verbose"><pre class="notranslate"><code>$ twitter-to-sqlite track tweets.db raccoon --verbose
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">follow</h3><a id="user-content-follow" class="anchor" aria-label="Permalink: follow" href="#follow"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The <code>follow</code> command will capture all tweets that are relevant to one or more specific Twitter users.</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ twitter-to-sqlite follow tweets.db nytimes"><pre class="notranslate"><code>$ twitter-to-sqlite follow tweets.db nytimes
+</code></pre></div>
+<p dir="auto">This includes tweets by those users, tweets that reply to or quote those users and retweets by that user. See <a href="https://developer.twitter.com/en/docs/tweets/filter-realtime/guides/basic-stream-parameters#follow" rel="nofollow">the Twitter follow documentation</a> for full details.</p>
+<p dir="auto">The command accepts one or more screen names.</p>
+<p dir="auto">You can feed it numeric Twitter user IDs instead of screen names by using the <code>--ids</code> flag.</p>
+<p dir="auto">The command also supports the <code>--sql</code> and <code>--attach</code> options, and the <code>--verbose</code> option for displaying tweets as they are captured.</p>
+<p dir="auto">Here's how to start following tweets from every user ID currently represented as being followed in the <code>following</code> table (populated using the <code>friends-ids</code> command):</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ twitter-to-sqlite follow tweets.db \
+    --sql=&quot;select distinct followed_id from following&quot; \
+    --ids"><pre class="notranslate"><code>$ twitter-to-sqlite follow tweets.db \
+    --sql="select distinct followed_id from following" \
+    --ids
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Importing data from your Twitter archive</h2><a id="user-content-importing-data-from-your-twitter-archive" class="anchor" aria-label="Permalink: Importing data from your Twitter archive" href="#importing-data-from-your-twitter-archive"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">You can request an archive of your Twitter data by <a href="https://help.twitter.com/en/managing-your-account/how-to-download-your-twitter-archive" rel="nofollow">following these instructions</a>.</p>
+<p dir="auto">Twitter will send you a link to download a <code>.zip</code> file. You can import the contents of that file into a set of tables in a new database file called <code>archive.db</code> (each table beginning with the <code>archive_</code> prefix) using the <code>import</code> command:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ twitter-to-sqlite import archive.db ~/Downloads/twitter-2019-06-25-b31f2.zip"><pre class="notranslate"><code>$ twitter-to-sqlite import archive.db ~/Downloads/twitter-2019-06-25-b31f2.zip
+</code></pre></div>
+<p dir="auto">This command does not populate any of the regular tables, since Twitter's export data does not exactly match the schema returned by the Twitter API.</p>
+<p dir="auto">It will delete and recreate the corresponding <code>archive_*</code> tables every time you run it. If this is not what you want, run the command against a new SQLite database file name rather than running it against one that already exists.</p>
+<p dir="auto">If you have already decompressed your archive, you can run this against the directory that you decompressed it to:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ twitter-to-sqlite import archive.db ~/Downloads/twitter-2019-06-25-b31f2/"><pre class="notranslate"><code>$ twitter-to-sqlite import archive.db ~/Downloads/twitter-2019-06-25-b31f2/
+</code></pre></div>
+<p dir="auto">You can also run it against one or more specific files within that folder. For example, to import just the follower.js and following.js files:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ twitter-to-sqlite import archive.db \
+    ~/Downloads/twitter-2019-06-25-b31f2/follower.js \
+    ~/Downloads/twitter-2019-06-25-b31f2/following.js"><pre class="notranslate"><code>$ twitter-to-sqlite import archive.db \
+    ~/Downloads/twitter-2019-06-25-b31f2/follower.js \
+    ~/Downloads/twitter-2019-06-25-b31f2/following.js
+</code></pre></div>
+<p dir="auto">You may want to use other commands to populate tables based on data from the archive. For example, to retrieve full API versions of each of the tweets you have favourited in your archive, you could run the following:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ twitter-to-sqlite statuses-lookup archive.db \
+    --sql='select tweetId from archive_like' \
+    --skip-existing"><pre class="notranslate"><code>$ twitter-to-sqlite statuses-lookup archive.db \
+    --sql='select tweetId from archive_like' \
+    --skip-existing
+</code></pre></div>
+<p dir="auto">If you want these imported tweets to then be reflected in the <code>favorited_by</code> table, you can do so by applying the following SQL query:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ sqlite3 archive.db
+SQLite version 3.22.0 2018-01-22 18:45:57
+Enter &quot;.help&quot; for usage hints.
+sqlite&gt; INSERT OR IGNORE INTO favorited_by (tweet, user)
+   ...&gt;     SELECT tweetId, 'YOUR_TWITTER_ID' FROM archive_like;
+&lt;Ctrl+D&gt;"><pre class="notranslate"><code>$ sqlite3 archive.db
+SQLite version 3.22.0 2018-01-22 18:45:57
+Enter ".help" for usage hints.
+sqlite&gt; INSERT OR IGNORE INTO favorited_by (tweet, user)
+   ...&gt;     SELECT tweetId, 'YOUR_TWITTER_ID' FROM archive_like;
+&lt;Ctrl+D&gt;
+</code></pre></div>
+<p dir="auto">Replace YOUR_TWITTER_ID with your numeric Twitter ID. If you don't know that ID you can find it out by running the following:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ twitter-to-sqlite fetch \
+    &quot;https://api.twitter.com/1.1/account/verify_credentials.json&quot; \
+    | grep '&quot;id&quot;' | head -n 1"><pre class="notranslate"><code>$ twitter-to-sqlite fetch \
+    "https://api.twitter.com/1.1/account/verify_credentials.json" \
+    | grep '"id"' | head -n 1
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Design notes</h2><a id="user-content-design-notes" class="anchor" aria-label="Permalink: Design notes" href="#design-notes"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li>Tweet IDs are stored as integers, to afford sorting by ID in a sensible way</li>
+<li>While we configure foreign key relationships between tables, we do not ask SQLite to enforce them. This is used by the <code>following</code> table to allow the <code>followers-ids</code> and <code>friends-ids</code> commands to populate it with user IDs even if the user accounts themselves are not yet present in the <code>users</code> table.</li>
+</ul>
+</article></div>

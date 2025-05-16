@@ -1,0 +1,100 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">datasette-render-timestamps</h1><a id="user-content-datasette-render-timestamps" class="anchor" aria-label="Permalink: datasette-render-timestamps" href="#datasette-render-timestamps"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://pypi.org/project/datasette-render-timestamps/" rel="nofollow"><img src="https://camo.githubusercontent.com/5e50a40d7ddd59e5a4c23e02ab7d5fab929478d8431be583d769ed7d2dd5c2b3/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f6461746173657474652d72656e6465722d74696d657374616d70732e737667" alt="PyPI" data-canonical-src="https://img.shields.io/pypi/v/datasette-render-timestamps.svg" style="max-width: 100%;"></a>
+<a href="https://circleci.com/gh/simonw/datasette-render-timestamps" rel="nofollow"><img src="https://camo.githubusercontent.com/d9f99171b4beef0b7d7211f63f7fb0dd2e4253538e0601898fb354c2a97a32db/68747470733a2f2f636972636c6563692e636f6d2f67682f73696d6f6e772f6461746173657474652d72656e6465722d74696d657374616d70732e7376673f7374796c653d737667" alt="CircleCI" data-canonical-src="https://circleci.com/gh/simonw/datasette-render-timestamps.svg?style=svg" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/datasette-render-timestamps/blob/master/LICENSE"><img src="https://camo.githubusercontent.com/c355f200ea90fddaa407b6eaab303663a669248ea3ca7b1fcf77dbe04ff5f48c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d417061636865253230322e302d626c75652e737667" alt="License" data-canonical-src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" style="max-width: 100%;"></a></p>
+<p dir="auto">Datasette plugin for rendering timestamps.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Installation</h2><a id="user-content-installation" class="anchor" aria-label="Permalink: Installation" href="#installation"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Install this plugin in the same environment as Datasette to enable this new functionality:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pip install datasette-render-timestamps"><pre class="notranslate"><code>pip install datasette-render-timestamps
+</code></pre></div>
+<p dir="auto">The plugin will then look out for integer numbers that are likely to be timestamps - anything that would be a number of seconds from 5 years ago to 5 years in the future.</p>
+<p dir="auto">These will then be rendered in a more readable format.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Configuration</h2><a id="user-content-configuration" class="anchor" aria-label="Permalink: Configuration" href="#configuration"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">You can disable automatic column detection in favour of explicitly listing the columns that you would like to render using <a href="https://datasette.readthedocs.io/en/stable/plugins.html#plugin-configuration" rel="nofollow">plugin configuration</a> in a <code>metadata.json</code> file.</p>
+<p dir="auto">Add a <code>"datasette-render-timestamps"</code> configuration block and use a <code>"columns"</code> key to list the columns you would like to treat as timestamp values:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    &quot;plugins&quot;: {
+        &quot;datasette-render-timestamps&quot;: {
+            &quot;columns&quot;: [&quot;created&quot;, &quot;updated&quot;]
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"plugins"</span>: {
+        <span class="pl-ent">"datasette-render-timestamps"</span>: {
+            <span class="pl-ent">"columns"</span>: [<span class="pl-s"><span class="pl-pds">"</span>created<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>updated<span class="pl-pds">"</span></span>]
+        }
+    }
+}</pre></div>
+<p dir="auto">This will cause any <code>created</code> or <code>updated</code> columns in any table to be treated as timestamps and rendered.</p>
+<p dir="auto">Save this to <code>metadata.json</code> and run datasette with the <code>--metadata</code> flag to load this configuration:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="datasette serve mydata.db --metadata metadata.json"><pre class="notranslate"><code>datasette serve mydata.db --metadata metadata.json
+</code></pre></div>
+<p dir="auto">To disable automatic timestamp detection entirely, you can use <code>"columnns": []</code>.</p>
+<p dir="auto">This configuration block can be used at the top level, or it can be applied just to specific databases or tables. Here's how to apply it to just the <code>entries</code> table in the <code>news.db</code> database:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    &quot;databases&quot;: {
+        &quot;news&quot;: {
+            &quot;tables&quot;: {
+                &quot;entries&quot;: {
+                    &quot;plugins&quot;: {
+                        &quot;datasette-render-timestamps&quot;: {
+                            &quot;columns&quot;: [&quot;created&quot;, &quot;updated&quot;]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"databases"</span>: {
+        <span class="pl-ent">"news"</span>: {
+            <span class="pl-ent">"tables"</span>: {
+                <span class="pl-ent">"entries"</span>: {
+                    <span class="pl-ent">"plugins"</span>: {
+                        <span class="pl-ent">"datasette-render-timestamps"</span>: {
+                            <span class="pl-ent">"columns"</span>: [<span class="pl-s"><span class="pl-pds">"</span>created<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>updated<span class="pl-pds">"</span></span>]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}</pre></div>
+<p dir="auto">And here's how to apply it to every <code>created</code> column in every table in the <code>news.db</code> database:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    &quot;databases&quot;: {
+        &quot;news&quot;: {
+            &quot;plugins&quot;: {
+                &quot;datasette-render-timestamps&quot;: {
+                    &quot;columns&quot;: [&quot;created&quot;, &quot;updated&quot;]
+                }
+            }
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"databases"</span>: {
+        <span class="pl-ent">"news"</span>: {
+            <span class="pl-ent">"plugins"</span>: {
+                <span class="pl-ent">"datasette-render-timestamps"</span>: {
+                    <span class="pl-ent">"columns"</span>: [<span class="pl-s"><span class="pl-pds">"</span>created<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>updated<span class="pl-pds">"</span></span>]
+                }
+            }
+        }
+    }
+}</pre></div>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Customizing the date format</h3><a id="user-content-customizing-the-date-format" class="anchor" aria-label="Permalink: Customizing the date format" href="#customizing-the-date-format"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The default format is <code>%B %d, %Y - %H:%M:%S UTC</code> which renders for example: <code>October 10, 2019 - 07:18:29 UTC</code>. If you want another format, the date format can be customized using plugin configuration. Any format string supported by <a href="http://strftime.org/" rel="nofollow">strftime</a> may be used. For example:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    &quot;plugins&quot;: {
+        &quot;datasette-render-timestamps&quot;: {
+            &quot;format&quot;: &quot;%Y-%m-%d-%H:%M:%S&quot;
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"plugins"</span>: {
+        <span class="pl-ent">"datasette-render-timestamps"</span>: {
+            <span class="pl-ent">"format"</span>: <span class="pl-s"><span class="pl-pds">"</span>%Y-%m-%d-%H:%M:%S<span class="pl-pds">"</span></span>
+        }
+    }
+}</pre></div>
+</article></div>

@@ -1,0 +1,139 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">datasette-atom</h1><a id="user-content-datasette-atom" class="anchor" aria-label="Permalink: datasette-atom" href="#datasette-atom"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://pypi.org/project/datasette-atom/" rel="nofollow"><img src="https://camo.githubusercontent.com/09e3c940d9fc62ec61319fc9089b4401e043f6ff8cbd2e9bfb974c666d8a9738/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f6461746173657474652d61746f6d2e737667" alt="PyPI" data-canonical-src="https://img.shields.io/pypi/v/datasette-atom.svg" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/datasette-atom/releases"><img src="https://camo.githubusercontent.com/bb4b1dd86c36941c2c9edee8293afb6be48972e0b8da1ca2d1bcd979dbd13153/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f72656c656173652f73696d6f6e772f6461746173657474652d61746f6d3f696e636c7564655f70726572656c6561736573266c6162656c3d6368616e67656c6f67" alt="Changelog" data-canonical-src="https://img.shields.io/github/v/release/simonw/datasette-atom?include_prereleases&amp;label=changelog" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/datasette-atom/actions?query=workflow%3ATest"><img src="https://github.com/simonw/datasette-atom/workflows/Test/badge.svg" alt="Tests" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/datasette-atom/blob/main/LICENSE"><img src="https://camo.githubusercontent.com/c355f200ea90fddaa407b6eaab303663a669248ea3ca7b1fcf77dbe04ff5f48c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d417061636865253230322e302d626c75652e737667" alt="License" data-canonical-src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" style="max-width: 100%;"></a></p>
+<p dir="auto">Datasette plugin that adds support for generating <a href="https://validator.w3.org/feed/docs/atom.html" rel="nofollow">Atom feeds</a> with the results of a SQL query.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Installation</h2><a id="user-content-installation" class="anchor" aria-label="Permalink: Installation" href="#installation"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Install this plugin in the same environment as Datasette to enable the <code>.atom</code> output extension.</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ pip install datasette-atom"><pre class="notranslate"><code>$ pip install datasette-atom
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Usage</h2><a id="user-content-usage" class="anchor" aria-label="Permalink: Usage" href="#usage"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">To create an Atom feed you need to define a custom SQL query that returns a required set of columns:</p>
+<ul dir="auto">
+<li><code>atom_id</code> - a unique ID for each row. <a href="https://web.archive.org/web/20080211143232/http://diveintomark.org/archives/2004/05/28/howto-atom-id" rel="nofollow">This article</a> has suggestions about ways to create these IDs.</li>
+<li><code>atom_title</code> - a title for that row.</li>
+<li><code>atom_updated</code> - an <a href="http://www.faqs.org/rfcs/rfc3339.html" rel="nofollow">RFC 3339</a> timestamp representing the last time the entry was modified in a significant way. This can usually be the time that the row was created.</li>
+</ul>
+<p dir="auto">The following columns are optional:</p>
+<ul dir="auto">
+<li><code>atom_content</code> - content that should be shown in the feed. This will be treated as a regular string, so any embedded HTML tags will be escaped when they are displayed.</li>
+<li><code>atom_content_html</code> - content that should be shown in the feed. This will be treated as an HTML string, and will be sanitized using <a href="https://github.com/mozilla/bleach">Bleach</a> to ensure it does not have any malicious code in it before being returned as part of a <code>&lt;content type="html"&gt;</code> Atom element. If both are provided, this will be used in place of <code>atom_content</code>.</li>
+<li><code>atom_link</code> - a URL that should be used as the link that the feed entry points to.</li>
+<li><code>atom_author_name</code> - the name of the author of the entry. If you provide this you can also provide <code>atom_author_uri</code> and <code>atom_author_email</code> with a URL and e-mail address for that author.</li>
+</ul>
+<p dir="auto">A query that returns these columns can then be returned as an Atom feed by adding the <code>.atom</code> extension.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Example</h2><a id="user-content-example" class="anchor" aria-label="Permalink: Example" href="#example"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Here is an example SQL query which generates an Atom feed for new entries on <a href="https://www.niche-museums.com/" rel="nofollow">www.niche-museums.com</a>:</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="select
+  'tag:niche-museums.com,' || substr(created, 0, 11) || ':' || id as atom_id,
+  name as atom_title,
+  created as atom_updated,
+  'https://www.niche-museums.com/browse/museums/' || id as atom_link,
+  coalesce(
+    '&lt;img src=&quot;' || photo_url || '?w=800&amp;amp;h=400&amp;amp;fit=crop&amp;amp;auto=compress&quot;&gt;',
+    ''
+  ) || '&lt;p&gt;' || description || '&lt;/p&gt;' as atom_content_html
+from
+  museums
+order by
+  created desc
+limit
+  15"><pre><span class="pl-k">select</span>
+  <span class="pl-s"><span class="pl-pds">'</span>tag:niche-museums.com,<span class="pl-pds">'</span></span> <span class="pl-k">||</span> substr(created, <span class="pl-c1">0</span>, <span class="pl-c1">11</span>) <span class="pl-k">||</span> <span class="pl-s"><span class="pl-pds">'</span>:<span class="pl-pds">'</span></span> <span class="pl-k">||</span> id <span class="pl-k">as</span> atom_id,
+  name <span class="pl-k">as</span> atom_title,
+  created <span class="pl-k">as</span> atom_updated,
+  <span class="pl-s"><span class="pl-pds">'</span>https://www.niche-museums.com/browse/museums/<span class="pl-pds">'</span></span> <span class="pl-k">||</span> id <span class="pl-k">as</span> atom_link,
+  coalesce(
+    <span class="pl-s"><span class="pl-pds">'</span>&lt;img src="<span class="pl-pds">'</span></span> <span class="pl-k">||</span> photo_url <span class="pl-k">||</span> <span class="pl-s"><span class="pl-pds">'</span>?w=800&amp;amp;h=400&amp;amp;fit=crop&amp;amp;auto=compress"&gt;<span class="pl-pds">'</span></span>,
+    <span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>
+  ) <span class="pl-k">||</span> <span class="pl-s"><span class="pl-pds">'</span>&lt;p&gt;<span class="pl-pds">'</span></span> <span class="pl-k">||</span> description <span class="pl-k">||</span> <span class="pl-s"><span class="pl-pds">'</span>&lt;/p&gt;<span class="pl-pds">'</span></span> <span class="pl-k">as</span> atom_content_html
+<span class="pl-k">from</span>
+  museums
+<span class="pl-k">order by</span>
+  created <span class="pl-k">desc</span>
+<span class="pl-k">limit</span>
+  <span class="pl-c1">15</span></pre></div>
+<p dir="auto">You can try this query by <a href="https://www.niche-museums.com/browse" rel="nofollow">pasting it in here</a> - then click the <code>.atom</code> link to see it as an Atom feed.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Using a canned query</h2><a id="user-content-using-a-canned-query" class="anchor" aria-label="Permalink: Using a canned query" href="#using-a-canned-query"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Datasette's <a href="https://docs.datasette.io/en/stable/sql_queries.html#canned-queries" rel="nofollow">canned query mechanism</a> is a useful way to configure feeds. If a canned query definition has a <code>title</code> that will be used as the title of the Atom feed.</p>
+<p dir="auto">Here's an example, defined using a <code>metadata.yaml</code> file:</p>
+<div class="highlight highlight-source-yaml notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="databases:
+  browse:
+    queries:
+      feed:
+        title: Niche Museums
+        sql: |-
+          select
+            'tag:niche-museums.com,' || substr(created, 0, 11) || ':' || id as atom_id,
+            name as atom_title,
+            created as atom_updated,
+            'https://www.niche-museums.com/browse/museums/' || id as atom_link,
+            coalesce(
+              '&lt;img src=&quot;' || photo_url || '?w=800&amp;amp;h=400&amp;amp;fit=crop&amp;amp;auto=compress&quot;&gt;',
+              ''
+            ) || '&lt;p&gt;' || description || '&lt;/p&gt;' as atom_content_html
+          from
+            museums
+          order by
+            created desc
+          limit
+            15"><pre><span class="pl-ent">databases</span>:
+  <span class="pl-ent">browse</span>:
+    <span class="pl-ent">queries</span>:
+      <span class="pl-ent">feed</span>:
+        <span class="pl-ent">title</span>: <span class="pl-s">Niche Museums</span>
+        <span class="pl-ent">sql</span>: <span class="pl-s">|-</span>
+<span class="pl-s">          select</span>
+<span class="pl-s">            'tag:niche-museums.com,' || substr(created, 0, 11) || ':' || id as atom_id,</span>
+<span class="pl-s">            name as atom_title,</span>
+<span class="pl-s">            created as atom_updated,</span>
+<span class="pl-s">            'https://www.niche-museums.com/browse/museums/' || id as atom_link,</span>
+<span class="pl-s">            coalesce(</span>
+<span class="pl-s">              '&lt;img src="' || photo_url || '?w=800&amp;amp;h=400&amp;amp;fit=crop&amp;amp;auto=compress"&gt;',</span>
+<span class="pl-s">              ''</span>
+<span class="pl-s">            ) || '&lt;p&gt;' || description || '&lt;/p&gt;' as atom_content_html</span>
+<span class="pl-s">          from</span>
+<span class="pl-s">            museums</span>
+<span class="pl-s">          order by</span>
+<span class="pl-s">            created desc</span>
+<span class="pl-s">          limit</span>
+<span class="pl-s">            15</span></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Disabling HTML filtering</h2><a id="user-content-disabling-html-filtering" class="anchor" aria-label="Permalink: Disabling HTML filtering" href="#disabling-html-filtering"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The HTML allow-list used by Bleach for the <code>atom_content_html</code> column can be found in the <code>clean(html)</code> function at the bottom of <a href="https://github.com/simonw/datasette-atom/blob/main/datasette_atom/__init__.py">datasette_atom/<strong>init</strong>.py</a>.</p>
+<p dir="auto">You can disable Bleach entirely for Atom feeds generated using a canned query. You should only do this if you are certain that no user-provided HTML could be included in that value.</p>
+<p dir="auto">Here's how to do that in <code>metadata.json</code>:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+  &quot;plugins&quot;: {
+    &quot;datasette-atom&quot;: {
+      &quot;allow_unsafe_html_in_canned_queries&quot;: true
+    }
+  }
+}"><pre>{
+  <span class="pl-ent">"plugins"</span>: {
+    <span class="pl-ent">"datasette-atom"</span>: {
+      <span class="pl-ent">"allow_unsafe_html_in_canned_queries"</span>: <span class="pl-c1">true</span>
+    }
+  }
+}</pre></div>
+<p dir="auto">Setting this to <code>true</code> will disable Bleach filtering for all canned queries across all databases.</p>
+<p dir="auto">You can disable Bleach filtering just for a specific list of canned queries like so:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+  &quot;plugins&quot;: {
+    &quot;datasette-atom&quot;: {
+      &quot;allow_unsafe_html_in_canned_queries&quot;: {
+        &quot;museums&quot;: [&quot;latest&quot;, &quot;moderation&quot;]
+      }
+    }
+  }
+}"><pre>{
+  <span class="pl-ent">"plugins"</span>: {
+    <span class="pl-ent">"datasette-atom"</span>: {
+      <span class="pl-ent">"allow_unsafe_html_in_canned_queries"</span>: {
+        <span class="pl-ent">"museums"</span>: [<span class="pl-s"><span class="pl-pds">"</span>latest<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>moderation<span class="pl-pds">"</span></span>]
+      }
+    }
+  }
+}</pre></div>
+<p dir="auto">This will disable Bleach just for the canned queries called <code>latest</code> and <code>moderation</code> in the <code>museums.db</code> database.</p>
+</article></div>

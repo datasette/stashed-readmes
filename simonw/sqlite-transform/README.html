@@ -1,0 +1,103 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">sqlite-transform</h1><a id="user-content-sqlite-transform" class="anchor" aria-label="Permalink: sqlite-transform" href="#sqlite-transform"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/556c84fc2b13b7b5fe8a48b19c61cd679a17959572fba1f6d23851cc78a67144/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6e6f2532306c6f6e6765722d6d61696e7461696e65642d726564"><img src="https://camo.githubusercontent.com/556c84fc2b13b7b5fe8a48b19c61cd679a17959572fba1f6d23851cc78a67144/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6e6f2532306c6f6e6765722d6d61696e7461696e65642d726564" alt="No longer maintained" data-canonical-src="https://img.shields.io/badge/no%20longer-maintained-red" style="max-width: 100%;"></a>
+<a href="https://pypi.org/project/sqlite-transform/" rel="nofollow"><img src="https://camo.githubusercontent.com/5afdddb02bc2d730d804918ccd0a102e24daa2326a4cf9f11f87930b3a847cd8/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f73716c6974652d7472616e73666f726d2e737667" alt="PyPI" data-canonical-src="https://img.shields.io/pypi/v/sqlite-transform.svg" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/sqlite-transform/releases"><img src="https://camo.githubusercontent.com/28d7293fed82e1cbfcbaa2062b6214cfe1db1a329e467373d6fb3a630ab2f9b5/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f72656c656173652f73696d6f6e772f73716c6974652d7472616e73666f726d3f696e636c7564655f70726572656c6561736573266c6162656c3d6368616e67656c6f67" alt="Changelog" data-canonical-src="https://img.shields.io/github/v/release/simonw/sqlite-transform?include_prereleases&amp;label=changelog" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/sqlite-transform/actions?query=workflow%3ATest"><img src="https://github.com/simonw/sqlite-transform/workflows/Test/badge.svg" alt="Tests" style="max-width: 100%;"></a>
+<a href="https://github.com/dogsheep/sqlite-transform/blob/main/LICENSE"><img src="https://camo.githubusercontent.com/c355f200ea90fddaa407b6eaab303663a669248ea3ca7b1fcf77dbe04ff5f48c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d417061636865253230322e302d626c75652e737667" alt="License" data-canonical-src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" style="max-width: 100%;"></a></p>
+<p dir="auto">Tool for running transformations on columns in a SQLite database.</p>
+<blockquote>
+<p dir="auto"><strong><g-emoji class="g-emoji" alias="warning">⚠️</g-emoji> This tool is no longer maintained</strong></p>
+<p dir="auto">I added a new tool to <a href="https://sqlite-utils.datasette.io/" rel="nofollow">sqlite-utils</a> called <a href="https://sqlite-utils.datasette.io/en/stable/cli.html#converting-data-in-columns" rel="nofollow">sqlite-utils convert</a> which provides a super-set of the functionality originally provided here. <code>sqlite-transform</code> is no longer maintained, and I recommend switching to using <code>sqlite-utils convert</code> instead.</p>
+</blockquote>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">How to install</h2><a id="user-content-how-to-install" class="anchor" aria-label="Permalink: How to install" href="#how-to-install"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pip install sqlite-transform"><pre class="notranslate"><code>pip install sqlite-transform
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">parsedate and parsedatetime</h2><a id="user-content-parsedate-and-parsedatetime" class="anchor" aria-label="Permalink: parsedate and parsedatetime" href="#parsedate-and-parsedatetime"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">These subcommands will run all values in the specified column through <code>dateutils.parser.parse()</code> and replace them with the result, formatted as an ISO timestamp or ISO date.</p>
+<p dir="auto">For example, if a row in the database has an <code>opened</code> column which contains <code>10/10/2019 08:10:00 PM</code>, running the following command:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="sqlite-transform parsedatetime my.db mytable opened"><pre class="notranslate"><code>sqlite-transform parsedatetime my.db mytable opened
+</code></pre></div>
+<p dir="auto">Will result in that value being replaced by <code>2019-10-10T20:10:00</code>.</p>
+<p dir="auto">Using the <code>parsedate</code> subcommand here would result in <code>2019-10-10</code> instead.</p>
+<p dir="auto">In the case of ambiguous dates such as <code>03/04/05</code> these commands both default to assuming American-style <code>mm/dd/yy</code> format. You can pass <code>--dayfirst</code> to specify that the day should be assumed to be first, or <code>--yearfirst</code> for the year.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">jsonsplit</h2><a id="user-content-jsonsplit" class="anchor" aria-label="Permalink: jsonsplit" href="#jsonsplit"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The <code>jsonsplit</code> subcommand takes columns that contain a comma-separated list, for example a <code>tags</code> column containing records like <code>"trees,park,dogs"</code> and converts it into a JSON array <code>["trees", "park", "dogs"]</code>.</p>
+<p dir="auto">This is useful for taking advantage of Datasette's <a href="https://docs.datasette.io/en/stable/facets.html#facet-by-json-array" rel="nofollow">Facet by JSON array</a> feature.</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="sqlite-transform jsonsplit my.db mytable tags"><pre class="notranslate"><code>sqlite-transform jsonsplit my.db mytable tags
+</code></pre></div>
+<p dir="auto">It defaults to splitting on commas, but you can specify a different delimiter character using the <code>--delimiter</code> option, for example:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="sqlite-transform jsonsplit \
+    my.db mytable tags --delimiter ';'"><pre class="notranslate"><code>sqlite-transform jsonsplit \
+    my.db mytable tags --delimiter ';'
+</code></pre></div>
+<p dir="auto">Values within the array will be treated as strings, so a column containing <code>123,552,775</code> will be converted into the JSON array <code>["123", "552", "775"]</code>.</p>
+<p dir="auto">You can specify a different type for these values using <code>--type int</code> or <code>--type float</code>, for example:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="sqlite-transform jsonsplit \
+    my.db mytable tags --type int"><pre class="notranslate"><code>sqlite-transform jsonsplit \
+    my.db mytable tags --type int
+</code></pre></div>
+<p dir="auto">This will result in that column being converted into <code>[123, 552, 775]</code>.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">lambda for executing your own code</h2><a id="user-content-lambda-for-executing-your-own-code" class="anchor" aria-label="Permalink: lambda for executing your own code" href="#lambda-for-executing-your-own-code"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The <code>lambda</code> subcommand lets you specify Python code which will be executed against the column.</p>
+<p dir="auto">Here's how to convert a column to uppercase:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="sqlite-transform lambda my.db mytable mycolumn --code='str(value).upper()'"><pre class="notranslate"><code>sqlite-transform lambda my.db mytable mycolumn --code='str(value).upper()'
+</code></pre></div>
+<p dir="auto">The code you provide will be compiled into a function that takes <code>value</code> as a single argument. You can break your function body into multiple lines, provided the last line is a <code>return</code> statement:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="sqlite-transform lambda my.db mytable mycolumn --code='value = str(value)
+return value.upper()'"><pre class="notranslate"><code>sqlite-transform lambda my.db mytable mycolumn --code='value = str(value)
+return value.upper()'
+</code></pre></div>
+<p dir="auto">You can also specify Python modules that should be imported and made available to your code using one or more <code>--import</code> options:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="sqlite-transform lambda my.db mytable mycolumn \
+    --code='&quot;\n&quot;.join(textwrap.wrap(value, 10))' \
+    --import=textwrap"><pre class="notranslate"><code>sqlite-transform lambda my.db mytable mycolumn \
+    --code='"\n".join(textwrap.wrap(value, 10))' \
+    --import=textwrap
+</code></pre></div>
+<p dir="auto">The <code>--dry-run</code> option will output a preview of the transformation against the first ten rows, without modifying the database.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Saving the result to a separate column</h2><a id="user-content-saving-the-result-to-a-separate-column" class="anchor" aria-label="Permalink: Saving the result to a separate column" href="#saving-the-result-to-a-separate-column"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Each of these commands accepts optional <code>--output</code> and <code>--output-type</code> options. These can be used to save the result of the transformation to a separate column, which will be created if the column does not already exist.</p>
+<p dir="auto">To save the result of <code>jsonsplit</code> to a new column called <code>json_tags</code>, use the following:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="sqlite-transform jsonsplit my.db mytable tags \
+  --output json_tags"><pre class="notranslate"><code>sqlite-transform jsonsplit my.db mytable tags \
+  --output json_tags
+</code></pre></div>
+<p dir="auto">The type of the created column defaults to <code>text</code>, but a different column type can be specified using <code>--output-type</code>. This example will create a new floating point column called <code>float_id</code> with a copy of each item's ID increased by 0.5:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="sqlite-transform lambda my.db mytable id \
+  --code 'float(value) + 0.5' \
+  --output float_id \
+  --output-type float"><pre class="notranslate"><code>sqlite-transform lambda my.db mytable id \
+  --code 'float(value) + 0.5' \
+  --output float_id \
+  --output-type float
+</code></pre></div>
+<p dir="auto">You can drop the original column at the end of the operation by adding <code>--drop</code>.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Splitting a column into multiple columns</h2><a id="user-content-splitting-a-column-into-multiple-columns" class="anchor" aria-label="Permalink: Splitting a column into multiple columns" href="#splitting-a-column-into-multiple-columns"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Sometimes you may wish to convert a single column into multiple derived columns. For example, you may have a <code>location</code> column containing <code>latitude,longitude</code> values which you wish to split out into separate <code>latitude</code> and <code>longitude</code> columns.</p>
+<p dir="auto">You can achieve this using the <code>--multi</code> option to <code>sqlite-transform lambda</code>. This option expects your <code>--code</code> function to return a Python dictionary: new columns well be created and populated for each of the keys in that dictionary.</p>
+<p dir="auto">For the <code>latitude,longitude</code> example you would use the following:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="sqlite-transform lambda demo.db places location \
+  --code 'return {
+    &quot;latitude&quot;: float(value.split(&quot;,&quot;)[0]),
+    &quot;longitude&quot;: float(value.split(&quot;,&quot;)[1]),
+  }' --multi"><pre class="notranslate"><code>sqlite-transform lambda demo.db places location \
+  --code 'return {
+    "latitude": float(value.split(",")[0]),
+    "longitude": float(value.split(",")[1]),
+  }' --multi
+</code></pre></div>
+<p dir="auto">The type of the returned values will be taken into account when creating the new columns. In this example, the resulting database schema will look like this:</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="CREATE TABLE [places] (
+    [location] TEXT,
+    [latitude] FLOAT,
+    [longitude] FLOAT
+);"><pre>CREATE TABLE [places] (
+    [location] <span class="pl-k">TEXT</span>,
+    [latitude] FLOAT,
+    [longitude] FLOAT
+);</pre></div>
+<p dir="auto">The code function can also return <code>None</code>, in which case its output will be ignored.</p>
+<p dir="auto">You can drop the original column at the end of the operation by adding <code>--drop</code>.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Disabling the progress bar</h2><a id="user-content-disabling-the-progress-bar" class="anchor" aria-label="Permalink: Disabling the progress bar" href="#disabling-the-progress-bar"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">By default each command will show a progress bar. Pass <code>-s</code> or <code>--silent</code> to hide that progress bar.</p>
+</article></div>

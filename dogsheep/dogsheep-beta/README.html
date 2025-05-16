@@ -1,0 +1,225 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">dogsheep-beta</h1><a id="user-content-dogsheep-beta" class="anchor" aria-label="Permalink: dogsheep-beta" href="#dogsheep-beta"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://pypi.org/project/dogsheep-beta/" rel="nofollow"><img src="https://camo.githubusercontent.com/d4be45b6c6861c8425f901798fedf1085f7b813ddc1f8a5a7f68ee542260bb2c/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f646f6773686565702d626574612e737667" alt="PyPI" data-canonical-src="https://img.shields.io/pypi/v/dogsheep-beta.svg" style="max-width: 100%;"></a>
+<a href="https://github.com/dogsheep/beta/releases"><img src="https://camo.githubusercontent.com/46f835f2652d23ab823d214c9dd8d7c4abc4c44e7e55a30ded1dee93b4094ea2/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f72656c656173652f646f6773686565702f626574613f696e636c7564655f70726572656c6561736573266c6162656c3d6368616e67656c6f67" alt="Changelog" data-canonical-src="https://img.shields.io/github/v/release/dogsheep/beta?include_prereleases&amp;label=changelog" style="max-width: 100%;"></a>
+<a href="https://github.com/dogsheep/beta/actions?query=workflow%3ATest"><img src="https://github.com/dogsheep/beta/workflows/Test/badge.svg" alt="Tests" style="max-width: 100%;"></a>
+<a href="https://github.com/dogsheep/beta/blob/main/LICENSE"><img src="https://camo.githubusercontent.com/c355f200ea90fddaa407b6eaab303663a669248ea3ca7b1fcf77dbe04ff5f48c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d417061636865253230322e302d626c75652e737667" alt="License" data-canonical-src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" style="max-width: 100%;"></a></p>
+<p dir="auto">Build a search index across content from multiple SQLite database tables and run faceted searches against it using Datasette</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Example</h2><a id="user-content-example" class="anchor" aria-label="Permalink: Example" href="#example"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">A live example of this plugin is running at <a href="https://datasette.io/-/beta" rel="nofollow">https://datasette.io/-/beta</a> - configured using <a href="https://github.com/simonw/datasette.io/blob/main/templates/dogsheep-beta.yml">this YAML file</a>.</p>
+<p dir="auto">Read more about how this example works in <a href="https://simonwillison.net/2020/Dec/19/dogsheep-beta/" rel="nofollow">Building a search engine for datasette.io</a>.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Installation</h2><a id="user-content-installation" class="anchor" aria-label="Permalink: Installation" href="#installation"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Install this tool like so:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ pip install dogsheep-beta"><pre class="notranslate"><code>$ pip install dogsheep-beta
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Usage</h2><a id="user-content-usage" class="anchor" aria-label="Permalink: Usage" href="#usage"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Run the indexer using the <code>dogsheep-beta</code> command-line tool:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ dogsheep-beta index dogsheep.db config.yml"><pre class="notranslate"><code>$ dogsheep-beta index dogsheep.db config.yml
+</code></pre></div>
+<p dir="auto">The <code>config.yml</code> file contains details of the databases and document types that should be indexed:</p>
+<div class="highlight highlight-source-yaml notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="twitter.db:
+    tweets:
+        sql: |-
+            select
+                tweets.id as key,
+                'Tweet by @' || users.screen_name as title,
+                tweets.created_at as timestamp,
+                tweets.full_text as search_1
+            from tweets join users on tweets.user = users.id
+    users:
+        sql: |-
+            select
+                id as key,
+                name || ' @' || screen_name as title,
+                created_at as timestamp,
+                description as search_1
+            from users"><pre><span class="pl-ent">twitter.db</span>:
+    <span class="pl-ent">tweets</span>:
+        <span class="pl-ent">sql</span>: <span class="pl-s">|-</span>
+<span class="pl-s">            select</span>
+<span class="pl-s">                tweets.id as key,</span>
+<span class="pl-s">                'Tweet by @' || users.screen_name as title,</span>
+<span class="pl-s">                tweets.created_at as timestamp,</span>
+<span class="pl-s">                tweets.full_text as search_1</span>
+<span class="pl-s">            from tweets join users on tweets.user = users.id</span>
+<span class="pl-s"></span>    <span class="pl-ent">users</span>:
+        <span class="pl-ent">sql</span>: <span class="pl-s">|-</span>
+<span class="pl-s">            select</span>
+<span class="pl-s">                id as key,</span>
+<span class="pl-s">                name || ' @' || screen_name as title,</span>
+<span class="pl-s">                created_at as timestamp,</span>
+<span class="pl-s">                description as search_1</span>
+<span class="pl-s">            from users</span></pre></div>
+<p dir="auto">This will create a <code>search_index</code> table in the <code>dogsheep.db</code> database populated by data from those SQL queries.</p>
+<p dir="auto">By default the search index that this tool creates will be configured for Porter stemming. This means that searches for words like <code>run</code> will match documents containing <code>runs</code> or <code>running</code>.</p>
+<p dir="auto">If you don't want to use Porter stemming, use the <code>--tokenize none</code> option:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ dogsheep-beta index dogsheep.db config.yml --tokenize none"><pre class="notranslate"><code>$ dogsheep-beta index dogsheep.db config.yml --tokenize none
+</code></pre></div>
+<p dir="auto">You can pass other SQLite tokenize argumenst here, see <a href="https://www.sqlite.org/fts5.html#tokenizers" rel="nofollow">the SQLite FTS tokenizers documentation</a>.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Columns</h2><a id="user-content-columns" class="anchor" aria-label="Permalink: Columns" href="#columns"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The columns that can be returned by our query are:</p>
+<ul dir="auto">
+<li><code>key</code> - a unique (within that type) primary key</li>
+<li><code>title</code> - the title for the item</li>
+<li><code>timestamp</code> - an ISO8601 timestamp, e.g. <code>2020-09-02T21:00:21</code></li>
+<li><code>search_1</code> - a larger chunk of text to be included in the search index</li>
+<li><code>category</code> - an integer category ID, see below</li>
+<li><code>is_public</code> - an integer (0 or 1, defaults to 0 if not set) specifying if this is public or not</li>
+</ul>
+<p dir="auto">Public records are things like your public tweets, blog posts and GitHub commits.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Categories</h2><a id="user-content-categories" class="anchor" aria-label="Permalink: Categories" href="#categories"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Indexed items can be assigned a category. Categories are integers that correspond to records in the <code>categories</code> table, which defaults to containing the following:</p>
+<markdown-accessiblity-table><table>
+<thead>
+<tr>
+<th>id</th>
+<th>name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>created</td>
+</tr>
+<tr>
+<td>2</td>
+<td>saved</td>
+</tr>
+<tr>
+<td>3</td>
+<td>received</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p dir="auto"><code>created</code> is for items that have been created by the Dogsheep instance owner.</p>
+<p dir="auto"><code>saved</code> is for items that they have saved, liked or favourited.</p>
+<p dir="auto"><code>received</code> is for items that have been specifically sent to them by other people - incoming emails or direct messages for example.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Datasette plugin</h2><a id="user-content-datasette-plugin" class="anchor" aria-label="Permalink: Datasette plugin" href="#datasette-plugin"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Run <code>datasette install dogsheep-beta</code> (or use <code>pip install dogsheep-beta</code> in the same environment as Datasette) to install the Dogsheep Beta Datasette plugin.</p>
+<p dir="auto">Once installed, a custom search interface will be made available at <code>/-/beta</code>. You can use this interface to execute searches.</p>
+<p dir="auto">The Datasette plugin has some configuration options. You can set these by adding the following to your <code>metadata.json</code> configuration file:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    &quot;plugins&quot;: {
+        &quot;dogsheep-beta&quot;: {
+            &quot;database&quot;: &quot;beta&quot;,
+            &quot;config_file&quot;: &quot;dogsheep-beta.yml&quot;,
+            &quot;template_debug&quot;: true
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"plugins"</span>: {
+        <span class="pl-ent">"dogsheep-beta"</span>: {
+            <span class="pl-ent">"database"</span>: <span class="pl-s"><span class="pl-pds">"</span>beta<span class="pl-pds">"</span></span>,
+            <span class="pl-ent">"config_file"</span>: <span class="pl-s"><span class="pl-pds">"</span>dogsheep-beta.yml<span class="pl-pds">"</span></span>,
+            <span class="pl-ent">"template_debug"</span>: <span class="pl-c1">true</span>
+        }
+    }
+}</pre></div>
+<p dir="auto">The configuration settings for the plugin are:</p>
+<ul dir="auto">
+<li><code>database</code> - the database file that contains your search index. If the file is <code>beta.db</code> you should set <code>database</code> to <code>beta</code>.</li>
+<li><code>config_file</code> - the YAML file containing your Dogsheep Beta configuration.</li>
+<li><code>template_debug</code> - set this to <code>true</code> to enable debugging output if errors occur in your custom templates, see below.</li>
+</ul>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Custom results display</h2><a id="user-content-custom-results-display" class="anchor" aria-label="Permalink: Custom results display" href="#custom-results-display"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Each indexed item type can define custom display HTML as part of the <code>config.yml</code> file. It can do this using a <code>display</code> key containing a fragment of Jinja template, and optionally a <code>display_sql</code> key with extra SQL to execute to fetch the data to display.</p>
+<p dir="auto">Here's how to define a custom display template for a tweet:</p>
+<div class="highlight highlight-source-yaml notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="twitter.db:
+    tweets:
+        sql: |-
+            select
+                tweets.id as key,
+                'Tweet by @' || users.screen_name as title,
+                tweets.created_at as timestamp,
+                tweets.full_text as search_1
+            from tweets join users on tweets.user = users.id
+        display: |-
+            &lt;p&gt;{{ title }} - tweeted at {{ timestamp }}&lt;/p&gt;
+            &lt;blockquote&gt;{{ search_1 }}&lt;/blockquote&gt;"><pre><span class="pl-ent">twitter.db</span>:
+    <span class="pl-ent">tweets</span>:
+        <span class="pl-ent">sql</span>: <span class="pl-s">|-</span>
+<span class="pl-s">            select</span>
+<span class="pl-s">                tweets.id as key,</span>
+<span class="pl-s">                'Tweet by @' || users.screen_name as title,</span>
+<span class="pl-s">                tweets.created_at as timestamp,</span>
+<span class="pl-s">                tweets.full_text as search_1</span>
+<span class="pl-s">            from tweets join users on tweets.user = users.id</span>
+<span class="pl-s"></span>        <span class="pl-ent">display</span>: <span class="pl-s">|-</span>
+<span class="pl-s">            &lt;p&gt;{{ title }} - tweeted at {{ timestamp }}&lt;/p&gt;</span>
+<span class="pl-s">            &lt;blockquote&gt;{{ search_1 }}&lt;/blockquote&gt;</span></pre></div>
+<p dir="auto">This example reuses the value that were stored in the <code>search_index</code> table when the indexing query was run.</p>
+<p dir="auto">To load in extra values to display in the template, use a <code>display_sql</code> query like this:</p>
+<div class="highlight highlight-source-yaml notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="twitter.db:
+    tweets:
+        sql: |-
+            select
+                tweets.id as key,
+                'Tweet by @' || users.screen_name as title,
+                tweets.created_at as timestamp,
+                tweets.full_text as search_1
+            from tweets join users on tweets.user = users.id
+        display_sql: |-
+            select
+                users.screen_name,
+                tweets.full_text,
+                tweets.created_at
+            from
+                tweets join users on tweets.user = users.id
+            where
+                tweets.id = :key
+        display: |-
+            &lt;p&gt;{{ display.screen_name }} - tweeted at {{ display.created_at }}&lt;/p&gt;
+            &lt;blockquote&gt;{{ display.full_text }}&lt;/blockquote&gt;"><pre><span class="pl-ent">twitter.db</span>:
+    <span class="pl-ent">tweets</span>:
+        <span class="pl-ent">sql</span>: <span class="pl-s">|-</span>
+<span class="pl-s">            select</span>
+<span class="pl-s">                tweets.id as key,</span>
+<span class="pl-s">                'Tweet by @' || users.screen_name as title,</span>
+<span class="pl-s">                tweets.created_at as timestamp,</span>
+<span class="pl-s">                tweets.full_text as search_1</span>
+<span class="pl-s">            from tweets join users on tweets.user = users.id</span>
+<span class="pl-s"></span>        <span class="pl-ent">display_sql</span>: <span class="pl-s">|-</span>
+<span class="pl-s">            select</span>
+<span class="pl-s">                users.screen_name,</span>
+<span class="pl-s">                tweets.full_text,</span>
+<span class="pl-s">                tweets.created_at</span>
+<span class="pl-s">            from</span>
+<span class="pl-s">                tweets join users on tweets.user = users.id</span>
+<span class="pl-s">            where</span>
+<span class="pl-s">                tweets.id = :key</span>
+<span class="pl-s"></span>        <span class="pl-ent">display</span>: <span class="pl-s">|-</span>
+<span class="pl-s">            &lt;p&gt;{{ display.screen_name }} - tweeted at {{ display.created_at }}&lt;/p&gt;</span>
+<span class="pl-s">            &lt;blockquote&gt;{{ display.full_text }}&lt;/blockquote&gt;</span></pre></div>
+<p dir="auto">The <code>display_sql</code> query will be executed for every search result, passing the key value from the <code>search_index</code> table as the <code>:key</code> parameter and the user's search term as the <code>:q</code> parameter.</p>
+<p dir="auto">This performs well because <a href="https://www.sqlite.org/np1queryprob.html" rel="nofollow">many small queries are efficient in SQLite</a>.</p>
+<p dir="auto">If an error occurs while rendering one of your templates the search results page will return a 500 error. You can use the <code>template_debug</code> configuration setting described above to instead output debugging information for the search results item that experienced the error.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Displaying maps</h2><a id="user-content-displaying-maps" class="anchor" aria-label="Permalink: Displaying maps" href="#displaying-maps"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">This plugin will eventually include a number of useful shortcuts for rendering interesting content.</p>
+<p dir="auto">The first available shortcut is for displaying maps. Make your custom content output something like this:</p>
+<div class="highlight highlight-text-html-basic notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="&lt;div
+    data-map-latitude=&quot;{{ display.latitude }}&quot;
+    data-map-longitude=&quot;{{ display.longitude }}&quot;
+    style=&quot;display: none; float: right; width: 250px; height: 200px; background-color: #ccc;&quot;
+&gt;&lt;/div&gt;"><pre><span class="pl-kos">&lt;</span><span class="pl-ent">div</span>
+    <span class="pl-c1">data-map-latitude</span>="<span class="pl-s">{{ display.latitude }}</span>"
+    <span class="pl-c1">data-map-longitude</span>="<span class="pl-s">{{ display.longitude }}</span>"
+    <span class="pl-c1">style</span>="<span class="pl-s">display: none; float: right; width: 250px; height: 200px; background-color: #ccc;</span>"
+<span class="pl-kos">&gt;</span><span class="pl-kos">&lt;/</span><span class="pl-ent">div</span><span class="pl-kos">&gt;</span></pre></div>
+<p dir="auto">JavaScript on the page will look for any elements with <code>data-map-latitude</code> and <code>data-map-longitude</code> and, if it finds any, will load Leaflet and convert those elements into maps centered on that location. The default zoom level will be 12, or you can set a <code>data-map-zoom</code> attribute to customize this.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Development</h2><a id="user-content-development" class="anchor" aria-label="Permalink: Development" href="#development"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">To set up this plugin locally, first checkout the code. Then create a new virtual environment:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="cd dogsheep-beta
+python3 -mvenv venv
+source venv/bin/activate"><pre class="notranslate"><code>cd dogsheep-beta
+python3 -mvenv venv
+source venv/bin/activate
+</code></pre></div>
+<p dir="auto">Or if you are using <code>pipenv</code>:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pipenv shell"><pre class="notranslate"><code>pipenv shell
+</code></pre></div>
+<p dir="auto">Now install the dependencies and tests:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pip install -e '.[test]'"><pre class="notranslate"><code>pip install -e '.[test]'
+</code></pre></div>
+<p dir="auto">To run the tests:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pytest"><pre class="notranslate"><code>pytest
+</code></pre></div>
+</article></div>

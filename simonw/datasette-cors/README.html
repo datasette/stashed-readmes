@@ -1,0 +1,112 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">datasette-cors</h1><a id="user-content-datasette-cors" class="anchor" aria-label="Permalink: datasette-cors" href="#datasette-cors"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://pypi.org/project/datasette-cors/" rel="nofollow"><img src="https://camo.githubusercontent.com/ab52fc037b9d3a8a665b50788b237523cc5287182c54793c6934700333ced859/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f6461746173657474652d636f72732e737667" alt="PyPI" data-canonical-src="https://img.shields.io/pypi/v/datasette-cors.svg" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/datasette-cors/actions/workflows/test.yml"><img src="https://github.com/simonw/datasette-cors/actions/workflows/test.yml/badge.svg" alt="Tests" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/datasette-cors/releases"><img src="https://camo.githubusercontent.com/93250246c3086e6b2401a7c23c86aff984e841685a3b3f7547ecd2e483033d7d/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f72656c656173652f73696d6f6e772f6461746173657474652d636f72733f696e636c7564655f70726572656c6561736573266c6162656c3d6368616e67656c6f67" alt="Changelog" data-canonical-src="https://img.shields.io/github/v/release/simonw/datasette-cors?include_prereleases&amp;label=changelog" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/datasette-cors/blob/main/LICENSE"><img src="https://camo.githubusercontent.com/c355f200ea90fddaa407b6eaab303663a669248ea3ca7b1fcf77dbe04ff5f48c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d417061636865253230322e302d626c75652e737667" alt="License" data-canonical-src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" style="max-width: 100%;"></a></p>
+<p dir="auto">Datasette plugin for configuring CORS headers, based on <a href="https://github.com/simonw/asgi-cors">asgi-cors</a>.</p>
+<p dir="auto">You can use this plugin to allow JavaScript running on an allowlisted set of domains to make <code>fetch()</code> calls to the JSON API provided by your Datasette instance.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Installation</h2><a id="user-content-installation" class="anchor" aria-label="Permalink: Installation" href="#installation"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="datasette install datasette-cors"><pre>datasette install datasette-cors</pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Configuration</h2><a id="user-content-configuration" class="anchor" aria-label="Permalink: Configuration" href="#configuration"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">You need to add some plugin configuration for this plugin to take effect.</p>
+<p dir="auto">To allowlist specific domains, use this:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    &quot;plugins&quot;: {
+        &quot;datasette-cors&quot;: {
+            &quot;hosts&quot;: [&quot;https://www.example.com&quot;]
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"plugins"</span>: {
+        <span class="pl-ent">"datasette-cors"</span>: {
+            <span class="pl-ent">"hosts"</span>: [<span class="pl-s"><span class="pl-pds">"</span>https://www.example.com<span class="pl-pds">"</span></span>]
+        }
+    }
+}</pre></div>
+<p dir="auto">This affects the <code>access-control-allow-origin</code> header.</p>
+<p dir="auto">You can also allowlist host patterns like this:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    &quot;plugins&quot;: {
+        &quot;datasette-cors&quot;: {
+            &quot;host_wildcards&quot;: [&quot;https://*.example.com&quot;]
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"plugins"</span>: {
+        <span class="pl-ent">"datasette-cors"</span>: {
+            <span class="pl-ent">"host_wildcards"</span>: [<span class="pl-s"><span class="pl-pds">"</span>https://*.example.com<span class="pl-pds">"</span></span>]
+        }
+    }
+}</pre></div>
+<p dir="auto">To allow all origins, use:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    &quot;plugins&quot;: {
+        &quot;datasette-cors&quot;: {
+            &quot;allow_all&quot;: true
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"plugins"</span>: {
+        <span class="pl-ent">"datasette-cors"</span>: {
+            <span class="pl-ent">"allow_all"</span>: <span class="pl-c1">true</span>
+        }
+    }
+}</pre></div>
+<p dir="auto">This sets the <code>access-control-allow-origin</code> header to <code>*</code>.</p>
+<p dir="auto">You can specify allowed headers - with the <code>access-control-allow-headers</code> header - using the <code>headers</code> option:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    &quot;plugins&quot;: {
+        &quot;datasette-cors&quot;: {
+            &quot;allow_all&quot;: true,
+            &quot;headers&quot;: [&quot;Authorization&quot;, &quot;Content-Type&quot;]
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"plugins"</span>: {
+        <span class="pl-ent">"datasette-cors"</span>: {
+            <span class="pl-ent">"allow_all"</span>: <span class="pl-c1">true</span>,
+            <span class="pl-ent">"headers"</span>: [<span class="pl-s"><span class="pl-pds">"</span>Authorization<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Content-Type<span class="pl-pds">"</span></span>]
+        }
+    }
+}</pre></div>
+<p dir="auto">To allow specific HTTP methods with the <code>access-control-allow-methods</code> header, use the <code>methods</code> option:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    &quot;plugins&quot;: {
+        &quot;datasette-cors&quot;: {
+            &quot;allow_all&quot;: true,
+            &quot;methods&quot;: [&quot;GET&quot;, &quot;POST&quot;, &quot;OPTIONS&quot;]
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"plugins"</span>: {
+        <span class="pl-ent">"datasette-cors"</span>: {
+            <span class="pl-ent">"allow_all"</span>: <span class="pl-c1">true</span>,
+            <span class="pl-ent">"methods"</span>: [<span class="pl-s"><span class="pl-pds">"</span>GET<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>POST<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>OPTIONS<span class="pl-pds">"</span></span>]
+        }
+    }
+}</pre></div>
+<p dir="auto">You can set the <code>access-control-max-age</code> header using the <code>max_age</code> option:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    &quot;plugins&quot;: {
+        &quot;datasette-cors&quot;: {
+            &quot;allow_all&quot;: true,
+            &quot;max_age&quot;: 3600
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"plugins"</span>: {
+        <span class="pl-ent">"datasette-cors"</span>: {
+            <span class="pl-ent">"allow_all"</span>: <span class="pl-c1">true</span>,
+            <span class="pl-ent">"max_age"</span>: <span class="pl-c1">3600</span>
+        }
+    }
+}</pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Testing it</h2><a id="user-content-testing-it" class="anchor" aria-label="Permalink: Testing it" href="#testing-it"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">To test this plugin out, run it locally by saving one of the above examples as <code>metadata.json</code> and running this:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="datasette -m metadata.json"><pre>datasette -m metadata.json</pre></div>
+<p dir="auto">With Datasette 1.0 use <code>-c config.json</code> instead, or try this:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="datasette -s plugins.datasette-cors.allow_all true"><pre>datasette -s plugins.datasette-cors.allow_all <span class="pl-c1">true</span></pre></div>
+<p dir="auto">Now visit <a href="https://www.example.com/" rel="nofollow">https://www.example.com/</a> in your browser, open the browser developer console and paste in the following:</p>
+<div class="highlight highlight-source-js notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="fetch(&quot;http://127.0.0.1:8001/_memory.json?sql=select+sqlite_version%28%29&quot;).then(r =&gt; r.json()).then(console.log)"><pre><span class="pl-en">fetch</span><span class="pl-kos">(</span><span class="pl-s">"http://127.0.0.1:8001/_memory.json?sql=select+sqlite_version%28%29"</span><span class="pl-kos">)</span><span class="pl-kos">.</span><span class="pl-en">then</span><span class="pl-kos">(</span><span class="pl-s1">r</span> <span class="pl-c1">=&gt;</span> <span class="pl-s1">r</span><span class="pl-kos">.</span><span class="pl-en">json</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">)</span><span class="pl-kos">.</span><span class="pl-en">then</span><span class="pl-kos">(</span><span class="pl-smi">console</span><span class="pl-kos">.</span><span class="pl-c1">log</span><span class="pl-kos">)</span></pre></div>
+<p dir="auto">If the plugin is working correctly, you will see the JSON response output to the console.</p>
+</article></div>
