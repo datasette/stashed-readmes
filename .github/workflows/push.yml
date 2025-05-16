@@ -5,6 +5,11 @@ on:
     branches:
     - main
   workflow_dispatch:
+  # schedule:
+  # - cron:  '21 3/12 * * *'
+
+permissions:
+  contents: write
 
 jobs:
   run-scripts:
