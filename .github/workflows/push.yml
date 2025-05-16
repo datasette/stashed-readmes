@@ -1,0 +1,33 @@
+name: Run Python Scripts on Push to Main
+
+on:
+  push:
+    branches:
+    - main
+
+jobs:
+  run-scripts:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.13'
+
+    - name: Run fetch_all.py
+      run: python fetch_all.py
+
+    - name: Run rewrite_srcs.py
+      run: python rewrite_srcs.py
+
+    - name: Commit and push if it changed
+      run: |-
+        git config user.name "Automated"
+        git config user.email "actions@users.noreply.github.com"
+        git add .
+        timestamp=$(date -u)
+        git commit -m "Latest data: ${timestamp}" || exit 0
+        git push
