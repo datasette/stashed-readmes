@@ -1,0 +1,229 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">openai-to-sqlite</h1><a id="user-content-openai-to-sqlite" class="anchor" aria-label="Permalink: openai-to-sqlite" href="#openai-to-sqlite"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://pypi.org/project/openai-to-sqlite/" rel="nofollow"><img src="https://img.shields.io/pypi/v/openai-to-sqlite.svg" alt="PyPI" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/faad565aa877eae5c2d6bff6e06a6b49ee28a8ab14e5ecfc6af25233acc9729e/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f6f70656e61692d746f2d73716c6974652e737667"></a>
+<a href="https://github.com/simonw/openai-to-sqlite/releases"><img src="https://img.shields.io/github/v/release/simonw/openai-to-sqlite?include_prereleases&label=changelog" alt="Changelog" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/a295e994bca6ab4af595103f71975c03354cd8e2e1b94aaf83ef9cb9108cedad/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f72656c656173652f73696d6f6e772f6f70656e61692d746f2d73716c6974653f696e636c7564655f70726572656c6561736573266c6162656c3d6368616e67656c6f67"></a>
+<a href="https://github.com/simonw/openai-to-sqlite/actions?query=workflow%3ATest"><img src="https://github.com/simonw/openai-to-sqlite/workflows/Test/badge.svg" alt="Tests" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/openai-to-sqlite/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" alt="License" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/c355f200ea90fddaa407b6eaab303663a669248ea3ca7b1fcf77dbe04ff5f48c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d417061636865253230322e302d626c75652e737667"></a></p>
+<p dir="auto">This tool provides utilities for interacting with OpenAI APIs and storing the results in a SQLite database.</p>
+<p dir="auto">See <a href="https://simonwillison.net/2023/Jan/13/semantic-search-answers/" rel="nofollow">Semantic search answers: Q&A against documentation with GPT3 + OpenAI embeddings</a> for background on this project.</p>
+<p dir="auto">For a tutorial on using this for related content, see <a href="https://til.simonwillison.net/llms/openai-embeddings-related-content" rel="nofollow">Storing and serving related documents with openai-to-sqlite and embeddings</a>.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Installation</h2><a id="user-content-installation" class="anchor" aria-label="Permalink: Installation" href="#installation"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Install this tool using <code>pip</code>:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="pip install openai-to-sqlite"><pre>pip install openai-to-sqlite</pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Configuration</h2><a id="user-content-configuration" class="anchor" aria-label="Permalink: Configuration" href="#configuration"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">You will need an OpenAI API key to use this tool.</p>
+<p dir="auto">You can create one at <a href="https://beta.openai.com/account/api-keys" rel="nofollow">https://beta.openai.com/account/api-keys</a></p>
+<p dir="auto">You can then either set the API key as an environment variable:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="export OPENAI_API_KEY=sk-..."><pre><span class="pl-k">export</span> OPENAI_API_KEY=sk-...</pre></div>
+<p dir="auto">Or pass it to each command using the <code>--token sk-...</code> option.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Calling OpenAI APIs with SQL functions</h2><a id="user-content-calling-openai-apis-with-sql-functions" class="anchor" aria-label="Permalink: Calling OpenAI APIs with SQL functions" href="#calling-openai-apis-with-sql-functions"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The <code>openai-to-sqlite query</code> command can be used to execute SQL queries that call OpenAI APIs.</p>
+<p dir="auto">Functions available are:</p>
+<ul dir="auto">
+<li><code>chatgpt(prompt)</code> - call the OpenAI Chat API using model <code>gpt-3.5-turbo</code> with the specified prompt.</li>
+<li><code>chatgpt(prompt, system)</code> - call that API with the prompt and the specified system prompt.</li>
+</ul>
+<p dir="auto">More functions are planned in the future.</p>
+<p dir="auto">Here's how to use this command to run basic sentiment analysis against content in a table:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="openai-to-sqlite query database.db "
+  update messages set sentiment = chatgpt(
+    'Sentiment analysis for this message: ' || message ||
+    ' - ONLY return a lowercase string from: positive, negative, neutral, unknown'
+  )
+  where sentiment not in ('positive', 'negative', 'neutral', 'unknown')
+    or sentiment is null
+""><pre>openai-to-sqlite query database.db <span class="pl-s"><span class="pl-pds">"</span></span>
+<span class="pl-s">  update messages set sentiment = chatgpt(</span>
+<span class="pl-s">    'Sentiment analysis for this message: ' || message ||</span>
+<span class="pl-s">    ' - ONLY return a lowercase string from: positive, negative, neutral, unknown'</span>
+<span class="pl-s">  )</span>
+<span class="pl-s">  where sentiment not in ('positive', 'negative', 'neutral', 'unknown')</span>
+<span class="pl-s">    or sentiment is null</span>
+<span class="pl-s"><span class="pl-pds">"</span></span></pre></div>
+<p dir="auto">This updates the <code>sentiment</code> column in a table called <code>messages</code>. It populates it with the response from the specified prompt.</p>
+<p dir="auto">The command will display a progress bar indicating how many rows are being processed.</p>
+<p dir="auto">You can add an empty <code>sentiment</code> column to a table using <a href="https://sqlite-utils.datasette.io/" rel="nofollow">sqlite-utils</a> like this:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="sqlite-utils add-column database.db messages sentiment"><pre>sqlite-utils add-column database.db messages sentiment</pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Embeddings</h2><a id="user-content-embeddings" class="anchor" aria-label="Permalink: Embeddings" href="#embeddings"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The <code>embeddings</code> command can be used to calculate and store <a href="https://beta.openai.com/docs/guides/embeddings" rel="nofollow">OpenAI embeddings</a> for strings of text.</p>
+<p dir="auto">Each embedding has a cost, so be sure to familiarize yourself with <a href="https://openai.com/api/pricing/" rel="nofollow">the pricing</a> for the embedding model.</p>
+<p dir="auto">The command can accept data in four different ways:</p>
+<ul dir="auto">
+<li>As a JSON file containing a list of objects</li>
+<li>As a CSV file</li>
+<li>As a TSV file</li>
+<li>By running queries against a SQLite database</li>
+</ul>
+<p dir="auto">For all of these formats there should be an <code>id</code> column, followed by one or more text columns.</p>
+<p dir="auto">The ID will be stored as the content ID. Any other columns will be concatenated together and used as the text to be embedded.</p>
+<p dir="auto">The embeddings from the API will then be saved as binary blobs in the <code>embeddings</code> table of the specified SQLite database - or another table, if you pass the <code>-t/--table</code> option.</p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">JSON, CSV and TSV</h3><a id="user-content-json-csv-and-tsv" class="anchor" aria-label="Permalink: JSON, CSV and TSV" href="#json-csv-and-tsv"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Given a CSV file like this:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="id,content
+1,This is a test
+2,This is another test"><pre lang="csv" class="notranslate"><code>id,content
+1,This is a test
+2,This is another test
+</code></pre></div>
+<p dir="auto">Embeddings can be stored like so:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="openai-to-sqlite embeddings embeddings.db data.csv"><pre>openai-to-sqlite embeddings embeddings.db data.csv</pre></div>
+<p dir="auto">The resulting schema looks like this:</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="CREATE TABLE [embeddings] (
+   [id] TEXT PRIMARY KEY,
+   [embedding] BLOB
+);"><pre>CREATE TABLE [embeddings] (
+   [id] <span class="pl-k">TEXT</span> <span class="pl-k">PRIMARY KEY</span>,
+   [embedding] BLOB
+);</pre></div>
+<p dir="auto">The same data can be provided as TSV data:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="id    content
+1     This is a test
+2     This is another test"><pre class="notranslate"><code>id    content
+1     This is a test
+2     This is another test
+</code></pre></div>
+<p dir="auto">Then imported like this:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="openai-to-sqlite embeddings embeddings.db data.tsv"><pre>openai-to-sqlite embeddings embeddings.db data.tsv</pre></div>
+<p dir="auto">Or as JSON data:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="[
+  {"id": 1, "content": "This is a test"},
+  {"id": 2, "content": "This is another test"}
+]"><pre>[
+  {<span class="pl-ent">"id"</span>: <span class="pl-c1">1</span>, <span class="pl-ent">"content"</span>: <span class="pl-s"><span class="pl-pds">"</span>This is a test<span class="pl-pds">"</span></span>},
+  {<span class="pl-ent">"id"</span>: <span class="pl-c1">2</span>, <span class="pl-ent">"content"</span>: <span class="pl-s"><span class="pl-pds">"</span>This is another test<span class="pl-pds">"</span></span>}
+]</pre></div>
+<p dir="auto">Imported like this:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="openai-to-sqlite embeddings embeddings.db data.json"><pre>openai-to-sqlite embeddings embeddings.db data.json</pre></div>
+<p dir="auto">In each of these cases the tool automatically detects the format of the data. It does this by inspecting the data itself - it does not consider the file extension.</p>
+<p dir="auto">If the automatic detection is not working, you can pass <code>--format json</code>, <code>csv</code> or <code>tsv</code> to explicitly specify a format:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="openai-to-sqlite embeddings embeddings.db data.tsv --format tsv"><pre>openai-to-sqlite embeddings embeddings.db data.tsv --format tsv</pre></div>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Importing data from standard input</h3><a id="user-content-importing-data-from-standard-input" class="anchor" aria-label="Permalink: Importing data from standard input" href="#importing-data-from-standard-input"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">You can use a filename of <code>-</code> to pipe data in to standard input:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="cat data.tsv | openai-to-sqlite embeddings embeddings.db -"><pre>cat data.tsv <span class="pl-k">|</span> openai-to-sqlite embeddings embeddings.db -</pre></div>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Data from a SQL query</h3><a id="user-content-data-from-a-sql-query" class="anchor" aria-label="Permalink: Data from a SQL query" href="#data-from-a-sql-query"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The <code>--sql</code> option can be used to read data to be embedded from the attached SQLite database. The query must return an <code>id</code> column and one or more text columns to be embedded.</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="openai-to-sqlite embeddings content.db \
+  --sql "select id, title from documents""><pre>openai-to-sqlite embeddings content.db \
+  --sql <span class="pl-s"><span class="pl-pds">"</span>select id, title from documents<span class="pl-pds">"</span></span></pre></div>
+<p dir="auto">This will create a <code>embeddings</code> table in the <code>content.db</code> database and populate it with embeddings calculated from the <code>title</code> column in that query.</p>
+<p dir="auto">You can also store embeddings in one database while reading data from another database, using the <code>--attach alias filename.db</code> option:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="openai-to-sqlite embeddings embeddings.db \
+  --attach documents documents.db \
+  --sql "select id, title from documents.documents""><pre>openai-to-sqlite embeddings embeddings.db \
+  --attach documents documents.db \
+  --sql <span class="pl-s"><span class="pl-pds">"</span>select id, title from documents.documents<span class="pl-pds">"</span></span></pre></div>
+<p dir="auto">A progress bar will be displayed when using <code>--sql</code> that indicates how long the embeddings are likely to take to calculate.</p>
+<p dir="auto">The CSV/TSV/JSON options do not correctly display the progress bar. You can work around this by importing your data into SQLite first (e.g. <a href="https://sqlite-utils.datasette.io/en/stable/cli.html#inserting-json-data" rel="nofollow">using sqlite-utils</a>) and then running the embeddings using <code>--sql</code>.</p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Batching</h3><a id="user-content-batching" class="anchor" aria-label="Permalink: Batching" href="#batching"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Embeddings will be sent to the OpenAI embeddings API in batches of 100. If you know that your data is short strings you can increase the batch size, up to 2048, using the <code>--batch-size</code> option:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="openai-to-sqlite embeddings embeddings.db data.csv --batch-size 2048"><pre>openai-to-sqlite embeddings embeddings.db data.csv --batch-size 2048</pre></div>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Working with the stored embeddings</h3><a id="user-content-working-with-the-stored-embeddings" class="anchor" aria-label="Permalink: Working with the stored embeddings" href="#working-with-the-stored-embeddings"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The <code>embedding</code> column is a SQLite blob containing 1536 floating point numbers encoded as a sequence of 4 byte values.</p>
+<p dir="auto">You can extract them back to an array of floating point values in Python like this:</p>
+<div class="highlight highlight-source-python notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="import struct
+
+vector = struct.unpack(
+    "f" * 1536, binary_embedding
+)"><pre><span class="pl-k">import</span> <span class="pl-s1">struct</span>
+
+<span class="pl-s1">vector</span> <span class="pl-c1">=</span> <span class="pl-s1">struct</span>.<span class="pl-c1">unpack</span>(
+    <span class="pl-s">"f"</span> <span class="pl-c1">*</span> <span class="pl-c1">1536</span>, <span class="pl-s1">binary_embedding</span>
+)</pre></div>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Searching embeddings with the search command</h3><a id="user-content-searching-embeddings-with-the-search-command" class="anchor" aria-label="Permalink: Searching embeddings with the search command" href="#searching-embeddings-with-the-search-command"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Having saved the embeddings for content, you can run searches using the <code>search</code> command:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="openai-to-sqlite search embeddings.db 'this is my search term'"><pre>openai-to-sqlite search embeddings.db <span class="pl-s"><span class="pl-pds">'</span>this is my search term<span class="pl-pds">'</span></span></pre></div>
+<p dir="auto">The output will be a list of cosine similarity scores and content IDs:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="openai-to-sqlite search blog.db 'cool datasette demo'"><pre>openai-to-sqlite search blog.db <span class="pl-s"><span class="pl-pds">'</span>cool datasette demo<span class="pl-pds">'</span></span></pre></div>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="0.843 7849
+0.830 8036
+0.828 8195
+0.826 8098
+0.818 8086
+0.817 8171
+0.816 8121
+0.815 7860
+0.815 7872
+0.814 8169"><pre class="notranslate"><code>0.843 7849
+0.830 8036
+0.828 8195
+0.826 8098
+0.818 8086
+0.817 8171
+0.816 8121
+0.815 7860
+0.815 7872
+0.814 8169
+</code></pre></div>
+<p dir="auto">Add the <code>-t/--table</code> option if your embeddings are stored in a different table:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="openai-to-sqlite search content.db 'this is my search term' -t documents
+
+Add `--count 20` to retrieve 20 results (the default is 10)."><pre>openai-to-sqlite search content.db <span class="pl-s"><span class="pl-pds">'</span>this is my search term<span class="pl-pds">'</span></span> -t documents
+
+Add <span class="pl-s"><span class="pl-pds">`</span>--count 20<span class="pl-pds">`</span></span> to retrieve 20 results (the default is 10).</pre></div>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Search for similar content with the similar command</h3><a id="user-content-search-for-similar-content-with-the-similar-command" class="anchor" aria-label="Permalink: Search for similar content with the similar command" href="#search-for-similar-content-with-the-similar-command"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Having saved the embeddings for content, you can search for similar content with the <code>similar</code> command:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="oopenai-to-sqlite similar embeddings.db '<content identifier>'"><pre>oopenai-to-sqlite similar embeddings.db <span class="pl-s"><span class="pl-pds">'</span><content identifier><span class="pl-pds">'</span></span></pre></div>
+<p dir="auto">The output will be a list of cosine similarity scores and content IDs:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="openai-to-sqlite similar embeddings-bjcp-2021.db '23G Gose'"><pre>openai-to-sqlite similar embeddings-bjcp-2021.db <span class="pl-s"><span class="pl-pds">'</span>23G Gose<span class="pl-pds">'</span></span></pre></div>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="23G Gose
+  1.000 23G Gose
+  0.929 24A Witbier
+  0.921 23A Berliner Weisse
+  0.909 05B Kölsch
+  0.907 01D American Wheat Beer
+  0.906 27 Historical Beer: Lichtenhainer
+  0.905 23D Lambic
+  0.905 10A Weissbier
+  0.904 04B Festbier
+  0.904 01B American Lager"><pre class="notranslate"><code>23G Gose
+  1.000 23G Gose
+  0.929 24A Witbier
+  0.921 23A Berliner Weisse
+  0.909 05B Kölsch
+  0.907 01D American Wheat Beer
+  0.906 27 Historical Beer: Lichtenhainer
+  0.905 23D Lambic
+  0.905 10A Weissbier
+  0.904 04B Festbier
+  0.904 01B American Lager
+</code></pre></div>
+<p dir="auto">You can pass more than one IDs to see similarities calculated for each one:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="openai-to-sqlite similar embeddings-bjcp-2021.db \
+  '23G Gose' '01A American Light Lager'"><pre>openai-to-sqlite similar embeddings-bjcp-2021.db \
+  <span class="pl-s"><span class="pl-pds">'</span>23G Gose<span class="pl-pds">'</span></span> <span class="pl-s"><span class="pl-pds">'</span>01A American Light Lager<span class="pl-pds">'</span></span></pre></div>
+<p dir="auto">Or pass <code>--all</code> to run similarity for every item in the database. This runs similarity calculations for the number of items squared so it can be quite a long running operation:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="openai-to-sqlite similar embeddings-bjcp-2021.db --all"><pre>openai-to-sqlite similar embeddings-bjcp-2021.db --all</pre></div>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Saving similarity calculations to the database</h3><a id="user-content-saving-similarity-calculations-to-the-database" class="anchor" aria-label="Permalink: Saving similarity calculations to the database" href="#saving-similarity-calculations-to-the-database"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">To save these calculations to a <code>similarities</code> table in the database, use the <code>--save</code> option:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="openai-to-sqlite similar embeddings-bjcp-2021.db --all --save"><pre>openai-to-sqlite similar embeddings-bjcp-2021.db --all --save</pre></div>
+<p dir="auto">The <code>--save</code> option disables output. You can re-enable output with <code>--print</code>:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="openai-to-sqlite similar embeddings-bjcp-2021.db --all --save --print"><pre>openai-to-sqlite similar embeddings-bjcp-2021.db --all --save --print</pre></div>
+<p dir="auto">To save to a database table with a name other than <code>similarities</code>, use <code>--table</code>:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="openai-to-sqlite similar embeddings-bjcp-2021.db \
+  --all --save --table my_similarities"><pre>openai-to-sqlite similar embeddings-bjcp-2021.db \
+  --all --save --table my_similarities</pre></div>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">--recalculate-for-matches</h3><a id="user-content---recalculate-for-matches" class="anchor" aria-label="Permalink: --recalculate-for-matches" href="#--recalculate-for-matches"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Re-calculating similarities for every row in the database can be quite a lengthy operation.</p>
+<p dir="auto">If you know which rows have just been added, you can speed things up using <code>--recalculate-for-matches</code>.</p>
+<p dir="auto">This tells <code>openai-to-sqlite similar</code> to only re-calculate similarities for rows that are close matches to the specified rows.</p>
+<p dir="auto">This means you can add one or two additional records and then trigger an update of the saved similarity scores for just those new records plus for the twenty closest matches to those new records like this:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="openai-to-sqlite similar embeddings-bjcp-2021.db \
+  --save '23G Gose' '01A American Light Lager' \
+  --recalculate-for-matches \
+  --count 20 \
+  --print"><pre>openai-to-sqlite similar embeddings-bjcp-2021.db \
+  --save <span class="pl-s"><span class="pl-pds">'</span>23G Gose<span class="pl-pds">'</span></span> <span class="pl-s"><span class="pl-pds">'</span>01A American Light Lager<span class="pl-pds">'</span></span> \
+  --recalculate-for-matches \
+  --count 20 \
+  --print</pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Development</h2><a id="user-content-development" class="anchor" aria-label="Permalink: Development" href="#development"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">To contribute to this tool, first checkout the code. Then create a new virtual environment:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="cd openai-to-sqlite
+python -m venv venv
+source venv/bin/activate"><pre><span class="pl-c1">cd</span> openai-to-sqlite
+python -m venv venv
+<span class="pl-c1">source</span> venv/bin/activate</pre></div>
+<p dir="auto">Now install the dependencies and test dependencies:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="pip install -e '.[test]'"><pre>pip install -e <span class="pl-s"><span class="pl-pds">'</span>.[test]<span class="pl-pds">'</span></span></pre></div>
+<p dir="auto">To run the tests:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="pytest"><pre>pytest</pre></div>
+</article></div>

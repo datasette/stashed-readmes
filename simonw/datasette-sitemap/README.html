@@ -1,0 +1,148 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">datasette-sitemap</h1><a id="user-content-datasette-sitemap" class="anchor" aria-label="Permalink: datasette-sitemap" href="#datasette-sitemap"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://pypi.org/project/datasette-sitemap/" rel="nofollow"><img src="https://img.shields.io/pypi/v/datasette-sitemap.svg" alt="PyPI" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/e1d9239c79e422fa34fb9a7102734a61cb1fba929cdb26e8b6a05d2282757c0b/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f6461746173657474652d736974656d61702e737667"></a>
+<a href="https://github.com/simonw/datasette-sitemap/releases"><img src="https://img.shields.io/github/v/release/simonw/datasette-sitemap?include_prereleases&label=changelog" alt="Changelog" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/d31e561fa81e176c94d5e7ffbdae2ab885d31c38ce5049c04bef4711e6b0bbbb/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f72656c656173652f73696d6f6e772f6461746173657474652d736974656d61703f696e636c7564655f70726572656c6561736573266c6162656c3d6368616e67656c6f67"></a>
+<a href="https://github.com/simonw/datasette-sitemap/actions?query=workflow%3ATest"><img src="https://github.com/simonw/datasette-sitemap/workflows/Test/badge.svg" alt="Tests" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/datasette-sitemap/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" alt="License" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/c355f200ea90fddaa407b6eaab303663a669248ea3ca7b1fcf77dbe04ff5f48c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d417061636865253230322e302d626c75652e737667"></a></p>
+<p dir="auto">Generate sitemap.xml for Datasette sites</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Installation</h2><a id="user-content-installation" class="anchor" aria-label="Permalink: Installation" href="#installation"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Install this plugin in the same environment as Datasette.</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="datasette install datasette-sitemap"><pre class="notranslate"><code>datasette install datasette-sitemap
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Demo</h2><a id="user-content-demo" class="anchor" aria-label="Permalink: Demo" href="#demo"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">This plugin is used for the sitemap on <a href="https://til.simonwillison.net/" rel="nofollow">til.simonwillison.net</a>:</p>
+<ul dir="auto">
+<li><a href="https://til.simonwillison.net/sitemap.xml" rel="nofollow">https://til.simonwillison.net/sitemap.xml</a></li>
+</ul>
+<p dir="auto">Here's <a href="https://github.com/simonw/til/blob/d4f67743a90a67100b46145986b2dec6f8d96583/metadata.yaml#L14-L16">the configuration</a> used for that sitemap.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Usage</h2><a id="user-content-usage" class="anchor" aria-label="Permalink: Usage" href="#usage"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Once configured, this plugin adds a sitemap at <code>/sitemap.xml</code> with a list of URLs.</p>
+<p dir="auto">This list is defined using a SQL query in <code>metadata.json</code> (or <code>.yml</code>) that looks like this:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+  "plugins": {
+    "datasette-sitemap": {
+      "query": "select '/' || id as path from my_table"
+    }
+  }
+}"><pre>{
+  <span class="pl-ent">"plugins"</span>: {
+    <span class="pl-ent">"datasette-sitemap"</span>: {
+      <span class="pl-ent">"query"</span>: <span class="pl-s"><span class="pl-pds">"</span>select '/' || id as path from my_table<span class="pl-pds">"</span></span>
+    }
+  }
+}</pre></div>
+<p dir="auto">Using <code>metadata.yml</code> allows for multi-line SQL queries which can be easier to maintain:</p>
+<div class="highlight highlight-source-yaml notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="plugins:
+  datasette-sitemap:
+    query: |
+      select
+        '/' || id as path
+      from
+        my_table"><pre><span class="pl-ent">plugins</span>:
+  <span class="pl-ent">datasette-sitemap</span>:
+    <span class="pl-ent">query</span>: <span class="pl-s">|</span>
+<span class="pl-s">      select</span>
+<span class="pl-s">        '/' || id as path</span>
+<span class="pl-s">      from</span>
+<span class="pl-s">        my_table</span></pre></div>
+<p dir="auto">The SQL query must return a column called <code>path</code>. The values in this column must begin with a <code>/</code>. They will be used to generate a sitemap that looks like this:</p>
+<div class="highlight highlight-text-xml notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://example.com/1</loc></url>
+  <url><loc>https://example.com/2</loc></url>
+</urlset>"><pre><?<span class="pl-ent">xml</span><span class="pl-e"> version</span>=<span class="pl-s"><span class="pl-pds">"</span>1.0<span class="pl-pds">"</span></span><span class="pl-e"> encoding</span>=<span class="pl-s"><span class="pl-pds">"</span>UTF-8<span class="pl-pds">"</span></span>?>
+<<span class="pl-ent">urlset</span> <span class="pl-e">xmlns</span>=<span class="pl-s"><span class="pl-pds">"</span>http://www.sitemaps.org/schemas/sitemap/0.9<span class="pl-pds">"</span></span>>
+  <<span class="pl-ent">url</span>><<span class="pl-ent">loc</span>>https://example.com/1</<span class="pl-ent">loc</span>></<span class="pl-ent">url</span>>
+  <<span class="pl-ent">url</span>><<span class="pl-ent">loc</span>>https://example.com/2</<span class="pl-ent">loc</span>></<span class="pl-ent">url</span>>
+</<span class="pl-ent">urlset</span>></pre></div>
+<p dir="auto">You can use <code>UNION</code> in your SQL query to combine results from multiple tables, or include literal paths that you want to include in the index:</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="select
+  '/data/table1/' || id as path
+  from table1
+union
+select
+  '/data/table2/' || id as path
+  from table2
+union
+select
+  '/about' as path"><pre><span class="pl-k">select</span>
+  <span class="pl-s"><span class="pl-pds">'</span>/data/table1/<span class="pl-pds">'</span></span> <span class="pl-k">||</span> id <span class="pl-k">as</span> <span class="pl-k">path</span>
+  <span class="pl-k">from</span> table1
+<span class="pl-k">union</span>
+<span class="pl-k">select</span>
+  <span class="pl-s"><span class="pl-pds">'</span>/data/table2/<span class="pl-pds">'</span></span> <span class="pl-k">||</span> id <span class="pl-k">as</span> <span class="pl-k">path</span>
+  <span class="pl-k">from</span> table2
+<span class="pl-k">union</span>
+<span class="pl-k">select</span>
+  <span class="pl-s"><span class="pl-pds">'</span>/about<span class="pl-pds">'</span></span> <span class="pl-k">as</span> <span class="pl-k">path</span></pre></div>
+<p dir="auto">If your Datasette instance has multiple databases you can configure the database to query using the <code>database</code> configuration property.</p>
+<p dir="auto">By default the domain name for the genearted URLs in the sitemap will be detected from the incoming request.</p>
+<p dir="auto">You can set <code>base_url</code> instead to override this. This should not include a trailing slash.</p>
+<p dir="auto">This example shows both of those settings, running the query against the <code>content</code> database and setting a custom base URL:</p>
+<div class="highlight highlight-source-yaml notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="plugins:
+  datasette-sitemap:
+    query: |
+      select '/plugins/' || name as path from plugins
+      union
+      select '/tools/' || name as path from tools
+      union
+      select '/news' as path
+    database: content
+    base_url: https://datasette.io"><pre><span class="pl-ent">plugins</span>:
+  <span class="pl-ent">datasette-sitemap</span>:
+    <span class="pl-ent">query</span>: <span class="pl-s">|</span>
+<span class="pl-s">      select '/plugins/' || name as path from plugins</span>
+<span class="pl-s">      union</span>
+<span class="pl-s">      select '/tools/' || name as path from tools</span>
+<span class="pl-s">      union</span>
+<span class="pl-s">      select '/news' as path</span>
+<span class="pl-s"></span>    <span class="pl-ent">database</span>: <span class="pl-s">content</span>
+    <span class="pl-ent">base_url</span>: <span class="pl-s">https://datasette.io</span></pre></div>
+<p dir="auto"><a href="https://datasette.io/content?sql=select+%27%2Fplugins%2F%27+%7C%7C+name+as+path+from+plugins%0D%0Aunion%0D%0Aselect+%27%2Ftools%2F%27+%7C%7C+name+as+path+from+tools%0D%0Aunion%0D%0Aselect+%27%2Fnews%27+as+path%0D%0A" rel="nofollow">Try that query</a>.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">robots.txt</h2><a id="user-content-robotstxt" class="anchor" aria-label="Permalink: robots.txt" href="#robotstxt"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">This plugin adds a <code>robots.txt</code> file pointing to the sitemap:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="Sitemap: http://example.com/sitemap.xml"><pre class="notranslate"><code>Sitemap: http://example.com/sitemap.xml
+</code></pre></div>
+<p dir="auto">You can take full control of the sitemap by installing and configuring the <a href="https://datasette.io/plugins/datasette-block-robots" rel="nofollow">datasette-block-robots</a> plugin.</p>
+<p dir="auto">This plugin will add the <code>Sitemap:</code> line even if you are using <code>datasette-block-robots</code> for the rest of your <code>robots.txt</code> file.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Adding paths to the sitemap from other plugins</h2><a id="user-content-adding-paths-to-the-sitemap-from-other-plugins" class="anchor" aria-label="Permalink: Adding paths to the sitemap from other plugins" href="#adding-paths-to-the-sitemap-from-other-plugins"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">This plugin adds a new <a href="https://docs.datasette.io/en/stable/plugin_hooks.html" rel="nofollow">plugin hook</a> to Datasete called <code>sitemap_extra_paths()</code> which can be used by other plugins to add their own additional lines to the <code>sitemap.xml</code> file.</p>
+<p dir="auto">The hook accepts these optional parameters:</p>
+<ul dir="auto">
+<li><code>datasette</code>: The current <a href="https://docs.datasette.io/en/stable/internals.html#datasette-class" rel="nofollow">Datasette instance</a>. You can use this to execute SQL queries or read plugin configuration settings.</li>
+<li><code>request</code>: The <a href="https://docs.datasette.io/en/stable/internals.html#request-object" rel="nofollow">Request object</a> representing the incoming request to <code>/sitemap.xml</code>.</li>
+</ul>
+<p dir="auto">The hook should return a list of strings, each representing a path to be added to the sitemap. Each path must begin with a <code>/</code>.</p>
+<p dir="auto">It can also return an <code>async def</code> function, which will be awaited and used to generate a list of lines. Use this option if you need to make <code>await</code> calls inside you hook implementation.</p>
+<p dir="auto">This example uses the hook to add two extra paths, one of which came from a SQL query:</p>
+<div class="highlight highlight-source-python notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="from datasette import hookimpl
+
+@hookimpl
+def sitemap_extra_paths(datasette):
+    async def inner():
+        db = datasette.get_database()
+        path_from_db = (await db.execute("select '/example'")).single_value()
+        return ["/about", path_from_db]
+    return inner"><pre><span class="pl-k">from</span> <span class="pl-s1">datasette</span> <span class="pl-k">import</span> <span class="pl-s1">hookimpl</span>
+
+<span class="pl-en">@<span class="pl-s1">hookimpl</span></span>
+<span class="pl-k">def</span> <span class="pl-en">sitemap_extra_paths</span>(<span class="pl-s1">datasette</span>):
+    <span class="pl-k">async</span> <span class="pl-k">def</span> <span class="pl-en">inner</span>():
+        <span class="pl-s1">db</span> <span class="pl-c1">=</span> <span class="pl-s1">datasette</span>.<span class="pl-c1">get_database</span>()
+        <span class="pl-s1">path_from_db</span> <span class="pl-c1">=</span> (<span class="pl-k">await</span> <span class="pl-s1">db</span>.<span class="pl-c1">execute</span>(<span class="pl-s">"select '/example'"</span>)).<span class="pl-c1">single_value</span>()
+        <span class="pl-k">return</span> [<span class="pl-s">"/about"</span>, <span class="pl-s1">path_from_db</span>]
+    <span class="pl-k">return</span> <span class="pl-s1">inner</span></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Development</h2><a id="user-content-development" class="anchor" aria-label="Permalink: Development" href="#development"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">To set up this plugin locally, first checkout the code. Then create a new virtual environment:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="cd datasette-sitemap
+python3 -m venv venv
+source venv/bin/activate"><pre class="notranslate"><code>cd datasette-sitemap
+python3 -m venv venv
+source venv/bin/activate
+</code></pre></div>
+<p dir="auto">Now install the dependencies and test dependencies:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pip install -e '.[test]'"><pre class="notranslate"><code>pip install -e '.[test]'
+</code></pre></div>
+<p dir="auto">To run the tests:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pytest"><pre class="notranslate"><code>pytest
+</code></pre></div>
+</article></div>

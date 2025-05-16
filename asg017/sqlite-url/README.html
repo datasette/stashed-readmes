@@ -1,0 +1,217 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">sqlite-url</h1><a id="user-content-sqlite-url" class="anchor" aria-label="Permalink: sqlite-url" href="#sqlite-url"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">A SQLite extension for parsing and generating URLs and query strings. Based on libcurl's <a href="https://curl.se/libcurl/c/libcurl-url.html" rel="nofollow">URL API</a></p>
+<p dir="auto">Try it out in your browser and learn more in <a href="https://observablehq.com/@asg017/introducing-sqlite-url" rel="nofollow">Introducing sqlite-url: A SQLite extension for parsing and generating URLs</a> (September 2022)</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Usage</h2><a id="user-content-usage" class="anchor" aria-label="Permalink: Usage" href="#usage"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content=".load ./url0
+select url_valid('https://sqlite.org'); -- 1"><pre>.load .<span class="pl-k">/</span>url0
+<span class="pl-k">select</span> url_valid(<span class="pl-s"><span class="pl-pds">'</span>https://sqlite.org<span class="pl-pds">'</span></span>); <span class="pl-c"><span class="pl-c">--</span> 1</span></pre></div>
+<p dir="auto">Extract specific parts from a given URL.</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="select url_scheme('https://www.sqlite.org/vtab.html#usage'); -- 'https'
+select url_host('https://www.sqlite.org/vtab.html#usage'); -- 'www.sqlite.org'
+select url_path('https://www.sqlite.org/vtab.html#usage'); -- '/vtab.html'
+select url_fragment('https://www.sqlite.org/vtab.html#usage'); -- 'usage'"><pre><span class="pl-k">select</span> url_scheme(<span class="pl-s"><span class="pl-pds">'</span>https://www.sqlite.org/vtab.html#usage<span class="pl-pds">'</span></span>); <span class="pl-c"><span class="pl-c">--</span> 'https'</span>
+<span class="pl-k">select</span> url_host(<span class="pl-s"><span class="pl-pds">'</span>https://www.sqlite.org/vtab.html#usage<span class="pl-pds">'</span></span>); <span class="pl-c"><span class="pl-c">--</span> 'www.sqlite.org'</span>
+<span class="pl-k">select</span> url_path(<span class="pl-s"><span class="pl-pds">'</span>https://www.sqlite.org/vtab.html#usage<span class="pl-pds">'</span></span>); <span class="pl-c"><span class="pl-c">--</span> '/vtab.html'</span>
+<span class="pl-k">select</span> url_fragment(<span class="pl-s"><span class="pl-pds">'</span>https://www.sqlite.org/vtab.html#usage<span class="pl-pds">'</span></span>); <span class="pl-c"><span class="pl-c">--</span> 'usage'</span></pre></div>
+<p dir="auto">Generate a URL programmatically.</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="select url(null,
+  'scheme', 'https',
+  'host', 'alexgarcia.url',
+  'fragment', 'yeet'
+); -- 'https://alexgarcia.url/#yeet'"><pre><span class="pl-k">select</span> url(<span class="pl-k">null</span>,
+  <span class="pl-s"><span class="pl-pds">'</span>scheme<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>https<span class="pl-pds">'</span></span>,
+  <span class="pl-s"><span class="pl-pds">'</span>host<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>alexgarcia.url<span class="pl-pds">'</span></span>,
+  <span class="pl-s"><span class="pl-pds">'</span>fragment<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>yeet<span class="pl-pds">'</span></span>
+); <span class="pl-c"><span class="pl-c">--</span> 'https://alexgarcia.url/#yeet'</span></pre></div>
+<p dir="auto">Iterate through all parameters in a URL's query string.</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="
+select *
+from url_query_each(
+  url_query('https://api.census.gov/data/2020/acs/acs5?get=B01001_001E&for=county:*&in=state:06')
+);
+/*
+┌──────┬─────────────┐
+│ name │    value    │
+├──────┼─────────────┤
+│ get  │ B01001_001E │
+│ for  │ county:*    │
+│ in   │ state:06    │
+└──────┴─────────────┘
+*/"><pre><span class="pl-k">select</span> <span class="pl-k">*</span>
+<span class="pl-k">from</span> url_query_each(
+  url_query(<span class="pl-s"><span class="pl-pds">'</span>https://api.census.gov/data/2020/acs/acs5?get=B01001_001E&for=county:*&in=state:06<span class="pl-pds">'</span></span>)
+);
+<span class="pl-c"><span class="pl-c">/*</span></span>
+<span class="pl-c">┌──────┬─────────────┐</span>
+<span class="pl-c">│ name │    value    │</span>
+<span class="pl-c">├──────┼─────────────┤</span>
+<span class="pl-c">│ get  │ B01001_001E │</span>
+<span class="pl-c">│ for  │ county:*    │</span>
+<span class="pl-c">│ in   │ state:06    │</span>
+<span class="pl-c">└──────┴─────────────┘</span>
+<span class="pl-c"><span class="pl-c">*/</span></span></pre></div>
+<p dir="auto">Use with <a href="https://github.com/asg017/sqlite-http">sqlite-http</a> to generate URLs to request.</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="select http_get_body(
+  url(
+    'https://api.census.gov',
+    'path', '/data/2020/acs/acs5',
+    'query', url_querystring(
+      'get', 'B01001_001E',
+      'for', 'county:*',
+      'in', 'state:06'
+    )
+  )
+);
+/*
+┌────────────────────────────────────┐
+│           http_get_body(           │
+├────────────────────────────────────┤
+│ [["B01001_001E","state","county"], │
+│ ["1661584","06","001"],            │
+│ ["1159","06","003"],               │
+│ ["223344","06","007"],             │
+│ ["21491","06","011"],              │
+│ ["1147788","06","013"],            │
+│ ["190345","06","017"],             │
+│               ...                  │
+│ ["845599","06","111"]]             │
+└────────────────────────────────────┘
+*/"><pre><span class="pl-k">select</span> http_get_body(
+  url(
+    <span class="pl-s"><span class="pl-pds">'</span>https://api.census.gov<span class="pl-pds">'</span></span>,
+    <span class="pl-s"><span class="pl-pds">'</span>path<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>/data/2020/acs/acs5<span class="pl-pds">'</span></span>,
+    <span class="pl-s"><span class="pl-pds">'</span>query<span class="pl-pds">'</span></span>, url_querystring(
+      <span class="pl-s"><span class="pl-pds">'</span>get<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>B01001_001E<span class="pl-pds">'</span></span>,
+      <span class="pl-s"><span class="pl-pds">'</span>for<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>county:*<span class="pl-pds">'</span></span>,
+      <span class="pl-s"><span class="pl-pds">'</span>in<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>state:06<span class="pl-pds">'</span></span>
+    )
+  )
+);
+<span class="pl-c"><span class="pl-c">/*</span></span>
+<span class="pl-c">┌────────────────────────────────────┐</span>
+<span class="pl-c">│           http_get_body(           │</span>
+<span class="pl-c">├────────────────────────────────────┤</span>
+<span class="pl-c">│ [["B01001_001E","state","county"], │</span>
+<span class="pl-c">│ ["1661584","06","001"],            │</span>
+<span class="pl-c">│ ["1159","06","003"],               │</span>
+<span class="pl-c">│ ["223344","06","007"],             │</span>
+<span class="pl-c">│ ["21491","06","011"],              │</span>
+<span class="pl-c">│ ["1147788","06","013"],            │</span>
+<span class="pl-c">│ ["190345","06","017"],             │</span>
+<span class="pl-c">│               ...                  │</span>
+<span class="pl-c">│ ["845599","06","111"]]             │</span>
+<span class="pl-c">└────────────────────────────────────┘</span>
+<span class="pl-c"><span class="pl-c">*/</span></span></pre></div>
+<p dir="auto">Use with <a href="https://github.com/asg017/sqlite-path">sqlite-path</a> to safely generate paths for a URL.</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="
+select url(
+  'https://github.com',
+  'path', path_join('/', 'asg017', 'sqlite-url', 'issues', '1')
+);
+-- 'https://github.com/asg017/sqlite-url/issues/1'"><pre><span class="pl-k">select</span> url(
+  <span class="pl-s"><span class="pl-pds">'</span>https://github.com<span class="pl-pds">'</span></span>,
+  <span class="pl-s"><span class="pl-pds">'</span>path<span class="pl-pds">'</span></span>, path_join(<span class="pl-s"><span class="pl-pds">'</span>/<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>asg017<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>sqlite-url<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>issues<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>1<span class="pl-pds">'</span></span>)
+);
+<span class="pl-c"><span class="pl-c">--</span> 'https://github.com/asg017/sqlite-url/issues/1'</span></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Documentation</h2><a id="user-content-documentation" class="anchor" aria-label="Permalink: Documentation" href="#documentation"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">See <a href="./docs.md"><code>docs.md</code></a> for a full API reference.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Installing</h2><a id="user-content-installing" class="anchor" aria-label="Permalink: Installing" href="#installing"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<markdown-accessiblity-table><table>
+<thead>
+<tr>
+<th>Language</th>
+<th>Install</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Python</td>
+<td><code>pip install sqlite-url</code></td>
+<td><a href="https://pypi.org/project/sqlite-url/" rel="nofollow"><img src="https://img.shields.io/pypi/v/sqlite-url.svg?color=blue&logo=python&logoColor=white" alt="PyPI" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/4e72d73c8d461c5eee3d97daac39404c874396309a4a9aae401361470e2beaf7/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f73716c6974652d75726c2e7376673f636f6c6f723d626c7565266c6f676f3d707974686f6e266c6f676f436f6c6f723d7768697465"></a></td>
+</tr>
+<tr>
+<td>Datasette</td>
+<td><code>datasette install datasette-sqlite-url</code></td>
+<td><a href="https://datasette.io/plugins/datasette-sqlite-url" rel="nofollow"><img src="https://img.shields.io/pypi/v/datasette-sqlite-url.svg?color=B6B6D9&label=Datasette+plugin&logoColor=white&logo=python" alt="Datasette" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/c17b58829bed4bf46717cf7225da127bc868f841ba227c581cc114ab9ce41d32/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f6461746173657474652d73716c6974652d75726c2e7376673f636f6c6f723d423642364439266c6162656c3d4461746173657474652b706c7567696e266c6f676f436f6c6f723d7768697465266c6f676f3d707974686f6e"></a></td>
+</tr>
+<tr>
+<td>Node.js</td>
+<td><code>npm install sqlite-url</code></td>
+<td><a href="https://www.npmjs.com/package/sqlite-url" rel="nofollow"><img src="https://img.shields.io/npm/v/sqlite-url.svg?color=green&logo=nodedotjs&logoColor=white" alt="npm" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/c1808b6072a5291f3a8080fcc08d45e3b7cf9827b40ab4b78a24d36a258fc01a/68747470733a2f2f696d672e736869656c64732e696f2f6e706d2f762f73716c6974652d75726c2e7376673f636f6c6f723d677265656e266c6f676f3d6e6f6465646f746a73266c6f676f436f6c6f723d7768697465"></a></td>
+</tr>
+<tr>
+<td>Deno</td>
+<td><a href="https://deno.land/x/sqlite_url" rel="nofollow"><code>deno.land/x/sqlite_url</code></a></td>
+<td><a href="https://deno.land/x/sqlite_url" rel="nofollow"><img src="https://img.shields.io/github/v/release/asg017/sqlite-url?color=fef8d2&include_prereleases&label=deno.land%2Fx&logo=deno" alt="deno.land/x release" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/7f88391fd035393a21e17501691f8a45581a36f2261ffa38508658807b4760ef/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f72656c656173652f6173673031372f73716c6974652d75726c3f636f6c6f723d66656638643226696e636c7564655f70726572656c6561736573266c6162656c3d64656e6f2e6c616e6425324678266c6f676f3d64656e6f"></a></td>
+</tr>
+<tr>
+<td>Ruby</td>
+<td><code>gem install sqlite-url</code></td>
+<td><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/a17d3b249daf5110f258ff6418f9108c60bb6f4b06037d6a045c5abf107222b5/68747470733a2f2f696d672e736869656c64732e696f2f67656d2f762f73716c6974652d75726c3f636f6c6f723d726564266c6f676f3d7275627967656d73266c6f676f436f6c6f723d7768697465"><img src="https://img.shields.io/gem/v/sqlite-url?color=red&logo=rubygems&logoColor=white" alt="Gem" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/a17d3b249daf5110f258ff6418f9108c60bb6f4b06037d6a045c5abf107222b5/68747470733a2f2f696d672e736869656c64732e696f2f67656d2f762f73716c6974652d75726c3f636f6c6f723d726564266c6f676f3d7275627967656d73266c6f676f436f6c6f723d7768697465"></a></td>
+</tr>
+<tr>
+<td>Github Release</td>
+<td></td>
+<td><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/4c74e627a021ec5048625a2638b23350ce05f24c377e21d787bfce25f420a166/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f7461672f6173673031372f73716c6974652d75726c3f636f6c6f723d6c696768746772657926696e636c7564655f70726572656c6561736573266c6162656c3d4769746875622b72656c65617365266c6f676f3d676974687562"><img src="https://img.shields.io/github/v/tag/asg017/sqlite-url?color=lightgrey&include_prereleases&label=Github+release&logo=github" alt="GitHub tag (latest SemVer pre-release)" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/4c74e627a021ec5048625a2638b23350ce05f24c377e21d787bfce25f420a166/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f7461672f6173673031372f73716c6974652d75726c3f636f6c6f723d6c696768746772657926696e636c7564655f70726572656c6561736573266c6162656c3d4769746875622b72656c65617365266c6f676f3d676974687562"></a></td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+
+<p dir="auto">The <a href="https://github.com/asg017/sqlite-url/releases">Releases page</a> contains pre-built binaries for Linux amd6 and MacOS amd64 (no arm).</p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">As a loadable extension</h3><a id="user-content-as-a-loadable-extension" class="anchor" aria-label="Permalink: As a loadable extension" href="#as-a-loadable-extension"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">If you want to use <code>sqlite-url</code> as a <a href="https://www.sqlite.org/loadext.html" rel="nofollow">Runtime-loadable extension</a>, Download the <code>url0.dylib</code> (for MacOS) or <code>url0.so</code> (Linux) file from a release and load it into your SQLite environment.</p>
+<blockquote>
+<p dir="auto"><strong>Note:</strong>
+The <code>0</code> in the filename (<code>url0.dylib</code>/ <code>url0.so</code>) denotes the major version of <code>sqlite-url</code>. Currently <code>sqlite-url</code> is pre v1, so expect breaking changes in future versions.</p>
+</blockquote>
+<p dir="auto">For example, if you are using the <a href="https://www.sqlite.org/cli.html" rel="nofollow">SQLite CLI</a>, you can load the library like so:</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content=".load ./url0
+select url_version();
+-- v0.0.1"><pre>.load .<span class="pl-k">/</span>url0
+<span class="pl-k">select</span> url_version();
+<span class="pl-c"><span class="pl-c">--</span> v0.0.1</span></pre></div>
+<p dir="auto">Or in Python, using the builtin <a href="https://docs.python.org/3/library/sqlite3.html" rel="nofollow">sqlite3 module</a>:</p>
+<div class="highlight highlight-source-python notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="import sqlite3
+
+con = sqlite3.connect(":memory:")
+
+con.enable_load_extension(True)
+con.load_extension("./url0")
+
+print(con.execute("select url_version()").fetchone())
+# ('v0.0.1',)"><pre><span class="pl-k">import</span> <span class="pl-s1">sqlite3</span>
+
+<span class="pl-s1">con</span> <span class="pl-c1">=</span> <span class="pl-s1">sqlite3</span>.<span class="pl-c1">connect</span>(<span class="pl-s">":memory:"</span>)
+
+<span class="pl-s1">con</span>.<span class="pl-c1">enable_load_extension</span>(<span class="pl-c1">True</span>)
+<span class="pl-s1">con</span>.<span class="pl-c1">load_extension</span>(<span class="pl-s">"./url0"</span>)
+
+<span class="pl-en">print</span>(<span class="pl-s1">con</span>.<span class="pl-c1">execute</span>(<span class="pl-s">"select url_version()"</span>).<span class="pl-c1">fetchone</span>())
+<span class="pl-c"># ('v0.0.1',)</span></pre></div>
+<p dir="auto">Or in Node.js using <a href="https://github.com/WiseLibs/better-sqlite3">better-sqlite3</a>:</p>
+<div class="highlight highlight-source-js notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="const Database = require("better-sqlite3");
+const db = new Database(":memory:");
+
+db.loadExtension("./url0");
+
+console.log(db.prepare("select url_version()").get());
+// { 'html_version()': 'v0.0.1' }"><pre><span class="pl-k">const</span> <span class="pl-v">Database</span> <span class="pl-c1">=</span> <span class="pl-en">require</span><span class="pl-kos">(</span><span class="pl-s">"better-sqlite3"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+<span class="pl-k">const</span> <span class="pl-s1">db</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-v">Database</span><span class="pl-kos">(</span><span class="pl-s">":memory:"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+
+<span class="pl-s1">db</span><span class="pl-kos">.</span><span class="pl-en">loadExtension</span><span class="pl-kos">(</span><span class="pl-s">"./url0"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+
+<span class="pl-smi">console</span><span class="pl-kos">.</span><span class="pl-en">log</span><span class="pl-kos">(</span><span class="pl-s1">db</span><span class="pl-kos">.</span><span class="pl-en">prepare</span><span class="pl-kos">(</span><span class="pl-s">"select url_version()"</span><span class="pl-kos">)</span><span class="pl-kos">.</span><span class="pl-en">get</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+<span class="pl-c">// { 'html_version()': 'v0.0.1' }</span></pre></div>
+<p dir="auto">Or with <a href="https://datasette.io/" rel="nofollow">Datasette</a>:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="datasette data.db --load-extension ./url0"><pre class="notranslate"><code>datasette data.db --load-extension ./url0
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">See also</h2><a id="user-content-see-also" class="anchor" aria-label="Permalink: See also" href="#see-also"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li><a href="https://github.com/asg017/sqlite-path">sqlite-path</a>, parsing/generating paths (pairs well with <code>url_path()</code> and <code>url()</code>)</li>
+<li><a href="https://github.com/asg017/sqlite-http">sqlite-http</a>, for making HTTP requests in SQLite</li>
+<li><a href="https://github.com/asg017/sqlite-html">sqlite-html</a>, for parsing HTML documents</li>
+<li><a href="https://github.com/asg017/sqlite-lines">sqlite-lines</a>, for reading large files line-by-line</li>
+<li><a href="https://github.com/nalgeon/sqlean">nalgeon/sqlean</a>, several pre-compiled handy SQLite functions, in C</li>
+</ul>
+</article></div>

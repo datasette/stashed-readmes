@@ -1,0 +1,237 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">sqlite-path</h1><a id="user-content-sqlite-path" class="anchor" aria-label="Permalink: sqlite-path" href="#sqlite-path"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">A loadable SQLite extension for parsing, generating, and querying paths. Based on <a href="https://github.com/likle/cwalk">cwalk</a></p>
+<p dir="auto">Try it out in your browser and learn more in <a href="https://observablehq.com/@asg017/introducing-sqlite-path" rel="nofollow"><em>Introducing sqlite-path: A SQLite extension for parsing and generating file paths</em></a> (August 2022)</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Usage</h2><a id="user-content-usage" class="anchor" aria-label="Permalink: Usage" href="#usage"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content=".load ./path0
+select path_dirname('foo/bar.txt'); -- 'foo/'
+select path_basename('foo/bar.txt'); -- 'bar.txt'
+select path_extension('foo/bar.txt'); -- '.txt'
+
+select path_part_at('foo/bar/baz.txt', 0); -- 'foo'
+select path_part_at('foo/bar/baz.txt', 1); -- 'bar'
+select path_part_at('foo/bar/baz.txt', -1); -- 'baz.txt'"><pre>.load .<span class="pl-k">/</span>path0
+<span class="pl-k">select</span> path_dirname(<span class="pl-s"><span class="pl-pds">'</span>foo/bar.txt<span class="pl-pds">'</span></span>); <span class="pl-c"><span class="pl-c">--</span> 'foo/'</span>
+<span class="pl-k">select</span> path_basename(<span class="pl-s"><span class="pl-pds">'</span>foo/bar.txt<span class="pl-pds">'</span></span>); <span class="pl-c"><span class="pl-c">--</span> 'bar.txt'</span>
+<span class="pl-k">select</span> path_extension(<span class="pl-s"><span class="pl-pds">'</span>foo/bar.txt<span class="pl-pds">'</span></span>); <span class="pl-c"><span class="pl-c">--</span> '.txt'</span>
+
+<span class="pl-k">select</span> path_part_at(<span class="pl-s"><span class="pl-pds">'</span>foo/bar/baz.txt<span class="pl-pds">'</span></span>, <span class="pl-c1">0</span>); <span class="pl-c"><span class="pl-c">--</span> 'foo'</span>
+<span class="pl-k">select</span> path_part_at(<span class="pl-s"><span class="pl-pds">'</span>foo/bar/baz.txt<span class="pl-pds">'</span></span>, <span class="pl-c1">1</span>); <span class="pl-c"><span class="pl-c">--</span> 'bar'</span>
+<span class="pl-k">select</span> path_part_at(<span class="pl-s"><span class="pl-pds">'</span>foo/bar/baz.txt<span class="pl-pds">'</span></span>, <span class="pl-k">-</span><span class="pl-c1">1</span>); <span class="pl-c"><span class="pl-c">--</span> 'baz.txt'</span></pre></div>
+<p dir="auto">Iterate through all parts in a path.</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="
+select *
+from path_parts('/usr/bin/sqlite3');
+
+/*
+┌────────┬─────────┐
+│  type  │  part   │
+├────────┼─────────┤
+│ normal │ usr     │
+│ normal │ bin     │
+│ normal │ sqlite3 │
+└────────┴─────────┘
+*/"><pre><span class="pl-k">select</span> <span class="pl-k">*</span>
+<span class="pl-k">from</span> path_parts(<span class="pl-s"><span class="pl-pds">'</span>/usr/bin/sqlite3<span class="pl-pds">'</span></span>);
+
+<span class="pl-c"><span class="pl-c">/*</span></span>
+<span class="pl-c">┌────────┬─────────┐</span>
+<span class="pl-c">│  type  │  part   │</span>
+<span class="pl-c">├────────┼─────────┤</span>
+<span class="pl-c">│ normal │ usr     │</span>
+<span class="pl-c">│ normal │ bin     │</span>
+<span class="pl-c">│ normal │ sqlite3 │</span>
+<span class="pl-c">└────────┴─────────┘</span>
+<span class="pl-c"><span class="pl-c">*/</span></span></pre></div>
+<p dir="auto">Inside a ZIP archive of the <a href="https://github.com/sqlite/sqlite">SQLite source code</a>, find the top 5 deepest <code>.c</code> source code files under the <code>ext/</code> directory (using SQLite's <a href="https://www.sqlite.org/zipfile.html" rel="nofollow">ZIP support</a>).</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="select
+  name,
+  path_length(name) as depth
+from zipfile('sqlite.archive.master.zip')
+where
+  -- under the ext/ directory
+  path_part_at(name, 1) == 'ext'
+  -- ends in ".c"
+  and path_extension(name) == '.c'
+order by 2 desc
+limit 5;
+
+/*
+┌────────────────────────────────────────────┬───────┐
+│                    name                    │ depth │
+├────────────────────────────────────────────┼───────┤
+│ sqlite-master/ext/fts3/tool/fts3view.c     │ 5     │
+│ sqlite-master/ext/lsm1/lsm-test/lsmtest1.c │ 5     │
+│ sqlite-master/ext/lsm1/lsm-test/lsmtest2.c │ 5     │
+│ sqlite-master/ext/lsm1/lsm-test/lsmtest3.c │ 5     │
+│ sqlite-master/ext/lsm1/lsm-test/lsmtest4.c │ 5     │
+└────────────────────────────────────────────┴───────┘
+*/"><pre><span class="pl-k">select</span>
+  name,
+  path_length(name) <span class="pl-k">as</span> depth
+<span class="pl-k">from</span> zipfile(<span class="pl-s"><span class="pl-pds">'</span>sqlite.archive.master.zip<span class="pl-pds">'</span></span>)
+<span class="pl-k">where</span>
+  <span class="pl-c"><span class="pl-c">--</span> under the ext/ directory</span>
+  path_part_at(name, <span class="pl-c1">1</span>) <span class="pl-k">==</span> <span class="pl-s"><span class="pl-pds">'</span>ext<span class="pl-pds">'</span></span>
+  <span class="pl-c"><span class="pl-c">--</span> ends in ".c"</span>
+  <span class="pl-k">and</span> path_extension(name) <span class="pl-k">==</span> <span class="pl-s"><span class="pl-pds">'</span>.c<span class="pl-pds">'</span></span>
+<span class="pl-k">order by</span> <span class="pl-c1">2</span> <span class="pl-k">desc</span>
+<span class="pl-k">limit</span> <span class="pl-c1">5</span>;
+
+<span class="pl-c"><span class="pl-c">/*</span></span>
+<span class="pl-c">┌────────────────────────────────────────────┬───────┐</span>
+<span class="pl-c">│                    name                    │ depth │</span>
+<span class="pl-c">├────────────────────────────────────────────┼───────┤</span>
+<span class="pl-c">│ sqlite-master/ext/fts3/tool/fts3view.c     │ 5     │</span>
+<span class="pl-c">│ sqlite-master/ext/lsm1/lsm-test/lsmtest1.c │ 5     │</span>
+<span class="pl-c">│ sqlite-master/ext/lsm1/lsm-test/lsmtest2.c │ 5     │</span>
+<span class="pl-c">│ sqlite-master/ext/lsm1/lsm-test/lsmtest3.c │ 5     │</span>
+<span class="pl-c">│ sqlite-master/ext/lsm1/lsm-test/lsmtest4.c │ 5     │</span>
+<span class="pl-c">└────────────────────────────────────────────┴───────┘</span>
+<span class="pl-c"><span class="pl-c">*/</span></span></pre></div>
+<p dir="auto">Make a histogram of the count of file extensions in the current directory, using <a href="https://www.sqlite.org/cli.html#file_i_o_functions" rel="nofollow"><code>fsdir()</code></a>.</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="
+select
+  path_extension(name),
+  count(*),
+  printf('%.*c', count(*), '*') as bar
+from fsdir('.')
+where path_extension(name) is not null
+group by 1
+order by 2 desc
+limit 6;
+
+/*
+┌──────────────────────┬──────────┬────────────────────────────────────┐
+│ path_extension(name) │ count(*) │                bar                 │
+├──────────────────────┼──────────┼────────────────────────────────────┤
+│ .md                  │ 34       │ ********************************** │
+│ .sample              │ 26       │ **************************         │
+│ .c                   │ 21       │ *********************              │
+│ .css                 │ 5        │ *****                              │
+│ .yml                 │ 4        │ ****                               │
+│ .h                   │ 4        │ ****                               │
+└──────────────────────┴──────────┴────────────────────────────────────┘
+*/"><pre><span class="pl-k">select</span>
+  path_extension(name),
+  <span class="pl-c1">count</span>(<span class="pl-k">*</span>),
+  printf(<span class="pl-s"><span class="pl-pds">'</span>%.*c<span class="pl-pds">'</span></span>, <span class="pl-c1">count</span>(<span class="pl-k">*</span>), <span class="pl-s"><span class="pl-pds">'</span>*<span class="pl-pds">'</span></span>) <span class="pl-k">as</span> bar
+<span class="pl-k">from</span> fsdir(<span class="pl-s"><span class="pl-pds">'</span>.<span class="pl-pds">'</span></span>)
+<span class="pl-k">where</span> path_extension(name) <span class="pl-k">is not null</span>
+<span class="pl-k">group by</span> <span class="pl-c1">1</span>
+<span class="pl-k">order by</span> <span class="pl-c1">2</span> <span class="pl-k">desc</span>
+<span class="pl-k">limit</span> <span class="pl-c1">6</span>;
+
+<span class="pl-c"><span class="pl-c">/*</span></span>
+<span class="pl-c">┌──────────────────────┬──────────┬────────────────────────────────────┐</span>
+<span class="pl-c">│ path_extension(name) │ count(*) │                bar                 │</span>
+<span class="pl-c">├──────────────────────┼──────────┼────────────────────────────────────┤</span>
+<span class="pl-c">│ .md                  │ 34       │ ********************************** │</span>
+<span class="pl-c">│ .sample              │ 26       │ **************************         │</span>
+<span class="pl-c">│ .c                   │ 21       │ *********************              │</span>
+<span class="pl-c">│ .css                 │ 5        │ *****                              │</span>
+<span class="pl-c">│ .yml                 │ 4        │ ****                               │</span>
+<span class="pl-c">│ .h                   │ 4        │ ****                               │</span>
+<span class="pl-c">└──────────────────────┴──────────┴────────────────────────────────────┘</span>
+<span class="pl-c"><span class="pl-c">*/</span></span></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Documentation</h2><a id="user-content-documentation" class="anchor" aria-label="Permalink: Documentation" href="#documentation"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">See <a href="./docs.md"><code>docs.md</code></a> for a full API reference.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Installing</h2><a id="user-content-installing" class="anchor" aria-label="Permalink: Installing" href="#installing"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<markdown-accessiblity-table><table>
+<thead>
+<tr>
+<th>Language</th>
+<th>Install</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Python</td>
+<td><code>pip install sqlite-path</code></td>
+<td><a href="https://pypi.org/project/sqlite-path/" rel="nofollow"><img src="https://img.shields.io/pypi/v/sqlite-path.svg?color=blue&logo=python&logoColor=white" alt="PyPI" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/598acdaadb0d523312f045308abfb19c733a30afcda88f86a4feb1a61aaee277/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f73716c6974652d706174682e7376673f636f6c6f723d626c7565266c6f676f3d707974686f6e266c6f676f436f6c6f723d7768697465"></a></td>
+</tr>
+<tr>
+<td>Datasette</td>
+<td><code>datasette install datasette-sqlite-path</code></td>
+<td><a href="https://datasette.io/plugins/datasette-sqlite-path" rel="nofollow"><img src="https://img.shields.io/pypi/v/datasette-sqlite-path.svg?color=B6B6D9&label=Datasette+plugin&logoColor=white&logo=python" alt="Datasette" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/86597069807ce52c39659ef3d1608b82e725fd9dfab6f7c6dcab99ebd64ab7d4/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f6461746173657474652d73716c6974652d706174682e7376673f636f6c6f723d423642364439266c6162656c3d4461746173657474652b706c7567696e266c6f676f436f6c6f723d7768697465266c6f676f3d707974686f6e"></a></td>
+</tr>
+<tr>
+<td>Node.js</td>
+<td><code>npm install sqlite-path</code></td>
+<td><a href="https://www.npmjs.com/package/sqlite-path" rel="nofollow"><img src="https://img.shields.io/npm/v/sqlite-path.svg?color=green&logo=nodedotjs&logoColor=white" alt="npm" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/0b07aa339dd15653ab10e7338e23e148ad3fd789e04df040ac0a3b1c39786459/68747470733a2f2f696d672e736869656c64732e696f2f6e706d2f762f73716c6974652d706174682e7376673f636f6c6f723d677265656e266c6f676f3d6e6f6465646f746a73266c6f676f436f6c6f723d7768697465"></a></td>
+</tr>
+<tr>
+<td>Deno</td>
+<td><a href="https://deno.land/x/sqlite_path" rel="nofollow"><code>deno.land/x/sqlite_path</code></a></td>
+<td><a href="https://deno.land/x/sqlite_path" rel="nofollow"><img src="https://img.shields.io/github/v/release/asg017/sqlite-path?color=fef8d2&include_prereleases&label=deno.land%2Fx&logo=deno" alt="deno.land/x release" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/f29de819f7e598daa7d3e25f368c0e7aa0e8d5238f8baba64580ec50891b94f1/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f72656c656173652f6173673031372f73716c6974652d706174683f636f6c6f723d66656638643226696e636c7564655f70726572656c6561736573266c6162656c3d64656e6f2e6c616e6425324678266c6f676f3d64656e6f"></a></td>
+</tr>
+<tr>
+<td>Ruby</td>
+<td><code>gem install sqlite-path</code></td>
+<td><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/5408da59a81f898fce3ae078a41c28e42620afc229088397a25ef128273ef244/68747470733a2f2f696d672e736869656c64732e696f2f67656d2f762f73716c6974652d706174683f636f6c6f723d726564266c6f676f3d7275627967656d73266c6f676f436f6c6f723d7768697465"><img src="https://img.shields.io/gem/v/sqlite-path?color=red&logo=rubygems&logoColor=white" alt="Gem" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/5408da59a81f898fce3ae078a41c28e42620afc229088397a25ef128273ef244/68747470733a2f2f696d672e736869656c64732e696f2f67656d2f762f73716c6974652d706174683f636f6c6f723d726564266c6f676f3d7275627967656d73266c6f676f436f6c6f723d7768697465"></a></td>
+</tr>
+<tr>
+<td>Github Release</td>
+<td></td>
+<td><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/9d29374088cbc979bbe2e87663edfe0a9e8b3db3269fee1102c4b5ac5c6645dc/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f7461672f6173673031372f73716c6974652d706174683f636f6c6f723d6c696768746772657926696e636c7564655f70726572656c6561736573266c6162656c3d4769746875622b72656c65617365266c6f676f3d676974687562"><img src="https://img.shields.io/github/v/tag/asg017/sqlite-path?color=lightgrey&include_prereleases&label=Github+release&logo=github" alt="GitHub tag (latest SemVer pre-release)" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/9d29374088cbc979bbe2e87663edfe0a9e8b3db3269fee1102c4b5ac5c6645dc/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f7461672f6173673031372f73716c6974652d706174683f636f6c6f723d6c696768746772657926696e636c7564655f70726572656c6561736573266c6162656c3d4769746875622b72656c65617365266c6f676f3d676974687562"></a></td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+
+<p dir="auto">The <a href="https://github.com/asg017/sqlite-path/releases">Releases page</a> contains pre-built binaries for Linux amd64, MacOS amd64 (no arm), and Windows.</p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">As a loadable extension</h3><a id="user-content-as-a-loadable-extension" class="anchor" aria-label="Permalink: As a loadable extension" href="#as-a-loadable-extension"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">If you want to use <code>sqlite-path</code> as a <a href="https://www.sqlite.org/loadext.html" rel="nofollow">Runtime-loadable extension</a>, Download the <code>path0.dylib</code> (for MacOS), <code>path0.so</code> (Linux), or <code>path0.dll</code> (Windows) file from a release and load it into your SQLite environment.</p>
+<blockquote>
+<p dir="auto"><strong>Note:</strong>
+The <code>0</code> in the filename (<code>path0.dylib</code>/ <code>path0.so</code>/<code>path0.dll</code>) denotes the major version of <code>sqlite-path</code>. Currently <code>sqlite-path</code> is pre v1, so expect breaking changes in future versions.</p>
+</blockquote>
+<p dir="auto">For example, if you are using the <a href="https://www.sqlite.org/cli.html" rel="nofollow">SQLite CLI</a>, you can load the library like so:</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content=".load ./path0
+select path_version();
+-- v0.0.1"><pre>.load .<span class="pl-k">/</span>path0
+<span class="pl-k">select</span> path_version();
+<span class="pl-c"><span class="pl-c">--</span> v0.0.1</span></pre></div>
+<p dir="auto">Or in Python, using the builtin <a href="https://docs.python.org/3/library/sqlite3.html" rel="nofollow">sqlite3 module</a>:</p>
+<div class="highlight highlight-source-python notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="import sqlite3
+
+con = sqlite3.connect(":memory:")
+
+con.enable_load_extension(True)
+con.load_extension("./path0")
+
+print(con.execute("select path_version()").fetchone())
+# ('v0.0.1',)"><pre><span class="pl-k">import</span> <span class="pl-s1">sqlite3</span>
+
+<span class="pl-s1">con</span> <span class="pl-c1">=</span> <span class="pl-s1">sqlite3</span>.<span class="pl-c1">connect</span>(<span class="pl-s">":memory:"</span>)
+
+<span class="pl-s1">con</span>.<span class="pl-c1">enable_load_extension</span>(<span class="pl-c1">True</span>)
+<span class="pl-s1">con</span>.<span class="pl-c1">load_extension</span>(<span class="pl-s">"./path0"</span>)
+
+<span class="pl-en">print</span>(<span class="pl-s1">con</span>.<span class="pl-c1">execute</span>(<span class="pl-s">"select path_version()"</span>).<span class="pl-c1">fetchone</span>())
+<span class="pl-c"># ('v0.0.1',)</span></pre></div>
+<p dir="auto">Or in Node.js using <a href="https://github.com/WiseLibs/better-sqlite3">better-sqlite3</a>:</p>
+<div class="highlight highlight-source-js notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="const Database = require("better-sqlite3");
+const db = new Database(":memory:");
+
+db.loadExtension("./path0");
+
+console.log(db.prepare("select path_version()").get());
+// { 'html_version()': 'v0.0.1' }"><pre><span class="pl-k">const</span> <span class="pl-v">Database</span> <span class="pl-c1">=</span> <span class="pl-en">require</span><span class="pl-kos">(</span><span class="pl-s">"better-sqlite3"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+<span class="pl-k">const</span> <span class="pl-s1">db</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-v">Database</span><span class="pl-kos">(</span><span class="pl-s">":memory:"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+
+<span class="pl-s1">db</span><span class="pl-kos">.</span><span class="pl-en">loadExtension</span><span class="pl-kos">(</span><span class="pl-s">"./path0"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+
+<span class="pl-smi">console</span><span class="pl-kos">.</span><span class="pl-en">log</span><span class="pl-kos">(</span><span class="pl-s1">db</span><span class="pl-kos">.</span><span class="pl-en">prepare</span><span class="pl-kos">(</span><span class="pl-s">"select path_version()"</span><span class="pl-kos">)</span><span class="pl-kos">.</span><span class="pl-en">get</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+<span class="pl-c">// { 'html_version()': 'v0.0.1' }</span></pre></div>
+<p dir="auto">Or with <a href="https://datasette.io/" rel="nofollow">Datasette</a>:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="datasette data.db --load-extension ./path0"><pre class="notranslate"><code>datasette data.db --load-extension ./path0
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">See also</h2><a id="user-content-see-also" class="anchor" aria-label="Permalink: See also" href="#see-also"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li><a href="https://github.com/asg017/sqlite-url">sqlite-url</a>, for parsing and generating URLs (pairs well with this library)</li>
+<li><a href="https://github.com/asg017/sqlite-http">sqlite-http</a>, for making HTTP requests in SQLite</li>
+<li><a href="https://github.com/asg017/sqlite-html">sqlite-html</a>, for parsing HTML documents</li>
+<li><a href="https://github.com/asg017/sqlite-lines">sqlite-lines</a>, for reading large files line-by-line</li>
+<li><a href="https://github.com/nalgeon/sqlean">nalgeon/sqlean</a>, several pre-compiled handy SQLite functions, in C</li>
+</ul>
+</article></div>

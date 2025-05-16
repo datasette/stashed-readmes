@@ -1,0 +1,174 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">sqlite-fastrandom</h1><a id="user-content-sqlite-fastrandom" class="anchor" aria-label="Permalink: sqlite-fastrandom" href="#sqlite-fastrandom"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">A SQLite extension for quickly generating random numbers, booleans, characters, and blobs. <strong>Not cryptographically secure.</strong> Based on <a href="https://github.com/asg017/sqlite-loadable-rs"><code>sqlite-loadable-rs</code></a> and the <a href="https://crates.io/crates/fastrand" rel="nofollow">fastrand crate</a>.`</p>
+<p dir="auto">According to my local benchmarks, <code>fastrand_int64()</code> is about 2.6x faster than SQLite's <code>random()</code>, and <code>fastrand_blob()</code> is about 1.6x faster than <code>randomblob()</code>. <code>sqlite-fastrand</code> also offers a more ergonomic API with custom ranges, seeds, and boolean/character support. However, it yields psuedo-random results and isn't "truly" random.</p>
+<p dir="auto">If your company or organization finds this library useful, consider <a href="#supporting">supporting my work</a>!</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Usage</h2><a id="user-content-usage" class="anchor" aria-label="Permalink: Usage" href="#usage"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content=".load ./fastrand0
+select fastrand_int(); -- 556823563
+select fastrand_int(); -- 363294620
+select fastrand_int(); -- -320463573"><pre>.load .<span class="pl-k">/</span>fastrand0
+<span class="pl-k">select</span> fastrand_int(); <span class="pl-c"><span class="pl-c">--</span> 556823563</span>
+<span class="pl-k">select</span> fastrand_int(); <span class="pl-c"><span class="pl-c">--</span> 363294620</span>
+<span class="pl-k">select</span> fastrand_int(); <span class="pl-c"><span class="pl-c">--</span> -320463573</span></pre></div>
+<p dir="auto">Set a seed for the underlying random number generator, for deterministic values.</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="select fastrand_seed_set(1234);
+select fastrand_int(); -- -2058591105
+select fastrand_int(); -- -211244717
+select fastrand_int(); -- -1772832958
+
+select fastrand_seed_set(1234);
+select fastrand_int(); -- -2058591105
+select fastrand_int(); -- -211244717
+select fastrand_int(); -- -1772832958"><pre><span class="pl-k">select</span> fastrand_seed_set(<span class="pl-c1">1234</span>);
+<span class="pl-k">select</span> fastrand_int(); <span class="pl-c"><span class="pl-c">--</span> -2058591105</span>
+<span class="pl-k">select</span> fastrand_int(); <span class="pl-c"><span class="pl-c">--</span> -211244717</span>
+<span class="pl-k">select</span> fastrand_int(); <span class="pl-c"><span class="pl-c">--</span> -1772832958</span>
+
+<span class="pl-k">select</span> fastrand_seed_set(<span class="pl-c1">1234</span>);
+<span class="pl-k">select</span> fastrand_int(); <span class="pl-c"><span class="pl-c">--</span> -2058591105</span>
+<span class="pl-k">select</span> fastrand_int(); <span class="pl-c"><span class="pl-c">--</span> -211244717</span>
+<span class="pl-k">select</span> fastrand_int(); <span class="pl-c"><span class="pl-c">--</span> -1772832958</span></pre></div>
+<p dir="auto">Include <code>start</code> and <code>end</code> (exclusive) parameters to generate random numbers within a range.</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="select fastrand_int(0, 10); -- 0
+select fastrand_int(0, 10); -- 9
+select fastrand_int(0, 10); -- 6"><pre><span class="pl-k">select</span> fastrand_int(<span class="pl-c1">0</span>, <span class="pl-c1">10</span>); <span class="pl-c"><span class="pl-c">--</span> 0</span>
+<span class="pl-k">select</span> fastrand_int(<span class="pl-c1">0</span>, <span class="pl-c1">10</span>); <span class="pl-c"><span class="pl-c">--</span> 9</span>
+<span class="pl-k">select</span> fastrand_int(<span class="pl-c1">0</span>, <span class="pl-c1">10</span>); <span class="pl-c"><span class="pl-c">--</span> 6</span></pre></div>
+<p dir="auto">Generate random digits, lowercase/uppercase/alphabetic/alphanumeric characters.</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="select fastrand_alphabetic(); -- 's'
+select fastrand_alphanumeric(); -- '2'
+select fastrand_char(); -- '񠞼'
+select fastrand_lowercase(); -- 'g'
+select fastrand_uppercase();-- 'M'
+
+select fastrand_digit(16); -- 'c'"><pre><span class="pl-k">select</span> fastrand_alphabetic(); <span class="pl-c"><span class="pl-c">--</span> 's'</span>
+<span class="pl-k">select</span> fastrand_alphanumeric(); <span class="pl-c"><span class="pl-c">--</span> '2'</span>
+<span class="pl-k">select</span> fastrand_char(); <span class="pl-c"><span class="pl-c">--</span> '񠞼'</span>
+<span class="pl-k">select</span> fastrand_lowercase(); <span class="pl-c"><span class="pl-c">--</span> 'g'</span>
+<span class="pl-k">select</span> fastrand_uppercase();<span class="pl-c"><span class="pl-c">--</span> 'M'</span>
+
+<span class="pl-k">select</span> fastrand_digit(<span class="pl-c1">16</span>); <span class="pl-c"><span class="pl-c">--</span> 'c'</span></pre></div>
+<p dir="auto">Generate a random float between 0 and 1.</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="select fastrand_double(); -- 0.740834390248454
+select fastrand_double(); -- 0.46936608707793"><pre><span class="pl-k">select</span> fastrand_double(); <span class="pl-c"><span class="pl-c">--</span> 0.740834390248454</span>
+<span class="pl-k">select</span> fastrand_double(); <span class="pl-c"><span class="pl-c">--</span> 0.46936608707793</span></pre></div>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Differences from <code>random()</code> and <code>randomblob()</code></h3><a id="user-content-differences-from-random-and-randomblob" class="anchor" aria-label="Permalink: Differences from random() and randomblob()" href="#differences-from-random-and-randomblob"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The builtin <a href="https://www.sqlite.org/lang_corefunc.html#random" rel="nofollow"><code>random()</code></a> and <a href="https://www.sqlite.org/lang_corefunc.html#randomblob" rel="nofollow"><code>randomblob()</code></a> are powerful tools that already exist in SQLite standard library, but they can be confusing at times.</p>
+<p dir="auto">For example, the <code>random()</code> function returns "<em>... a pseudo-random integer between -9223372036854775808 and +9223372036854775807</em>", which are the minimum and maximum values of a 64 bit signed integer.</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="select random(); -- 8247412491507365610
+select random(); -- 8124278049726255864"><pre><span class="pl-k">select</span> random(); <span class="pl-c"><span class="pl-c">--</span> 8247412491507365610</span>
+<span class="pl-k">select</span> random(); <span class="pl-c"><span class="pl-c">--</span> 8124278049726255864</span></pre></div>
+<p dir="auto">This may work fine in your use-case, but typically I want a more constrained random number, like any number between <code>0-100</code>. This can technically be done with <code>random()</code> if you use <code>abs()</code> and the modulus <code>%</code> operator, but it gets awkward:</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="select abs(random()) % 100; -- 96
+select abs(random()) % 100; -- 41"><pre><span class="pl-k">select</span> abs(random()) % <span class="pl-c1">100</span>; <span class="pl-c"><span class="pl-c">--</span> 96</span>
+<span class="pl-k">select</span> abs(random()) % <span class="pl-c1">100</span>; <span class="pl-c"><span class="pl-c">--</span> 41</span></pre></div>
+<p dir="auto">The <code>fastrand_int64()</code> function works the same as <code>random()</code> but offers an optional <code>start</code> and <code>end</code> parameters to specify a range in which the random number should be generated in.</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="select fastrand_int64(); -- 5216671854996406003
+select fastrand_int64(0, 100); -- 19"><pre><span class="pl-k">select</span> fastrand_int64(); <span class="pl-c"><span class="pl-c">--</span> 5216671854996406003</span>
+<span class="pl-k">select</span> fastrand_int64(<span class="pl-c1">0</span>, <span class="pl-c1">100</span>); <span class="pl-c"><span class="pl-c">--</span> 19</span></pre></div>
+<p dir="auto"><a href="https://www.sqlite.org/lang_corefunc.html#randomblob" rel="nofollow"><code>randomblob(N)</code></a></p>
+<blockquote>
+<p dir="auto"><em>The randomblob(N) function return an N-byte blob containing pseudo-random bytes. If N is less than 1 then a 1-byte random blob is returned.</em></p>
+</blockquote>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="select hex(randomblob(16)); -- '4E7EFDB9E687EED4F376359986CB695E'
+select hex(randomblob(16)); -- 'F6CFF9249E3BD8755E10D6BB3CA81C66'"><pre><span class="pl-k">select</span> hex(randomblob(<span class="pl-c1">16</span>)); <span class="pl-c"><span class="pl-c">--</span> '4E7EFDB9E687EED4F376359986CB695E'</span>
+<span class="pl-k">select</span> hex(randomblob(<span class="pl-c1">16</span>)); <span class="pl-c"><span class="pl-c">--</span> 'F6CFF9249E3BD8755E10D6BB3CA81C66'</span></pre></div>
+<p dir="auto">The <a href="./docs.md#fastrand_blob"><code>fastrand_blob(N)</code></a> function acts in the same way.</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="select hex(fastrand_blob(16)); -- 'D86FF5409D3FAD7DBE707580C7E7DE14'
+select hex(fastrand_blob(16)); -- 'AB72BFE9480197F487933E8071072D4A'"><pre><span class="pl-k">select</span> hex(fastrand_blob(<span class="pl-c1">16</span>)); <span class="pl-c"><span class="pl-c">--</span> 'D86FF5409D3FAD7DBE707580C7E7DE14'</span>
+<span class="pl-k">select</span> hex(fastrand_blob(<span class="pl-c1">16</span>)); <span class="pl-c"><span class="pl-c">--</span> 'AB72BFE9480197F487933E8071072D4A'</span></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Installing</h2><a id="user-content-installing" class="anchor" aria-label="Permalink: Installing" href="#installing"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<markdown-accessiblity-table><table>
+<thead>
+<tr>
+<th>Language</th>
+<th>Install</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Python</td>
+<td><code>pip install sqlite-fastrand</code></td>
+<td><a href="https://pypi.org/project/sqlite-fastrand/" rel="nofollow"><img src="https://img.shields.io/pypi/v/sqlite-fastrand.svg?color=blue&logo=python&logoColor=white" alt="PyPI" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/77a3eb5c47f6cc9eb996f7460336ac6b9d2fb4c1f5af982eb1c6876db91eed2d/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f73716c6974652d6661737472616e642e7376673f636f6c6f723d626c7565266c6f676f3d707974686f6e266c6f676f436f6c6f723d7768697465"></a></td>
+</tr>
+<tr>
+<td>Datasette</td>
+<td><code>datasette install datasette-sqlite-fastrand</code></td>
+<td><a href="https://datasette.io/plugins/datasette-sqlite-fastrand" rel="nofollow"><img src="https://img.shields.io/pypi/v/datasette-sqlite-fastrand.svg?color=B6B6D9&label=Datasette+plugin&logoColor=white&logo=python" alt="Datasette" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/7f805327da5b6bfb6238ee45e0ca36c37ce373971b217436e6858af222164b92/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f6461746173657474652d73716c6974652d6661737472616e642e7376673f636f6c6f723d423642364439266c6162656c3d4461746173657474652b706c7567696e266c6f676f436f6c6f723d7768697465266c6f676f3d707974686f6e"></a></td>
+</tr>
+<tr>
+<td>Node.js</td>
+<td><code>npm install sqlite-fastrand</code></td>
+<td><a href="https://www.npmjs.com/package/sqlite-fastrand" rel="nofollow"><img src="https://img.shields.io/npm/v/sqlite-fastrand.svg?color=green&logo=nodedotjs&logoColor=white" alt="npm" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/fe4894fb0d2b726d82065e44341ffb25058c1c0337a4a243edb9a3140b1b2b3b/68747470733a2f2f696d672e736869656c64732e696f2f6e706d2f762f73716c6974652d6661737472616e642e7376673f636f6c6f723d677265656e266c6f676f3d6e6f6465646f746a73266c6f676f436f6c6f723d7768697465"></a></td>
+</tr>
+<tr>
+<td>Deno</td>
+<td><a href="https://deno.land/x/sqlite_fastrand" rel="nofollow"><code>deno.land/x/sqlite_fastrand</code></a></td>
+<td><a href="https://deno.land/x/sqlite_fastrand" rel="nofollow"><img src="https://img.shields.io/github/v/release/asg017/sqlite-fastrand?color=fef8d2&include_prereleases&label=deno.land%2Fx&logo=deno" alt="deno.land/x release" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/626168930ce05855777e502e431cc2409b5d1b1863df799b3365876663a1825a/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f72656c656173652f6173673031372f73716c6974652d6661737472616e643f636f6c6f723d66656638643226696e636c7564655f70726572656c6561736573266c6162656c3d64656e6f2e6c616e6425324678266c6f676f3d64656e6f"></a></td>
+</tr>
+<tr>
+<td>Ruby</td>
+<td><code>gem install sqlite-fastrand</code></td>
+<td><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/ef29465ac66e1a03c2c67e098288988819efd1ea87c7f71d1c45ce0141a3e2e0/68747470733a2f2f696d672e736869656c64732e696f2f67656d2f762f73716c6974652d6661737472616e643f636f6c6f723d726564266c6f676f3d7275627967656d73266c6f676f436f6c6f723d7768697465"><img src="https://img.shields.io/gem/v/sqlite-fastrand?color=red&logo=rubygems&logoColor=white" alt="Gem" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/ef29465ac66e1a03c2c67e098288988819efd1ea87c7f71d1c45ce0141a3e2e0/68747470733a2f2f696d672e736869656c64732e696f2f67656d2f762f73716c6974652d6661737472616e643f636f6c6f723d726564266c6f676f3d7275627967656d73266c6f676f436f6c6f723d7768697465"></a></td>
+</tr>
+<tr>
+<td>Github Release</td>
+<td></td>
+<td><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/80b9101bd9bfc91fdb779dd9e310f73f71edf9dcda82cd87a86dfd0480903ec0/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f7461672f6173673031372f73716c6974652d6661737472616e643f636f6c6f723d6c696768746772657926696e636c7564655f70726572656c6561736573266c6162656c3d4769746875622b72656c65617365266c6f676f3d676974687562"><img src="https://img.shields.io/github/v/tag/asg017/sqlite-fastrand?color=lightgrey&include_prereleases&label=Github+release&logo=github" alt="GitHub tag (latest SemVer pre-release)" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/80b9101bd9bfc91fdb779dd9e310f73f71edf9dcda82cd87a86dfd0480903ec0/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f7461672f6173673031372f73716c6974652d6661737472616e643f636f6c6f723d6c696768746772657926696e636c7564655f70726572656c6561736573266c6162656c3d4769746875622b72656c65617365266c6f676f3d676974687562"></a></td>
+</tr>
+<tr>
+<td>Rust</td>
+<td><code>cargo add sqlite-fastrand</code></td>
+<td><a href="https://crates.io/crates/sqlite-fastrand" rel="nofollow"><img src="https://img.shields.io/crates/v/sqlite-fastrand?logo=rust" alt="Crates.io" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/e6a05a7e4feb9f89cc13c43be64d2493335a19445a59b7b1440802d6058621bb/68747470733a2f2f696d672e736869656c64732e696f2f6372617465732f762f73716c6974652d6661737472616e643f6c6f676f3d72757374"></a></td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+
+<p dir="auto">The <a href="https://github.com/asg017/sqlite-fastrand/releases">Releases page</a> contains pre-built binaries for Linux x86_64, MacOS, and Windows.</p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">As a loadable extension</h3><a id="user-content-as-a-loadable-extension" class="anchor" aria-label="Permalink: As a loadable extension" href="#as-a-loadable-extension"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">If you want to use <code>sqlite-fastrand</code> as a <a href="https://www.sqlite.org/loadext.html" rel="nofollow">Runtime-loadable extension</a>, Download the <code>fastrand0.dylib</code> (for MacOS), <code>fastrand0.so</code> (Linux), or <code>fastrand0.dll</code> (Windows) file from a release and load it into your SQLite environment.</p>
+<blockquote>
+<p dir="auto"><strong>Note:</strong>
+The <code>0</code> in the filename (<code>fastrand0.dylib</code>/ <code>fastrand0.so</code>/<code>fastrand0.dll</code>) denotes the major version of <code>sqlite-fastrand</code>. Currently <code>sqlite-fastrand</code> is pre v1, so expect breaking changes in future versions.</p>
+</blockquote>
+<p dir="auto">For example, if you are using the <a href="https://www.sqlite.org/cli.html" rel="nofollow">SQLite CLI</a>, you can load the library like so:</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content=".load ./fastrand0
+select fastrand_version();
+-- v0.1.0"><pre>.load .<span class="pl-k">/</span>fastrand0
+<span class="pl-k">select</span> fastrand_version();
+<span class="pl-c"><span class="pl-c">--</span> v0.1.0</span></pre></div>
+<p dir="auto">Or in Python, using the builtin <a href="https://docs.python.org/3/library/sqlite3.html" rel="nofollow">sqlite3 module</a>:</p>
+<div class="highlight highlight-source-python notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="import sqlite3
+con = sqlite3.connect(":memory:")
+con.enable_load_extension(True)
+con.load_extension("./fastrand0")
+print(con.execute("select fastrand_version()").fetchone())
+# ('v0.1.0',)"><pre><span class="pl-k">import</span> <span class="pl-s1">sqlite3</span>
+<span class="pl-s1">con</span> <span class="pl-c1">=</span> <span class="pl-s1">sqlite3</span>.<span class="pl-c1">connect</span>(<span class="pl-s">":memory:"</span>)
+<span class="pl-s1">con</span>.<span class="pl-c1">enable_load_extension</span>(<span class="pl-c1">True</span>)
+<span class="pl-s1">con</span>.<span class="pl-c1">load_extension</span>(<span class="pl-s">"./fastrand0"</span>)
+<span class="pl-en">print</span>(<span class="pl-s1">con</span>.<span class="pl-c1">execute</span>(<span class="pl-s">"select fastrand_version()"</span>).<span class="pl-c1">fetchone</span>())
+<span class="pl-c"># ('v0.1.0',)</span></pre></div>
+<p dir="auto">Or in Node.js using <a href="https://github.com/WiseLibs/better-sqlite3">better-sqlite3</a>:</p>
+<div class="highlight highlight-source-js notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="const Database = require("better-sqlite3");
+const db = new Database(":memory:");
+db.loadExtension("./fastrand0");
+console.log(db.prepare("select fastrand_version()").get());
+// { 'fastrand_version()': 'v0.1.0' }"><pre><span class="pl-k">const</span> <span class="pl-v">Database</span> <span class="pl-c1">=</span> <span class="pl-en">require</span><span class="pl-kos">(</span><span class="pl-s">"better-sqlite3"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+<span class="pl-k">const</span> <span class="pl-s1">db</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-v">Database</span><span class="pl-kos">(</span><span class="pl-s">":memory:"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+<span class="pl-s1">db</span><span class="pl-kos">.</span><span class="pl-en">loadExtension</span><span class="pl-kos">(</span><span class="pl-s">"./fastrand0"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+<span class="pl-smi">console</span><span class="pl-kos">.</span><span class="pl-en">log</span><span class="pl-kos">(</span><span class="pl-s1">db</span><span class="pl-kos">.</span><span class="pl-en">prepare</span><span class="pl-kos">(</span><span class="pl-s">"select fastrand_version()"</span><span class="pl-kos">)</span><span class="pl-kos">.</span><span class="pl-en">get</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+<span class="pl-c">// { 'fastrand_version()': 'v0.1.0' }</span></pre></div>
+<p dir="auto">Or with <a href="https://datasette.io/" rel="nofollow">Datasette</a>:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="datasette data.db --load-extension ./fastrand0"><pre class="notranslate"><code>datasette data.db --load-extension ./fastrand0
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Supporting</h2><a id="user-content-supporting" class="anchor" aria-label="Permalink: Supporting" href="#supporting"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">I (Alex 👋🏼) spent a lot of time and energy on this project and <a href="https://github.com/asg017?tab=repositories&q=&type=&language=&sort=stargazers">many other open source projects</a>. If your company or organization uses this library (or you're feeling generous), then please <a href="https://alexgarcia.xyz/work.html" rel="nofollow">consider supporting my work</a>, or share this project with a friend!</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">See also</h2><a id="user-content-see-also" class="anchor" aria-label="Permalink: See also" href="#see-also"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li><a href="https://github.com/asg017/sqlite-xsv">sqlite-xsv</a>, A SQLite extension for working with CSVs</li>
+<li><a href="https://github.com/asg017/sqlite-loadable-rs">sqlite-loadable</a>, A framework for writing SQLite extensions in Rust</li>
+<li><a href="https://github.com/asg017/sqlite-http">sqlite-http</a>, A SQLite extension for making HTTP requests</li>
+</ul>
+</article></div>

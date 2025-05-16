@@ -1,0 +1,380 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">s3-ocr</h1><a id="user-content-s3-ocr" class="anchor" aria-label="Permalink: s3-ocr" href="#s3-ocr"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://pypi.org/project/s3-ocr/" rel="nofollow"><img src="https://img.shields.io/pypi/v/s3-ocr.svg" alt="PyPI" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/13d8770d081d8fa819021c7d015de2d500adfcdedcaca37bfefa2afdcee536b1/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f73332d6f63722e737667"></a>
+<a href="https://github.com/simonw/s3-ocr/releases"><img src="https://img.shields.io/github/v/release/simonw/s3-ocr?include_prereleases&label=changelog" alt="Changelog" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/6a83c5391e6a5d9f7a4b5ce2f51a5ab4a5a1511d31b729742278b561bed357c9/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f72656c656173652f73696d6f6e772f73332d6f63723f696e636c7564655f70726572656c6561736573266c6162656c3d6368616e67656c6f67"></a>
+<a href="https://github.com/simonw/s3-ocr/actions?query=workflow%3ATest"><img src="https://github.com/simonw/s3-ocr/workflows/Test/badge.svg" alt="Tests" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/s3-ocr/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" alt="License" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/c355f200ea90fddaa407b6eaab303663a669248ea3ca7b1fcf77dbe04ff5f48c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d417061636865253230322e302d626c75652e737667"></a></p>
+<p dir="auto">Tools for running OCR against files stored in S3</p>
+<p dir="auto">Background on this project: <a href="https://simonwillison.net/2022/Jun/30/s3-ocr/" rel="nofollow">s3-ocr: Extract text from PDF files stored in an S3 bucket</a></p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Installation</h2><a id="user-content-installation" class="anchor" aria-label="Permalink: Installation" href="#installation"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Install this tool using <code>pip</code>:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pip install s3-ocr"><pre class="notranslate"><code>pip install s3-ocr
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Demo</h2><a id="user-content-demo" class="anchor" aria-label="Permalink: Demo" href="#demo"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">You can see the results of running this tool against three PDFs from the Internet Archive (<a href="https://archive.org/details/unmaskingrobert00houdgoog" rel="nofollow">one</a>, <a href="https://archive.org/details/practicalmagicia00harr" rel="nofollow">two</a>, <a href="https://archive.org/details/latestmagicbeing00hoff" rel="nofollow">three</a>) in <a href="https://s3-ocr-demo.datasette.io/pages/pages?_facet=path#facet-path" rel="nofollow">this example table</a> hosted using <a href="https://datasette.io/" rel="nofollow">Datasette</a>.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Starting OCR against PDFs in a bucket</h2><a id="user-content-starting-ocr-against-pdfs-in-a-bucket" class="anchor" aria-label="Permalink: Starting OCR against PDFs in a bucket" href="#starting-ocr-against-pdfs-in-a-bucket"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The <code>start</code> command takes a list of keys and submits them to <a href="https://aws.amazon.com/textract/" rel="nofollow">Textract</a> for OCR processing.</p>
+<p dir="auto">You need to have AWS configured using environment variables, credentials file in your home directory or a JSON or INI file generated using <a href="https://datasette.io/tools/s3-credentials" rel="nofollow">s3-credentials</a>.</p>
+<p dir="auto">You can start the process running like this:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="s3-ocr start name-of-your-bucket my-pdf-file.pdf"><pre class="notranslate"><code>s3-ocr start name-of-your-bucket my-pdf-file.pdf
+</code></pre></div>
+<p dir="auto">The paths you specify should be paths within the bucket. If you stored your PDF files in folders inside the bucket it should look like this:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="s3-ocr start name-of-your-bucket path/to/one.pdf path/to/two.pdf"><pre class="notranslate"><code>s3-ocr start name-of-your-bucket path/to/one.pdf path/to/two.pdf
+</code></pre></div>
+<p dir="auto">OCR can take some time. The results of the OCR will be stored in <code>textract-output</code> in your bucket.</p>
+<p dir="auto">To process every file in the bucket with a <code>.pdf</code> extension use <code>--all</code>:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="s3-ocr start name-of-bucket --all"><pre class="notranslate"><code>s3-ocr start name-of-bucket --all
+</code></pre></div>
+<p dir="auto">To process every file with a <code>.pdf</code> extension within a specific folder, use <code>--prefix</code>:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="s3-ocr start name-of-bucket --prefix path/to/folder"><pre class="notranslate"><code>s3-ocr start name-of-bucket --prefix path/to/folder
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">s3-ocr start --help</h3><a id="user-content-s3-ocr-start---help" class="anchor" aria-label="Permalink: s3-ocr start --help" href="#s3-ocr-start---help"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="Usage: s3-ocr start [OPTIONS] BUCKET [KEYS]...
+
+  Start OCR tasks for PDF files in an S3 bucket
+
+      s3-ocr start name-of-bucket path/to/one.pdf path/to/two.pdf
+
+  To process every file with a .pdf extension:
+
+      s3-ocr start name-of-bucket --all
+
+  To process every .pdf in the PUBLIC/ folder:
+
+      s3-ocr start name-of-bucket --prefix PUBLIC/
+
+Options:
+  --all                 Process all PDF files in the bucket
+  --prefix TEXT         Process all PDF files within this prefix
+  --dry-run             Show what this would do, but don't actually do it
+  --no-retry            Don't retry failed requests
+  --access-key TEXT     AWS access key ID
+  --secret-key TEXT     AWS secret access key
+  --session-token TEXT  AWS session token
+  --endpoint-url TEXT   Custom endpoint URL
+  -a, --auth FILENAME   Path to JSON/INI file containing credentials
+  --help                Show this message and exit.
+"><pre class="notranslate"><code>Usage: s3-ocr start [OPTIONS] BUCKET [KEYS]...
+
+  Start OCR tasks for PDF files in an S3 bucket
+
+      s3-ocr start name-of-bucket path/to/one.pdf path/to/two.pdf
+
+  To process every file with a .pdf extension:
+
+      s3-ocr start name-of-bucket --all
+
+  To process every .pdf in the PUBLIC/ folder:
+
+      s3-ocr start name-of-bucket --prefix PUBLIC/
+
+Options:
+  --all                 Process all PDF files in the bucket
+  --prefix TEXT         Process all PDF files within this prefix
+  --dry-run             Show what this would do, but don't actually do it
+  --no-retry            Don't retry failed requests
+  --access-key TEXT     AWS access key ID
+  --secret-key TEXT     AWS secret access key
+  --session-token TEXT  AWS session token
+  --endpoint-url TEXT   Custom endpoint URL
+  -a, --auth FILENAME   Path to JSON/INI file containing credentials
+  --help                Show this message and exit.
+
+</code></pre></div>
+
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Checking status</h2><a id="user-content-checking-status" class="anchor" aria-label="Permalink: Checking status" href="#checking-status"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The <code>s3-ocr status <bucket-name></code> command shows a rough indication of progress through the tasks:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="% s3-ocr status sfms-history
+153 complete out of 532 jobs"><pre class="notranslate"><code>% s3-ocr status sfms-history
+153 complete out of 532 jobs
+</code></pre></div>
+<p dir="auto">It compares the jobs that have been submitted, based on <code>.s3-ocr.json</code> files, to the jobs that have their results written to the <code>textract-output/</code> folder.</p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">s3-ocr status --help</h3><a id="user-content-s3-ocr-status---help" class="anchor" aria-label="Permalink: s3-ocr status --help" href="#s3-ocr-status---help"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="Usage: s3-ocr status [OPTIONS] BUCKET
+
+  Show status of OCR jobs for a bucket
+
+Options:
+  --access-key ..."><pre class="notranslate"><code>Usage: s3-ocr status [OPTIONS] BUCKET
+
+  Show status of OCR jobs for a bucket
+
+Options:
+  --access-key ...
+</code></pre></div>
+
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Inspecting a job</h2><a id="user-content-inspecting-a-job" class="anchor" aria-label="Permalink: Inspecting a job" href="#inspecting-a-job"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The <code>s3-ocr inspect-job <job_id></code> command can be used to check the status of a specific job ID:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="% s3-ocr inspect-job b267282745685226339b7e0d4366c4ff6887b7e293ed4b304dc8bb8b991c7864
+{
+  "DocumentMetadata": {
+    "Pages": 583
+  },
+  "JobStatus": "SUCCEEDED",
+  "DetectDocumentTextModelVersion": "1.0"
+}"><pre class="notranslate"><code>% s3-ocr inspect-job b267282745685226339b7e0d4366c4ff6887b7e293ed4b304dc8bb8b991c7864
+{
+  "DocumentMetadata": {
+    "Pages": 583
+  },
+  "JobStatus": "SUCCEEDED",
+  "DetectDocumentTextModelVersion": "1.0"
+}
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">s3-ocr inspect-job --help</h3><a id="user-content-s3-ocr-inspect-job---help" class="anchor" aria-label="Permalink: s3-ocr inspect-job --help" href="#s3-ocr-inspect-job---help"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="Usage: s3-ocr inspect-job [OPTIONS] JOB_ID
+
+  Show the current status of an OCR job
+
+      s3-ocr inspect-job <job_id>
+
+Options:
+  --access-key ..."><pre class="notranslate"><code>Usage: s3-ocr inspect-job [OPTIONS] JOB_ID
+
+  Show the current status of an OCR job
+
+      s3-ocr inspect-job <job_id>
+
+Options:
+  --access-key ...
+</code></pre></div>
+
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Fetching the results</h2><a id="user-content-fetching-the-results" class="anchor" aria-label="Permalink: Fetching the results" href="#fetching-the-results"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Once an OCR job has completed you can download the resulting JSON using the <code>fetch</code> command:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="s3-ocr fetch name-of-bucket path/to/file.pdf"><pre class="notranslate"><code>s3-ocr fetch name-of-bucket path/to/file.pdf
+</code></pre></div>
+<p dir="auto">This will save files in the current directory with names like this:</p>
+<ul dir="auto">
+<li><code>4d9b5cf580e761fdb16fd24edce14737ebc562972526ef6617554adfa11d6038-1.json</code></li>
+<li><code>4d9b5cf580e761fdb16fd24edce14737ebc562972526ef6617554adfa11d6038-2.json</code></li>
+</ul>
+<p dir="auto">The number of files will vary depending on the length of the document.</p>
+<p dir="auto">If you don't want separate files you can combine them together using the <code>-c/--combine</code> option:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="s3-ocr fetch name-of-bucket path/to/file.pdf --combine output.json"><pre class="notranslate"><code>s3-ocr fetch name-of-bucket path/to/file.pdf --combine output.json
+</code></pre></div>
+<p dir="auto">The <code>output.json</code> file will then contain data that looks something like this:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="{
+  "Blocks": [
+    {
+      "BlockType": "PAGE",
+      "Geometry": {...}
+      "Page": 1,
+      ...
+    },
+    {
+      "BlockType": "LINE",
+      "Page": 1,
+      ...
+      "Text": "Barry",
+    },"><pre class="notranslate"><code>{
+  "Blocks": [
+    {
+      "BlockType": "PAGE",
+      "Geometry": {...}
+      "Page": 1,
+      ...
+    },
+    {
+      "BlockType": "LINE",
+      "Page": 1,
+      ...
+      "Text": "Barry",
+    },
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">s3-ocr fetch --help</h3><a id="user-content-s3-ocr-fetch---help" class="anchor" aria-label="Permalink: s3-ocr fetch --help" href="#s3-ocr-fetch---help"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="Usage: s3-ocr fetch [OPTIONS] BUCKET KEY
+
+  Fetch the OCR results for a specified file
+
+      s3-ocr fetch name-of-bucket path/to/key.pdf
+
+  This will save files in the current directory called things like
+
+      a806e67e504fc15f...48314e-1.json     a806e67e504fc15f...48314e-2.json
+
+  To combine these together into a single JSON file with a specified name, use:
+
+      s3-ocr fetch name-of-bucket path/to/key.pdf --combine output.json
+
+  Use "--output -" to print the combined JSON to standard output instead.
+
+Options:
+  -c, --combine FILENAME  Write combined JSON to file
+  --access-key ..."><pre class="notranslate"><code>Usage: s3-ocr fetch [OPTIONS] BUCKET KEY
+
+  Fetch the OCR results for a specified file
+
+      s3-ocr fetch name-of-bucket path/to/key.pdf
+
+  This will save files in the current directory called things like
+
+      a806e67e504fc15f...48314e-1.json     a806e67e504fc15f...48314e-2.json
+
+  To combine these together into a single JSON file with a specified name, use:
+
+      s3-ocr fetch name-of-bucket path/to/key.pdf --combine output.json
+
+  Use "--output -" to print the combined JSON to standard output instead.
+
+Options:
+  -c, --combine FILENAME  Write combined JSON to file
+  --access-key ...
+</code></pre></div>
+
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Fetching just the text of a page</h2><a id="user-content-fetching-just-the-text-of-a-page" class="anchor" aria-label="Permalink: Fetching just the text of a page" href="#fetching-just-the-text-of-a-page"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">If you don't want to deal with the JSON directly, you can use the <code>text</code> command to retrieve just the text extracted from a PDF:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="s3-ocr text name-of-bucket path/to/file.pdf"><pre class="notranslate"><code>s3-ocr text name-of-bucket path/to/file.pdf
+</code></pre></div>
+<p dir="auto">This will output plain text to standard output.</p>
+<p dir="auto">To save that to a file, use this:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="s3-ocr text name-of-bucket path/to/file.pdf > text.txt"><pre class="notranslate"><code>s3-ocr text name-of-bucket path/to/file.pdf > text.txt
+</code></pre></div>
+<p dir="auto">Separate pages will be separated by three newlines. To separate them using a <code>----</code> horizontal divider instead add <code>--divider</code>:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="s3-ocr text name-of-bucket path/to/file.pdf --divider"><pre class="notranslate"><code>s3-ocr text name-of-bucket path/to/file.pdf --divider
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">s3-ocr text --help</h3><a id="user-content-s3-ocr-text---help" class="anchor" aria-label="Permalink: s3-ocr text --help" href="#s3-ocr-text---help"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="Usage: s3-ocr text [OPTIONS] BUCKET KEY
+
+  Retrieve the text from an OCRd PDF file
+
+      s3-ocr text name-of-bucket path/to/key.pdf
+
+Options:
+  --divider             Add ---- between pages
+  --access-key ..."><pre class="notranslate"><code>Usage: s3-ocr text [OPTIONS] BUCKET KEY
+
+  Retrieve the text from an OCRd PDF file
+
+      s3-ocr text name-of-bucket path/to/key.pdf
+
+Options:
+  --divider             Add ---- between pages
+  --access-key ...
+</code></pre></div>
+
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Avoiding processing duplicates</h2><a id="user-content-avoiding-processing-duplicates" class="anchor" aria-label="Permalink: Avoiding processing duplicates" href="#avoiding-processing-duplicates"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">If you move files around within your S3 bucket <code>s3-ocr</code> can lose track of which files have already been processed. This can lead to additional Textract charges for processing should you run <code>s3-ocr start</code> against those new files.</p>
+<p dir="auto">The <code>s3-ocr dedupe</code> command addresses this by scanning your bucket for files that have a new name but have previously been processed. It does this by looking at the <code>ETag</code> for each file, which represents the MD5 hash of the file contents.</p>
+<p dir="auto">The command will write out new <code>.s3ocr.json</code> files for each detected duplicate. This will avoid those duplicates being run those duplicates through OCR a second time should yo run <code>s3-ocr start</code>.</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="s3-ocr dedupe name-of-bucket"><pre class="notranslate"><code>s3-ocr dedupe name-of-bucket
+</code></pre></div>
+<p dir="auto">Add <code>--dry-run</code> for a preview of the changes that will be made to your bucket.</p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">s3-ocr dedupe --help</h3><a id="user-content-s3-ocr-dedupe---help" class="anchor" aria-label="Permalink: s3-ocr dedupe --help" href="#s3-ocr-dedupe---help"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="Usage: s3-ocr dedupe [OPTIONS] BUCKET
+
+  Scan every file in the bucket checking for duplicates - files that have not
+  yet been OCRd but that have the same contents (based on ETag) as a file that
+  HAS been OCRd.
+
+      s3-ocr dedupe name-of-bucket
+
+Options:
+  --dry-run             Show output without writing anything to S3
+  --access-key ..."><pre class="notranslate"><code>Usage: s3-ocr dedupe [OPTIONS] BUCKET
+
+  Scan every file in the bucket checking for duplicates - files that have not
+  yet been OCRd but that have the same contents (based on ETag) as a file that
+  HAS been OCRd.
+
+      s3-ocr dedupe name-of-bucket
+
+Options:
+  --dry-run             Show output without writing anything to S3
+  --access-key ...
+</code></pre></div>
+
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Changes made to your bucket</h2><a id="user-content-changes-made-to-your-bucket" class="anchor" aria-label="Permalink: Changes made to your bucket" href="#changes-made-to-your-bucket"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">To keep track of which files have been submitted for processing, <code>s3-ocr</code> will create a JSON file for every file that it adds to the OCR queue.</p>
+<p dir="auto">This file will be called:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="path-to-file/name-of-file.pdf.s3-ocr.json"><pre class="notranslate"><code>path-to-file/name-of-file.pdf.s3-ocr.json
+</code></pre></div>
+<p dir="auto">Each of these JSON files contains data that looks like this:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+  "job_id": "a34eb4e8dc7e70aa9668f7272aa403e85997364199a654422340bc5ada43affe",
+  "etag": "\"b0c77472e15500347ebf46032a454e8e\""
+}"><pre>{
+  <span class="pl-ent">"job_id"</span>: <span class="pl-s"><span class="pl-pds">"</span>a34eb4e8dc7e70aa9668f7272aa403e85997364199a654422340bc5ada43affe<span class="pl-pds">"</span></span>,
+  <span class="pl-ent">"etag"</span>: <span class="pl-s"><span class="pl-pds">"</span><span class="pl-cce">\"</span>b0c77472e15500347ebf46032a454e8e<span class="pl-cce">\"</span><span class="pl-pds">"</span></span>
+}</pre></div>
+<p dir="auto">The recorded <code>job_id</code> can be used later to associate the file with the results of the OCR task in <code>textract-output/</code>.</p>
+<p dir="auto">The <code>etag</code> is the ETag of the S3 object at the time it was submitted. This can be used later to determine if a file has changed since it last had OCR run against it.</p>
+<p dir="auto">This design for the tool, with the <code>.s3-ocr.json</code> files tracking jobs that have been submitted, means that it is safe to run <code>s3-ocr start</code> against the same bucket multiple times without the risk of starting duplicate OCR jobs.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Creating a SQLite index of your OCR results</h2><a id="user-content-creating-a-sqlite-index-of-your-ocr-results" class="anchor" aria-label="Permalink: Creating a SQLite index of your OCR results" href="#creating-a-sqlite-index-of-your-ocr-results"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The <code>s3-ocr index <bucket> <database_file></code> command creates a SQLite database containing the results of the OCR, and configures SQLite full-text search against the text:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="% s3-ocr index sfms-history index.db
+Fetching job details  [####################################]  100%
+Populating pages table  [####################----------------]   55%  00:03:18"><pre class="notranslate"><code>% s3-ocr index sfms-history index.db
+Fetching job details  [####################################]  100%
+Populating pages table  [####################----------------]   55%  00:03:18
+</code></pre></div>
+<p dir="auto">The schema of the resulting database looks like this (excluding the FTS tables):</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="CREATE TABLE [pages] (
+   [path] TEXT,
+   [page] INTEGER,
+   [folder] TEXT,
+   [text] TEXT,
+   PRIMARY KEY ([path], [page])
+);
+CREATE TABLE [ocr_jobs] (
+   [key] TEXT PRIMARY KEY,
+   [job_id] TEXT,
+   [etag] TEXT,
+   [s3_ocr_etag] TEXT
+);
+CREATE TABLE [fetched_jobs] (
+   [job_id] TEXT PRIMARY KEY
+);"><pre>CREATE TABLE [pages] (
+   [<span class="pl-k">path</span>] <span class="pl-k">TEXT</span>,
+   [page] <span class="pl-k">INTEGER</span>,
+   [folder] <span class="pl-k">TEXT</span>,
+   [<span class="pl-k">text</span>] <span class="pl-k">TEXT</span>,
+   <span class="pl-k">PRIMARY KEY</span> ([<span class="pl-k">path</span>], [page])
+);
+CREATE TABLE [ocr_jobs] (
+   [key] <span class="pl-k">TEXT</span> <span class="pl-k">PRIMARY KEY</span>,
+   [job_id] <span class="pl-k">TEXT</span>,
+   [etag] <span class="pl-k">TEXT</span>,
+   [s3_ocr_etag] <span class="pl-k">TEXT</span>
+);
+CREATE TABLE [fetched_jobs] (
+   [job_id] <span class="pl-k">TEXT</span> <span class="pl-k">PRIMARY KEY</span>
+);</pre></div>
+<p dir="auto">The database is designed to be used with <a href="https://datasette.io" rel="nofollow">Datasette</a>.</p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">s3-ocr index --help</h3><a id="user-content-s3-ocr-index---help" class="anchor" aria-label="Permalink: s3-ocr index --help" href="#s3-ocr-index---help"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="Usage: s3-ocr index [OPTIONS] BUCKET DATABASE
+
+  Create a SQLite database with OCR results for files in a bucket
+
+Options:
+  --access-key ..."><pre class="notranslate"><code>Usage: s3-ocr index [OPTIONS] BUCKET DATABASE
+
+  Create a SQLite database with OCR results for files in a bucket
+
+Options:
+  --access-key ...
+</code></pre></div>
+
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Development</h2><a id="user-content-development" class="anchor" aria-label="Permalink: Development" href="#development"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">To contribute to this tool, first checkout the code. Then create a new virtual environment:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="cd s3-ocr
+python -m venv venv
+source venv/bin/activate"><pre class="notranslate"><code>cd s3-ocr
+python -m venv venv
+source venv/bin/activate
+</code></pre></div>
+<p dir="auto">Now install the dependencies and test dependencies:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pip install -e '.[test]'"><pre class="notranslate"><code>pip install -e '.[test]'
+</code></pre></div>
+<p dir="auto">To run the tests:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pytest"><pre class="notranslate"><code>pytest
+</code></pre></div>
+<p dir="auto">To regenerate the README file with the latest <code>--help</code>:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="cog -r README.md"><pre class="notranslate"><code>cog -r README.md
+</code></pre></div>
+</article></div>

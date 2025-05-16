@@ -530,5 +530,121 @@
   {
     "repo": "simonw/datasette-scale-to-zero",
     "pushed_at": "2024-02-29T21:23:49Z"
+  },
+  {
+    "repo": "simonw/s3-ocr",
+    "pushed_at": "2022-08-10T04:43:17Z"
+  },
+  {
+    "repo": "simonw/datasette-expose-env",
+    "pushed_at": "2024-03-03T00:06:22Z"
+  },
+  {
+    "repo": "simonw/sqlite-comprehend",
+    "pushed_at": "2022-07-12T14:21:42Z"
+  },
+  {
+    "repo": "asg017/sqlite-path",
+    "pushed_at": "2023-10-07T05:57:19Z"
+  },
+  {
+    "repo": "asg017/sqlite-url",
+    "pushed_at": "2025-02-08T22:39:54Z"
+  },
+  {
+    "repo": "simonw/datasette-mp3-audio",
+    "pushed_at": "2022-08-21T06:43:00Z"
+  },
+  {
+    "repo": "simonw/datasette-multiline-links",
+    "pushed_at": "2022-08-24T22:56:16Z"
+  },
+  {
+    "repo": "simonw/datasette-sitemap",
+    "pushed_at": "2022-08-30T17:59:53Z"
+  },
+  {
+    "repo": "simonw/datasette-render-image-tags",
+    "pushed_at": "2024-05-15T06:41:34Z"
+  },
+  {
+    "repo": "simonw/datasette-sandstorm-support",
+    "pushed_at": "2022-09-16T17:14:12Z"
+  },
+  {
+    "repo": "datasette/datasette-public",
+    "pushed_at": "2025-03-20T17:03:54Z"
+  },
+  {
+    "repo": "ocdtrekkie/datasette-external-links-new-tabs",
+    "pushed_at": "2022-10-07T04:51:51Z"
+  },
+  {
+    "repo": "simonw/datasette-gunicorn",
+    "pushed_at": "2022-12-18T06:46:37Z"
+  },
+  {
+    "repo": "asg017/sqlite-regex",
+    "pushed_at": "2024-04-22T07:46:31Z"
+  },
+  {
+    "repo": "asg017/sqlite-jsonschema",
+    "pushed_at": "2023-08-06T00:29:45Z"
+  },
+  {
+    "repo": "simonw/datasette-export",
+    "pushed_at": "2022-11-27T04:20:09Z"
+  },
+  {
+    "repo": "cldellow/datasette-scraper",
+    "pushed_at": "2023-03-04T22:08:22Z"
+  },
+  {
+    "repo": "simonw/datasette-ephemeral-tables",
+    "pushed_at": "2022-12-02T00:36:31Z"
+  },
+  {
+    "repo": "simonw/datasette-secret-santa",
+    "pushed_at": "2022-12-11T01:41:10Z"
+  },
+  {
+    "repo": "asg017/sqlite-ulid",
+    "pushed_at": "2023-10-06T22:57:31Z"
+  },
+  {
+    "repo": "simonw/openai-to-sqlite",
+    "pushed_at": "2024-04-17T02:58:05Z"
+  },
+  {
+    "repo": "simonw/datasette-openai",
+    "pushed_at": "2023-01-14T02:29:43Z"
+  },
+  {
+    "repo": "asg017/sqlite-vss",
+    "pushed_at": "2024-05-05T20:00:16Z"
+  },
+  {
+    "repo": "asg017/sqlite-fastrand",
+    "pushed_at": "2023-11-27T16:07:05Z"
+  },
+  {
+    "repo": "simonw/json-to-files",
+    "pushed_at": "2023-01-10T20:15:20Z"
+  },
+  {
+    "repo": "simonw/datasette-faiss",
+    "pushed_at": "2024-06-17T18:12:08Z"
+  },
+  {
+    "repo": "simonw/datasette-cookies-for-magic-parameters",
+    "pushed_at": "2023-01-12T19:04:37Z"
+  },
+  {
+    "repo": "CentreForDigitalHumanities/datasette-matomo",
+    "pushed_at": "2023-12-20T17:03:13Z"
+  },
+  {
+    "repo": "simonw/datasette-youtube-embed",
+    "pushed_at": "2023-01-27T20:09:30Z"
   }
 ]

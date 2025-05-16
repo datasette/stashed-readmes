@@ -1,0 +1,266 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">sqlite-vss</h1><a id="user-content-sqlite-vss" class="anchor" aria-label="Permalink: sqlite-vss" href="#sqlite-vss"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<div class="markdown-alert markdown-alert-warning" dir="auto"><p class="markdown-alert-title" dir="auto"><svg class="octicon octicon-alert mr-2" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Warning</p><p dir="auto"><code>sqlite-vss</code> is not in active development. Instead, my effort is now going towards <a href="https://github.com/asg017/sqlite-vec"><code>sqlite-vec</code></a>, which is a similar vector search SQLite extension, but should be much easier to install and use than <code>sqlite-vss</code>. See <a href="https://alexgarcia.xyz/blog/2024/building-new-vector-search-sqlite/index.html" rel="nofollow">this blog post</a> for more info.</p>
+</div>
+<p dir="auto"><code>sqlite-vss</code> (SQLite <b>V</b>ector <b>S</b>imilarity <b>S</b>earch) is a SQLite extension that brings vector search capabilities to SQLite, based on <a href="https://faiss.ai/" rel="nofollow">Faiss</a>. It can be used to build semantic search engines, recommendations, or questions-and-answering tools.</p>
+<p dir="auto">See <a href="https://observablehq.com/@asg017/introducing-sqlite-vss" rel="nofollow"><em>Introducing sqlite-vss: A SQLite Extension for Vector Search</em></a> (February 2023) for more details and a live example!</p>
+<p dir="auto">If your company or organization finds this library useful, consider <a href="#supporting">supporting my work</a>!</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Usage</h2><a id="user-content-usage" class="anchor" aria-label="Permalink: Usage" href="#usage"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content=".load ./vector0
+.load ./vss0
+
+select vss_version(); -- 'v0.0.1'
+"><pre>.load .<span class="pl-k">/</span>vector0
+.load .<span class="pl-k">/</span>vss0
+
+<span class="pl-k">select</span> vss_version(); <span class="pl-c"><span class="pl-c">--</span> 'v0.0.1'</span>
+</pre></div>
+<p dir="auto"><code>sqlite-vss</code> has a similar API to the <a href="https://www.sqlite.org/fts5.html" rel="nofollow"><code>fts5</code> Full-Text Search Extension</a>. Use the <code>vss0</code> module to create virtual tables that can efficiently store and query your vectors.</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="-- 384 == number of dimensions for this example
+create virtual table vss_articles using vss0(
+  headline_embedding(384),
+  description_embedding(384),
+);"><pre><span class="pl-c"><span class="pl-c">--</span> 384 == number of dimensions for this example</span>
+create virtual table vss_articles using vss0(
+  headline_embedding(<span class="pl-c1">384</span>),
+  description_embedding(<span class="pl-c1">384</span>),
+);</pre></div>
+<p dir="auto"><code>sqlite-vss</code> is a <strong>Bring-your-own-vectors</strong> database, it is compatable with any embedding or vector data you have. Consider using <a href="https://platform.openai.com/docs/guides/embeddings" rel="nofollow">OpenAI's Embeddings API</a>, <a href="https://huggingface.co/blog/getting-started-with-embeddings#1-embedding-a-dataset" rel="nofollow">HuggingFace's Inference API</a>, <a href="https://www.sbert.net/" rel="nofollow"><code>sentence-transformers</code></a>, or <a href="https://github.com/embeddings-benchmark/mteb#leaderboard">any of these open source model</a>. In this example, we are using <a href="https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2" rel="nofollow">sentence-transformers/all-MiniLM-L6-v2</a> to generate embeddings from our text, which have 384 dimensions.</p>
+<p dir="auto">You can insert vectors into <code>vss0</code> tables as JSON or raw bytes.</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="insert into vss_articles(rowid, headline_embedding)
+  select rowid, headline_embedding from articles;"><pre><span class="pl-k">insert into</span> vss_articles(rowid, headline_embedding)
+  <span class="pl-k">select</span> rowid, headline_embedding <span class="pl-k">from</span> articles;</pre></div>
+<p dir="auto">To query for similar vectors ("k nearest neighbors"), use the <code>vss_search</code> function in the <code>WHERE</code> clause. Here we are searching for the 100 nearest neighbors to the embedding in row #123 in the <code>articles</code> table.</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="select rowid, distance
+from vss_articles
+where vss_search(
+  headline_embedding,
+  (select headline_embedding from articles where rowid = 123)
+)
+limit 100;"><pre><span class="pl-k">select</span> rowid, distance
+<span class="pl-k">from</span> vss_articles
+<span class="pl-k">where</span> vss_search(
+  headline_embedding,
+  (<span class="pl-k">select</span> headline_embedding <span class="pl-k">from</span> articles <span class="pl-k">where</span> rowid <span class="pl-k">=</span> <span class="pl-c1">123</span>)
+)
+<span class="pl-k">limit</span> <span class="pl-c1">100</span>;</pre></div>
+<p dir="auto">You can <code>INSERT</code> and <code>DELETE</code> into these tables as necessary, but <a href="https://github.com/asg017/sqlite-vss/issues/7" data-hovercard-type="issue" data-hovercard-url="/asg017/sqlite-vss/issues/7/hovercard"><code>UPDATE</code> operations aren't supported yet</a>. This can be used with triggers for automatically updated indexes. Also note that "small" <code>INSERT</code>/<code>DELETE</code> operations that only insert a few rows can be slow, so batch where necessary.</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="begin;
+
+delete from vss_articles
+  where rowid between 100 and 200;
+
+insert into vss_articles(rowid, headline_embedding, description_embedding)
+  values (:rowid, :headline_embedding, :description_embedding)
+
+commit;"><pre><span class="pl-k">begin</span>;
+
+<span class="pl-k">delete</span> <span class="pl-k">from</span> vss_articles
+  <span class="pl-k">where</span> rowid between <span class="pl-c1">100</span> <span class="pl-k">and</span> <span class="pl-c1">200</span>;
+
+<span class="pl-k">insert into</span> vss_articles(rowid, headline_embedding, description_embedding)
+  <span class="pl-k">values</span> (:rowid, :headline_embedding, :description_embedding)
+
+<span class="pl-k">commit</span>;</pre></div>
+<p dir="auto">You can pass in custom <a href="https://github.com/facebookresearch/faiss/wiki/The-index-factory">Faiss factory strings</a> for specific columns to control how the Faiss index is stored and queried. By default the factory string is <code>"Flat,IDMap2"</code>, which can be slow to query as your database grows. Here, we add an <a href="https://github.com/facebookresearch/faiss/wiki/The-index-factory#inverted-file-indexes">inverted file index</a> with 4096 centroids, a non-exhaustive option that makes large database queries much faster.</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="create virtual table vss_ivf_articles using vss0(
+  headline_embedding(384) factory="IVF4096,Flat,IDMap2",
+  description_embedding(384) factory="IVF4096,Flat,IDMap2"
+);"><pre>create virtual table vss_ivf_articles using vss0(
+  headline_embedding(<span class="pl-c1">384</span>) factory<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>IVF4096,Flat,IDMap2<span class="pl-pds">"</span></span>,
+  description_embedding(<span class="pl-c1">384</span>) factory<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>IVF4096,Flat,IDMap2<span class="pl-pds">"</span></span>
+);</pre></div>
+<p dir="auto">This IVF will require training! You can define training data with a <code>INSERT</code> command in a single transaction, with the special <code>operation="training"</code> constraint.</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="insert into vss_ivf_articles(operation, headline_embedding, description_embedding)
+  select
+    'training',
+    headline_embedding,
+    description_embedding
+  from articles;"><pre><span class="pl-k">insert into</span> vss_ivf_articles(operation, headline_embedding, description_embedding)
+  <span class="pl-k">select</span>
+    <span class="pl-s"><span class="pl-pds">'</span>training<span class="pl-pds">'</span></span>,
+    headline_embedding,
+    description_embedding
+  <span class="pl-k">from</span> articles;</pre></div>
+<p dir="auto">Beware! Indexes that require training can take a long time. With the <a href="./examples/headlines/">News Category Dataset</a> (386 dimension over 210k vectors) that this example is based on, the default index would take 8 seconds to build. But with the custom <code>"IVF4096,Flat,IDMap2"</code> factory, it took 45 minutes to train and 4.5 minutes to insert data! This likely can be reduced with a smaller training set, but the faster queries can be helpful.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Documentation</h2><a id="user-content-documentation" class="anchor" aria-label="Permalink: Documentation" href="#documentation"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">See <a href="./docs.md"><code>docs.md</code></a> for a instructions to compile <code>sqlite-vss</code> yourself, as well as a full SQL API reference.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Installing</h2><a id="user-content-installing" class="anchor" aria-label="Permalink: Installing" href="#installing"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The <a href="https://github.com/asg017/sqlite-vss/releases">Releases page</a> contains pre-built binaries for Linux x86_64 and MacOS x86_64 (MacOS Big Sur 11 or higher). More pre-compiled targets will be available in the future. Additionally, <code>sqlite-vss</code> is distributed on common package managers like <code>pip</code> for Python and <code>npm</code> for Node.js, see below for details.</p>
+<p dir="auto">Do note that on Linux machines, you'll have to install some packages to make these options work:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="sudo apt-get update
+sudo apt-get install -y libgomp1 libatlas-base-dev liblapack-dev"><pre class="notranslate"><code>sudo apt-get update
+sudo apt-get install -y libgomp1 libatlas-base-dev liblapack-dev
+</code></pre></div>
+<blockquote>
+<p dir="auto"><strong>Note:</strong>
+The <code>0</code> in the filename (<code>vss0.dylib</code>/ <code>vss0.so</code>) denotes the major version of <code>sqlite-vss</code>. Currently <code>sqlite-vss</code> is pre v1, so expect breaking changes in future versions.</p>
+</blockquote>
+<markdown-accessiblity-table><table>
+<thead>
+<tr>
+<th>Language</th>
+<th>Install</th>
+<th>More Info</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Python</td>
+<td><code>pip install sqlite-vss</code></td>
+<td><a href="https://alexgarcia.xyz/sqlite-vss/python.html" rel="nofollow"><code>sqlite-vss</code> with Python</a></td>
+<td><a href="https://pypi.org/project/sqlite-vss/" rel="nofollow"><img src="https://img.shields.io/pypi/v/sqlite-vss.svg?color=blue&logo=python&logoColor=white" alt="PyPI" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/5a02a682880aca8c16a9dcd6adc76cc20c157ae8adaaef8bfd06fe1bd0907174/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f73716c6974652d7673732e7376673f636f6c6f723d626c7565266c6f676f3d707974686f6e266c6f676f436f6c6f723d7768697465"></a></td>
+</tr>
+<tr>
+<td>Datasette</td>
+<td><code>datasette install datasette-sqlite-vss</code></td>
+<td><a href="https://alexgarcia.xyz/sqlite-vss/datasette.html" rel="nofollow"><code>sqlite-vss</code> with Datasette</a></td>
+<td><a href="https://datasette.io/plugins/datasette-sqlite-vss" rel="nofollow"><img src="https://img.shields.io/pypi/v/datasette-sqlite-vss.svg?color=B6B6D9&label=Datasette+plugin&logoColor=white&logo=python" alt="Datasette" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/42e7f55e6f20d4c0676b88a14fbc4ef9a994b3c35524def6acd9443e83d72726/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f6461746173657474652d73716c6974652d7673732e7376673f636f6c6f723d423642364439266c6162656c3d4461746173657474652b706c7567696e266c6f676f436f6c6f723d7768697465266c6f676f3d707974686f6e"></a></td>
+</tr>
+<tr>
+<td>Node.js</td>
+<td><code>npm install sqlite-vss</code></td>
+<td><a href="https://alexgarcia.xyz/sqlite-vss/nodejs.html" rel="nofollow"><code>sqlite-vss</code> with Node.js</a></td>
+<td><a href="https://www.npmjs.com/package/sqlite-vss" rel="nofollow"><img src="https://img.shields.io/npm/v/sqlite-vss.svg?color=green&logo=nodedotjs&logoColor=white" alt="npm" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/ba65d4a7f9a288d71136422eab5f27b188c6f6ee1a4985cb4c6bd1c4638f10c8/68747470733a2f2f696d672e736869656c64732e696f2f6e706d2f762f73716c6974652d7673732e7376673f636f6c6f723d677265656e266c6f676f3d6e6f6465646f746a73266c6f676f436f6c6f723d7768697465"></a></td>
+</tr>
+<tr>
+<td>Deno</td>
+<td><a href="https://deno.land/x/sqlite_vss" rel="nofollow"><code>deno.land/x/sqlite_vss</code></a></td>
+<td><a href="https://alexgarcia.xyz/sqlite-vss/deno.html" rel="nofollow"><code>sqlite-vss</code> with Deno</a></td>
+<td><a href="https://deno.land/x/sqlite_vss" rel="nofollow"><img src="https://deno.land/badge/sqlite_vss/version?color=fef8d2" alt="deno version" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/5fc601d8173347586c499c8c145fed78fbeb7f7723d22d9b76a5cdeb693cad5c/68747470733a2f2f64656e6f2e6c616e642f62616467652f73716c6974655f7673732f76657273696f6e3f636f6c6f723d666566386432"></a></td>
+</tr>
+<tr>
+<td>Ruby</td>
+<td><code>gem install sqlite-vss</code></td>
+<td><a href="https://alexgarcia.xyz/sqlite-vss/ruby.html" rel="nofollow"><code>sqlite-vss</code> with Ruby</a></td>
+<td><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/1499d84e7da81bc6d496ed5691492d301110975a0bf4c97fed1a4337bc40e1c5/68747470733a2f2f696d672e736869656c64732e696f2f67656d2f762f73716c6974652d7673733f636f6c6f723d726564266c6f676f3d7275627967656d73266c6f676f436f6c6f723d7768697465"><img src="https://img.shields.io/gem/v/sqlite-vss?color=red&logo=rubygems&logoColor=white" alt="Gem" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/1499d84e7da81bc6d496ed5691492d301110975a0bf4c97fed1a4337bc40e1c5/68747470733a2f2f696d672e736869656c64732e696f2f67656d2f762f73716c6974652d7673733f636f6c6f723d726564266c6f676f3d7275627967656d73266c6f676f436f6c6f723d7768697465"></a></td>
+</tr>
+<tr>
+<td>Elixir</td>
+<td><a href="https://hex.pm/packages/sqlite_vss" rel="nofollow"><code>hex.pm/packages/sqlite_vss</code></a></td>
+<td><a href="https://alexgarcia.xyz/sqlite-vss/elixir.html" rel="nofollow"><code>sqlite-vss</code> with Elixir</a></td>
+<td><a href="https://hex.pm/packages/sqlite_vss" rel="nofollow"><img src="https://img.shields.io/hexpm/v/sqlite_vss?color=purple&logo=elixir" alt="Hex.pm" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/b05133ca57bc1c5c19ad9dfdb71c2d0b9c39c462e687755b386a9c3f269190aa/68747470733a2f2f696d672e736869656c64732e696f2f686578706d2f762f73716c6974655f7673733f636f6c6f723d707572706c65266c6f676f3d656c69786972"></a></td>
+</tr>
+<tr>
+<td>Go</td>
+<td><code>go get -u github.com/asg017/sqlite-vss/bindings/go</code></td>
+<td><a href="https://alexgarcia.xyz/sqlite-vss/go.html" rel="nofollow"><code>sqlite-vss</code> with Go</a></td>
+<td><a href="https://pkg.go.dev/github.com/asg017/sqlite-vss/bindings/go" rel="nofollow"><img src="https://pkg.go.dev/badge/github.com/asg017/sqlite-vss/bindings/go.svg" alt="Go Reference" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/3ac2d40b6c2449dc1a09b1b0f60a53fa87a953968e7914e5d1aaa3647841f704/68747470733a2f2f706b672e676f2e6465762f62616467652f6769746875622e636f6d2f6173673031372f73716c6974652d7673732f62696e64696e67732f676f2e737667"></a></td>
+</tr>
+<tr>
+<td>Rust</td>
+<td><code>cargo add sqlite-vss</code></td>
+<td><a href="https://alexgarcia.xyz/sqlite-vss/rust.html" rel="nofollow"><code>sqlite-vss</code> with Rust</a></td>
+<td><a href="https://crates.io/crates/sqlite-vss" rel="nofollow"><img src="https://img.shields.io/crates/v/sqlite-vss?logo=rust" alt="Crates.io" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/46095004a3fe32069b6f37aa1b3f65195c46b97b2059e287d371e32b490ba685/68747470733a2f2f696d672e736869656c64732e696f2f6372617465732f762f73716c6974652d7673733f6c6f676f3d72757374"></a></td>
+</tr>
+<tr>
+<td>Github Release</td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/3ed9cd239bfdcb37f1dd5e2d214cded8731f2f1d6ffb780819766fe2448df4e1/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f7461672f6173673031372f73716c6974652d7673733f636f6c6f723d6c696768746772657926696e636c7564655f70726572656c6561736573266c6162656c3d4769746875622b72656c65617365266c6f676f3d676974687562"><img src="https://img.shields.io/github/v/tag/asg017/sqlite-vss?color=lightgrey&include_prereleases&label=Github+release&logo=github" alt="GitHub tag (latest SemVer pre-release)" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/3ed9cd239bfdcb37f1dd5e2d214cded8731f2f1d6ffb780819766fe2448df4e1/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f7461672f6173673031372f73716c6974652d7673733f636f6c6f723d6c696768746772657926696e636c7564655f70726572656c6561736573266c6162656c3d4769746875622b72656c65617365266c6f676f3d676974687562"></a></td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">With the <code>sqlite3</code> CLI</h3><a id="user-content-with-the-sqlite3-cli" class="anchor" aria-label="Permalink: With the sqlite3 CLI" href="#with-the-sqlite3-cli"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">For using <code>sqlite-vss</code> with <a href="https://www.sqlite.org/cli.html" rel="nofollow">the official SQLite command line shell</a>, download the <code>vector0.dylib</code>/<code>vss0.dylib</code> (for MacOS Big Sur 11 or higher) or <code>vector0.so</code>/<code>vss0.so</code> (Linux) files from a release and load it into your SQLite environment.</p>
+<p dir="auto">The <code>vector0</code> extension is a required dependency, so make sure to load that before <code>vss0</code>.</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content=".load ./vector0
+.load ./vss0
+select vss_version();
+-- v0.0.1"><pre>.load .<span class="pl-k">/</span>vector0
+.load .<span class="pl-k">/</span>vss0
+<span class="pl-k">select</span> vss_version();
+<span class="pl-c"><span class="pl-c">--</span> v0.0.1</span></pre></div>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Python</h3><a id="user-content-python" class="anchor" aria-label="Permalink: Python" href="#python"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">For Python developers, install the <a href="https://pypi.org/package/sqlite-vss/" rel="nofollow"><code>sqlite-vss</code> package</a> with:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pip install sqlite-vss"><pre class="notranslate"><code>pip install sqlite-vss
+</code></pre></div>
+<div class="highlight highlight-source-python notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="import sqlite3
+import sqlite_vss
+
+db = sqlite3.connect(':memory:')
+db.enable_load_extension(True)
+sqlite_vss.load(db)
+
+version, = db.execute('select vss_version()').fetchone()
+print(version)"><pre><span class="pl-k">import</span> <span class="pl-s1">sqlite3</span>
+<span class="pl-k">import</span> <span class="pl-s1">sqlite_vss</span>
+
+<span class="pl-s1">db</span> <span class="pl-c1">=</span> <span class="pl-s1">sqlite3</span>.<span class="pl-c1">connect</span>(<span class="pl-s">':memory:'</span>)
+<span class="pl-s1">db</span>.<span class="pl-c1">enable_load_extension</span>(<span class="pl-c1">True</span>)
+<span class="pl-s1">sqlite_vss</span>.<span class="pl-c1">load</span>(<span class="pl-s1">db</span>)
+
+<span class="pl-s1">version</span>, <span class="pl-c1">=</span> <span class="pl-s1">db</span>.<span class="pl-c1">execute</span>(<span class="pl-s">'select vss_version()'</span>).<span class="pl-c1">fetchone</span>()
+<span class="pl-en">print</span>(<span class="pl-s1">version</span>)</pre></div>
+<p dir="auto">See <a href="./bindings/python/README.md"><code>bindings/python</code></a> for more details.</p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Node.js</h3><a id="user-content-nodejs" class="anchor" aria-label="Permalink: Node.js" href="#nodejs"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">For Node.js developers, install the <a href="https://www.npmjs.com/package/sqlite-vss" rel="nofollow"><code>sqlite-vss</code> npm package</a> with:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="npm install sqlite-vss"><pre class="notranslate"><code>npm install sqlite-vss
+</code></pre></div>
+<div class="highlight highlight-source-js notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="import Database from "better-sqlite3"; // also compatible with node-sqlite3
+import * as sqlite_vss from "sqlite-vss";
+
+const db = new Database(":memory:");
+sqlite_vss.load(db);
+
+const version = db.prepare("select vss_version()").pluck().get();
+console.log(version);"><pre><span class="pl-k">import</span> <span class="pl-v">Database</span> <span class="pl-k">from</span> <span class="pl-s">"better-sqlite3"</span><span class="pl-kos">;</span> <span class="pl-c">// also compatible with node-sqlite3</span>
+<span class="pl-k">import</span> <span class="pl-c1">*</span> <span class="pl-k">as</span> <span class="pl-s1">sqlite_vss</span> <span class="pl-k">from</span> <span class="pl-s">"sqlite-vss"</span><span class="pl-kos">;</span>
+
+<span class="pl-k">const</span> <span class="pl-s1">db</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-v">Database</span><span class="pl-kos">(</span><span class="pl-s">":memory:"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+<span class="pl-s1">sqlite_vss</span><span class="pl-kos">.</span><span class="pl-en">load</span><span class="pl-kos">(</span><span class="pl-s1">db</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+
+<span class="pl-k">const</span> <span class="pl-s1">version</span> <span class="pl-c1">=</span> <span class="pl-s1">db</span><span class="pl-kos">.</span><span class="pl-en">prepare</span><span class="pl-kos">(</span><span class="pl-s">"select vss_version()"</span><span class="pl-kos">)</span><span class="pl-kos">.</span><span class="pl-en">pluck</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">.</span><span class="pl-en">get</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+<span class="pl-smi">console</span><span class="pl-kos">.</span><span class="pl-en">log</span><span class="pl-kos">(</span><span class="pl-s1">version</span><span class="pl-kos">)</span><span class="pl-kos">;</span></pre></div>
+<p dir="auto">See <a href="./npm/sqlite-vss/README.md"><code>npm/sqlite-vss/README.md</code></a> for more details.</p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Deno</h3><a id="user-content-deno" class="anchor" aria-label="Permalink: Deno" href="#deno"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">For <a href="https://deno.land/" rel="nofollow">Deno</a> developers, use the <a href="https://deno.land/x/sqlite_vss" rel="nofollow">deno.land/x/sqlite_vss</a> module:</p>
+<div class="highlight highlight-source-ts notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="// Requires all permissions (-A) and the --unstable flag
+
+import { Database } from "https://deno.land/x/sqlite3@0.8.0/mod.ts";
+import * as sqlite_vss from "https://deno.land/x/sqlite_vss/mod.ts";
+
+const db = new Database(":memory:");
+
+db.enableLoadExtension = true;
+sqlite_vss.load(db);
+
+const [version] = db.prepare("select vss_version()").value<[string]>()!;
+
+console.log(version);"><pre><span class="pl-c">// Requires all permissions (-A) and the --unstable flag</span>
+
+<span class="pl-k">import</span> <span class="pl-kos">{</span> <span class="pl-v">Database</span> <span class="pl-kos">}</span> <span class="pl-k">from</span> <span class="pl-s">"https://deno.land/x/sqlite3@0.8.0/mod.ts"</span><span class="pl-kos">;</span>
+<span class="pl-k">import</span> <span class="pl-c1">*</span> <span class="pl-k">as</span> <span class="pl-s1">sqlite_vss</span> <span class="pl-k">from</span> <span class="pl-s">"https://deno.land/x/sqlite_vss/mod.ts"</span><span class="pl-kos">;</span>
+
+<span class="pl-k">const</span> <span class="pl-s1">db</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-v">Database</span><span class="pl-kos">(</span><span class="pl-s">":memory:"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+
+<span class="pl-s1">db</span><span class="pl-kos">.</span><span class="pl-c1">enableLoadExtension</span> <span class="pl-c1">=</span> <span class="pl-c1">true</span><span class="pl-kos">;</span>
+<span class="pl-s1">sqlite_vss</span><span class="pl-kos">.</span><span class="pl-en">load</span><span class="pl-kos">(</span><span class="pl-s1">db</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+
+<span class="pl-k">const</span> <span class="pl-kos">[</span><span class="pl-s1">version</span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s1">db</span><span class="pl-kos">.</span><span class="pl-en">prepare</span><span class="pl-kos">(</span><span class="pl-s">"select vss_version()"</span><span class="pl-kos">)</span><span class="pl-kos">.</span><span class="pl-en">value</span><span class="pl-c1"><</span><span class="pl-kos">[</span><span class="pl-smi">string</span><span class="pl-kos">]</span><span class="pl-c1">></span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-c1">!</span><span class="pl-kos">;</span>
+
+<span class="pl-smi">console</span><span class="pl-kos">.</span><span class="pl-en">log</span><span class="pl-kos">(</span><span class="pl-s1">version</span><span class="pl-kos">)</span><span class="pl-kos">;</span></pre></div>
+<p dir="auto">See <a href="./deno/README.md"><code>deno/sqlite-vss/README.md</code></a> for more details.</p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Datasette</h3><a id="user-content-datasette" class="anchor" aria-label="Permalink: Datasette" href="#datasette"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">And for <a href="https://datasette.io/" rel="nofollow">Datasette</a>, install the <a href="https://datasette.io/plugins/datasette-sqlite-vss" rel="nofollow"><code>datasette-sqlite-vss</code> plugin</a> with:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="datasette install datasette-sqlite-vss"><pre class="notranslate"><code>datasette install datasette-sqlite-vss
+</code></pre></div>
+<p dir="auto">See <a href="./bindings/datasette/README.md"><code>bindings/datasette</code></a> for more details.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Disadvantages</h2><a id="user-content-disadvantages" class="anchor" aria-label="Permalink: Disadvantages" href="#disadvantages"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li>The underlying Faiss indicies are capped at 1GB. Follow <a href="https://github.com/asg017/sqlite-vss/issues/1" data-hovercard-type="issue" data-hovercard-url="/asg017/sqlite-vss/issues/1/hovercard">#1</a> for updates.</li>
+<li>Additional filtering on top of KNN searches aren't supported yet. Follow <a href="https://github.com/asg017/sqlite-vss/issues/2" data-hovercard-type="issue" data-hovercard-url="/asg017/sqlite-vss/issues/2/hovercard">#2</a> for updates.</li>
+<li>Only CPU Faiss indicies are supported, not GPU yet. Follow <a href="https://github.com/asg017/sqlite-vss/issues/3" data-hovercard-type="issue" data-hovercard-url="/asg017/sqlite-vss/issues/3/hovercard">#3</a> for updates.</li>
+<li>mmap'ed indices aren't supported yet, so indicies have to fit in RAM. Follow <a href="https://github.com/asg017/sqlite-vss/issues/4" data-hovercard-type="issue" data-hovercard-url="/asg017/sqlite-vss/issues/4/hovercard">#4</a> for updates.</li>
+<li>This extension is written in C++ and doesn't have fuzzy testing yet. Follow <a href="https://github.com/asg017/sqlite-vss/issues/5" data-hovercard-type="issue" data-hovercard-url="/asg017/sqlite-vss/issues/5/hovercard">#5</a> for updates.</li>
+<li><code>UPDATE</code> statements on vss0 virtual tables are not supported, though <code>INSERT</code> and <code>DELETE</code> statements are. Follow <a href="https://github.com/asg017/sqlite-vss/issues/7" data-hovercard-type="issue" data-hovercard-url="/asg017/sqlite-vss/issues/7/hovercard">#7</a> for updates.</li>
+</ul>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Supporting</h2><a id="user-content-supporting" class="anchor" aria-label="Permalink: Supporting" href="#supporting"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">I (Alex 👋🏼) spent a lot of time and energy on this project and <a href="https://github.com/asg017?tab=repositories&q=&type=&language=&sort=stargazers">many other open source projects</a>. If your company or organization uses this library (or you're feeling generous), then please consider <a href="https://github.com/sponsors/asg017/">sponsoring my work</a>, sharing this project with a friend, or <a href="https://alexgarcia.xyz/work.html" rel="nofollow">hiring me for contract/consulting work</a>!</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">See Also</h2><a id="user-content-see-also" class="anchor" aria-label="Permalink: See Also" href="#see-also"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li><a href="https://github.com/asg017/sqlite-http"><code>sqlite-http</code></a>, a SQLite extension for making HTTP requests</li>
+<li><a href="https://github.com/asg017/sqlite-xsv"><code>sqlite-xsv</code></a>, a fast SQLite extension for querying CSVs</li>
+<li><a href="https://github.com/asg017/sqlite-loadable-rs"><code>sqlite-loadable-rs</code></a>, a framework for building SQLite extensions in Rust</li>
+</ul>
+</article></div>

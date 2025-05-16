@@ -1,0 +1,244 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">sqlite-regex</h1><a id="user-content-sqlite-regex" class="anchor" aria-label="Permalink: sqlite-regex" href="#sqlite-regex"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">A fast and performant SQLite extension for regular expressions. Based on <a href="https://github.com/asg017/sqlite-loadable-rs"><code>sqlite-loadable-rs</code></a>, and the <a href="https://crates.io/crates/regex" rel="nofollow">regex crate</a>.</p>
+<p dir="auto">See <a href="https://observablehq.com/@asg017/introducing-sqlite-regex" rel="nofollow"><em>Introducing sqlite-regex: The fastest Regular Expression Extension for SQLite</em></a> (Jan 2023) for more details!</p>
+<p dir="auto">If your company or organization finds this library useful, consider <a href="#supporting">supporting my work</a>!</p>
+<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="./benchmarks/dates.png"><img src="./benchmarks/dates.png" alt="" style="max-width: 100%;"></a></p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Usage</h2><a id="user-content-usage" class="anchor" aria-label="Permalink: Usage" href="#usage"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content=".load ./regex0
+select 'foo' regexp 'f';
+"><pre>.load .<span class="pl-k">/</span>regex0
+<span class="pl-k">select</span> <span class="pl-s"><span class="pl-pds">'</span>foo<span class="pl-pds">'</span></span> regexp <span class="pl-s"><span class="pl-pds">'</span>f<span class="pl-pds">'</span></span>;
+</pre></div>
+<p dir="auto"><strong>Find all occurrences of a pattern in a string</strong></p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="select regex_find(
+  '[0-9]{3}-[0-9]{3}-[0-9]{4}',
+  'phone: 111-222-3333'
+);
+-- '111-222-3333'
+
+select rowid, *
+from regex_find_all(
+  '\b\w{13}\b',
+  'Retroactively relinquishing remunerations is reprehensible.'
+);
+/*
+┌───────┬───────┬─────┬───────────────┐
+│ rowid │ start │ end │     match     │
+├───────┼───────┼─────┼───────────────┤
+│ 0     │ 0     │ 13  │ Retroactively │
+│ 1     │ 14    │ 27  │ relinquishing │
+│ 2     │ 28    │ 41  │ remunerations │
+│ 3     │ 45    │ 58  │ reprehensible │
+└───────┴───────┴─────┴───────────────┘
+*/"><pre><span class="pl-k">select</span> regex_find(
+  <span class="pl-s"><span class="pl-pds">'</span>[0-9]{3}-[0-9]{3}-[0-9]{4}<span class="pl-pds">'</span></span>,
+  <span class="pl-s"><span class="pl-pds">'</span>phone: 111-222-3333<span class="pl-pds">'</span></span>
+);
+<span class="pl-c"><span class="pl-c">--</span> '111-222-3333'</span>
+
+<span class="pl-k">select</span> rowid, <span class="pl-k">*</span>
+<span class="pl-k">from</span> regex_find_all(
+  <span class="pl-s"><span class="pl-pds">'</span><span class="pl-cce">\b\w</span>{13}<span class="pl-cce">\b</span><span class="pl-pds">'</span></span>,
+  <span class="pl-s"><span class="pl-pds">'</span>Retroactively relinquishing remunerations is reprehensible.<span class="pl-pds">'</span></span>
+);
+<span class="pl-c"><span class="pl-c">/*</span></span>
+<span class="pl-c">┌───────┬───────┬─────┬───────────────┐</span>
+<span class="pl-c">│ rowid │ start │ end │     match     │</span>
+<span class="pl-c">├───────┼───────┼─────┼───────────────┤</span>
+<span class="pl-c">│ 0     │ 0     │ 13  │ Retroactively │</span>
+<span class="pl-c">│ 1     │ 14    │ 27  │ relinquishing │</span>
+<span class="pl-c">│ 2     │ 28    │ 41  │ remunerations │</span>
+<span class="pl-c">│ 3     │ 45    │ 58  │ reprehensible │</span>
+<span class="pl-c">└───────┴───────┴─────┴───────────────┘</span>
+<span class="pl-c"><span class="pl-c">*/</span></span></pre></div>
+<p dir="auto"><strong>Extract capture group values by index or name</strong></p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="select
+  regex_capture(captures, 0)        as entire_match,
+  regex_capture(captures, 'title')  as title,
+  regex_capture(captures, 'year')   as year
+from regex_captures(
+  regex("'(?P<title>[^']+)'\s+\((?P<year>\d{4})\)"),
+  "'Citizen Kane' (1941), 'The Wizard of Oz' (1939), 'M' (1931)."
+);
+/*
+┌───────────────────────────┬──────────────────┬──────┐
+│       entire_match        │      title       │ year │
+├───────────────────────────┼──────────────────┼──────┤
+│ 'Citizen Kane' (1941)     │ Citizen Kane     │ 1941 │
+│ 'The Wizard of Oz' (1939) │ The Wizard of Oz │ 1939 │
+│ 'M' (1931)                │ M                │ 1931 │
+└───────────────────────────┴──────────────────┴──────┘
+*/"><pre><span class="pl-k">select</span>
+  regex_capture(captures, <span class="pl-c1">0</span>)        <span class="pl-k">as</span> entire_match,
+  regex_capture(captures, <span class="pl-s"><span class="pl-pds">'</span>title<span class="pl-pds">'</span></span>)  <span class="pl-k">as</span> title,
+  regex_capture(captures, <span class="pl-s"><span class="pl-pds">'</span>year<span class="pl-pds">'</span></span>)   <span class="pl-k">as</span> year
+<span class="pl-k">from</span> regex_captures(
+  regex(<span class="pl-s"><span class="pl-pds">"</span>'(?P<title>[^']+)'\s+\((?P<year>\d{4})\)<span class="pl-pds">"</span></span>),
+  <span class="pl-s"><span class="pl-pds">"</span>'Citizen Kane' (1941), 'The Wizard of Oz' (1939), 'M' (1931).<span class="pl-pds">"</span></span>
+);
+<span class="pl-c"><span class="pl-c">/*</span></span>
+<span class="pl-c">┌───────────────────────────┬──────────────────┬──────┐</span>
+<span class="pl-c">│       entire_match        │      title       │ year │</span>
+<span class="pl-c">├───────────────────────────┼──────────────────┼──────┤</span>
+<span class="pl-c">│ 'Citizen Kane' (1941)     │ Citizen Kane     │ 1941 │</span>
+<span class="pl-c">│ 'The Wizard of Oz' (1939) │ The Wizard of Oz │ 1939 │</span>
+<span class="pl-c">│ 'M' (1931)                │ M                │ 1931 │</span>
+<span class="pl-c">└───────────────────────────┴──────────────────┴──────┘</span>
+<span class="pl-c"><span class="pl-c">*/</span></span></pre></div>
+<p dir="auto"><strong>Use RegexSets to match a string on multiple patterns in linear time</strong></p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="select regexset_is_match(
+  regexset(
+    "bar",
+    "foo",
+    "barfoo"
+  ),
+  'foobar'
+)"><pre><span class="pl-k">select</span> regexset_is_match(
+  regexset(
+    <span class="pl-s"><span class="pl-pds">"</span>bar<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>foo<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>barfoo<span class="pl-pds">"</span></span>
+  ),
+  <span class="pl-s"><span class="pl-pds">'</span>foobar<span class="pl-pds">'</span></span>
+)</pre></div>
+<p dir="auto"><strong>Split the string on the given pattern delimiter</strong></p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="select rowid, *
+from regex_split('[ \t]+', 'a b     c d    e');
+/*
+┌───────┬──────┐
+│ rowid │ item │
+├───────┼──────┤
+│ 0     │ a    │
+│ 1     │ b    │
+│ 2     │ c    │
+│ 3     │ d    │
+│ 4     │ e    │
+└───────┴──────┘
+*/"><pre><span class="pl-k">select</span> rowid, <span class="pl-k">*</span>
+<span class="pl-k">from</span> regex_split(<span class="pl-s"><span class="pl-pds">'</span>[ <span class="pl-cce">\t</span>]+<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>a b     c d    e<span class="pl-pds">'</span></span>);
+<span class="pl-c"><span class="pl-c">/*</span></span>
+<span class="pl-c">┌───────┬──────┐</span>
+<span class="pl-c">│ rowid │ item │</span>
+<span class="pl-c">├───────┼──────┤</span>
+<span class="pl-c">│ 0     │ a    │</span>
+<span class="pl-c">│ 1     │ b    │</span>
+<span class="pl-c">│ 2     │ c    │</span>
+<span class="pl-c">│ 3     │ d    │</span>
+<span class="pl-c">│ 4     │ e    │</span>
+<span class="pl-c">└───────┴──────┘</span>
+<span class="pl-c"><span class="pl-c">*/</span></span></pre></div>
+<p dir="auto"><strong>Replace occurrences of a pattern with another string</strong></p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="select regex_replace(
+  '(?P<last>[^,\s]+),\s+(?P<first>\S+)',
+  'Springsteen, Bruce',
+  '$first $last'
+);
+-- 'Bruce Springsteen'
+
+select regex_replace_all('a', 'abc abc', '');
+-- 'bc bc'"><pre><span class="pl-k">select</span> regex_replace(
+  <span class="pl-s"><span class="pl-pds">'</span>(?P<last>[^,<span class="pl-cce">\s</span>]+),<span class="pl-cce">\s</span>+(?P<first><span class="pl-cce">\S</span>+)<span class="pl-pds">'</span></span>,
+  <span class="pl-s"><span class="pl-pds">'</span>Springsteen, Bruce<span class="pl-pds">'</span></span>,
+  <span class="pl-s"><span class="pl-pds">'</span>$first $last<span class="pl-pds">'</span></span>
+);
+<span class="pl-c"><span class="pl-c">--</span> 'Bruce Springsteen'</span>
+
+<span class="pl-k">select</span> regex_replace_all(<span class="pl-s"><span class="pl-pds">'</span>a<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>abc abc<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>);
+<span class="pl-c"><span class="pl-c">--</span> 'bc bc'</span></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Documentation</h2><a id="user-content-documentation" class="anchor" aria-label="Permalink: Documentation" href="#documentation"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">See <a href="./docs.md"><code>docs.md</code></a> for a full API reference.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Installing</h2><a id="user-content-installing" class="anchor" aria-label="Permalink: Installing" href="#installing"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<markdown-accessiblity-table><table>
+<thead>
+<tr>
+<th>Language</th>
+<th>Install</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Python</td>
+<td><code>pip install sqlite-regex</code></td>
+<td><a href="https://pypi.org/project/sqlite-regex/" rel="nofollow"><img src="https://img.shields.io/pypi/v/sqlite-regex.svg?color=blue&logo=python&logoColor=white" alt="PyPI" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/7bf95741f64da97cb4a08a3438c02a788ef937655db66de9dea9ec37d129568f/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f73716c6974652d72656765782e7376673f636f6c6f723d626c7565266c6f676f3d707974686f6e266c6f676f436f6c6f723d7768697465"></a></td>
+</tr>
+<tr>
+<td>Datasette</td>
+<td><code>datasette install datasette-sqlite-regex</code></td>
+<td><a href="https://datasette.io/plugins/datasette-sqlite-regex" rel="nofollow"><img src="https://img.shields.io/pypi/v/datasette-sqlite-regex.svg?color=B6B6D9&label=Datasette+plugin&logoColor=white&logo=python" alt="Datasette" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/9d6617551dc0b41361b66ebfd87594fa345584429fe8c94595d2ba3c29e89846/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f6461746173657474652d73716c6974652d72656765782e7376673f636f6c6f723d423642364439266c6162656c3d4461746173657474652b706c7567696e266c6f676f436f6c6f723d7768697465266c6f676f3d707974686f6e"></a></td>
+</tr>
+<tr>
+<td>Node.js</td>
+<td><code>npm install sqlite-regex</code></td>
+<td><a href="https://www.npmjs.com/package/sqlite-regex" rel="nofollow"><img src="https://img.shields.io/npm/v/sqlite-regex.svg?color=green&logo=nodedotjs&logoColor=white" alt="npm" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/83c2fc543cc0a4cda1f259e6998331a52f37164f53ea2008b0d3977cebeb6e7c/68747470733a2f2f696d672e736869656c64732e696f2f6e706d2f762f73716c6974652d72656765782e7376673f636f6c6f723d677265656e266c6f676f3d6e6f6465646f746a73266c6f676f436f6c6f723d7768697465"></a></td>
+</tr>
+<tr>
+<td>Deno</td>
+<td><a href="https://deno.land/x/sqlite_regex" rel="nofollow"><code>deno.land/x/sqlite_regex</code></a></td>
+<td><a href="https://deno.land/x/sqlite_regex" rel="nofollow"><img src="https://img.shields.io/github/v/release/asg017/sqlite-regex?color=fef8d2&include_prereleases&label=deno.land%2Fx&logo=deno" alt="deno.land/x release" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/eadb6fb2a2bd03c17eccb5bff91eb559d8fd63112fe6f9562dc40973a79459f1/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f72656c656173652f6173673031372f73716c6974652d72656765783f636f6c6f723d66656638643226696e636c7564655f70726572656c6561736573266c6162656c3d64656e6f2e6c616e6425324678266c6f676f3d64656e6f"></a></td>
+</tr>
+<tr>
+<td>Ruby</td>
+<td><code>gem install sqlite-regex</code></td>
+<td><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/eaed247131a4fd8505d2a197e88116ed7a17049c001164f74b3d1adf63c0b29e/68747470733a2f2f696d672e736869656c64732e696f2f67656d2f762f73716c6974652d72656765783f636f6c6f723d726564266c6f676f3d7275627967656d73266c6f676f436f6c6f723d7768697465"><img src="https://img.shields.io/gem/v/sqlite-regex?color=red&logo=rubygems&logoColor=white" alt="Gem" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/eaed247131a4fd8505d2a197e88116ed7a17049c001164f74b3d1adf63c0b29e/68747470733a2f2f696d672e736869656c64732e696f2f67656d2f762f73716c6974652d72656765783f636f6c6f723d726564266c6f676f3d7275627967656d73266c6f676f436f6c6f723d7768697465"></a></td>
+</tr>
+<tr>
+<td>Github Release</td>
+<td></td>
+<td><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/a4dc58f470a7b6ea7ae96716d8efc5005255df259c956373c1f0cc0d45494e8a/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f7461672f6173673031372f73716c6974652d72656765783f636f6c6f723d6c696768746772657926696e636c7564655f70726572656c6561736573266c6162656c3d4769746875622b72656c65617365266c6f676f3d676974687562"><img src="https://img.shields.io/github/v/tag/asg017/sqlite-regex?color=lightgrey&include_prereleases&label=Github+release&logo=github" alt="GitHub tag (latest SemVer pre-release)" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/a4dc58f470a7b6ea7ae96716d8efc5005255df259c956373c1f0cc0d45494e8a/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f7461672f6173673031372f73716c6974652d72656765783f636f6c6f723d6c696768746772657926696e636c7564655f70726572656c6561736573266c6162656c3d4769746875622b72656c65617365266c6f676f3d676974687562"></a></td>
+</tr>
+<tr>
+<td>Rust</td>
+<td><code>cargo add sqlite-regex</code></td>
+<td><a href="https://crates.io/crates/sqlite-regex" rel="nofollow"><img src="https://img.shields.io/crates/v/sqlite-regex?logo=rust" alt="Crates.io" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/d86899311dda3effe0153ed78921c0723f9d2f3a004999b573d7dd7f402bc4cd/68747470733a2f2f696d672e736869656c64732e696f2f6372617465732f762f73716c6974652d72656765783f6c6f676f3d72757374"></a></td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+
+<p dir="auto">The <a href="https://github.com/asg017/sqlite-regex/releases">Releases page</a> contains pre-built binaries for Linux x86_64, MacOS, and Windows.</p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">As a loadable extension</h3><a id="user-content-as-a-loadable-extension" class="anchor" aria-label="Permalink: As a loadable extension" href="#as-a-loadable-extension"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">If you want to use <code>sqlite-regex</code> as a <a href="https://www.sqlite.org/loadext.html" rel="nofollow">Runtime-loadable extension</a>, Download the <code>regex0.dylib</code> (for MacOS), <code>regex0.so</code> (Linux), or <code>regex0.dll</code> (Windows) file from a release and load it into your SQLite environment.</p>
+<blockquote>
+<p dir="auto"><strong>Note:</strong>
+The <code>0</code> in the filename (<code>regex0.dylib</code>/ <code>regex0.so</code>/<code>regex0.dll</code>) denotes the major version of <code>sqlite-regex</code>. Currently <code>sqlite-regex</code> is pre v1, so expect breaking changes in future versions.</p>
+</blockquote>
+<p dir="auto">For example, if you are using the <a href="https://www.sqlite.org/cli.html" rel="nofollow">SQLite CLI</a>, you can load the library like so:</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content=".load ./regex0
+select regex_version();
+-- v0.1.0"><pre>.load .<span class="pl-k">/</span>regex0
+<span class="pl-k">select</span> regex_version();
+<span class="pl-c"><span class="pl-c">--</span> v0.1.0</span></pre></div>
+<p dir="auto">Or in Python, using the builtin <a href="https://docs.python.org/3/library/sqlite3.html" rel="nofollow">sqlite3 module</a>:</p>
+<div class="highlight highlight-source-python notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="import sqlite3
+con = sqlite3.connect(":memory:")
+con.enable_load_extension(True)
+con.load_extension("./regex0")
+print(con.execute("select regex_version()").fetchone())
+# ('v0.1.0',)"><pre><span class="pl-k">import</span> <span class="pl-s1">sqlite3</span>
+<span class="pl-s1">con</span> <span class="pl-c1">=</span> <span class="pl-s1">sqlite3</span>.<span class="pl-c1">connect</span>(<span class="pl-s">":memory:"</span>)
+<span class="pl-s1">con</span>.<span class="pl-c1">enable_load_extension</span>(<span class="pl-c1">True</span>)
+<span class="pl-s1">con</span>.<span class="pl-c1">load_extension</span>(<span class="pl-s">"./regex0"</span>)
+<span class="pl-en">print</span>(<span class="pl-s1">con</span>.<span class="pl-c1">execute</span>(<span class="pl-s">"select regex_version()"</span>).<span class="pl-c1">fetchone</span>())
+<span class="pl-c"># ('v0.1.0',)</span></pre></div>
+<p dir="auto">Or in Node.js using <a href="https://github.com/WiseLibs/better-sqlite3">better-sqlite3</a>:</p>
+<div class="highlight highlight-source-js notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="const Database = require("better-sqlite3");
+const db = new Database(":memory:");
+db.loadExtension("./regex0");
+console.log(db.prepare("select regex_version()").get());
+// { 'regex_version()': 'v0.1.0' }"><pre><span class="pl-k">const</span> <span class="pl-v">Database</span> <span class="pl-c1">=</span> <span class="pl-en">require</span><span class="pl-kos">(</span><span class="pl-s">"better-sqlite3"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+<span class="pl-k">const</span> <span class="pl-s1">db</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-v">Database</span><span class="pl-kos">(</span><span class="pl-s">":memory:"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+<span class="pl-s1">db</span><span class="pl-kos">.</span><span class="pl-en">loadExtension</span><span class="pl-kos">(</span><span class="pl-s">"./regex0"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+<span class="pl-smi">console</span><span class="pl-kos">.</span><span class="pl-en">log</span><span class="pl-kos">(</span><span class="pl-s1">db</span><span class="pl-kos">.</span><span class="pl-en">prepare</span><span class="pl-kos">(</span><span class="pl-s">"select regex_version()"</span><span class="pl-kos">)</span><span class="pl-kos">.</span><span class="pl-en">get</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+<span class="pl-c">// { 'regex_version()': 'v0.1.0' }</span></pre></div>
+<p dir="auto">Or with <a href="https://datasette.io/" rel="nofollow">Datasette</a>:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="datasette data.db --load-extension ./regex0"><pre class="notranslate"><code>datasette data.db --load-extension ./regex0
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Supporting</h2><a id="user-content-supporting" class="anchor" aria-label="Permalink: Supporting" href="#supporting"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">I (Alex 👋🏼) spent a lot of time and energy on this project and <a href="https://github.com/asg017?tab=repositories&q=&type=&language=&sort=stargazers">many other open source projects</a>. If your company or organization uses this library (or you're feeling generous), then please <a href="https://alexgarcia.regex/work.html" rel="nofollow">consider supporting my work</a>, or share this project with a friend!</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">See also</h2><a id="user-content-see-also" class="anchor" aria-label="Permalink: See also" href="#see-also"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li><a href="https://github.com/asg017/sqlite-xsv">sqlite-xsv</a>, A SQLite extension for working with CSVs</li>
+<li><a href="https://github.com/asg017/sqlite-loadable-rs">sqlite-loadable</a>, A framework for writing SQLite extensions in Rust</li>
+<li><a href="https://github.com/asg017/sqlite-http">sqlite-http</a>, A SQLite extension for making HTTP requests</li>
+</ul>
+</article></div>

@@ -1,0 +1,297 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">datasette-scraper</h1><a id="user-content-datasette-scraper" class="anchor" aria-label="Permalink: datasette-scraper" href="#datasette-scraper"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://pypi.org/project/datasette-scraper/" rel="nofollow"><img src="https://img.shields.io/pypi/v/datasette-scraper.svg" alt="PyPI" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/0cf6ff091ff05efd7f44e66042b4dad7c6e913ef6729d8754d5e86c9acf36e87/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f6461746173657474652d736372617065722e737667"></a>
+<a href="https://github.com/cldellow/datasette-scraper/releases"><img src="https://img.shields.io/github/v/release/cldellow/datasette-scraper?include_prereleases&label=changelog" alt="Changelog" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/712f287f5e6a3309dfea03e72cfd5e9c846336958453f7dc074e2d50e358ad66/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f72656c656173652f636c64656c6c6f772f6461746173657474652d736372617065723f696e636c7564655f70726572656c6561736573266c6162656c3d6368616e67656c6f67"></a>
+<a href="https://github.com/cldellow/datasette-scraper/actions?query=workflow%3ATest"><img src="https://github.com/cldellow/datasette-scraper/workflows/Test/badge.svg" alt="Tests" style="max-width: 100%;"></a>
+<a href="https://github.com/cldellow/datasette-scraper/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" alt="License" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/c355f200ea90fddaa407b6eaab303663a669248ea3ca7b1fcf77dbe04ff5f48c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d417061636865253230322e302d626c75652e737667"></a></p>
+<p dir="auto"><code>datasette-scraper</code> is a Datasette plugin to manage small-ish (~100K pages) crawl and extract jobs.</p>
+<ul dir="auto">
+<li>Opinionated yet extensible
+<ul dir="auto">
+<li>Some useful tasks are possible out-of-the-box, or write your own pluggy hooks to go further</li>
+</ul>
+</li>
+<li>Leans heavily into SQLite
+<ul dir="auto">
+<li>Introspect your crawls via ops tables exposed in Datasette</li>
+</ul>
+</li>
+<li>Built on robust libraries
+<ul dir="auto">
+<li><a href="https://datasette.io/" rel="nofollow">Datasette</a> as a host</li>
+<li><a href="https://github.com/rushter/selectolax">selectolax</a> for HTML parsing</li>
+<li><a href="https://www.python-httpx.org/" rel="nofollow">httpx</a> for HTTP requests</li>
+<li><a href="https://pluggy.readthedocs.io/en/stable/" rel="nofollow">pluggy</a> for extensibility</li>
+<li><a href="https://github.com/indygreg/python-zstandard">zstandard</a> for efficiently compressing HTTP responses</li>
+</ul>
+</li>
+</ul>
+<p dir="auto"><strong>Not for adversarial crawling</strong>. Want to crawl a site that blocks bots? You're on your own.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Installation</h2><a id="user-content-installation" class="anchor" aria-label="Permalink: Installation" href="#installation"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Install this plugin in the same environment as Datasette.</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="datasette install datasette-scraper"><pre class="notranslate"><code>datasette install datasette-scraper
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Usage</h2><a id="user-content-usage" class="anchor" aria-label="Permalink: Usage" href="#usage"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Configure <code>datasette-scraper</code> via <code>metadata.json</code>. You need to enable the plugin
+on a per-database level.</p>
+<p dir="auto">To enable it in the <code>my-database</code> database, write something like this:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="{
+  "databases": {
+    "my-database": {
+      "plugins": {
+        "datasette-scraper": {
+        }
+      }
+    }
+  }
+}"><pre class="notranslate"><code>{
+  "databases": {
+    "my-database": {
+      "plugins": {
+        "datasette-scraper": {
+        }
+      }
+    }
+  }
+}
+</code></pre></div>
+<p dir="auto">The next time you start datasette, the plugin will create several tables in
+the specified database. Go to the <code>dss_crawl</code> table to define a crawl.</p>
+<p dir="auto">A 10-minute end-to-end walkthrough video is available:</p>
+<div align="left" dir="auto">
+      <a href="https://www.youtube.com/watch?v=zrSGnz7ErNI" rel="nofollow">
+         <img src="https://img.youtube.com/vi/zrSGnz7ErNI/maxresdefault.jpg" style="width: 100%; max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/e218c61e66d0d8e905573dcaa0f672c277633a7333414f34745ad065e3443b14/68747470733a2f2f696d672e796f75747562652e636f6d2f76692f7a7253476e7a3745724e492f6d617872657364656661756c742e6a7067">
+      </a>
+</div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Usage notes</h2><a id="user-content-usage-notes" class="anchor" aria-label="Permalink: Usage notes" href="#usage-notes"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><code>datasette-scraper</code> requires a database in which to track its operational data,
+and a database in which to store scraped data. They can be the same database.</p>
+<p dir="auto">Both databases will be put into WAL mode.</p>
+<p dir="auto">The ops database's <code>user_version</code> pragma will be used to track schema versions.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Architecture</h2><a id="user-content-architecture" class="anchor" aria-label="Permalink: Architecture" href="#architecture"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><code>datasette-scraper</code> handles the core bookkeeping for scraping--keeping track of
+URLs to be scraped, rate-limiting requests to origins, persisting data into the DB.
+It relies on plugins to do almost all the interesting work. For example, fetching
+the actual pages, following redirects, navigating sitemaps, extracting data.</p>
+<p dir="auto">The tool comes with plugins for common use cases. Some users may want to author
+their own <code>after_fetch_url</code> or <code>extract_from_response</code> implementations to do custom
+processing.</p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Overview</h3><a id="user-content-overview" class="anchor" aria-label="Permalink: Overview" href="#overview"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<section class="js-render-needs-enrichment render-needs-enrichment position-relative" data-identity="802aebb7-2a4d-45b5-94be-46016edb84d6" data-host="https://viewscreen.githubusercontent.com" data-src="https://viewscreen.githubusercontent.com/markdown/mermaid?docs_host=https%3A%2F%2Fdocs.github.com" data-type="mermaid" aria-label="mermaid rendered output container">
+  <div class="js-render-enrichment-target" data-json="{"data":"flowchart LR\ndirection TB\n\nsubgraph init\n  A(user starts crawl) --&gt; B[get_seed_urls]\nend\n\nsubgraph crawl [for each URL to crawl]\n  before_fetch_url --&gt; fetch_cached_url --&gt; fetch_url --&gt; after_fetch_url\n  fetch_cached_url --&gt; after_fetch_url\nend\n\nsubgraph discover [for each URL crawled]\n  discover_urls --&gt; canonicalize_url --&gt; canonicalize_url\n  canonicalize_url --&gt; x[queue URL to crawl]\n  extract_from_response\nend\n\ninit --&gt; crawl --&gt; discover\n"}" data-plain="flowchart LR
+direction TB
+
+subgraph init
+  A(user starts crawl) --> B[get_seed_urls]
+end
+
+subgraph crawl [for each URL to crawl]
+  before_fetch_url --> fetch_cached_url --> fetch_url --> after_fetch_url
+  fetch_cached_url --> after_fetch_url
+end
+
+subgraph discover [for each URL crawled]
+  discover_urls --> canonicalize_url --> canonicalize_url
+  canonicalize_url --> x[queue URL to crawl]
+  extract_from_response
+end
+
+init --> crawl --> discover
+" dir="auto">
+    <div class="render-plaintext-hidden" dir="auto">
+      <pre lang="mermaid" aria-label="Raw mermaid code">flowchart LR
+direction TB
+
+subgraph init
+  A(user starts crawl) --> B[get_seed_urls]
+end
+
+subgraph crawl [for each URL to crawl]
+  before_fetch_url --> fetch_cached_url --> fetch_url --> after_fetch_url
+  fetch_cached_url --> after_fetch_url
+end
+
+subgraph discover [for each URL crawled]
+  discover_urls --> canonicalize_url --> canonicalize_url
+  canonicalize_url --> x[queue URL to crawl]
+  extract_from_response
+end
+
+init --> crawl --> discover
+</pre>
+    </div>
+  </div>
+  <span class="js-render-enrichment-loader d-flex flex-justify-center flex-items-center width-full" style="min-height:100px" role="presentation">
+    <span data-view-component="true">
+  <svg style="box-sizing: content-box; color: var(--color-icon-primary);" width="16" height="16" viewbox="0 0 16 16" fill="none" aria-hidden="true" data-view-component="true" class="octospinner mx-auto anim-rotate">
+    <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-opacity="0.25" stroke-width="2" vector-effect="non-scaling-stroke" fill="none"></circle>
+    <path d="M15 8a7.002 7.002 0 00-7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" vector-effect="non-scaling-stroke"></path>
+</svg>    <span class="sr-only">Loading</span>
+</span>
+  </span>
+</section>
+
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Plugin hooks</h3><a id="user-content-plugin-hooks" class="anchor" aria-label="Permalink: Plugin hooks" href="#plugin-hooks"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Most plugins will only implement a few of these hooks.</p>
+<ul dir="auto">
+<li><code>conn</code> is a read/write <code>sqlite3.Connection</code> to the database</li>
+<li><code>config</code> is the crawl's config</li>
+</ul>
+<div class="markdown-heading" dir="auto"><h4 class="heading-element" dir="auto"><code>get_seed_urls(config)</code></h4><a id="user-content-get_seed_urlsconfig" class="anchor" aria-label="Permalink: get_seed_urls(config)" href="#get_seed_urlsconfig"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Returns a list of strings representing seed URLs to be fetched.</p>
+<p dir="auto">They will be considered to have depth of 0, i.e. seeds.</p>
+<div class="markdown-heading" dir="auto"><h4 class="heading-element" dir="auto"><code>before_fetch_url(conn, config, job_id, url, depth, request_headers)</code></h4><a id="user-content-before_fetch_urlconn-config-job_id-url-depth-request_headers" class="anchor" aria-label="Permalink: before_fetch_url(conn, config, job_id, url, depth, request_headers)" href="#before_fetch_urlconn-config-job_id-url-depth-request_headers"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><code>request_headers</code> is a dict, you can modify it to control what gets sent in the request.</p>
+<p dir="auto">Returns:</p>
+<ul dir="auto">
+<li>truthy to indicate this URL should not be crawled (for example, crawl max page limit)</li>
+<li>falsy to express no opinion</li>
+</ul>
+<blockquote>
+<p dir="auto"><strong>Note</strong> <code>before_fetch_url</code> vs <code>canonicalize_url</code></p>
+<p dir="auto">You can also use the <code>canonicalize_url</code> hook to reject URLs prior to them entering
+the crawl queue.</p>
+<p dir="auto">A URL rejected by <code>canonicalize_url</code> will not result in an entry in the
+<code>dss_crawl_queue</code> and <code>dss_crawl_queue_history</code> tables.</p>
+<p dir="auto">Which one you use is a matter of taste, in general, if you <em>never</em> want the URL,
+reject it at canonicalization time.</p>
+</blockquote>
+<div class="markdown-heading" dir="auto"><h4 class="heading-element" dir="auto"><code>fetch_cached_url(conn, config, url, depth, request_headers)</code></h4><a id="user-content-fetch_cached_urlconn-config-url-depth-request_headers" class="anchor" aria-label="Permalink: fetch_cached_url(conn, config, url, depth, request_headers)" href="#fetch_cached_urlconn-config-url-depth-request_headers"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Fetch a previously-cached HTTP response. The system will not have checked that
+there was rate limit available before calling this.</p>
+<p dir="auto">Returns:</p>
+<ul dir="auto">
+<li><code>None</code>, to indicate not handled</li>
+<li>a response object, which is a dict with:
+<ul dir="auto">
+<li><code>fetched_at</code> - an ISO 8601 time like <code>2022-12-26 01:23:45.00</code></li>
+<li><code>headers</code> - the response headers, eg <code>[['content-type', 'text/html']]</code></li>
+<li><code>status_code</code> - the respones code, eg <code>200</code></li>
+<li><code>text</code> - the response body</li>
+</ul>
+</li>
+</ul>
+<p dir="auto">Once any plugin has returned a truthy value, no other plugin's <code>fetch_url</code>
+hook will be invoked.</p>
+<div class="markdown-heading" dir="auto"><h4 class="heading-element" dir="auto"><code>fetch_url(conn, config, url, request_headers)</code></h4><a id="user-content-fetch_urlconn-config-url-request_headers" class="anchor" aria-label="Permalink: fetch_url(conn, config, url, request_headers)" href="#fetch_urlconn-config-url-request_headers"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Fetch an HTTP response from the live server. The system will have checked that there
+was rate limit available before calling this.</p>
+<p dir="auto">Same return type and behaviour as <code>fetch_cached_url</code>.</p>
+<div class="markdown-heading" dir="auto"><h4 class="heading-element" dir="auto"><code>after_fetch_url(conn, config, url, request_headers, response, fresh, fetch_duration)</code></h4><a id="user-content-after_fetch_urlconn-config-url-request_headers-response-fresh-fetch_duration" class="anchor" aria-label="Permalink: after_fetch_url(conn, config, url, request_headers, response, fresh, fetch_duration)" href="#after_fetch_urlconn-config-url-request_headers-response-fresh-fetch_duration"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Do something with a fetched URL.</p>
+<div class="markdown-heading" dir="auto"><h4 class="heading-element" dir="auto"><code>discover_urls(config, url, response)</code></h4><a id="user-content-discover_urlsconfig-url-response" class="anchor" aria-label="Permalink: discover_urls(config, url, response)" href="#discover_urlsconfig-url-response"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Returns a list of URLs to crawl.</p>
+<p dir="auto">The URLs can be either strings, in which case they'll get enqueued as depth + 1, or tuple of URL and depth. This can be useful for paginated index pages, where you'd like to crawl to a max depth of, say, 2, but treat all the index pages as being at depth 1.</p>
+<div class="markdown-heading" dir="auto"><h4 class="heading-element" dir="auto"><code>canonicalize_url(config, from_url, to_url, to_url_depth)</code></h4><a id="user-content-canonicalize_urlconfig-from_url-to_url-to_url_depth" class="anchor" aria-label="Permalink: canonicalize_url(config, from_url, to_url, to_url_depth)" href="#canonicalize_urlconfig-from_url-to_url-to_url_depth"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Returns:</p>
+<ul dir="auto">
+<li><code>False</code> to filter URL</li>
+<li>an URL to be crawled instead</li>
+<li><code>None</code> or <code>True</code> to no-op</li>
+</ul>
+<p dir="auto">The URL to be crawled can be a string, or a tuple of string and depth.</p>
+<p dir="auto">This hook is useful for:</p>
+<ul dir="auto">
+<li>blocking URLs that we never want</li>
+<li>canonicalizing URLs, for example, by omitting query parameters</li>
+<li>restricting crawls to same origin</li>
+<li>resetting depth for pagination</li>
+</ul>
+<div class="markdown-heading" dir="auto"><h4 class="heading-element" dir="auto"><code>extract_from_response(config, url, response)</code></h4><a id="user-content-extract_from_responseconfig-url-response" class="anchor" aria-label="Permalink: extract_from_response(config, url, response)" href="#extract_from_responseconfig-url-response"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Returns an object of rows-to-be-inserted-or-upserted:</p>
+<div class="highlight highlight-source-json-comments notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+  "dbname": {  // can be omitted, in which case, current DB will be used
+    "users": [
+      {
+        "id!": "cldellow@gmail.com",  // ! indicates pkey, compound OK
+        "name": "Colin",
+      },
+      {
+        "id!": "santa@northpole.com",
+        "name": "Santa Claus",
+      }
+    ],
+    "places": [
+      {
+        "id@": "santa@northpole.com",
+        "__delete": true
+      },
+      {
+        "id@": "cldellow@gmail.com",
+        "city": "Kitchener",
+      },
+      {
+        "id@": "cldellow@gmail.com",
+        "city": "Dawson Creek"
+      }
+    ]
+  }
+}"><pre>{
+  <span class="pl-s">"dbname"</span>: {  <span class="pl-c"><span class="pl-c">//</span> can be omitted, in which case, current DB will be used</span>
+    <span class="pl-s">"users"</span>: [
+      {
+        <span class="pl-s">"id!"</span>: <span class="pl-s"><span class="pl-pds">"</span>cldellow@gmail.com<span class="pl-pds">"</span></span>,  <span class="pl-c"><span class="pl-c">//</span> ! indicates pkey, compound OK</span>
+        <span class="pl-s">"name"</span>: <span class="pl-s"><span class="pl-pds">"</span>Colin<span class="pl-pds">"</span></span>,
+      },
+      {
+        <span class="pl-s">"id!"</span>: <span class="pl-s"><span class="pl-pds">"</span>santa@northpole.com<span class="pl-pds">"</span></span>,
+        <span class="pl-s">"name"</span>: <span class="pl-s"><span class="pl-pds">"</span>Santa Claus<span class="pl-pds">"</span></span>,
+      }
+    ],
+    <span class="pl-s">"places"</span>: [
+      {
+        <span class="pl-s">"id@"</span>: <span class="pl-s"><span class="pl-pds">"</span>santa@northpole.com<span class="pl-pds">"</span></span>,
+        <span class="pl-s">"__delete"</span>: <span class="pl-c1">true</span>
+      },
+      {
+        <span class="pl-s">"id@"</span>: <span class="pl-s"><span class="pl-pds">"</span>cldellow@gmail.com<span class="pl-pds">"</span></span>,
+        <span class="pl-s">"city"</span>: <span class="pl-s"><span class="pl-pds">"</span>Kitchener<span class="pl-pds">"</span></span>,
+      },
+      {
+        <span class="pl-s">"id@"</span>: <span class="pl-s"><span class="pl-pds">"</span>cldellow@gmail.com<span class="pl-pds">"</span></span>,
+        <span class="pl-s">"city"</span>: <span class="pl-s"><span class="pl-pds">"</span>Dawson Creek<span class="pl-pds">"</span></span>
+      }
+    ]
+  }
+}</pre></div>
+<p dir="auto">Column names can have sigils at the end:</p>
+<ul dir="auto">
+<li><code>!</code> says the column is part of the pkey; there can be at most 1 row with this value</li>
+<li><code>@</code> says the column should be indexed; there can be multiple rows with this value</li>
+</ul>
+<p dir="auto">Columns with sigils must be known at table creation time. Although you can have
+multiple columns with sigils, you cannot mix <code>!</code> and <code>@</code> sigils in the same table.</p>
+<p dir="auto">Any missing tables or columns will be created. Columns will have <code>ANY</code> data type.
+Columns will be nullable unless they have the <code>!</code> sigil.</p>
+<p dir="auto">You can indicate that a row should be deleted by emitting <code>__delete</code> key in your object.</p>
+<p dir="auto"><code>datasette-scraper</code> may commit your changes to the database in batches in order to
+reduce write transactions and improve throughput. It may also elide
+DELETE/INSERT statements entirely if it determines that the state of the database
+would be unchanged.</p>
+<p dir="auto">If you'd like to control the schema more carefully, please create the table manually.</p>
+<div class="markdown-heading" dir="auto"><h4 class="heading-element" dir="auto">Metadata hooks</h4><a id="user-content-metadata-hooks" class="anchor" aria-label="Permalink: Metadata hooks" href="#metadata-hooks"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">These hooks don't affect operation of the scrapes. They provide metadata to
+help validate a user's configuration and show UI to configure a crawl.</p>
+<div class="markdown-heading" dir="auto"><h5 class="heading-element" dir="auto">config_schema()</h5><a id="user-content-config_schema" class="anchor" aria-label="Permalink: config_schema()" href="#config_schema"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Returns a <code>ConfigSchema</code> option that defines how this plugin is configured.</p>
+<p dir="auto">Configuration is done via <a href="https://json-schema.org/understanding-json-schema/" rel="nofollow">JSON schema</a>. UI is done via <a href="https://jsonforms.io/" rel="nofollow">JSON Forms</a>.</p>
+<p dir="auto">Look at the existing plugins to learn how to use this hook.</p>
+<p dir="auto">The schema is optional; if omitted, you will need to configure the plug in
+out of band.</p>
+<div class="markdown-heading" dir="auto"><h5 class="heading-element" dir="auto">config_default_value()</h5><a id="user-content-config_default_value" class="anchor" aria-label="Permalink: config_default_value()" href="#config_default_value"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Returns <code>None</code> to indicate that new crawls should not use this plugin by default.</p>
+<p dir="auto">Otherwise, returns a reasonable default value that conforms to the schema in <code>config_schema()</code></p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Development</h2><a id="user-content-development" class="anchor" aria-label="Permalink: Development" href="#development"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">To set up this plugin locally, first checkout the code. Then create a new virtual environment:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="cd datasette-scraper
+python3 -m venv venv
+source venv/bin/activate"><pre class="notranslate"><code>cd datasette-scraper
+python3 -m venv venv
+source venv/bin/activate
+</code></pre></div>
+<p dir="auto">Now install the dependencies and test dependencies:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pip install -e '.[test]'"><pre class="notranslate"><code>pip install -e '.[test]'
+</code></pre></div>
+<p dir="auto">To run the tests:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pytest"><pre class="notranslate"><code>pytest
+</code></pre></div>
+</article></div>
