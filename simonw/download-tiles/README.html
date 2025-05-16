@@ -1,0 +1,65 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">download-tiles</h1><a id="user-content-download-tiles" class="anchor" aria-label="Permalink: download-tiles" href="#download-tiles"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://pypi.org/project/download-tiles/" rel="nofollow"><img src="https://img.shields.io/pypi/v/download-tiles.svg" alt="PyPI" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/f03091744b581b6fbf7fc658f7268eb3a4bba9149a0f4f024b44e152a8a32020/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f646f776e6c6f61642d74696c65732e737667"></a>
+<a href="https://github.com/simonw/download-tiles/releases"><img src="https://img.shields.io/github/v/release/simonw/download-tiles?include_prereleases&label=changelog" alt="Changelog" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/c63966b255e30f7127f78036dadca892ed7feef7ea885b85bdf0613545d8fe7c/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f72656c656173652f73696d6f6e772f646f776e6c6f61642d74696c65733f696e636c7564655f70726572656c6561736573266c6162656c3d6368616e67656c6f67"></a>
+<a href="https://github.com/simonw/download-tiles/actions?query=workflow%3ATest"><img src="https://github.com/simonw/download-tiles/workflows/Test/badge.svg" alt="Tests" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/download-tiles/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" alt="License" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/c355f200ea90fddaa407b6eaab303663a669248ea3ca7b1fcf77dbe04ff5f48c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d417061636865253230322e302d626c75652e737667"></a></p>
+<p dir="auto">Download map tiles and store them in an MBTiles database</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Installation</h2><a id="user-content-installation" class="anchor" aria-label="Permalink: Installation" href="#installation"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Install this tool using <code>pip</code>:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="pip install download-tiles"><pre>pip install download-tiles</pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Usage</h2><a id="user-content-usage" class="anchor" aria-label="Permalink: Usage" href="#usage"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">This tool downloads tiles from a specified <a href="https://wiki.openstreetmap.org/wiki/TMS" rel="nofollow">TMS (Tile Map Server)</a> server for a specified bounding box and range of zoom levels and stores those tiles in a MBTiles SQLite database. It is a command-line wrapper around the <a href="https://github.com/makinacorpus/landez">Landez</a> Python libary.</p>
+<p dir="auto"><strong>Please use this tool responsibly</strong>. Consult the usage policies of the tile servers you are interacting with, for example the <a href="https://operations.osmfoundation.org/policies/tiles/" rel="nofollow">OpenStreetMap Tile Usage Policy</a>.</p>
+<p dir="auto">Running the following will download zoom levels 0-3 of OpenStreetMap, 85 tiles total, and store them in a SQLite database called <code>world.mbtiles</code>:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="download-tiles world.mbtiles"><pre>download-tiles world.mbtiles</pre></div>
+<p dir="auto">You can customize which tile and zoom levels are downloaded using command options:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="--zoom-levels=0-3"><pre class="notranslate"><code>--zoom-levels=0-3
+</code></pre></div>
+<p dir="auto">The different zoom levels to download. Specify a single number, e.g. <code>15</code>, or a range of numbers e.g. <code>0-4</code>. Be careful with this setting as you can easily go over the limits requested by the underlying tile server.</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="--bbox=3.9,-6.3,14.5,10.2"><pre class="notranslate"><code>--bbox=3.9,-6.3,14.5,10.2
+</code></pre></div>
+<p dir="auto">The bounding box to fetch. Should be specified as <code>min-lon,min-lat,max-lon,max-lat</code>. You can use <a href="http://bboxfinder.com/" rel="nofollow">bboxfinder.com</a> to find these for different areas.</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="--city=london"><pre class="notranslate"><code>--city=london
+</code></pre></div>
+<p dir="auto">Or:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="--country=madagascar"><pre class="notranslate"><code>--country=madagascar
+</code></pre></div>
+<p dir="auto">These options can be used instead of <code>--bbox</code>. The city or country specified will be looked up using the <a href="https://nominatim.org/release-docs/latest/api/Search/" rel="nofollow">Nominatum API</a> and used to derive a bounding box.</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="--show-bbox"><pre class="notranslate"><code>--show-bbox
+</code></pre></div>
+<p dir="auto">Use this option to output the bounding box that was retrieved for the <code>--city</code> or <code>--country</code> without downloading any tiles.</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="--name=Name"><pre class="notranslate"><code>--name=Name
+</code></pre></div>
+<p dir="auto">A name for this tile collection, used for the <code>name</code> field in the <code>metadata</code> table. If not specified a UUID will be used, or if you used <code>--city</code> or <code>--country</code> the name will be set to the full name of that place.</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="--attribution="Attribution string""><pre class="notranslate"><code>--attribution="Attribution string"
+</code></pre></div>
+<p dir="auto">Attribution string to bake into the <code>metadata</code> table. This will default to <code>© OpenStreetMap contributors</code> unless you use <code>--tiles-url</code> to specify an alternative tile server, in which case you should specify a custom attribution string.</p>
+<p dir="auto">You can use the <code>--attribution=osm</code> shortcut to specify the <code>© OpenStreetMap contributors</code> value without having to type it out in full.</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="--tiles-url=https://..."><pre class="notranslate"><code>--tiles-url=https://...
+</code></pre></div>
+<p dir="auto">The tile server URL to use. This should include <code>{z}</code> and <code>{x}</code> and <code>{y}</code> specifiers, and can optionally include <code>{s}</code> for subdomains.</p>
+<p dir="auto">The default URL used here is for OpenStreetMap, <code>http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png</code></p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="--tiles-subdomains=a,b,c"><pre class="notranslate"><code>--tiles-subdomains=a,b,c
+</code></pre></div>
+<p dir="auto">A comma-separated list of subdomains to use for the <code>{s}</code> parameter.</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="--verbose"><pre class="notranslate"><code>--verbose
+</code></pre></div>
+<p dir="auto">Use this option to turn on verbose logging.</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="--cache-dir=/tmp/tiles"><pre class="notranslate"><code>--cache-dir=/tmp/tiles
+</code></pre></div>
+<p dir="auto">Provide a directory to cache downloaded tiles between runs. This can be useful if you are worried you might not have used the correct options for the bounding box or zoom levels.</p>
+<p dir="auto">Databases created with this tool will have their SQLite <code>application_id</code> set to <code>0x4d504258</code>, as described in the SQLite <a href="https://www.sqlite.org/src/artifact?ci=trunk&filename=magic.txt" rel="nofollow">magic.txt file</a>.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Development</h2><a id="user-content-development" class="anchor" aria-label="Permalink: Development" href="#development"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">To contribute to this tool, first checkout the code. Then create a new virtual environment:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="cd download-tiles
+python -mvenv venv
+source venv/bin/activate"><pre><span class="pl-c1">cd</span> download-tiles
+python -mvenv venv
+<span class="pl-c1">source</span> venv/bin/activate</pre></div>
+<p dir="auto">Or if you are using <code>pipenv</code>:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="pipenv shell"><pre>pipenv shell</pre></div>
+<p dir="auto">Now install the dependencies and tests:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="pip install -e '.[test]'"><pre>pip install -e <span class="pl-s"><span class="pl-pds">'</span>.[test]<span class="pl-pds">'</span></span></pre></div>
+<p dir="auto">To run the tests:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="pytest"><pre>pytest</pre></div>
+</article></div>

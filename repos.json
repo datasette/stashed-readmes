@@ -342,5 +342,193 @@
   {
     "repo": "simonw/datasette-export-notebook",
     "pushed_at": "2023-09-15T18:59:37Z"
+  },
+  {
+    "repo": "bretwalker/datasette-query-history",
+    "pushed_at": "2021-01-17T23:11:37Z"
+  },
+  {
+    "repo": "simonw/datasette-leaflet-freedraw",
+    "pushed_at": "2023-01-09T20:17:06Z"
+  },
+  {
+    "repo": "simonw/datasette-leaflet",
+    "pushed_at": "2024-02-17T23:58:16Z"
+  },
+  {
+    "repo": "simonw/datasette-basemap",
+    "pushed_at": "2024-03-11T16:44:43Z"
+  },
+  {
+    "repo": "simonw/datasette-tiles",
+    "pushed_at": "2022-06-11T05:15:02Z"
+  },
+  {
+    "repo": "simonw/download-tiles",
+    "pushed_at": "2023-08-24T17:45:26Z"
+  },
+  {
+    "repo": "simonw/datasette-block",
+    "pushed_at": "2021-02-25T05:03:45Z"
+  },
+  {
+    "repo": "simonw/tableau-to-sqlite",
+    "pushed_at": "2021-07-29T13:56:42Z"
+  },
+  {
+    "repo": "simonw/django-sql-dashboard",
+    "pushed_at": "2024-03-06T14:15:45Z"
+  },
+  {
+    "repo": "eyeseast/datasette-geojson",
+    "pushed_at": "2024-01-13T01:00:15Z"
+  },
+  {
+    "repo": "simonw/datasette-placekey",
+    "pushed_at": "2021-06-10T02:32:42Z"
+  },
+  {
+    "repo": "eyeseast/datasette-geojson-map",
+    "pushed_at": "2024-08-10T21:47:47Z"
+  },
+  {
+    "repo": "simonw/datasette-remote-metadata",
+    "pushed_at": "2024-08-05T22:53:30Z"
+  },
+  {
+    "repo": "simonw/datasette-pyinstrument",
+    "pushed_at": "2021-08-08T15:50:52Z"
+  },
+  {
+    "repo": "simonw/datasette-query-links",
+    "pushed_at": "2021-08-09T02:56:40Z"
+  },
+  {
+    "repo": "simonw/datasette-x-forwarded-host",
+    "pushed_at": "2021-11-12T20:48:41Z"
+  },
+  {
+    "repo": "simonw/datasette-app",
+    "pushed_at": "2024-08-27T21:14:34Z"
+  },
+  {
+    "repo": "simonw/datasette-verify",
+    "pushed_at": "2021-08-28T02:31:34Z"
+  },
+  {
+    "repo": "simonw/datasette-statistics",
+    "pushed_at": "2023-11-30T23:34:58Z"
+  },
+  {
+    "repo": "simonw/datasette-template-request",
+    "pushed_at": "2021-09-23T17:29:36Z"
+  },
+  {
+    "repo": "asg017/sqlite-html",
+    "pushed_at": "2023-08-06T01:24:57Z"
+  },
+  {
+    "repo": "asg017/sqlite-http",
+    "pushed_at": "2025-02-09T16:15:00Z"
+  },
+  {
+    "repo": "simonw/datasette-jupyterlite",
+    "pushed_at": "2021-11-05T05:12:33Z"
+  },
+  {
+    "repo": "simonw/s3-credentials",
+    "pushed_at": "2024-12-19T05:48:37Z"
+  },
+  {
+    "repo": "simonw/git-history",
+    "pushed_at": "2023-10-25T02:04:02Z"
+  },
+  {
+    "repo": "simonw/datasette-redirect-to-https",
+    "pushed_at": "2022-07-07T17:38:32Z"
+  },
+  {
+    "repo": "simonw/datasette-hovercards",
+    "pushed_at": "2021-12-02T19:57:32Z"
+  },
+  {
+    "repo": "simonw/datasette-pretty-traces",
+    "pushed_at": "2024-08-21T19:31:00Z"
+  },
+  {
+    "repo": "simonw/datasette-tiddlywiki",
+    "pushed_at": "2022-03-08T01:36:10Z"
+  },
+  {
+    "repo": "datasette/datasette-enrichments",
+    "pushed_at": "2025-05-05T14:53:26Z"
+  },
+  {
+    "repo": "simonw/google-drive-to-sqlite",
+    "pushed_at": "2025-03-12T02:58:46Z"
+  },
+  {
+    "repo": "eyeseast/sqlite-colorbrewer",
+    "pushed_at": "2022-03-02T03:04:56Z"
+  },
+  {
+    "repo": "simonw/datasette-redirect-forbidden",
+    "pushed_at": "2022-02-23T22:02:38Z"
+  },
+  {
+    "repo": "simonw/shot-scraper",
+    "pushed_at": "2025-03-25T01:50:01Z"
+  },
+  {
+    "repo": "simonw/datasette-hashed-urls",
+    "pushed_at": "2023-06-08T00:04:42Z"
+  },
+  {
+    "repo": "simonw/datasette-packages",
+    "pushed_at": "2024-03-16T01:18:41Z"
+  },
+  {
+    "repo": "simonw/datasette-auth0",
+    "pushed_at": "2022-03-28T03:04:52Z"
+  },
+  {
+    "repo": "hydrosquall/datasette-nteract-data-explorer",
+    "pushed_at": "2023-04-20T03:33:51Z"
+  },
+  {
+    "repo": "simonw/pypi-to-sqlite",
+    "pushed_at": "2024-03-06T06:16:31Z"
+  },
+  {
+    "repo": "asg017/sqlite-lines",
+    "pushed_at": "2023-10-07T06:04:44Z"
+  },
+  {
+    "repo": "simonw/datasette-total-page-time",
+    "pushed_at": "2022-04-26T22:11:48Z"
+  },
+  {
+    "repo": "simonw/datasette-gzip",
+    "pushed_at": "2022-04-28T16:06:51Z"
+  },
+  {
+    "repo": "simonw/datasette-copy-to-memory",
+    "pushed_at": "2022-04-30T19:49:29Z"
+  },
+  {
+    "repo": "simonw/datasette-upload-dbs",
+    "pushed_at": "2025-04-26T04:07:33Z"
+  },
+  {
+    "repo": "eyeseast/datasette-query-files",
+    "pushed_at": "2022-07-02T20:40:51Z"
+  },
+  {
+    "repo": "simonw/datasette-socrata",
+    "pushed_at": "2023-08-14T16:08:54Z"
+  },
+  {
+    "repo": "simonw/datasette-scale-to-zero",
+    "pushed_at": "2024-02-29T21:23:49Z"
   }
 ]

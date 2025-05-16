@@ -1,0 +1,79 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">datasette-auth0</h1><a id="user-content-datasette-auth0" class="anchor" aria-label="Permalink: datasette-auth0" href="#datasette-auth0"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://pypi.org/project/datasette-auth0/" rel="nofollow"><img src="https://img.shields.io/pypi/v/datasette-auth0.svg" alt="PyPI" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/b7255678ab31c5caf64d29803f7751478ac054584b478569a6de2819941d317b/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f6461746173657474652d61757468302e737667"></a>
+<a href="https://github.com/simonw/datasette-auth0/releases"><img src="https://img.shields.io/github/v/release/simonw/datasette-auth0?include_prereleases&label=changelog" alt="Changelog" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/46853a03d3975d5745fed896739a050826d5487b7b79a5b48c8db9d77a33cb18/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f72656c656173652f73696d6f6e772f6461746173657474652d61757468303f696e636c7564655f70726572656c6561736573266c6162656c3d6368616e67656c6f67"></a>
+<a href="https://github.com/simonw/datasette-auth0/actions?query=workflow%3ATest"><img src="https://github.com/simonw/datasette-auth0/workflows/Test/badge.svg" alt="Tests" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/datasette-auth0/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" alt="License" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/c355f200ea90fddaa407b6eaab303663a669248ea3ca7b1fcf77dbe04ff5f48c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d417061636865253230322e302d626c75652e737667"></a></p>
+<p dir="auto">Datasette plugin that authenticates users using <a href="https://auth0.com/" rel="nofollow">Auth0</a></p>
+<p dir="auto">See <a href="https://til.simonwillison.net/auth0/oauth-with-auth0" rel="nofollow">Simplest possible OAuth authentication with Auth0</a> for more about how this plugin works.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Installation</h2><a id="user-content-installation" class="anchor" aria-label="Permalink: Installation" href="#installation"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Install this plugin in the same environment as Datasette.</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ datasette install datasette-auth0"><pre class="notranslate"><code>$ datasette install datasette-auth0
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Demo</h2><a id="user-content-demo" class="anchor" aria-label="Permalink: Demo" href="#demo"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">You can try this out at <a href="https://datasette-auth0-demo.datasette.io/" rel="nofollow">datasette-auth0-demo.datasette.io</a> - click on the top right menu icon and select "Sign in with Auth0".</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Initial configuration</h2><a id="user-content-initial-configuration" class="anchor" aria-label="Permalink: Initial configuration" href="#initial-configuration"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">First, create a new application in Auth0. You will need the domain, client ID and client secret for that application.</p>
+<p dir="auto">The domain should be something like <code>mysite.us.auth0.com</code>.</p>
+<p dir="auto">Add <code>http://127.0.0.1:8001/-/auth0-callback</code> to the list of Allowed Callback URLs.</p>
+<p dir="auto">Then configure these plugin secrets using <code>metadata.yml</code>:</p>
+<div class="highlight highlight-source-yaml notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="plugins:
+  datasette-auth0:
+    domain:
+      "$env": AUTH0_DOMAIN
+    client_id:
+      "$env": AUTH0_CLIENT_ID
+    client_secret:
+      "$env": AUTH0_CLIENT_SECRET"><pre><span class="pl-ent">plugins</span>:
+  <span class="pl-ent">datasette-auth0</span>:
+    <span class="pl-ent">domain</span>:
+      <span class="pl-s"><span class="pl-pds">"</span><span class="pl-ent">$env</span><span class="pl-pds">"</span></span>: <span class="pl-s">AUTH0_DOMAIN</span>
+    <span class="pl-ent">client_id</span>:
+      <span class="pl-s"><span class="pl-pds">"</span><span class="pl-ent">$env</span><span class="pl-pds">"</span></span>: <span class="pl-s">AUTH0_CLIENT_ID</span>
+    <span class="pl-ent">client_secret</span>:
+      <span class="pl-s"><span class="pl-pds">"</span><span class="pl-ent">$env</span><span class="pl-pds">"</span></span>: <span class="pl-s">AUTH0_CLIENT_SECRET</span></pre></div>
+<p dir="auto">Only the <code>client_secret</code> needs to be kept secret, but for consistency I recommend using the <code>$env</code> mechanism for all three.</p>
+<p dir="auto">In development, you can run Datasette and pass in environment variables like this:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="AUTH0_DOMAIN="your-domain.us.auth0.com" \
+AUTH0_CLIENT_ID="...client-id-goes-here..." \
+AUTH0_CLIENT_SECRET="...secret-goes-here..." \
+datasette -m metadata.yml"><pre class="notranslate"><code>AUTH0_DOMAIN="your-domain.us.auth0.com" \
+AUTH0_CLIENT_ID="...client-id-goes-here..." \
+AUTH0_CLIENT_SECRET="...secret-goes-here..." \
+datasette -m metadata.yml
+</code></pre></div>
+<p dir="auto">If you are deploying using <code>datasette publish</code> you can pass these using <code>--plugin-secret</code>. For example, to deploy using Cloud Run you might run the following:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="datasette publish cloudrun mydatabase.db \
+--install datasette-auth0 \
+--plugin-secret datasette-auth0 domain "your-domain.us.auth0.com" \
+--plugin-secret datasette-auth0 client_id "your-client-id" \
+--plugin-secret datasette-auth0 client_secret "your-client-secret" \
+--service datasette-auth0-demo"><pre class="notranslate"><code>datasette publish cloudrun mydatabase.db \
+--install datasette-auth0 \
+--plugin-secret datasette-auth0 domain "your-domain.us.auth0.com" \
+--plugin-secret datasette-auth0 client_id "your-client-id" \
+--plugin-secret datasette-auth0 client_secret "your-client-secret" \
+--service datasette-auth0-demo
+</code></pre></div>
+<p dir="auto">Once your Datasette instance is deployed, you will need to add its callback URL to the "Allowed Callback URLs" list in Auth0.</p>
+<p dir="auto">The callback URL should be something like:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="https://url-to-your-datasette/-/auth0-callback"><pre class="notranslate"><code>https://url-to-your-datasette/-/auth0-callback
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Usage</h2><a id="user-content-usage" class="anchor" aria-label="Permalink: Usage" href="#usage"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Once installed, a "Sign in with Auth0" menu item will appear in the Datasette main menu.</p>
+<p dir="auto">You can sign in and then visit the <code>/-/actor</code> page to see full details of the <code>auth0</code> profile that has been authenticated.</p>
+<p dir="auto">You can then use <a href="https://docs.datasette.io/en/stable/authentication.html#configuring-permissions-in-metadata-json" rel="nofollow">Datasette permissions</a> to grant or deny access to different parts of Datasette based on the authenticated user.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Development</h2><a id="user-content-development" class="anchor" aria-label="Permalink: Development" href="#development"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">To set up this plugin locally, first checkout the code. Then create a new virtual environment:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="cd datasette-auth0
+python3 -mvenv venv
+source venv/bin/activate"><pre class="notranslate"><code>cd datasette-auth0
+python3 -mvenv venv
+source venv/bin/activate
+</code></pre></div>
+<p dir="auto">Now install the dependencies and test dependencies:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pip install -e '.[test]'"><pre class="notranslate"><code>pip install -e '.[test]'
+</code></pre></div>
+<p dir="auto">To run the tests:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pytest"><pre class="notranslate"><code>pytest
+</code></pre></div>
+</article></div>

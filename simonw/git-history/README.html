@@ -1,0 +1,431 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">git-history</h1><a id="user-content-git-history" class="anchor" aria-label="Permalink: git-history" href="#git-history"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://pypi.org/project/git-history/" rel="nofollow"><img src="https://img.shields.io/pypi/v/git-history.svg" alt="PyPI" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/bf58c9407718bd1abca0280d3d738ba1ee64213204fdc4ce52b303dbd6c51996/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f6769742d686973746f72792e737667"></a>
+<a href="https://github.com/simonw/git-history/releases"><img src="https://img.shields.io/github/v/release/simonw/git-history?include_prereleases&label=changelog" alt="Changelog" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/3d604d42999e194f35b32ea2917eeb43ca0ff5d5a953dd15bb7c8b5c6e4b61e5/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f72656c656173652f73696d6f6e772f6769742d686973746f72793f696e636c7564655f70726572656c6561736573266c6162656c3d6368616e67656c6f67"></a>
+<a href="https://github.com/simonw/git-history/actions?query=workflow%3ATest"><img src="https://github.com/simonw/git-history/workflows/Test/badge.svg" alt="Tests" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/git-history/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" alt="License" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/c355f200ea90fddaa407b6eaab303663a669248ea3ca7b1fcf77dbe04ff5f48c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d417061636865253230322e302d626c75652e737667"></a></p>
+<p dir="auto">Tools for analyzing Git history using SQLite</p>
+<p dir="auto">For background on this project see <a href="https://simonwillison.net/2021/Dec/7/git-history/" rel="nofollow">git-history: a tool for analyzing scraped data collected using Git and SQLite</a>.</p>
+<p dir="auto"><a href="https://simonwillison.net/2022/Oct/19/measuring-traffic/" rel="nofollow">Measuring traffic during the Half Moon Bay Pumpkin Festival</a> describes a project using this tool in detail.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Installation</h2><a id="user-content-installation" class="anchor" aria-label="Permalink: Installation" href="#installation"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Install this tool using <code>pip</code>:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="$ pip install git-history"><pre class="notranslate"><code>$ pip install git-history
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Demos</h2><a id="user-content-demos" class="anchor" aria-label="Permalink: Demos" href="#demos"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="http://git-history-demos.datasette.io/" rel="nofollow">git-history-demos.datasette.io</a> hosts three example databases created using this tool:</p>
+<ul dir="auto">
+<li><a href="https://git-history-demos.datasette.io/pge-outages" rel="nofollow">pge-outages</a> shows a history of PG&E (the electricity supplier) <a href="https://pgealerts.alerts.pge.com/outagecenter/" rel="nofollow">outages</a>, using data collected in <a href="https://github.com/simonw/pge-outages">simonw/pge-outages</a> converted using <a href="https://github.com/simonw/git-history/blob/main/demos/pge-outages.sh">pge-outages.sh</a></li>
+<li><a href="https://git-history-demos.datasette.io/ca-fires" rel="nofollow">ca-fires</a> shows a history of fires in California reported on <a href="https://www.fire.ca.gov/incidents/" rel="nofollow">fire.ca.gov/incidents</a>, from data in <a href="https://github.com/simonw/ca-fires-history">simonw/ca-fires-history</a> converted using <a href="https://github.com/simonw/git-history/blob/main/demos/ca-fires.sh">ca-fires.sh</a></li>
+</ul>
+<p dir="auto">The demos are deployed using <a href="https://datasette.io/" rel="nofollow">Datasette</a> on <a href="https://cloud.google.com/run/" rel="nofollow">Google Cloud Run</a> by <a href="https://github.com/simonw/git-history/blob/main/.github/workflows/deploy-demos.yml">this GitHub Actions workflow</a>.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Usage</h2><a id="user-content-usage" class="anchor" aria-label="Permalink: Usage" href="#usage"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">This tool can be run against a Git repository that holds a file that contains JSON, CSV/TSV or some other format and which has multiple versions tracked in the Git history. Read <a href="https://simonwillison.net/2020/Oct/9/git-scraping/" rel="nofollow">Git scraping: track changes over time by scraping to a Git repository</a> to understand how you might create such a repository.</p>
+<p dir="auto">The <code>file</code> command analyzes the history of an individual file within the repository, and generates a SQLite database table that represents the different versions of that file over time.</p>
+<p dir="auto">The file is assumed to contain multiple objects - for example, the results of scraping an electricity outage map or a CSV file full of records.</p>
+<p dir="auto">Assuming you have a file called <code>incidents.json</code> that is a JSON array of objects, with multiple versions of that file recorded in a repository. Each version of that file might look something like this:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="[
+    {
+        "IncidentID": "abc123",
+        "Location": "Corner of 4th and Vermont",
+        "Type": "fire"
+    },
+    {
+        "IncidentID": "cde448",
+        "Location": "555 West Example Drive",
+        "Type": "medical"
+    }
+]"><pre>[
+    {
+        <span class="pl-ent">"IncidentID"</span>: <span class="pl-s"><span class="pl-pds">"</span>abc123<span class="pl-pds">"</span></span>,
+        <span class="pl-ent">"Location"</span>: <span class="pl-s"><span class="pl-pds">"</span>Corner of 4th and Vermont<span class="pl-pds">"</span></span>,
+        <span class="pl-ent">"Type"</span>: <span class="pl-s"><span class="pl-pds">"</span>fire<span class="pl-pds">"</span></span>
+    },
+    {
+        <span class="pl-ent">"IncidentID"</span>: <span class="pl-s"><span class="pl-pds">"</span>cde448<span class="pl-pds">"</span></span>,
+        <span class="pl-ent">"Location"</span>: <span class="pl-s"><span class="pl-pds">"</span>555 West Example Drive<span class="pl-pds">"</span></span>,
+        <span class="pl-ent">"Type"</span>: <span class="pl-s"><span class="pl-pds">"</span>medical<span class="pl-pds">"</span></span>
+    }
+]</pre></div>
+<p dir="auto">Change directory into the GitHub repository in question and run the following:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="git-history file incidents.db incidents.json"><pre class="notranslate"><code>git-history file incidents.db incidents.json
+</code></pre></div>
+<p dir="auto">This will create a new SQLite database in the <code>incidents.db</code> file with three tables:</p>
+<ul dir="auto">
+<li><code>commits</code> containing a row for every commit, with a <code>hash</code> column, the <code>commit_at</code> date and a foreign key to a <code>namespace</code>.</li>
+<li><code>item</code> containing a row for every item in every version of the <code>filename.json</code> file - with an extra <code>_commit</code> column that is a foreign key back to the <code>commit</code> table.</li>
+<li><code>namespaces</code> containing a single row. This allows you to build multiple tables for different files, using the <code>--namespace</code> option described below.</li>
+</ul>
+<p dir="auto">The database schema for this example will look like this:</p>
+
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="CREATE TABLE [namespaces] (
+   [id] INTEGER PRIMARY KEY,
+   [name] TEXT
+);
+CREATE UNIQUE INDEX [idx_namespaces_name]
+    ON [namespaces] ([name]);
+CREATE TABLE [commits] (
+   [id] INTEGER PRIMARY KEY,
+   [namespace] INTEGER REFERENCES [namespaces]([id]),
+   [hash] TEXT,
+   [commit_at] TEXT
+);
+CREATE UNIQUE INDEX [idx_commits_namespace_hash]
+    ON [commits] ([namespace], [hash]);
+CREATE TABLE [item] (
+   [IncidentID] TEXT,
+   [Location] TEXT,
+   [Type] TEXT,
+   [_commit] INTEGER REFERENCES [commits]([id])
+);"><pre>CREATE TABLE [namespaces] (
+   [id] <span class="pl-k">INTEGER</span> <span class="pl-k">PRIMARY KEY</span>,
+   [name] <span class="pl-k">TEXT</span>
+);
+CREATE UNIQUE INDEX [idx_namespaces_name]
+    <span class="pl-k">ON</span> [namespaces] ([name]);
+CREATE TABLE [commits] (
+   [id] <span class="pl-k">INTEGER</span> <span class="pl-k">PRIMARY KEY</span>,
+   [namespace] <span class="pl-k">INTEGER</span> <span class="pl-k">REFERENCES</span> [namespaces]([id]),
+   [hash] <span class="pl-k">TEXT</span>,
+   [commit_at] <span class="pl-k">TEXT</span>
+);
+CREATE UNIQUE INDEX [idx_commits_namespace_hash]
+    <span class="pl-k">ON</span> [commits] ([namespace], [hash]);
+CREATE TABLE [item] (
+   [IncidentID] <span class="pl-k">TEXT</span>,
+   [Location] <span class="pl-k">TEXT</span>,
+   [Type] <span class="pl-k">TEXT</span>,
+   [_commit] <span class="pl-k">INTEGER</span> <span class="pl-k">REFERENCES</span> [commits]([id])
+);</pre></div>
+
+<p dir="auto">If you have 10 historic versions of the <code>incidents.json</code> file and each one contains 30 incidents, you will end up with 10 * 30 = 300 rows in your <code>item</code> table.</p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Track the history of individual items using IDs</h3><a id="user-content-track-the-history-of-individual-items-using-ids" class="anchor" aria-label="Permalink: Track the history of individual items using IDs" href="#track-the-history-of-individual-items-using-ids"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">If your objects have a unique identifier - or multiple columns that together form a unique identifier - you can use the <code>--id</code> option to de-duplicate and track changes to each of those items over time.</p>
+<p dir="auto">This provides a much more interesting way to apply this tool.</p>
+<p dir="auto">If there is a unique identifier column called <code>IncidentID</code> you could run the following:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="git-history file incidents.db incidents.json --id IncidentID"><pre class="notranslate"><code>git-history file incidents.db incidents.json --id IncidentID
+</code></pre></div>
+<p dir="auto">The database schema used here is very different from the one used without the <code>--id</code> option.</p>
+<p dir="auto">If you have already imported history, the command will skip any commits that it has seen already and just process new ones. This means that even though an initial import could be slow subsequent imports should run a lot faster.</p>
+<p dir="auto">This command will create six tables - <code>commits</code>, <code>item</code>, <code>item_version</code>, <code>columns</code>, <code>item_changed</code> and <code>namespaces</code>.</p>
+<p dir="auto">Here's the full schema:</p>
+
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="CREATE TABLE [namespaces] (
+   [id] INTEGER PRIMARY KEY,
+   [name] TEXT
+);
+CREATE UNIQUE INDEX [idx_namespaces_name]
+    ON [namespaces] ([name]);
+CREATE TABLE [commits] (
+   [id] INTEGER PRIMARY KEY,
+   [namespace] INTEGER REFERENCES [namespaces]([id]),
+   [hash] TEXT,
+   [commit_at] TEXT
+);
+CREATE UNIQUE INDEX [idx_commits_namespace_hash]
+    ON [commits] ([namespace], [hash]);
+CREATE TABLE [item] (
+   [_id] INTEGER PRIMARY KEY,
+   [_item_id] TEXT
+, [IncidentID] TEXT, [Location] TEXT, [Type] TEXT, [_commit] INTEGER);
+CREATE UNIQUE INDEX [idx_item__item_id]
+    ON [item] ([_item_id]);
+CREATE TABLE [item_version] (
+   [_id] INTEGER PRIMARY KEY,
+   [_item] INTEGER REFERENCES [item]([_id]),
+   [_version] INTEGER,
+   [_commit] INTEGER REFERENCES [commits]([id]),
+   [IncidentID] TEXT,
+   [Location] TEXT,
+   [Type] TEXT,
+   [_item_full_hash] TEXT
+);
+CREATE TABLE [columns] (
+   [id] INTEGER PRIMARY KEY,
+   [namespace] INTEGER REFERENCES [namespaces]([id]),
+   [name] TEXT
+);
+CREATE UNIQUE INDEX [idx_columns_namespace_name]
+    ON [columns] ([namespace], [name]);
+CREATE TABLE [item_changed] (
+   [item_version] INTEGER REFERENCES [item_version]([_id]),
+   [column] INTEGER REFERENCES [columns]([id]),
+   PRIMARY KEY ([item_version], [column])
+);
+CREATE VIEW item_version_detail AS select
+  commits.commit_at as _commit_at,
+  commits.hash as _commit_hash,
+  item_version.*,
+  (
+    select json_group_array(name) from columns
+    where id in (
+      select column from item_changed
+      where item_version = item_version._id
+    )
+) as _changed_columns
+from item_version
+  join commits on commits.id = item_version._commit;
+CREATE INDEX [idx_item_version__item]
+    ON [item_version] ([_item]);"><pre>CREATE TABLE [namespaces] (
+   [id] <span class="pl-k">INTEGER</span> <span class="pl-k">PRIMARY KEY</span>,
+   [name] <span class="pl-k">TEXT</span>
+);
+CREATE UNIQUE INDEX [idx_namespaces_name]
+    <span class="pl-k">ON</span> [namespaces] ([name]);
+CREATE TABLE [commits] (
+   [id] <span class="pl-k">INTEGER</span> <span class="pl-k">PRIMARY KEY</span>,
+   [namespace] <span class="pl-k">INTEGER</span> <span class="pl-k">REFERENCES</span> [namespaces]([id]),
+   [hash] <span class="pl-k">TEXT</span>,
+   [commit_at] <span class="pl-k">TEXT</span>
+);
+CREATE UNIQUE INDEX [idx_commits_namespace_hash]
+    <span class="pl-k">ON</span> [commits] ([namespace], [hash]);
+CREATE TABLE [item] (
+   [_id] <span class="pl-k">INTEGER</span> <span class="pl-k">PRIMARY KEY</span>,
+   [_item_id] <span class="pl-k">TEXT</span>
+, [IncidentID] <span class="pl-k">TEXT</span>, [Location] <span class="pl-k">TEXT</span>, [Type] <span class="pl-k">TEXT</span>, [_commit] <span class="pl-k">INTEGER</span>);
+CREATE UNIQUE INDEX [idx_item__item_id]
+    <span class="pl-k">ON</span> [item] ([_item_id]);
+CREATE TABLE [item_version] (
+   [_id] <span class="pl-k">INTEGER</span> <span class="pl-k">PRIMARY KEY</span>,
+   [_item] <span class="pl-k">INTEGER</span> <span class="pl-k">REFERENCES</span> [item]([_id]),
+   [_version] <span class="pl-k">INTEGER</span>,
+   [_commit] <span class="pl-k">INTEGER</span> <span class="pl-k">REFERENCES</span> [commits]([id]),
+   [IncidentID] <span class="pl-k">TEXT</span>,
+   [Location] <span class="pl-k">TEXT</span>,
+   [Type] <span class="pl-k">TEXT</span>,
+   [_item_full_hash] <span class="pl-k">TEXT</span>
+);
+CREATE TABLE [columns] (
+   [id] <span class="pl-k">INTEGER</span> <span class="pl-k">PRIMARY KEY</span>,
+   [namespace] <span class="pl-k">INTEGER</span> <span class="pl-k">REFERENCES</span> [namespaces]([id]),
+   [name] <span class="pl-k">TEXT</span>
+);
+CREATE UNIQUE INDEX [idx_columns_namespace_name]
+    <span class="pl-k">ON</span> [columns] ([namespace], [name]);
+CREATE TABLE [item_changed] (
+   [item_version] <span class="pl-k">INTEGER</span> <span class="pl-k">REFERENCES</span> [item_version]([_id]),
+   [column] <span class="pl-k">INTEGER</span> <span class="pl-k">REFERENCES</span> [columns]([id]),
+   <span class="pl-k">PRIMARY KEY</span> ([item_version], [column])
+);
+<span class="pl-k">CREATE</span> <span class="pl-k">VIEW</span> <span class="pl-en">item_version_detail</span> <span class="pl-k">AS</span> <span class="pl-k">select</span>
+  <span class="pl-c1">commits</span>.<span class="pl-c1">commit_at</span> <span class="pl-k">as</span> _commit_at,
+  <span class="pl-c1">commits</span>.<span class="pl-c1">hash</span> <span class="pl-k">as</span> _commit_hash,
+  item_version.<span class="pl-k">*</span>,
+  (
+    <span class="pl-k">select</span> json_group_array(name) <span class="pl-k">from</span> columns
+    <span class="pl-k">where</span> id <span class="pl-k">in</span> (
+      <span class="pl-k">select</span> column <span class="pl-k">from</span> item_changed
+      <span class="pl-k">where</span> item_version <span class="pl-k">=</span> <span class="pl-c1">item_version</span>.<span class="pl-c1">_id</span>
+    )
+) <span class="pl-k">as</span> _changed_columns
+<span class="pl-k">from</span> item_version
+  <span class="pl-k">join</span> commits <span class="pl-k">on</span> <span class="pl-c1">commits</span>.<span class="pl-c1">id</span> <span class="pl-k">=</span> <span class="pl-c1">item_version</span>.<span class="pl-c1">_commit</span>;
+CREATE INDEX [idx_item_version__item]
+    <span class="pl-k">ON</span> [item_version] ([_item]);</pre></div>
+
+<div class="markdown-heading" dir="auto"><h4 class="heading-element" dir="auto">item table</h4><a id="user-content-item-table" class="anchor" aria-label="Permalink: item table" href="#item-table"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The <code>item</code> table will contain the most recent version of each row, de-duplicated by ID, plus the following additional columns:</p>
+<ul dir="auto">
+<li><code>_id</code> - a numeric integer primary key, used as a foreign key from the <code>item_version</code> table.</li>
+<li><code>_item_id</code> - a hash of the values of the columns specified using the <code>--id</code> option to the command. This is used for de-duplication when processing new versions.</li>
+<li><code>_commit</code> - a foreign key to the <code>commit</code> table, representing the most recent commit to modify this item.</li>
+</ul>
+<div class="markdown-heading" dir="auto"><h4 class="heading-element" dir="auto">item_version table</h4><a id="user-content-item_version-table" class="anchor" aria-label="Permalink: item_version table" href="#item_version-table"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The <code>item_version</code> table will contain a row for each captured differing version of that item, plus the following columns:</p>
+<ul dir="auto">
+<li><code>_id</code> - a numeric ID for the item version record.</li>
+<li><code>_item</code> - a foreign key to the <code>item</code> table.</li>
+<li><code>_version</code> - the numeric version number, starting at 1 and incrementing for each captured version.</li>
+<li><code>_commit</code> - a foreign key to the <code>commit</code> table.</li>
+<li><code>_item_full_hash</code> - a hash of this version of the item. This is used internally by the tool to identify items that have changed between commits.</li>
+</ul>
+<p dir="auto">The other columns in this table represent columns in the original data that have changed since the previous version. If the value has not changed, it will be represented by a <code>null</code>.</p>
+<p dir="auto">If a value was previously set but has been changed back to <code>null</code> it will still be represented as <code>null</code> in the <code>item_version</code> row. You can identify these using the <code>item_changed</code> many-to-many table described below.</p>
+<p dir="auto">You can use the <code>--full-versions</code> option to store full copies of the item at each version, rather than just storing the columns that have changed.</p>
+<div class="markdown-heading" dir="auto"><h4 class="heading-element" dir="auto">item_version_detail view</h4><a id="user-content-item_version_detail-view" class="anchor" aria-label="Permalink: item_version_detail view" href="#item_version_detail-view"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">This SQL view joins <code>item_version</code> against <code>commits</code> to add three further columns: <code>_commit_at</code> with the date of the commit, and <code>_commit_hash</code> with the Git commit hash.</p>
+<div class="markdown-heading" dir="auto"><h4 class="heading-element" dir="auto">item_changed</h4><a id="user-content-item_changed" class="anchor" aria-label="Permalink: item_changed" href="#item_changed"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">This many-to-many table indicates exactly which columns were changed in an <code>item_version</code>.</p>
+<ul dir="auto">
+<li><code>item_version</code> is a foreign key to a row in the <code>item_version</code> table.</li>
+<li><code>column</code> is a foreign key to a row in the <code>columns</code> table.</li>
+</ul>
+<p dir="auto">This table with have the largest number of rows, which is why it stores just two integers in order to save space.</p>
+<div class="markdown-heading" dir="auto"><h4 class="heading-element" dir="auto">columns</h4><a id="user-content-columns" class="anchor" aria-label="Permalink: columns" href="#columns"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The <code>columns</code> table stores column names. It is referenced by <code>item_changed</code>.</p>
+<ul dir="auto">
+<li><code>id</code> - an integer ID.</li>
+<li><code>name</code> - the name of the column.</li>
+<li><code>namespace</code> - a foreign key to <code>namespaces</code>, for if multiple file histories are sharing the same database.</li>
+</ul>
+<div class="markdown-heading" dir="auto"><h4 class="heading-element" dir="auto">Reserved column names</h4><a id="user-content-reserved-column-names" class="anchor" aria-label="Permalink: Reserved column names" href="#reserved-column-names"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+
+<p dir="auto">Note that <code>_id</code>, <code>_item_full_hash</code>, <code>_item</code>, <code>_item_id</code>, <code>_version</code>, <code>_commit</code>, <code>_item_id</code>, <code>_commit_at</code>, <code>_commit_hash</code>, <code>_changed_columns</code>, <code>rowid</code> are considered reserved column names for the purposes of this tool.</p>
+
+<p dir="auto">If your data contains any of these they will be renamed to add a trailing underscore, for example <code>_id_</code>, <code>_item_</code>, <code>_version_</code>, to avoid clashing with the reserved columns.</p>
+<p dir="auto">If you have a column with a name such as <code>_commit_</code> it will be renamed too, adding an additional trailing underscore, so <code>_commit_</code> becomes <code>_commit__</code> and <code>_commit__</code> becomes <code>_commit___</code>.</p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Additional options</h3><a id="user-content-additional-options" class="anchor" aria-label="Permalink: Additional options" href="#additional-options"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li><code>--repo DIRECTORY</code> - the path to the Git repository, if it is not the current working directory.</li>
+<li><code>--branch TEXT</code> - the Git branch to analyze - defaults to <code>main</code>.</li>
+<li><code>--id TEXT</code> - as described above: pass one or more columns that uniquely identify a record, so that changes to that record can be calculated over time.</li>
+<li><code>--full-versions</code> - instead of recording just the columns that have changed in the <code>item_version</code> table record a full copy of each version of theh item.</li>
+<li><code>--ignore TEXT</code> - one or more columns to ignore - they will not be included in the resulting database.</li>
+<li><code>--csv</code> - treat the data is CSV or TSV rather than JSON, and attempt to guess the correct dialect</li>
+<li><code>--dialect</code> - use a spcific CSV dialect. Options are <code>excel</code>, <code>excel-tab</code> and <code>unix</code> - see <a href="https://docs.python.org/3/library/csv.html#csv.excel" rel="nofollow">the Python CSV documentation</a> for details.</li>
+<li><code>--skip TEXT</code> - one or more full Git commit hashes that should be skipped. You can use this if some of the data in your revision history is corrupted in a way that prevents this tool from working.</li>
+<li><code>--start-at TEXT</code> - skip commits prior to the specified commit hash.</li>
+<li><code>--start-after TEXT</code> - skip commits up to and including the specified commit hash, then start processing from the following commit.</li>
+<li><code>--convert TEXT</code> - custom Python code for a conversion, described below.</li>
+<li><code>--import TEXT</code> - additional Python modules to import for <code>--convert</code>.</li>
+<li><code>--ignore-duplicate-ids</code> - if a single version of a file has the same ID in it more than once, the tool will exit with an error. Use this option to ignore this and instead pick just the first of the two duplicates.</li>
+<li><code>--namespace TEXT</code> - use this if you wish to include the history of multiple different files in the same database. The default is <code>item</code> but you can set it to something else, which will produce tables with names like <code>yournamespace</code> and <code>yournamespace_version</code>.</li>
+<li><code>--wal</code> - Enable WAL mode on the created database file. Use this if you plan to run queries against the database while <code>git-history</code> is creating it.</li>
+<li><code>--silent</code> - don't show the progress bar.</li>
+</ul>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">CSV and TSV data</h3><a id="user-content-csv-and-tsv-data" class="anchor" aria-label="Permalink: CSV and TSV data" href="#csv-and-tsv-data"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">If the data in your repository is a CSV or TSV file you can process it by adding the <code>--csv</code> option. This will attempt to detect which delimiter is used by the file, so the same option works for both comma- and tab-separated values.</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="git-history file trees.db trees.csv --id TreeID"><pre class="notranslate"><code>git-history file trees.db trees.csv --id TreeID
+</code></pre></div>
+<p dir="auto">You can also specify the CSV dialect using the <code>--dialect</code> option.</p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Custom conversions using --convert</h3><a id="user-content-custom-conversions-using---convert" class="anchor" aria-label="Permalink: Custom conversions using --convert" href="#custom-conversions-using---convert"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">If your data is not already either CSV/TSV or a flat JSON array, you can reshape it using the <code>--convert</code> option.</p>
+<p dir="auto">The format needed by this tool is an array of dictionaries, as demonstrated by the <code>incidents.json</code> example above.</p>
+<p dir="auto">If your data does not fit this shape, you can provide a snippet of Python code to converts the on-disk content of each stored file into a Python list of dictionaries.</p>
+<p dir="auto">For example, if your stored files each look like this:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    "incidents": [
+        {
+            "id": "552",
+            "name": "Hawthorne Fire",
+            "engines": 3
+        },
+        {
+            "id": "556",
+            "name": "Merlin Fire",
+            "engines": 1
+        }
+    ]
+}"><pre>{
+    <span class="pl-ent">"incidents"</span>: [
+        {
+            <span class="pl-ent">"id"</span>: <span class="pl-s"><span class="pl-pds">"</span>552<span class="pl-pds">"</span></span>,
+            <span class="pl-ent">"name"</span>: <span class="pl-s"><span class="pl-pds">"</span>Hawthorne Fire<span class="pl-pds">"</span></span>,
+            <span class="pl-ent">"engines"</span>: <span class="pl-c1">3</span>
+        },
+        {
+            <span class="pl-ent">"id"</span>: <span class="pl-s"><span class="pl-pds">"</span>556<span class="pl-pds">"</span></span>,
+            <span class="pl-ent">"name"</span>: <span class="pl-s"><span class="pl-pds">"</span>Merlin Fire<span class="pl-pds">"</span></span>,
+            <span class="pl-ent">"engines"</span>: <span class="pl-c1">1</span>
+        }
+    ]
+}</pre></div>
+<p dir="auto">You could use the following Python snippet to convert them to the required format:</p>
+<div class="highlight highlight-source-python notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="json.loads(content)["incidents"]"><pre><span class="pl-s1">json</span>.<span class="pl-c1">loads</span>(<span class="pl-s1">content</span>)[<span class="pl-s">"incidents"</span>]</pre></div>
+<p dir="auto">(The <code>json</code> module is exposed to your custom function by default.)</p>
+<p dir="auto">You would then run the tool like this:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="git-history file database.db incidents.json \
+  --id id \
+  --convert 'json.loads(content)["incidents"]'"><pre class="notranslate"><code>git-history file database.db incidents.json \
+  --id id \
+  --convert 'json.loads(content)["incidents"]'
+</code></pre></div>
+<p dir="auto">The <code>content</code> variable is always a <code>bytes</code> object representing the content of the file at a specific moment in the repository's history.</p>
+<p dir="auto">You can import additional modules using <code>--import</code>. This example shows how you could read a CSV file that uses <code>;</code> as the delimiter:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="git-history file trees.db ../sf-tree-history/Street_Tree_List.csv \
+  --repo ../sf-tree-history \
+  --import csv \
+  --import io \
+  --convert '
+    fp = io.StringIO(content.decode("utf-8"))
+    return list(csv.DictReader(fp, delimiter=";"))
+    ' \
+  --id TreeID"><pre class="notranslate"><code>git-history file trees.db ../sf-tree-history/Street_Tree_List.csv \
+  --repo ../sf-tree-history \
+  --import csv \
+  --import io \
+  --convert '
+    fp = io.StringIO(content.decode("utf-8"))
+    return list(csv.DictReader(fp, delimiter=";"))
+    ' \
+  --id TreeID
+</code></pre></div>
+<p dir="auto">You can import nested modules such as <a href="https://docs.python.org/3/library/xml.etree.elementtree.html" rel="nofollow">ElementTree</a>  using <code>--import xml.etree.ElementTree</code>, then refer to them in your function body as <code>xml.etree.ElementTree</code>. For example, if your tracked data was in an <code>items.xml</code> file that looked like this:</p>
+<div class="highlight highlight-text-xml notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="<items>
+  <item id="1" name="One" />
+  <item id="2" name="Two" />
+  <item id="3" name="Three" />
+</item>"><pre><<span class="pl-ent">items</span>>
+  <<span class="pl-ent">item</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>1<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>One<span class="pl-pds">"</span></span> />
+  <<span class="pl-ent">item</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>2<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>Two<span class="pl-pds">"</span></span> />
+  <<span class="pl-ent">item</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>3<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>Three<span class="pl-pds">"</span></span> />
+</<span class="pl-ent">item</span>></pre></div>
+<p dir="auto">You could load it using the following <code>--convert</code> script:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="git-history file items.xml --convert '
+tree = xml.etree.ElementTree.fromstring(content)
+return [el.attrib for el in tree.iter("item")]
+' --import xml.etree.ElementTree --id id"><pre class="notranslate"><code>git-history file items.xml --convert '
+tree = xml.etree.ElementTree.fromstring(content)
+return [el.attrib for el in tree.iter("item")]
+' --import xml.etree.ElementTree --id id
+</code></pre></div>
+<p dir="auto">If your Python code spans more than one line it needs to include a <code>return</code> statement.</p>
+<p dir="auto">You can also use Python generators in your <code>--convert</code> code, for example:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="git-history file stats.db package-stats/stats.json \
+    --repo package-stats \
+    --convert '
+    data = json.loads(content)
+    for key, counts in data.items():
+        for date, count in counts.items():
+            yield {
+                "package": key,
+                "date": date,
+                "count": count
+            }
+    ' --id package --id date"><pre class="notranslate"><code>git-history file stats.db package-stats/stats.json \
+    --repo package-stats \
+    --convert '
+    data = json.loads(content)
+    for key, counts in data.items():
+        for date, count in counts.items():
+            yield {
+                "package": key,
+                "date": date,
+                "count": count
+            }
+    ' --id package --id date
+</code></pre></div>
+<p dir="auto">This conversion function expects data that looks like this:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    "airtable-export": {
+        "2021-05-18": 66,
+        "2021-05-19": 60,
+        "2021-05-20": 87
+    }
+}"><pre>{
+    <span class="pl-ent">"airtable-export"</span>: {
+        <span class="pl-ent">"2021-05-18"</span>: <span class="pl-c1">66</span>,
+        <span class="pl-ent">"2021-05-19"</span>: <span class="pl-c1">60</span>,
+        <span class="pl-ent">"2021-05-20"</span>: <span class="pl-c1">87</span>
+    }
+}</pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Development</h2><a id="user-content-development" class="anchor" aria-label="Permalink: Development" href="#development"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">To contribute to this tool, first checkout the code. Then create a new virtual environment:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="cd git-history
+python -m venv venv
+source venv/bin/activate"><pre class="notranslate"><code>cd git-history
+python -m venv venv
+source venv/bin/activate
+</code></pre></div>
+<p dir="auto">Or if you are using <code>pipenv</code>:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pipenv shell"><pre class="notranslate"><code>pipenv shell
+</code></pre></div>
+<p dir="auto">Now install the dependencies and test dependencies:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pip install -e '.[test]'"><pre class="notranslate"><code>pip install -e '.[test]'
+</code></pre></div>
+<p dir="auto">To run the tests:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pytest"><pre class="notranslate"><code>pytest
+</code></pre></div>
+<p dir="auto">To update the schema examples in this README file:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="cog -r README.md"><pre class="notranslate"><code>cog -r README.md
+</code></pre></div>
+</article></div>

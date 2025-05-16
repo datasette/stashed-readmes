@@ -1,0 +1,58 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">Datasette Desktop</h1><a id="user-content-datasette-desktop" class="anchor" aria-label="Permalink: Datasette Desktop" href="#datasette-desktop"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">A macOS desktop application that wraps <a href="https://datasette.io/" rel="nofollow">Datasette</a>. See <a href="https://simonwillison.net/2021/Aug/30/datasette-app/" rel="nofollow">Building a desktop application for Datasette</a> for background on this project.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Installation</h2><a id="user-content-installation" class="anchor" aria-label="Permalink: Installation" href="#installation"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Grab the latest release from <a href="https://github.com/simonw/datasette-app/releases">the releases page</a>. Download <code>Datasette.app.zip</code>, uncompress it and drag <code>Datasette.app</code> to your <code>/Applications</code> folder - then double-click the icon.</p>
+<p dir="auto">The first time you launch the app it will install the latest version of Datasette, which could take a little while. Subsequent application launches will be a lot quicker.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Application features</h2><a id="user-content-application-features" class="anchor" aria-label="Permalink: Application features" href="#application-features"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li>Includes a full copy of Python which stays separate from any other Python versions you may have installed</li>
+<li>Installs the latest Datasette release the first time it runs</li>
+<li>The application can open existing SQLite database files or read CSV files into an in-memory database</li>
+<li>It can also create a new, empty SQLite database file and create tables in that database by importing CSV data</li>
+<li>By default the server only accepts connections from your computer, but you can use "File -&gt; Access Control -&gt; Anyone on my networks" to make it visible to other computers on your network (or devices on your <a href="https://tailscale.com/" rel="nofollow">Tailscale</a> network).</li>
+<li>Datasette plugins can be installed using the "Install Plugin" menu item</li>
+</ul>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">How it works</h2><a id="user-content-how-it-works" class="anchor" aria-label="Permalink: How it works" href="#how-it-works"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The app consists of two parts: the Electron app, and a custom Datasette plugin called <a href="https://github.com/simonw/datasette-app-support">datasette-app-support</a>.</p>
+<p dir="auto">You can install a development version of the app like so:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="# Clone the repo
+git clone https://github.com/simonw/datasette-app
+cd datasette-app
+
+# Download standalone Python
+./download-python.sh
+
+# Install Electron dependencies and start it running:
+npm install
+npm start"><pre class="notranslate"><code># Clone the repo
+git clone https://github.com/simonw/datasette-app
+cd datasette-app
+
+# Download standalone Python
+./download-python.sh
+
+# Install Electron dependencies and start it running:
+npm install
+npm start
+</code></pre></div>
+<p dir="auto">When the app first starts up it will create a Python virtual environment in <code>~/.datasette-app/venv</code> and install both Datasette and the <code>datasette-app-support</code> plugin into that environment.</p>
+<p dir="auto">To run the Electron tests:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="npm test"><pre class="notranslate"><code>npm test
+</code></pre></div>
+<p dir="auto">The Electron tests may leave a <code>datasette</code> process running. You can find the process ID for this using:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="ps aux | grep xyz"><pre class="notranslate"><code>ps aux | grep xyz
+</code></pre></div>
+<p dir="auto">Then use <code>kill PROCESS_ID</code> to terminate it.</p>
+<p dir="auto"><a target="_blank" rel="noopener noreferrer nofollow" href="https://user-images.githubusercontent.com/9599/131289203-18186b26-49a4-46e9-8925-b9e4745f3252.png"><img src="https://user-images.githubusercontent.com/9599/131289203-18186b26-49a4-46e9-8925-b9e4745f3252.png" alt="datasette-app" style="max-width: 100%;"></a></p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">How to develop plugins</h2><a id="user-content-how-to-develop-plugins" class="anchor" aria-label="Permalink: How to develop plugins" href="#how-to-develop-plugins"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">You can develop new Datasette plugins directly against your installation of Datasette Desktop. The <a href="https://docs.datasette.io/en/stable/writing_plugins.html" rel="nofollow">Writing Plugins</a> documentation mostly applies as-is, but the one extra thing you will need to do is to install an editable version of your plugin directly into the virtual environment used by Datasette Desktop.</p>
+<p dir="auto">To do this, first create a new plugin in a folder called <code>datasette-your-new-plugin</code> with a <code>setup.py</code>, as described in the plugin documentation. The easiest way to do that is using the <a href="https://github.com/simonw/datasette-plugin">datasette-plugin cookiecutter template</a>.</p>
+<p dir="auto">Then <code>cd</code> into that directory and run the following:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="~/.datasette-app/venv/bin/pip install -e ."><pre class="notranslate"><code>~/.datasette-app/venv/bin/pip install -e .
+</code></pre></div>
+<p dir="auto">This will install the plugin into your Datasette Desktop environment, such that any edits you make to the files in that directory will be picked up the next time the embedded Datasette server is restarted.</p>
+<p dir="auto">You can restart the server either by quitting and restarting the Datasette Desktop application, or by enabling the Debug menu ("Datasette -&gt; About Datasette -&gt; Enable Debug Menu") and then using "Debug -&gt; Restart Server".</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Release process</h2><a id="user-content-release-process" class="anchor" aria-label="Permalink: Release process" href="#release-process"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">To ship a new release, increment the version number in <code>package.json</code> and then <a href="https://github.com/simonw/datasette-app/releases/new">create a new release</a> with a matching tag.</p>
+<p dir="auto">Then <a href="https://github.com/simonw/datasette.io/actions/workflows/deploy.yml">run a deploy</a> of <a href="https://datasette.io/" rel="nofollow">datasette.io</a> to update the latest release link that is displayed on the <a href="https://datasette.io/desktop" rel="nofollow">datasette.io/desktop</a> page.</p>
+</article></div>

@@ -1,0 +1,103 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">datasette-leaflet</h1><a id="user-content-datasette-leaflet" class="anchor" aria-label="Permalink: datasette-leaflet" href="#datasette-leaflet"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://pypi.org/project/datasette-leaflet/" rel="nofollow"><img src="https://img.shields.io/pypi/v/datasette-leaflet.svg" alt="PyPI" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/43389f8553e59e588765d51ef86a818fdf2edab01db1f74addb2a343a9bf6fc1/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f6461746173657474652d6c6561666c65742e737667"></a>
+<a href="https://github.com/simonw/datasette-leaflet/releases"><img src="https://img.shields.io/github/v/release/simonw/datasette-leaflet?include_prereleases&label=changelog" alt="Changelog" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/c5a30425d5855cad1af824063608f092ac376ef897b6b0410cc2fc06579fd5e2/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f72656c656173652f73696d6f6e772f6461746173657474652d6c6561666c65743f696e636c7564655f70726572656c6561736573266c6162656c3d6368616e67656c6f67"></a>
+<a href="https://github.com/simonw/datasette-leaflet/actions?query=workflow%3ATest"><img src="https://github.com/simonw/datasette-leaflet/workflows/Test/badge.svg" alt="Tests" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/datasette-leaflet/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" alt="License" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/c355f200ea90fddaa407b6eaab303663a669248ea3ca7b1fcf77dbe04ff5f48c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d417061636865253230322e302d626c75652e737667"></a></p>
+<p dir="auto">Datasette plugin adding the <a href="https://leafletjs.com/" rel="nofollow">Leaflet</a> JavaScript library.</p>
+<p dir="auto">A growing number of Datasette plugins depend on the Leaflet JavaScript mapping library. They each have their own way of loading Leaflet, which could result in loading it multiple times (with multiple versions) if more than one plugin is installed.</p>
+<p dir="auto">This library is intended to solve this problem, by providing a single plugin they can all depend on that loads Leaflet in a reusable way.</p>
+<p dir="auto">Plugins that use this:</p>
+<ul dir="auto">
+<li><a href="https://datasette.io/plugins/datasette-leaflet-freedraw" rel="nofollow">datasette-leaflet-freedraw</a></li>
+<li><a href="https://datasette.io/plugins/datasette-leaflet-geojson" rel="nofollow">datasette-leaflet-geojson</a></li>
+<li><a href="https://datasette.io/plugins/datasette-cluster-map" rel="nofollow">datasette-cluster-map</a></li>
+</ul>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Installation</h2><a id="user-content-installation" class="anchor" aria-label="Permalink: Installation" href="#installation"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">You can install this plugin like so:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="datasette install datasette-leaflet"><pre class="notranslate"><code>datasette install datasette-leaflet
+</code></pre></div>
+<p dir="auto">Usually this plugin will be a dependency of other plugins, so it should be installed automatically when you install them.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Usage</h2><a id="user-content-usage" class="anchor" aria-label="Permalink: Usage" href="#usage"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The plugin makes <code>leaflet.js</code> and <code>leaflet.css</code> available as static files. It provides two custom template variables with the URLs of those two files.</p>
+<ul dir="auto">
+<li><code>{{ datasette_leaflet_url }}</code> is the URL to the JavaScript</li>
+<li><code>{{ datasette_leaflet_css_url }}</code> is the URL to the CSS</li>
+</ul>
+<p dir="auto">These URLs are also made available as global JavaScript constants:</p>
+<ul dir="auto">
+<li><code>datasette.leaflet.JAVASCRIPT_URL</code></li>
+<li><code>datasette.leaflet.CSS_URL</code></li>
+</ul>
+<p dir="auto">The JavaScript is packaed as a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules" rel="nofollow">JavaScript module</a>. You can dynamically import the JavaScript from a custom template like this:</p>
+<div class="highlight highlight-text-html-django notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="<script type="module">
+import('{{ datasette_leaflet_url }}')
+  .then((leaflet) => {
+    /* Use leaflet here */
+  });
+</script>"><pre><<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>module<span class="pl-pds">"</span></span>><span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-k">import</span>(<span class="pl-s"><span class="pl-pds">'</span>{{ datasette_leaflet_url }}<span class="pl-pds">'</span></span>)</span>
+<span class="pl-s1">  .<span class="pl-c1">then</span>((<span class="pl-smi">leaflet</span>) <span class="pl-k">=></span> {</span>
+<span class="pl-s1">    <span class="pl-c"><span class="pl-c">/*</span> Use leaflet here <span class="pl-c">*/</span></span></span>
+<span class="pl-s1">  });</span>
+<span class="pl-s1"></span></<span class="pl-ent">script</span>></pre></div>
+<p dir="auto">You can load the CSS like this:</p>
+<div class="highlight highlight-text-html-django notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="<link rel="stylesheet" href="{{ datasette_leaflet_css_url }}">"><pre><<span class="pl-ent">link</span> <span class="pl-e">rel</span>=<span class="pl-s"><span class="pl-pds">"</span>stylesheet<span class="pl-pds">"</span></span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span>{{ datasette_leaflet_css_url }}<span class="pl-pds">"</span></span>></pre></div>
+<p dir="auto">Or dynamically like this:</p>
+<div class="highlight highlight-text-html-django notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="<script>
+let link = document.createElement('link');
+link.rel = 'stylesheet';
+link.href = '{{ datasette_leaflet_css_url }}';
+document.head.appendChild(link);
+</script>"><pre><<span class="pl-ent">script</span>><span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-k">let</span> link <span class="pl-k">=</span> <span class="pl-c1">document</span>.<span class="pl-c1">createElement</span>(<span class="pl-s"><span class="pl-pds">'</span>link<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"><span class="pl-smi">link</span>.<span class="pl-c1">rel</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>stylesheet<span class="pl-pds">'</span></span>;</span>
+<span class="pl-s1"><span class="pl-smi">link</span>.<span class="pl-c1">href</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>{{ datasette_leaflet_css_url }}<span class="pl-pds">'</span></span>;</span>
+<span class="pl-s1"><span class="pl-c1">document</span>.<span class="pl-smi">head</span>.<span class="pl-c1">appendChild</span>(link);</span>
+<span class="pl-s1"></span></<span class="pl-ent">script</span>></pre></div>
+<p dir="auto">Here's a full example that loads the JavaScript and CSS and renders a map:</p>
+<div class="highlight highlight-text-html-django notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="<script type="module">
+window.DATASETTE_CLUSTER_MAP_TILE_LAYER = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
+window.DATASETTE_CLUSTER_MAP_TILE_LAYER_OPTIONS = {"maxZoom": 19, "detectRetina": true, "attribution": "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors"};
+let link = document.createElement('link');
+link.rel = 'stylesheet';
+link.href = '{{ datasette_leaflet_css_url }}';
+document.head.appendChild(link);
+import('{{ datasette_leaflet_url }}')
+  .then((leaflet) => {
+    let div = document.createElement('div');
+    div.style.height = '400px';
+    document.querySelector('.content').appendChild(div);
+    let tiles = leaflet.tileLayer(
+        window.DATASETTE_CLUSTER_MAP_TILE_LAYER,
+        window.DATASETTE_CLUSTER_MAP_TILE_LAYER_OPTIONS
+    );
+    let map = leaflet.map(div, {
+        center: leaflet.latLng(0, 0),
+        zoom: 2,
+        layers: [tiles]
+    });
+  });
+</script>"><pre><<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>module<span class="pl-pds">"</span></span>><span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c1">window</span>.<span class="pl-c1">DATASETTE_CLUSTER_MAP_TILE_LAYER</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png<span class="pl-pds">"</span></span>;</span>
+<span class="pl-s1"><span class="pl-c1">window</span>.<span class="pl-c1">DATASETTE_CLUSTER_MAP_TILE_LAYER_OPTIONS</span> <span class="pl-k">=</span> {<span class="pl-s"><span class="pl-pds">"</span>maxZoom<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">19</span>, <span class="pl-s"><span class="pl-pds">"</span>detectRetina<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">true</span>, <span class="pl-s"><span class="pl-pds">"</span>attribution<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>&copy; <a href=<span class="pl-cce">\"</span>https://www.openstreetmap.org/copyright<span class="pl-cce">\"</span>>OpenStreetMap</a> contributors<span class="pl-pds">"</span></span>};</span>
+<span class="pl-s1"><span class="pl-k">let</span> link <span class="pl-k">=</span> <span class="pl-c1">document</span>.<span class="pl-c1">createElement</span>(<span class="pl-s"><span class="pl-pds">'</span>link<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"><span class="pl-smi">link</span>.<span class="pl-c1">rel</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>stylesheet<span class="pl-pds">'</span></span>;</span>
+<span class="pl-s1"><span class="pl-smi">link</span>.<span class="pl-c1">href</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>{{ datasette_leaflet_css_url }}<span class="pl-pds">'</span></span>;</span>
+<span class="pl-s1"><span class="pl-c1">document</span>.<span class="pl-smi">head</span>.<span class="pl-c1">appendChild</span>(link);</span>
+<span class="pl-s1"><span class="pl-k">import</span>(<span class="pl-s"><span class="pl-pds">'</span>{{ datasette_leaflet_url }}<span class="pl-pds">'</span></span>)</span>
+<span class="pl-s1">  .<span class="pl-c1">then</span>((<span class="pl-smi">leaflet</span>) <span class="pl-k">=></span> {</span>
+<span class="pl-s1">    <span class="pl-k">let</span> div <span class="pl-k">=</span> <span class="pl-c1">document</span>.<span class="pl-c1">createElement</span>(<span class="pl-s"><span class="pl-pds">'</span>div<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1">    <span class="pl-smi">div</span>.<span class="pl-c1">style</span>.<span class="pl-c1">height</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>400px<span class="pl-pds">'</span></span>;</span>
+<span class="pl-s1">    <span class="pl-c1">document</span>.<span class="pl-c1">querySelector</span>(<span class="pl-s"><span class="pl-pds">'</span>.content<span class="pl-pds">'</span></span>).<span class="pl-c1">appendChild</span>(div);</span>
+<span class="pl-s1">    <span class="pl-k">let</span> tiles <span class="pl-k">=</span> <span class="pl-smi">leaflet</span>.<span class="pl-en">tileLayer</span>(</span>
+<span class="pl-s1">        <span class="pl-c1">window</span>.<span class="pl-c1">DATASETTE_CLUSTER_MAP_TILE_LAYER</span>,</span>
+<span class="pl-s1">        <span class="pl-c1">window</span>.<span class="pl-c1">DATASETTE_CLUSTER_MAP_TILE_LAYER_OPTIONS</span></span>
+<span class="pl-s1">    );</span>
+<span class="pl-s1">    <span class="pl-k">let</span> map <span class="pl-k">=</span> <span class="pl-smi">leaflet</span>.<span class="pl-en">map</span>(div, {</span>
+<span class="pl-s1">        center<span class="pl-k">:</span> <span class="pl-smi">leaflet</span>.<span class="pl-en">latLng</span>(<span class="pl-c1">0</span>, <span class="pl-c1">0</span>),</span>
+<span class="pl-s1">        zoom<span class="pl-k">:</span> <span class="pl-c1">2</span>,</span>
+<span class="pl-s1">        layers<span class="pl-k">:</span> [tiles]</span>
+<span class="pl-s1">    });</span>
+<span class="pl-s1">  });</span>
+<span class="pl-s1"></span></<span class="pl-ent">script</span>></pre></div>
+</article></div>

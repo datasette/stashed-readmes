@@ -1,0 +1,197 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">pypi-to-sqlite</h1><a id="user-content-pypi-to-sqlite" class="anchor" aria-label="Permalink: pypi-to-sqlite" href="#pypi-to-sqlite"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://pypi.org/project/pypi-to-sqlite/" rel="nofollow"><img src="https://img.shields.io/pypi/v/pypi-to-sqlite.svg" alt="PyPI" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/b67c04a6587d2100f4ad33b2ae70d70fc1fbd485a29c5cae4b1cf9b9039aee86/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f707970692d746f2d73716c6974652e737667"></a>
+<a href="https://github.com/simonw/pypi-to-sqlite/releases"><img src="https://img.shields.io/github/v/release/simonw/pypi-to-sqlite?include_prereleases&label=changelog" alt="Changelog" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/48aeacd23ee3322e373006485967f0f705a53c4bd8c0192956ed17dd143bb6db/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f72656c656173652f73696d6f6e772f707970692d746f2d73716c6974653f696e636c7564655f70726572656c6561736573266c6162656c3d6368616e67656c6f67"></a>
+<a href="https://github.com/simonw/pypi-to-sqlite/actions?query=workflow%3ATest"><img src="https://github.com/simonw/pypi-to-sqlite/workflows/Test/badge.svg" alt="Tests" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/pypi-to-sqlite/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" alt="License" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/c355f200ea90fddaa407b6eaab303663a669248ea3ca7b1fcf77dbe04ff5f48c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d417061636865253230322e302d626c75652e737667"></a></p>
+<p dir="auto">Load data about Python packages from PyPI into SQLite</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Installation</h2><a id="user-content-installation" class="anchor" aria-label="Permalink: Installation" href="#installation"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Install this tool using <code>pip</code>:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pip install pypi-to-sqlite"><pre class="notranslate"><code>pip install pypi-to-sqlite
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Usage</h2><a id="user-content-usage" class="anchor" aria-label="Permalink: Usage" href="#usage"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">To create a SQLite database with details of one or more packages, run:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pypi-to-sqlite pypi.db datasette sqlite-utils"><pre class="notranslate"><code>pypi-to-sqlite pypi.db datasette sqlite-utils
+</code></pre></div>
+<p dir="auto">You can also process JSON that you have previously saved to disk like so:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="curl -o datasette.json https://pypi.org/pypi/datasette/json
+pypi-to-sqlite pypi.db -f datasette.json"><pre class="notranslate"><code>curl -o datasette.json https://pypi.org/pypi/datasette/json
+pypi-to-sqlite pypi.db -f datasette.json
+</code></pre></div>
+<p dir="auto">The tool will create three tables: <code>packages</code>, <code>versions</code> and <code>releases</code>. The full table schema is shown below.</p>
+<p dir="auto">To create the tables with a prefix, use <code>--prefix prefix</code>. For example:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pypi-to-sqlite pypi.db datasette --prefix pypi_"><pre class="notranslate"><code>pypi-to-sqlite pypi.db datasette --prefix pypi_
+</code></pre></div>
+<p dir="auto">This will create tables called <code>pypi_packages</code>, <code>pypi_versions</code> and <code>pypi_releases</code>.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Demo</h2><a id="user-content-demo" class="anchor" aria-label="Permalink: Demo" href="#demo"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">You can see examples of tables created using this tool running in <a href="https://datasette.io/" rel="nofollow">Datasette</a> here:</p>
+<ul dir="auto">
+<li><a href="https://datasette.io/content/pypi_packages" rel="nofollow">packages</a></li>
+<li><a href="https://datasette.io/content/pypi_versions" rel="nofollow">versions</a></li>
+<li><a href="https://datasette.io/content/pypi_releases" rel="nofollow">releases</a></li>
+</ul>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Database schema</h2><a id="user-content-database-schema" class="anchor" aria-label="Permalink: Database schema" href="#database-schema"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="CREATE TABLE [packages] (
+   [name] TEXT PRIMARY KEY,
+   [summary] TEXT,
+   [classifiers] TEXT,
+   [description] TEXT,
+   [author] TEXT,
+   [author_email] TEXT,
+   [description_content_type] TEXT,
+   [home_page] TEXT,
+   [keywords] TEXT,
+   [license] TEXT,
+   [maintainer] TEXT,
+   [maintainer_email] TEXT,
+   [package_url] TEXT,
+   [platform] TEXT,
+   [project_url] TEXT,
+   [project_urls] TEXT,
+   [release_url] TEXT,
+   [requires_dist] TEXT,
+   [requires_python] TEXT,
+   [version] TEXT,
+   [yanked] INTEGER,
+   [yanked_reason] TEXT
+);
+CREATE TABLE [versions] (
+   [id] TEXT PRIMARY KEY,
+   [package] TEXT REFERENCES [packages]([name]),
+   [name] TEXT
+);
+CREATE TABLE [releases] (
+   [md5_digest] TEXT PRIMARY KEY,
+   [package] TEXT REFERENCES [packages]([name]),
+   [version] TEXT REFERENCES [versions]([id]),
+   [packagetype] TEXT,
+   [filename] TEXT,
+   [comment_text] TEXT,
+   [digests] TEXT,
+   [has_sig] INTEGER,
+   [python_version] TEXT,
+   [requires_python] TEXT,
+   [size] INTEGER,
+   [upload_time] TEXT,
+   [upload_time_iso_8601] TEXT,
+   [url] TEXT,
+   [yanked] INTEGER,
+   [yanked_reason] TEXT
+);"><pre>CREATE TABLE [packages] (
+   [name] <span class="pl-k">TEXT</span> <span class="pl-k">PRIMARY KEY</span>,
+   [summary] <span class="pl-k">TEXT</span>,
+   [classifiers] <span class="pl-k">TEXT</span>,
+   [description] <span class="pl-k">TEXT</span>,
+   [author] <span class="pl-k">TEXT</span>,
+   [author_email] <span class="pl-k">TEXT</span>,
+   [description_content_type] <span class="pl-k">TEXT</span>,
+   [home_page] <span class="pl-k">TEXT</span>,
+   [keywords] <span class="pl-k">TEXT</span>,
+   [license] <span class="pl-k">TEXT</span>,
+   [maintainer] <span class="pl-k">TEXT</span>,
+   [maintainer_email] <span class="pl-k">TEXT</span>,
+   [package_url] <span class="pl-k">TEXT</span>,
+   [platform] <span class="pl-k">TEXT</span>,
+   [project_url] <span class="pl-k">TEXT</span>,
+   [project_urls] <span class="pl-k">TEXT</span>,
+   [release_url] <span class="pl-k">TEXT</span>,
+   [requires_dist] <span class="pl-k">TEXT</span>,
+   [requires_python] <span class="pl-k">TEXT</span>,
+   [version] <span class="pl-k">TEXT</span>,
+   [yanked] <span class="pl-k">INTEGER</span>,
+   [yanked_reason] <span class="pl-k">TEXT</span>
+);
+CREATE TABLE [versions] (
+   [id] <span class="pl-k">TEXT</span> <span class="pl-k">PRIMARY KEY</span>,
+   [package] <span class="pl-k">TEXT</span> <span class="pl-k">REFERENCES</span> [packages]([name]),
+   [name] <span class="pl-k">TEXT</span>
+);
+CREATE TABLE [releases] (
+   [md5_digest] <span class="pl-k">TEXT</span> <span class="pl-k">PRIMARY KEY</span>,
+   [package] <span class="pl-k">TEXT</span> <span class="pl-k">REFERENCES</span> [packages]([name]),
+   [version] <span class="pl-k">TEXT</span> <span class="pl-k">REFERENCES</span> [versions]([id]),
+   [packagetype] <span class="pl-k">TEXT</span>,
+   [filename] <span class="pl-k">TEXT</span>,
+   [comment_text] <span class="pl-k">TEXT</span>,
+   [digests] <span class="pl-k">TEXT</span>,
+   [has_sig] <span class="pl-k">INTEGER</span>,
+   [python_version] <span class="pl-k">TEXT</span>,
+   [requires_python] <span class="pl-k">TEXT</span>,
+   [size] <span class="pl-k">INTEGER</span>,
+   [upload_time] <span class="pl-k">TEXT</span>,
+   [upload_time_iso_8601] <span class="pl-k">TEXT</span>,
+   [url] <span class="pl-k">TEXT</span>,
+   [yanked] <span class="pl-k">INTEGER</span>,
+   [yanked_reason] <span class="pl-k">TEXT</span>
+);</pre></div>
+
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">pypi-to-sqlite --help</h2><a id="user-content-pypi-to-sqlite---help" class="anchor" aria-label="Permalink: pypi-to-sqlite --help" href="#pypi-to-sqlite---help"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="Usage: pypi-to-sqlite [OPTIONS] DB_PATH [PACKAGE]...
+
+  Load data about Python packages from PyPI into SQLite
+
+  Usage example:
+
+      pypi-to-sqlite pypy.db datasette sqlite-utils
+
+  Use -f to load data from a JSON file instead:
+
+      pypi-to-sqlite pypy.db -f datasette.json
+
+  Created tables will be packages, versions and releases
+
+  To create tables called pypi_packages, pypi_versions, pypi_releases use
+  --prefix pypi_:
+
+      pypi-to-sqlite pypy.db datasette sqlite-utils --prefix pypi_
+
+Options:
+  --version            Show the version and exit.
+  -f, --file FILENAME  Import JSON from this file
+  -d, --delay FLOAT    Wait this many seconds between requests
+  --prefix TEXT        Prefix to use for the created database tables
+  --help               Show this message and exit.
+"><pre class="notranslate"><code>Usage: pypi-to-sqlite [OPTIONS] DB_PATH [PACKAGE]...
+
+  Load data about Python packages from PyPI into SQLite
+
+  Usage example:
+
+      pypi-to-sqlite pypy.db datasette sqlite-utils
+
+  Use -f to load data from a JSON file instead:
+
+      pypi-to-sqlite pypy.db -f datasette.json
+
+  Created tables will be packages, versions and releases
+
+  To create tables called pypi_packages, pypi_versions, pypi_releases use
+  --prefix pypi_:
+
+      pypi-to-sqlite pypy.db datasette sqlite-utils --prefix pypi_
+
+Options:
+  --version            Show the version and exit.
+  -f, --file FILENAME  Import JSON from this file
+  -d, --delay FLOAT    Wait this many seconds between requests
+  --prefix TEXT        Prefix to use for the created database tables
+  --help               Show this message and exit.
+
+</code></pre></div>
+
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Development</h2><a id="user-content-development" class="anchor" aria-label="Permalink: Development" href="#development"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">To contribute to this tool, first checkout the code. Then create a new virtual environment:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="cd pypi-to-sqlite
+python -m venv venv
+source venv/bin/activate"><pre class="notranslate"><code>cd pypi-to-sqlite
+python -m venv venv
+source venv/bin/activate
+</code></pre></div>
+<p dir="auto">Now install the dependencies and test dependencies:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pip install -e '.[test]'"><pre class="notranslate"><code>pip install -e '.[test]'
+</code></pre></div>
+<p dir="auto">To run the tests:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pytest"><pre class="notranslate"><code>pytest
+</code></pre></div>
+</article></div>

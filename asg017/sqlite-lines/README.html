@@ -1,0 +1,207 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">sqlite-lines</h1><a id="user-content-sqlite-lines" class="anchor" aria-label="Permalink: sqlite-lines" href="#sqlite-lines"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><code>sqlite-lines</code> is a SQLite extension for reading lines from a file or blob.</p>
+<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="./benchmarks/calc.png"><img src="./benchmarks/calc.png" alt="Benchmark between sqlite-lines and various other data processing tools" width="600" style="max-width: 100%;"></a></p>
+<p dir="auto">See <a href="./benchmarks">Benchmarks</a> for more info.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Usage</h2><a id="user-content-usage" class="anchor" aria-label="Permalink: Usage" href="#usage"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content=".load ./lines0
+select line from lines_read('logs.txt');"><pre>.load .<span class="pl-k">/</span>lines0
+<span class="pl-k">select</span> <span class="pl-k">line</span> <span class="pl-k">from</span> lines_read(<span class="pl-s"><span class="pl-pds">'</span>logs.txt<span class="pl-pds">'</span></span>);</pre></div>
+<p dir="auto"><code>sqlite-lines</code> is great for line-oriented datasets, like <a href="https://ndjson.org/" rel="nofollow">ndjson</a> or <a href="https://jsonlines.org/" rel="nofollow">JSON Lines</a>, when paired with SQLite's <a href="https://www.sqlite.org/json1.html" rel="nofollow">JSON support</a>. Here, we calculate the top 5 country participants in Google's <a href="https://quickdraw.withgoogle.com/data" rel="nofollow">Quick, Draw!</a> dataset for <a href="https://storage.googleapis.com/quickdraw_dataset/full/simplified/calendar.ndjson" rel="nofollow"><code>calendars.ndjson</code></a>:</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="select
+  line ->> '$.countrycode' as countrycode,
+  count(*)
+from lines_read('./calendar.ndjson')
+group by 1
+order by 2 desc
+limit 5;
+/*
+┌─────────────┬──────────┐
+│ countrycode │ count(*) │
+├─────────────┼──────────┤
+│ US          │ 141001   │
+│ GB          │ 22560    │
+│ CA          │ 11759    │
+│ RU          │ 9250     │
+│ DE          │ 8748     │
+└─────────────┴──────────┘
+*/"><pre><span class="pl-k">select</span>
+  <span class="pl-k">line</span> <span class="pl-k">-</span><span class="pl-k">>></span> <span class="pl-s"><span class="pl-pds">'</span>$.countrycode<span class="pl-pds">'</span></span> <span class="pl-k">as</span> countrycode,
+  <span class="pl-c1">count</span>(<span class="pl-k">*</span>)
+<span class="pl-k">from</span> lines_read(<span class="pl-s"><span class="pl-pds">'</span>./calendar.ndjson<span class="pl-pds">'</span></span>)
+<span class="pl-k">group by</span> <span class="pl-c1">1</span>
+<span class="pl-k">order by</span> <span class="pl-c1">2</span> <span class="pl-k">desc</span>
+<span class="pl-k">limit</span> <span class="pl-c1">5</span>;
+<span class="pl-c"><span class="pl-c">/*</span></span>
+<span class="pl-c">┌─────────────┬──────────┐</span>
+<span class="pl-c">│ countrycode │ count(*) │</span>
+<span class="pl-c">├─────────────┼──────────┤</span>
+<span class="pl-c">│ US          │ 141001   │</span>
+<span class="pl-c">│ GB          │ 22560    │</span>
+<span class="pl-c">│ CA          │ 11759    │</span>
+<span class="pl-c">│ RU          │ 9250     │</span>
+<span class="pl-c">│ DE          │ 8748     │</span>
+<span class="pl-c">└─────────────┴──────────┘</span>
+<span class="pl-c"><span class="pl-c">*/</span></span></pre></div>
+<p dir="auto">Use the SQLite CLI's <a href="https://sqlite.org/cli.html#file_i_o_functions" rel="nofollow"><code>fsdir()</code></a> table functions with <code>lines_read()</code> to read lines from every file in a directory.</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="select
+  name as file,
+  lines.rowid as line_number,
+  line
+from fsdir('logs')
+join lines_read(name) as lines
+where name like '%.txt';
+/*
+┌─────────────────────┬──────┐
+│ file  │ line_number | line │
+├───────┼─────────────┤──────┤
+| a.txt | 1           | x    |
+| a.txt | 2           | y    |
+| a.txt | 3           | z    |
+| b.txt | 1           | xx   |
+| b.txt | 2           | yy   |
+| c.txt | 1           | xxx  |
+└───────┴─────────────┴──────┘
+*/"><pre><span class="pl-k">select</span>
+  name <span class="pl-k">as</span> file,
+  <span class="pl-c1">lines</span>.<span class="pl-c1">rowid</span> <span class="pl-k">as</span> line_number,
+  <span class="pl-k">line</span>
+<span class="pl-k">from</span> fsdir(<span class="pl-s"><span class="pl-pds">'</span>logs<span class="pl-pds">'</span></span>)
+<span class="pl-k">join</span> lines_read(name) <span class="pl-k">as</span> lines
+<span class="pl-k">where</span> name <span class="pl-k">like</span> <span class="pl-s"><span class="pl-pds">'</span>%.txt<span class="pl-pds">'</span></span>;
+<span class="pl-c"><span class="pl-c">/*</span></span>
+<span class="pl-c">┌─────────────────────┬──────┐</span>
+<span class="pl-c">│ file  │ line_number | line │</span>
+<span class="pl-c">├───────┼─────────────┤──────┤</span>
+<span class="pl-c">| a.txt | 1           | x    |</span>
+<span class="pl-c">| a.txt | 2           | y    |</span>
+<span class="pl-c">| a.txt | 3           | z    |</span>
+<span class="pl-c">| b.txt | 1           | xx   |</span>
+<span class="pl-c">| b.txt | 2           | yy   |</span>
+<span class="pl-c">| c.txt | 1           | xxx  |</span>
+<span class="pl-c">└───────┴─────────────┴──────┘</span>
+<span class="pl-c"><span class="pl-c">*/</span></span></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Documentation</h2><a id="user-content-documentation" class="anchor" aria-label="Permalink: Documentation" href="#documentation"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">See <a href="./docs.md"><code>docs.md</code></a> for a full API Reference and detailed documentation.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Installing</h2><a id="user-content-installing" class="anchor" aria-label="Permalink: Installing" href="#installing"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<markdown-accessiblity-table><table>
+<thead>
+<tr>
+<th>Language</th>
+<th>Install</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Python</td>
+<td><code>pip install sqlite-lines</code></td>
+<td><a href="https://pypi.org/project/sqlite-lines/" rel="nofollow"><img src="https://img.shields.io/pypi/v/sqlite-lines.svg?color=blue&logo=python&logoColor=white" alt="PyPI" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/d6af0247157eaff59b9bf9fab6a34ca30c47b7de976533350f703fa9d14a40a3/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f73716c6974652d6c696e65732e7376673f636f6c6f723d626c7565266c6f676f3d707974686f6e266c6f676f436f6c6f723d7768697465"></a></td>
+</tr>
+<tr>
+<td>Datasette</td>
+<td><code>datasette install datasette-sqlite-lines</code></td>
+<td><a href="https://datasette.io/plugins/datasette-sqlite-lines" rel="nofollow"><img src="https://img.shields.io/pypi/v/datasette-sqlite-lines.svg?color=B6B6D9&label=Datasette+plugin&logoColor=white&logo=python" alt="Datasette" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/9052e90c280ec7960fe6402fb2a5afb296146d5ecd2aacae71022d848738b3cb/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f6461746173657474652d73716c6974652d6c696e65732e7376673f636f6c6f723d423642364439266c6162656c3d4461746173657474652b706c7567696e266c6f676f436f6c6f723d7768697465266c6f676f3d707974686f6e"></a></td>
+</tr>
+<tr>
+<td>Node.js</td>
+<td><code>npm install sqlite-lines</code></td>
+<td><a href="https://www.npmjs.com/package/sqlite-lines" rel="nofollow"><img src="https://img.shields.io/npm/v/sqlite-lines.svg?color=green&logo=nodedotjs&logoColor=white" alt="npm" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/25db89155302e5621699b4a30248ff3f0e01739bb0255f80bcb69b4d36c587f9/68747470733a2f2f696d672e736869656c64732e696f2f6e706d2f762f73716c6974652d6c696e65732e7376673f636f6c6f723d677265656e266c6f676f3d6e6f6465646f746a73266c6f676f436f6c6f723d7768697465"></a></td>
+</tr>
+<tr>
+<td>Deno</td>
+<td><a href="https://deno.land/x/sqlite_lines" rel="nofollow"><code>deno.land/x/sqlite_lines</code></a></td>
+<td><a href="https://deno.land/x/sqlite_lines" rel="nofollow"><img src="https://img.shields.io/github/v/release/asg017/sqlite-lines?color=fef8d2&include_prereleases&label=deno.land%2Fx&logo=deno" alt="deno.land/x release" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/3640eb589fca101e76bc053c4fac1404ae75df1fde819ed73590bca0dac38426/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f72656c656173652f6173673031372f73716c6974652d6c696e65733f636f6c6f723d66656638643226696e636c7564655f70726572656c6561736573266c6162656c3d64656e6f2e6c616e6425324678266c6f676f3d64656e6f"></a></td>
+</tr>
+<tr>
+<td>Ruby</td>
+<td><code>gem install sqlite-lines</code></td>
+<td><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/c4c97b2b3db78181ed66ef37026ee2a24d3d9121a672995d779d19b215e79b4e/68747470733a2f2f696d672e736869656c64732e696f2f67656d2f762f73716c6974652d6c696e65733f636f6c6f723d726564266c6f676f3d7275627967656d73266c6f676f436f6c6f723d7768697465"><img src="https://img.shields.io/gem/v/sqlite-lines?color=red&logo=rubygems&logoColor=white" alt="Gem" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/c4c97b2b3db78181ed66ef37026ee2a24d3d9121a672995d779d19b215e79b4e/68747470733a2f2f696d672e736869656c64732e696f2f67656d2f762f73716c6974652d6c696e65733f636f6c6f723d726564266c6f676f3d7275627967656d73266c6f676f436f6c6f723d7768697465"></a></td>
+</tr>
+<tr>
+<td>Github Release</td>
+<td></td>
+<td><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/837c2a93a36e91e70c32470e23ee6ca1f9d1b0482bdfc360e3ec035ac6adcd9b/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f7461672f6173673031372f73716c6974652d6c696e65733f636f6c6f723d6c696768746772657926696e636c7564655f70726572656c6561736573266c6162656c3d4769746875622b72656c65617365266c6f676f3d676974687562"><img src="https://img.shields.io/github/v/tag/asg017/sqlite-lines?color=lightgrey&include_prereleases&label=Github+release&logo=github" alt="GitHub tag (latest SemVer pre-release)" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/837c2a93a36e91e70c32470e23ee6ca1f9d1b0482bdfc360e3ec035ac6adcd9b/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f7461672f6173673031372f73716c6974652d6c696e65733f636f6c6f723d6c696768746772657926696e636c7564655f70726572656c6561736573266c6162656c3d4769746875622b72656c65617365266c6f676f3d676974687562"></a></td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+
+<p dir="auto">The <a href="https://github.com/asg017/sqlite-lines/releases">Releases page</a> contains pre-built binaries for Linux amd64 and MacOS (amd64, no arm).</p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">As a loadable extension</h3><a id="user-content-as-a-loadable-extension" class="anchor" aria-label="Permalink: As a loadable extension" href="#as-a-loadable-extension"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">If you want to use <code>sqlite-lines</code> as a <a href="https://www.sqlite.org/loadext.html" rel="nofollow">Runtime-loadable extension</a>, Download the <code>lines0.dylib</code> (for MacOS) or <code>lines0.so</code> file from a release and load it into your SQLite environment.</p>
+<blockquote>
+<p dir="auto"><strong>Note:</strong>
+The <code>0</code> in the filename (<code>lines0.dylib</code> or <code>lines0.so</code>) denotes the major version of <code>sqlite-lines</code>. Currently <code>sqlite-lines</code> is pre v1, so expect breaking changes in future versions.</p>
+</blockquote>
+<p dir="auto">For example, if you are using the <a href="https://www.sqlite.org/cli.html" rel="nofollow">SQLite CLI</a>, you can load the library like so:</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content=".load ./lines0
+select lines_version();
+-- v0.0.1"><pre>.load .<span class="pl-k">/</span>lines0
+<span class="pl-k">select</span> lines_version();
+<span class="pl-c"><span class="pl-c">--</span> v0.0.1</span></pre></div>
+<p dir="auto">Or in Python, using the builtin <a href="https://docs.python.org/3/library/sqlite3.html" rel="nofollow">sqlite3 module</a>:</p>
+<div class="highlight highlight-source-python notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="import sqlite3
+
+con = sqlite3.connect(":memory:")
+
+con.enable_load_extension(True)
+con.load_extension("./lines0")
+
+print(con.execute("select lines_version()").fetchone())
+# ('v0.0.1',)"><pre><span class="pl-k">import</span> <span class="pl-s1">sqlite3</span>
+
+<span class="pl-s1">con</span> <span class="pl-c1">=</span> <span class="pl-s1">sqlite3</span>.<span class="pl-c1">connect</span>(<span class="pl-s">":memory:"</span>)
+
+<span class="pl-s1">con</span>.<span class="pl-c1">enable_load_extension</span>(<span class="pl-c1">True</span>)
+<span class="pl-s1">con</span>.<span class="pl-c1">load_extension</span>(<span class="pl-s">"./lines0"</span>)
+
+<span class="pl-en">print</span>(<span class="pl-s1">con</span>.<span class="pl-c1">execute</span>(<span class="pl-s">"select lines_version()"</span>).<span class="pl-c1">fetchone</span>())
+<span class="pl-c"># ('v0.0.1',)</span></pre></div>
+<p dir="auto">Or in Node.js using <a href="https://github.com/WiseLibs/better-sqlite3">better-sqlite3</a>:</p>
+<div class="highlight highlight-source-js notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="const Database = require("better-sqlite3");
+const db = new Database(":memory:");
+
+db.loadExtension("./lines0");
+
+console.log(db.prepare("select lines_version()").get());
+// { 'lines_version()': 'v0.0.1' }"><pre><span class="pl-k">const</span> <span class="pl-v">Database</span> <span class="pl-c1">=</span> <span class="pl-en">require</span><span class="pl-kos">(</span><span class="pl-s">"better-sqlite3"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+<span class="pl-k">const</span> <span class="pl-s1">db</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-v">Database</span><span class="pl-kos">(</span><span class="pl-s">":memory:"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+
+<span class="pl-s1">db</span><span class="pl-kos">.</span><span class="pl-en">loadExtension</span><span class="pl-kos">(</span><span class="pl-s">"./lines0"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+
+<span class="pl-smi">console</span><span class="pl-kos">.</span><span class="pl-en">log</span><span class="pl-kos">(</span><span class="pl-s1">db</span><span class="pl-kos">.</span><span class="pl-en">prepare</span><span class="pl-kos">(</span><span class="pl-s">"select lines_version()"</span><span class="pl-kos">)</span><span class="pl-kos">.</span><span class="pl-en">get</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+<span class="pl-c">// { 'lines_version()': 'v0.0.1' }</span></pre></div>
+<p dir="auto">Or with <a href="https://datasette.io/" rel="nofollow">Datasette</a> (using the "no filesystem" version to limit security vulnerabilities):</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="datasette data.db --load-extension ./lines_nofs0"><pre class="notranslate"><code>datasette data.db --load-extension ./lines_nofs0
+</code></pre></div>
+<p dir="auto">Windows is not supported - <a href="https://github.com/asg017/sqlite-lines/issues/4" data-hovercard-type="issue" data-hovercard-url="/asg017/sqlite-lines/issues/4/hovercard">yet</a>!</p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">From the browser with WASM/JavaScript</h3><a id="user-content-from-the-browser-with-wasmjavascript" class="anchor" aria-label="Permalink: From the browser with WASM/JavaScript" href="#from-the-browser-with-wasmjavascript"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><code>sqlite-lines</code> is also distributed as a standalone <a href="https://github.com/sql-js/sql.js">SQL.js</a> library. It's essentially a fork of the original SQL.js library, with the addition of <code>sqlite-lines</code> functions like <code>lines_version()</code> and <code>lines()</code>.</p>
+<p dir="auto">Check out <a href="https://observablehq.com/@asg017/introducing-sqlite-lines" rel="nofollow">this Observable notebook</a> for the full demonstration. The <a href="https://github.com/asg017/sqlite-lines/releases">Releases page</a> contains the JavaScript and WASM files.</p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">The sqlite-lines CLI</h3><a id="user-content-the-sqlite-lines-cli" class="anchor" aria-label="Permalink: The sqlite-lines CLI" href="#the-sqlite-lines-cli"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><code>sqlite-lines</code> comes with an example CLI modeled after <a href="https://github.com/mbostock/ndjson-cli">ndjson-cli</a> that demos the speed and versatility of <code>sqlite-lines</code>. Download a pre-compiled version from the <a href="https://github.com/asg017/sqlite-lines/releases">Releases page</a>, or build yourself with:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="make cli
+./dist/sqlite-lines"><pre class="notranslate"><code>make cli
+./dist/sqlite-lines
+</code></pre></div>
+<p dir="auto">The <code>sqlite-lines</code> CLI reads data from stdin and applies transformations with SQL code through its arguments.</p>
+<p dir="auto">The first argument should be a SQL expression that is used transform a single line from stdlin. The available columns are <code>rowid</code>, which is the "line number" that is being processed, and <code>d</code>, an alias for <code>line</code>, which is the text content of the current line (inspired by ndjson-cli). For example, to uppercase every line from a file with <a href="https://www.sqlite.org/lang_corefunc.html#upper" rel="nofollow"><code>upper()</code></a>:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="$ cat names.txt | sqlite-lines 'rowid || upper(d)'
+1ALEX
+2BRIAN
+3CRAIG"><pre>$ cat names.txt <span class="pl-k">|</span> sqlite-lines <span class="pl-s"><span class="pl-pds">'</span>rowid || upper(d)<span class="pl-pds">'</span></span>
+1ALEX
+2BRIAN
+3CRAIG</pre></div>
+<p dir="auto">This includes SQLite's new JSON <code>-></code> and <code>->></code> operators for NDJSON/JSONL files:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="$ cat data.ndjson | sqlite-lines 'd ->> "$.id"'
+$ cat data.ndjson | sqlite-lines 'json_object("name", d ->> "$.name", "age": d ->> "$.stats.age")'"><pre>$ cat data.ndjson <span class="pl-k">|</span> sqlite-lines <span class="pl-s"><span class="pl-pds">'</span>d ->> "$.id"<span class="pl-pds">'</span></span>
+$ cat data.ndjson <span class="pl-k">|</span> sqlite-lines <span class="pl-s"><span class="pl-pds">'</span>json_object("name", d ->> "$.name", "age": d ->> "$.stats.age")<span class="pl-pds">'</span></span></pre></div>
+<p dir="auto">The second argument is another SQL expression that's used in the WHERE statement of the underlying SQL query to filter out lines.</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="# get the names of all people older than 40
+cat data.ndjson | sqlite-lines 'd ->> "$.name"' 'd ->> "$.age" > 40'"><pre><span class="pl-c"><span class="pl-c">#</span> get the names of all people older than 40</span>
+cat data.ndjson <span class="pl-k">|</span> sqlite-lines <span class="pl-s"><span class="pl-pds">'</span>d ->> "$.name"<span class="pl-pds">'</span></span> <span class="pl-s"><span class="pl-pds">'</span>d ->> "$.age" > 40<span class="pl-pds">'</span></span></pre></div>
+<p dir="auto">The third argument is another SQL expression that's used in the GROUP BY statement of the underlying SQL query to aggregate lines.</p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">A Note on CSV Parsing</h3><a id="user-content-a-note-on-csv-parsing" class="anchor" aria-label="Permalink: A Note on CSV Parsing" href="#a-note-on-csv-parsing"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><code>sqlite-lines</code> isn't a great option for CSVs. Technically you can, but the moment your data has a <code>\n</code> character in a field or header, then you'll get corrupted results.</p>
+<p dir="auto">Instead, you should use the "official" <a href="https://www.sqlite.org/csv.html" rel="nofollow">CSV Virtual Table</a>, or use the <a href="https://www.sqlite.org/cli.html#csv" rel="nofollow"><code>.import</code></a> command in the SQLite CLI.</p>
+</article></div>

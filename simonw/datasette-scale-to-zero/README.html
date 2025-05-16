@@ -1,0 +1,144 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">datasette-scale-to-zero</h1><a id="user-content-datasette-scale-to-zero" class="anchor" aria-label="Permalink: datasette-scale-to-zero" href="#datasette-scale-to-zero"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://pypi.org/project/datasette-scale-to-zero/" rel="nofollow"><img src="https://img.shields.io/pypi/v/datasette-scale-to-zero.svg" alt="PyPI" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/29280dbf327bbb2a5aa156d9173f9e184eb1d094d8c8dd6faf1687f97a5d1bbd/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f6461746173657474652d7363616c652d746f2d7a65726f2e737667"></a>
+<a href="https://github.com/simonw/datasette-scale-to-zero/releases"><img src="https://img.shields.io/github/v/release/simonw/datasette-scale-to-zero?include_prereleases&label=changelog" alt="Changelog" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/6ff6f0df807b866684b7dc369371b8420cdf13aef06230785d7dce3b4d49087d/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f72656c656173652f73696d6f6e772f6461746173657474652d7363616c652d746f2d7a65726f3f696e636c7564655f70726572656c6561736573266c6162656c3d6368616e67656c6f67"></a>
+<a href="https://github.com/simonw/datasette-scale-to-zero/actions?query=workflow%3ATest"><img src="https://github.com/simonw/datasette-scale-to-zero/workflows/Test/badge.svg" alt="Tests" style="max-width: 100%;"></a>
+<a href="https://github.com/simonw/datasette-scale-to-zero/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" alt="License" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/c355f200ea90fddaa407b6eaab303663a669248ea3ca7b1fcf77dbe04ff5f48c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d417061636865253230322e302d626c75652e737667"></a></p>
+<p dir="auto">Quit Datasette if it has not received traffic for a specified time period</p>
+<p dir="auto">Some hosting providers such as <a href="https://fly.io/" rel="nofollow">Fly</a> offer a scale to zero mechanism, where servers can shut down and will be automatically started when new traffic arrives.</p>
+<p dir="auto">This plugin can be used to configure Datasette to quit X minutes (or seconds, or hours) after the last request it received. It can also cause the Datasette server to exit after a configured maximum time whether or not it is receiving traffic.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Installation</h2><a id="user-content-installation" class="anchor" aria-label="Permalink: Installation" href="#installation"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Install this plugin in the same environment as Datasette.</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="datasette install datasette-scale-to-zero"><pre class="notranslate"><code>datasette install datasette-scale-to-zero
+</code></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Configuration</h2><a id="user-content-configuration" class="anchor" aria-label="Permalink: Configuration" href="#configuration"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">This plugin will only take effect if it has been configured.</p>
+<p dir="auto">Add the following to your <code>metadata.json</code> or <code>metadata.yml</code> configuration file:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    "plugins": {
+        "datasette-scale-to-zero": {
+            "duration": "10m"
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"plugins"</span>: {
+        <span class="pl-ent">"datasette-scale-to-zero"</span>: {
+            <span class="pl-ent">"duration"</span>: <span class="pl-s"><span class="pl-pds">"</span>10m<span class="pl-pds">"</span></span>
+        }
+    }
+}</pre></div>
+<p dir="auto">This will cause Datasette to quit if it has not received any HTTP traffic for 10 minutes.</p>
+<p dir="auto">You can set this value using a suffix of <code>m</code> for minutes, <code>h</code> for hours or <code>s</code> for seconds.</p>
+<p dir="auto">To cause Datasette to exit if the server has been running for longer than a specific time, use <code>"max_age"</code>:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    "plugins": {
+        "datasette-scale-to-zero": {
+            "max_age": "10h"
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"plugins"</span>: {
+        <span class="pl-ent">"datasette-scale-to-zero"</span>: {
+            <span class="pl-ent">"max_age"</span>: <span class="pl-s"><span class="pl-pds">"</span>10h<span class="pl-pds">"</span></span>
+        }
+    }
+}</pre></div>
+<p dir="auto">This example will exit the Datasette server if it has been running for more than ten hours.</p>
+<p dir="auto">You can use <code>"duration"</code> and <code>"max_age"</code> together in the same configuration file:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    "plugins": {
+        "datasette-scale-to-zero": {
+            "max_age": "10h",
+            "duration": "5m"
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"plugins"</span>: {
+        <span class="pl-ent">"datasette-scale-to-zero"</span>: {
+            <span class="pl-ent">"max_age"</span>: <span class="pl-s"><span class="pl-pds">"</span>10h<span class="pl-pds">"</span></span>,
+            <span class="pl-ent">"duration"</span>: <span class="pl-s"><span class="pl-pds">"</span>5m<span class="pl-pds">"</span></span>
+        }
+    }
+}</pre></div>
+<p dir="auto">This example will quit if no traffic has been received in five minutes, or if the server has been running for ten hours.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Configuring a shutdown HTTP message</h2><a id="user-content-configuring-a-shutdown-http-message" class="anchor" aria-label="Permalink: Configuring a shutdown HTTP message" href="#configuring-a-shutdown-http-message"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">You can also configure the plugin to send an HTTP request somewhere right before it quits, using the <code>"shutdown_url"</code> option:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    "plugins": {
+        "datasette-scale-to-zero": {
+            "duration": "10m",
+            "shutdown_url": "https://example.com/shutdown"
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"plugins"</span>: {
+        <span class="pl-ent">"datasette-scale-to-zero"</span>: {
+            <span class="pl-ent">"duration"</span>: <span class="pl-s"><span class="pl-pds">"</span>10m<span class="pl-pds">"</span></span>,
+            <span class="pl-ent">"shutdown_url"</span>: <span class="pl-s"><span class="pl-pds">"</span>https://example.com/shutdown<span class="pl-pds">"</span></span>
+        }
+    }
+}</pre></div>
+<p dir="auto">You can add additional headers to the GET request - for example to send Authorization headers - using <code>"shutdown_headers"</code>:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    "plugins": {
+        "datasette-scale-to-zero": {
+            "duration": "10m",
+            "shutdown_url": "https://example.com/shutdown",
+            "shutdown_headers": {
+                "Authorization": "Bearer secret"
+            }
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"plugins"</span>: {
+        <span class="pl-ent">"datasette-scale-to-zero"</span>: {
+            <span class="pl-ent">"duration"</span>: <span class="pl-s"><span class="pl-pds">"</span>10m<span class="pl-pds">"</span></span>,
+            <span class="pl-ent">"shutdown_url"</span>: <span class="pl-s"><span class="pl-pds">"</span>https://example.com/shutdown<span class="pl-pds">"</span></span>,
+            <span class="pl-ent">"shutdown_headers"</span>: {
+                <span class="pl-ent">"Authorization"</span>: <span class="pl-s"><span class="pl-pds">"</span>Bearer secret<span class="pl-pds">"</span></span>
+            }
+        }
+    }
+}</pre></div>
+<p dir="auto">Use <code>"shutdown_method"</code> to set a different HTTP method, e.g. for <code>POST</code>. You can also set <code>shutdown_body</code> to specify the body that should be sent with the request:</p>
+<div class="highlight highlight-source-json notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="{
+    "plugins": {
+        "datasette-scale-to-zero": {
+            "duration": "10m",
+            "shutdown_url": "https://example.com/shutdown",
+            "shutdown_method": "POST",
+            "shutdown_headers": {
+                "Authorization": "Bearer secret",
+                "Content-Type": "application/json"
+            },
+            "shutdown_body": "{\"message\": \"shutting down\"}"
+        }
+    }
+}"><pre>{
+    <span class="pl-ent">"plugins"</span>: {
+        <span class="pl-ent">"datasette-scale-to-zero"</span>: {
+            <span class="pl-ent">"duration"</span>: <span class="pl-s"><span class="pl-pds">"</span>10m<span class="pl-pds">"</span></span>,
+            <span class="pl-ent">"shutdown_url"</span>: <span class="pl-s"><span class="pl-pds">"</span>https://example.com/shutdown<span class="pl-pds">"</span></span>,
+            <span class="pl-ent">"shutdown_method"</span>: <span class="pl-s"><span class="pl-pds">"</span>POST<span class="pl-pds">"</span></span>,
+            <span class="pl-ent">"shutdown_headers"</span>: {
+                <span class="pl-ent">"Authorization"</span>: <span class="pl-s"><span class="pl-pds">"</span>Bearer secret<span class="pl-pds">"</span></span>,
+                <span class="pl-ent">"Content-Type"</span>: <span class="pl-s"><span class="pl-pds">"</span>application/json<span class="pl-pds">"</span></span>
+            },
+            <span class="pl-ent">"shutdown_body"</span>: <span class="pl-s"><span class="pl-pds">"</span>{<span class="pl-cce">\"</span>message<span class="pl-cce">\"</span>: <span class="pl-cce">\"</span>shutting down<span class="pl-cce">\"</span>}<span class="pl-pds">"</span></span>
+        }
+    }
+}</pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Development</h2><a id="user-content-development" class="anchor" aria-label="Permalink: Development" href="#development"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">To set up this plugin locally, first checkout the code. Then create a new virtual environment:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="cd datasette-scale-to-zero
+python3 -m venv venv
+source venv/bin/activate"><pre class="notranslate"><code>cd datasette-scale-to-zero
+python3 -m venv venv
+source venv/bin/activate
+</code></pre></div>
+<p dir="auto">Now install the dependencies and test dependencies:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pip install -e '.[test]'"><pre class="notranslate"><code>pip install -e '.[test]'
+</code></pre></div>
+<p dir="auto">To run the tests:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="pytest"><pre class="notranslate"><code>pytest
+</code></pre></div>
+</article></div>
