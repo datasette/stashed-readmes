@@ -1,16 +1,104 @@
-<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">LLM</h1><a id="user-content-llm" class="anchor" aria-label="Permalink: LLM" href="#llm"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
-<p dir="auto"><a href="https://pypi.org/project/llm/" rel="nofollow"><img src="https://img.shields.io/pypi/v/llm.svg" alt="PyPI" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/6c9ef699a3c2efe71383382274e70fc5e84a3911297fc536ea67c29579ddb3d9/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f6c6c6d2e737667"></a>
-<a href="https://llm.datasette.io/" rel="nofollow"><img src="https://readthedocs.org/projects/llm/badge/?version=latest" alt="Documentation" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/72c43cf95ce9fa5c585419b1cd579cdf208dbcd3221b267e6d99b425411cd2cc/68747470733a2f2f72656164746865646f63732e6f72672f70726f6a656374732f6c6c6d2f62616467652f3f76657273696f6e3d6c6174657374"></a>
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text">
+<div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">LLM</h1><a id="user-content-llm" class="anchor" aria-label="Permalink: LLM" href="#llm"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://github.com/simonw/llm"><img src="https://img.shields.io/badge/github-repo-green" alt="GitHub repo" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/6c41bd81c08d25790a5a7f18f08e98763aa0dafcadf62c8f8a56ba9b48c8d1ba/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6769746875622d7265706f2d677265656e"></a>
+<a href="https://pypi.org/project/llm/" rel="nofollow"><img src="https://img.shields.io/pypi/v/llm.svg" alt="PyPI" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/6c9ef699a3c2efe71383382274e70fc5e84a3911297fc536ea67c29579ddb3d9/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f6c6c6d2e737667"></a>
 <a href="https://llm.datasette.io/en/stable/changelog.html" rel="nofollow"><img src="https://img.shields.io/github/v/release/simonw/llm?include_prereleases&label=changelog" alt="Changelog" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/4a64d6e4de982cad92be96faf5efbd77a505bdb8e594a6bc303416efdfdc78a1/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f762f72656c656173652f73696d6f6e772f6c6c6d3f696e636c7564655f70726572656c6561736573266c6162656c3d6368616e67656c6f67"></a>
 <a href="https://github.com/simonw/llm/actions?query=workflow%3ATest"><img src="https://github.com/simonw/llm/workflows/Test/badge.svg" alt="Tests" style="max-width: 100%;"></a>
 <a href="https://github.com/simonw/llm/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" alt="License" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/c355f200ea90fddaa407b6eaab303663a669248ea3ca7b1fcf77dbe04ff5f48c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d417061636865253230322e302d626c75652e737667"></a>
 <a href="https://datasette.io/discord-llm" rel="nofollow"><img src="https://img.shields.io/discord/823971286308356157?label=discord" alt="Discord" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/94e396359356f1b1dd8fed242a2f694cb88a3b94a9eef104404225094357e912/68747470733a2f2f696d672e736869656c64732e696f2f646973636f72642f3832333937313238363330383335363135373f6c6162656c3d646973636f7264"></a>
 <a href="https://formulae.brew.sh/formula/llm" rel="nofollow"><img src="https://img.shields.io/homebrew/installs/dy/llm?color=yellow&label=homebrew&logo=homebrew" alt="Homebrew" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/dbee90cd77c9cfffdc83b95c51d566d88c97f699c965f64f2dbad11acc74582f/68747470733a2f2f696d672e736869656c64732e696f2f686f6d65627265772f696e7374616c6c732f64792f6c6c6d3f636f6c6f723d79656c6c6f77266c6162656c3d686f6d6562726577266c6f676f3d686f6d6562726577"></a></p>
-<p dir="auto">A CLI utility and Python library for interacting with Large Language Models, both via remote APIs and models that can be installed and run on your own machine.</p>
-<p dir="auto"><a href="https://llm.datasette.io/en/stable/usage.html#executing-a-prompt" rel="nofollow">Run prompts from the command-line</a>, <a href="https://llm.datasette.io/en/stable/logging.html" rel="nofollow">store the results in SQLite</a>, <a href="https://llm.datasette.io/en/stable/embeddings/index.html" rel="nofollow">generate embeddings</a> and more.</p>
-<p dir="auto">Consult the <strong><a href="https://llm.datasette.io/en/stable/plugins/directory.html" rel="nofollow">LLM plugins directory</a></strong> for plugins that provide access to remote and local models.</p>
-<p dir="auto">Full documentation: <strong><a href="https://llm.datasette.io/" rel="nofollow">llm.datasette.io</a></strong></p>
-<p dir="auto">Background on this project:</p>
+<p dir="auto">A CLI tool and Python library for interacting with <strong>OpenAI</strong>, <strong>Anthropic’s Claude</strong>, <strong>Google’s Gemini</strong>, <strong>Meta’s Llama</strong> and dozens of other Large Language Models, both via remote APIs and with models that can be installed and run on your own machine.</p>
+<p dir="auto">Watch <strong><a href="https://www.youtube.com/watch?v=QUXQNi6jQ30" rel="nofollow">Language models on the command-line</a></strong> on YouTube for a demo or <a href="https://simonwillison.net/2024/Jun/17/cli-language-models/" rel="nofollow">read the accompanying detailed notes</a>.</p>
+<p dir="auto">With LLM you can:</p>
+<ul dir="auto">
+<li><a href="https://llm.datasette.io/en/stable/usage.html#usage-executing-prompts" rel="nofollow">Run prompts from the command-line</a></li>
+<li><a href="https://llm.datasette.io/en/stable/logging.html#logging" rel="nofollow">Store prompts and responses in SQLite</a></li>
+<li><a href="https://llm.datasette.io/en/stable/embeddings/index.html#embeddings" rel="nofollow">Generate and store embeddings</a></li>
+<li><a href="https://llm.datasette.io/en/stable/schemas.html#schemas" rel="nofollow">Extract structured content from text and images</a></li>
+<li>… and much, much more</li>
+</ul>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Quick start</h2><a id="user-content-quick-start" class="anchor" aria-label="Permalink: Quick start" href="#quick-start"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">First, install LLM using <code>pip</code> or Homebrew or <code>pipx</code> or <code>uv</code>:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="pip install llm"><pre>pip install llm</pre></div>
+<p dir="auto">Or with Homebrew (see <a href="https://llm.datasette.io/en/stable/setup.html#homebrew-warning" rel="nofollow">warning note</a>):</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="brew install llm"><pre>brew install llm</pre></div>
+<p dir="auto">Or with <a href="https://pypa.github.io/pipx/" rel="nofollow">pipx</a>:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="pipx install llm"><pre>pipx install llm</pre></div>
+<p dir="auto">Or with <a href="https://docs.astral.sh/uv/guides/tools/" rel="nofollow">uv</a></p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="uv tool install llm"><pre>uv tool install llm</pre></div>
+<p dir="auto">If you have an <a href="https://platform.openai.com/api-keys" rel="nofollow">OpenAI API key</a> key you can run this:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="# Paste your OpenAI API key into this
+llm keys set openai
+
+# Run a prompt (with the default gpt-4o-mini model)
+llm "Ten fun names for a pet pelican"
+
+# Extract text from an image
+llm "extract text" -a scanned-document.jpg
+
+# Use a system prompt against a file
+cat myfile.py | llm -s "Explain this code""><pre><span class="pl-c"><span class="pl-c">#</span> Paste your OpenAI API key into this</span>
+llm keys <span class="pl-c1">set</span> openai
+
+<span class="pl-c"><span class="pl-c">#</span> Run a prompt (with the default gpt-4o-mini model)</span>
+llm <span class="pl-s"><span class="pl-pds">"</span>Ten fun names for a pet pelican<span class="pl-pds">"</span></span>
+
+<span class="pl-c"><span class="pl-c">#</span> Extract text from an image</span>
+llm <span class="pl-s"><span class="pl-pds">"</span>extract text<span class="pl-pds">"</span></span> -a scanned-document.jpg
+
+<span class="pl-c"><span class="pl-c">#</span> Use a system prompt against a file</span>
+cat myfile.py <span class="pl-k">|</span> llm -s <span class="pl-s"><span class="pl-pds">"</span>Explain this code<span class="pl-pds">"</span></span></pre></div>
+<p dir="auto">Run prompts against <a href="https://aistudio.google.com/apikey" rel="nofollow">Gemini</a> or <a href="https://console.anthropic.com/" rel="nofollow">Anthropic</a> with their respective plugins:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="llm install llm-gemini
+llm keys set gemini
+# Paste Gemini API key here
+llm -m gemini-2.0-flash 'Tell me fun facts about Mountain View'
+
+llm install llm-anthropic
+llm keys set anthropic
+# Paste Anthropic API key here
+llm -m claude-4-opus 'Impress me with wild facts about turnips'"><pre>llm install llm-gemini
+llm keys <span class="pl-c1">set</span> gemini
+<span class="pl-c"><span class="pl-c">#</span> Paste Gemini API key here</span>
+llm -m gemini-2.0-flash <span class="pl-s"><span class="pl-pds">'</span>Tell me fun facts about Mountain View<span class="pl-pds">'</span></span>
+
+llm install llm-anthropic
+llm keys <span class="pl-c1">set</span> anthropic
+<span class="pl-c"><span class="pl-c">#</span> Paste Anthropic API key here</span>
+llm -m claude-4-opus <span class="pl-s"><span class="pl-pds">'</span>Impress me with wild facts about turnips<span class="pl-pds">'</span></span></pre></div>
+<p dir="auto">You can also <a href="https://llm.datasette.io/en/stable/plugins/installing-plugins.html#installing-plugins" rel="nofollow">install a plugin</a> to access models that can run on your local device. If you use <a href="https://ollama.com/" rel="nofollow">Ollama</a>:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="# Install the plugin
+llm install llm-ollama
+
+# Download and run a prompt against the Orca Mini 7B model
+ollama pull llama3.2:latest
+llm -m llama3.2:latest 'What is the capital of France?'"><pre><span class="pl-c"><span class="pl-c">#</span> Install the plugin</span>
+llm install llm-ollama
+
+<span class="pl-c"><span class="pl-c">#</span> Download and run a prompt against the Orca Mini 7B model</span>
+ollama pull llama3.2:latest
+llm -m llama3.2:latest <span class="pl-s"><span class="pl-pds">'</span>What is the capital of France?<span class="pl-pds">'</span></span></pre></div>
+<p dir="auto">To start <a href="https://llm.datasette.io/en/stable/usage.html#usage-chat" rel="nofollow">an interactive chat</a> with a model, use <code>llm chat</code>:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="llm chat -m gpt-4.1"><pre>llm chat -m gpt-4.1</pre></div>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="Chatting with gpt-4.1
+Type 'exit' or 'quit' to exit
+Type '!multi' to enter multiple lines, then '!end' to finish
+Type '!edit' to open your default editor and modify the prompt.
+Type '!fragment <my_fragment> [<another_fragment> ...]' to insert one or more fragments
+> Tell me a joke about a pelican
+Why don't pelicans like to tip waiters?
+
+Because they always have a big bill!"><pre lang="default" class="notranslate"><code>Chatting with gpt-4.1
+Type 'exit' or 'quit' to exit
+Type '!multi' to enter multiple lines, then '!end' to finish
+Type '!edit' to open your default editor and modify the prompt.
+Type '!fragment <my_fragment> [<another_fragment> ...]' to insert one or more fragments
+> Tell me a joke about a pelican
+Why don't pelicans like to tip waiters?
+
+Because they always have a big bill!
+</code></pre></div>
+<p dir="auto">More background on this project:</p>
 <ul dir="auto">
 <li><a href="https://simonwillison.net/2023/May/18/cli-tools-for-llms/" rel="nofollow">llm, ttok and strip-tags—CLI tools for working with ChatGPT and other LLMs</a></li>
 <li><a href="https://simonwillison.net/2023/Jul/12/llm/" rel="nofollow">The LLM CLI tool now supports self-hosted language models via plugins</a></li>
@@ -20,68 +108,353 @@
 <li><a href="https://simonwillison.net/2025/Feb/28/llm-schemas/" rel="nofollow">Structured data extraction from unstructured content using LLM schemas</a></li>
 <li><a href="https://simonwillison.net/2025/Apr/7/long-context-llm/" rel="nofollow">Long context support in LLM 0.24 using fragments and template plugins</a></li>
 </ul>
-<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Installation</h2><a id="user-content-installation" class="anchor" aria-label="Permalink: Installation" href="#installation"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
-<p dir="auto">Install this tool using <code>pip</code>:</p>
-<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="pip install llm"><pre>pip install llm</pre></div>
-<p dir="auto">Or using <a href="https://brew.sh/" rel="nofollow">Homebrew</a>:</p>
-<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="brew install llm"><pre>brew install llm</pre></div>
-<p dir="auto"><a href="https://llm.datasette.io/en/stable/setup.html" rel="nofollow">Detailed installation instructions</a>.</p>
-<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Getting started</h2><a id="user-content-getting-started" class="anchor" aria-label="Permalink: Getting started" href="#getting-started"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
-<p dir="auto">If you have an <a href="https://platform.openai.com/api-keys" rel="nofollow">OpenAI API key</a> you can get started using the OpenAI models right away.</p>
-<p dir="auto">As an alternative to OpenAI, you can <a href="https://llm.datasette.io/en/stable/plugins/installing-plugins.html" rel="nofollow">install plugins</a> to access models by other providers, including models that can be installed and run on your own device.</p>
-<p dir="auto">Save your OpenAI API key like this:</p>
-<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="llm keys set openai"><pre>llm keys <span class="pl-c1">set</span> openai</pre></div>
-<p dir="auto">This will prompt you for your key like so:</p>
-<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="Enter key: <paste here>"><pre class="notranslate"><code>Enter key: <paste here>
-</code></pre></div>
-<p dir="auto">Now that you've saved a key you can run a prompt like this:</p>
-<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="llm "Five cute names for a pet penguin""><pre>llm <span class="pl-s"><span class="pl-pds">"</span>Five cute names for a pet penguin<span class="pl-pds">"</span></span></pre></div>
-<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="1. Waddles
-2. Pebbles
-3. Bubbles
-4. Flappy
-5. Chilly"><pre class="notranslate"><code>1. Waddles
-2. Pebbles
-3. Bubbles
-4. Flappy
-5. Chilly
-</code></pre></div>
-<p dir="auto">Read the <a href="https://llm.datasette.io/en/stable/usage.html" rel="nofollow">usage instructions</a> for more.</p>
-<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Installing a model that runs on your own machine</h2><a id="user-content-installing-a-model-that-runs-on-your-own-machine" class="anchor" aria-label="Permalink: Installing a model that runs on your own machine" href="#installing-a-model-that-runs-on-your-own-machine"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
-<p dir="auto"><a href="https://llm.datasette.io/en/stable/plugins/index.html" rel="nofollow">LLM plugins</a> can add support for alternative models, including models that run on your own machine.</p>
-<p dir="auto">To download and run Mistral 7B Instruct locally, you can install the <a href="https://github.com/simonw/llm-gpt4all">llm-gpt4all</a> plugin:</p>
-<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="llm install llm-gpt4all"><pre>llm install llm-gpt4all</pre></div>
-<p dir="auto">Then run this command to see which models it makes available:</p>
-<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="llm models"><pre>llm models</pre></div>
-<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="gpt4all: all-MiniLM-L6-v2-f16 - SBert, 43.76MB download, needs 1GB RAM
-gpt4all: orca-mini-3b-gguf2-q4_0 - Mini Orca (Small), 1.84GB download, needs 4GB RAM
-gpt4all: mistral-7b-instruct-v0 - Mistral Instruct, 3.83GB download, needs 8GB RAM
-..."><pre class="notranslate"><code>gpt4all: all-MiniLM-L6-v2-f16 - SBert, 43.76MB download, needs 1GB RAM
-gpt4all: orca-mini-3b-gguf2-q4_0 - Mini Orca (Small), 1.84GB download, needs 4GB RAM
-gpt4all: mistral-7b-instruct-v0 - Mistral Instruct, 3.83GB download, needs 8GB RAM
-...
-</code></pre></div>
-<p dir="auto">Each model file will be downloaded once the first time you use it. Try Mistral out like this:</p>
-<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="llm -m mistral-7b-instruct-v0 'difference between a pelican and a walrus'"><pre>llm -m mistral-7b-instruct-v0 <span class="pl-s"><span class="pl-pds">'</span>difference between a pelican and a walrus<span class="pl-pds">'</span></span></pre></div>
-<p dir="auto">You can also start a chat session with the model using the <code>llm chat</code> command:</p>
-<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="llm chat -m mistral-7b-instruct-v0"><pre>llm chat -m mistral-7b-instruct-v0</pre></div>
-<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="Chatting with mistral-7b-instruct-v0
-Type 'exit' or 'quit' to exit
-Type '!multi' to enter multiple lines, then '!end' to finish
-> "><pre class="notranslate"><code>Chatting with mistral-7b-instruct-v0
-Type 'exit' or 'quit' to exit
-Type '!multi' to enter multiple lines, then '!end' to finish
-> 
-</code></pre></div>
-<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Using a system prompt</h2><a id="user-content-using-a-system-prompt" class="anchor" aria-label="Permalink: Using a system prompt" href="#using-a-system-prompt"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
-<p dir="auto">You can use the <code>-s/--system</code> option to set a system prompt, providing instructions for processing other input to the tool.</p>
-<p dir="auto">To describe how the code in a file works, try this:</p>
-<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="cat mycode.py | llm -s "Explain this code""><pre>cat mycode.py <span class="pl-k">|</span> llm -s <span class="pl-s"><span class="pl-pds">"</span>Explain this code<span class="pl-pds">"</span></span></pre></div>
-<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Help</h2><a id="user-content-help" class="anchor" aria-label="Permalink: Help" href="#help"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
-<p dir="auto">For help, run:</p>
-<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="llm --help"><pre class="notranslate"><code>llm --help
-</code></pre></div>
-<p dir="auto">You can also use:</p>
-<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="python -m llm --help"><pre class="notranslate"><code>python -m llm --help
-</code></pre></div>
+<p dir="auto">See also <a href="https://simonwillison.net/tags/llm/" rel="nofollow">the llm tag</a> on my blog.</p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Contents</h2><a id="user-content-contents" class="anchor" aria-label="Permalink: Contents" href="#contents"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li>
+<p dir="auto"><a href="https://llm.datasette.io/en/stable/setup.html" rel="nofollow">Setup</a></p>
+<ul dir="auto">
+<li><a href="https://llm.datasette.io/en/stable/setup.html#installation" rel="nofollow">Installation</a></li>
+<li><a href="https://llm.datasette.io/en/stable/setup.html#upgrading-to-the-latest-version" rel="nofollow">Upgrading to the latest version</a></li>
+<li><a href="https://llm.datasette.io/en/stable/setup.html#using-uvx" rel="nofollow">Using uvx</a></li>
+<li><a href="https://llm.datasette.io/en/stable/setup.html#a-note-about-homebrew-and-pytorch" rel="nofollow">A note about Homebrew and PyTorch</a></li>
+<li><a href="https://llm.datasette.io/en/stable/setup.html#installing-plugins" rel="nofollow">Installing plugins</a></li>
+<li><a href="https://llm.datasette.io/en/stable/setup.html#api-key-management" rel="nofollow">API key management</a>
+<ul dir="auto">
+<li><a href="https://llm.datasette.io/en/stable/setup.html#saving-and-using-stored-keys" rel="nofollow">Saving and using stored keys</a></li>
+<li><a href="https://llm.datasette.io/en/stable/setup.html#passing-keys-using-the-key-option" rel="nofollow">Passing keys using the –key option</a></li>
+<li><a href="https://llm.datasette.io/en/stable/setup.html#keys-in-environment-variables" rel="nofollow">Keys in environment variables</a></li>
+</ul>
+</li>
+<li><a href="https://llm.datasette.io/en/stable/setup.html#configuration" rel="nofollow">Configuration</a>
+<ul dir="auto">
+<li><a href="https://llm.datasette.io/en/stable/setup.html#setting-a-custom-default-model" rel="nofollow">Setting a custom default model</a></li>
+<li><a href="https://llm.datasette.io/en/stable/setup.html#setting-a-custom-directory-location" rel="nofollow">Setting a custom directory location</a></li>
+<li><a href="https://llm.datasette.io/en/stable/setup.html#turning-sqlite-logging-on-and-off" rel="nofollow">Turning SQLite logging on and off</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p dir="auto"><a href="https://llm.datasette.io/en/stable/usage.html" rel="nofollow">Usage</a></p>
+<ul dir="auto">
+<li><a href="https://llm.datasette.io/en/stable/usage.html#executing-a-prompt" rel="nofollow">Executing a prompt</a>
+<ul dir="auto">
+<li><a href="https://llm.datasette.io/en/stable/usage.html#model-options" rel="nofollow">Model options</a></li>
+<li><a href="https://llm.datasette.io/en/stable/usage.html#attachments" rel="nofollow">Attachments</a></li>
+<li><a href="https://llm.datasette.io/en/stable/usage.html#system-prompts" rel="nofollow">System prompts</a></li>
+<li><a href="https://llm.datasette.io/en/stable/usage.html#tools" rel="nofollow">Tools</a></li>
+<li><a href="https://llm.datasette.io/en/stable/usage.html#extracting-fenced-code-blocks" rel="nofollow">Extracting fenced code blocks</a></li>
+<li><a href="https://llm.datasette.io/en/stable/usage.html#schemas" rel="nofollow">Schemas</a></li>
+<li><a href="https://llm.datasette.io/en/stable/usage.html#fragments" rel="nofollow">Fragments</a></li>
+<li><a href="https://llm.datasette.io/en/stable/usage.html#continuing-a-conversation" rel="nofollow">Continuing a conversation</a></li>
+<li><a href="https://llm.datasette.io/en/stable/usage.html#tips-for-using-llm-with-bash-or-zsh" rel="nofollow">Tips for using LLM with Bash or Zsh</a></li>
+<li><a href="https://llm.datasette.io/en/stable/usage.html#completion-prompts" rel="nofollow">Completion prompts</a></li>
+</ul>
+</li>
+<li><a href="https://llm.datasette.io/en/stable/usage.html#starting-an-interactive-chat" rel="nofollow">Starting an interactive chat</a></li>
+<li><a href="https://llm.datasette.io/en/stable/usage.html#listing-available-models" rel="nofollow">Listing available models</a></li>
+<li><a href="https://llm.datasette.io/en/stable/usage.html#setting-default-options-for-models" rel="nofollow">Setting default options for models</a></li>
+</ul>
+</li>
+<li>
+<p dir="auto"><a href="https://llm.datasette.io/en/stable/openai-models.html" rel="nofollow">OpenAI models</a></p>
+<ul dir="auto">
+<li><a href="https://llm.datasette.io/en/stable/openai-models.html#configuration" rel="nofollow">Configuration</a></li>
+<li><a href="https://llm.datasette.io/en/stable/openai-models.html#openai-language-models" rel="nofollow">OpenAI language models</a></li>
+<li><a href="https://llm.datasette.io/en/stable/openai-models.html#model-features" rel="nofollow">Model features</a></li>
+<li><a href="https://llm.datasette.io/en/stable/openai-models.html#openai-embedding-models" rel="nofollow">OpenAI embedding models</a></li>
+<li><a href="https://llm.datasette.io/en/stable/openai-models.html#openai-completion-models" rel="nofollow">OpenAI completion models</a></li>
+<li><a href="https://llm.datasette.io/en/stable/openai-models.html#adding-more-openai-models" rel="nofollow">Adding more OpenAI models</a></li>
+</ul>
+</li>
+<li>
+<p dir="auto"><a href="https://llm.datasette.io/en/stable/other-models.html" rel="nofollow">Other models</a></p>
+<ul dir="auto">
+<li><a href="https://llm.datasette.io/en/stable/other-models.html#installing-and-using-a-local-model" rel="nofollow">Installing and using a local model</a></li>
+<li><a href="https://llm.datasette.io/en/stable/other-models.html#openai-compatible-models" rel="nofollow">OpenAI-compatible models</a>
+<ul dir="auto">
+<li><a href="https://llm.datasette.io/en/stable/other-models.html#extra-http-headers" rel="nofollow">Extra HTTP headers</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p dir="auto"><a href="https://llm.datasette.io/en/stable/tools.html" rel="nofollow">Tools</a></p>
+<ul dir="auto">
+<li><a href="https://llm.datasette.io/en/stable/tools.html#how-tools-work" rel="nofollow">How tools work</a></li>
+<li><a href="https://llm.datasette.io/en/stable/tools.html#trying-out-tools" rel="nofollow">Trying out tools</a></li>
+<li><a href="https://llm.datasette.io/en/stable/tools.html#llm-s-implementation-of-tools" rel="nofollow">LLM’s implementation of tools</a></li>
+<li><a href="https://llm.datasette.io/en/stable/tools.html#default-tools" rel="nofollow">Default tools</a></li>
+<li><a href="https://llm.datasette.io/en/stable/tools.html#tips-for-implementing-tools" rel="nofollow">Tips for implementing tools</a></li>
+</ul>
+</li>
+<li>
+<p dir="auto"><a href="https://llm.datasette.io/en/stable/schemas.html" rel="nofollow">Schemas</a></p>
+<ul dir="auto">
+<li><a href="https://llm.datasette.io/en/stable/schemas.html#schemas-tutorial" rel="nofollow">Schemas tutorial</a>
+<ul dir="auto">
+<li><a href="https://llm.datasette.io/en/stable/schemas.html#getting-started-with-dogs" rel="nofollow">Getting started with dogs</a></li>
+<li><a href="https://llm.datasette.io/en/stable/schemas.html#extracting-people-from-a-news-articles" rel="nofollow">Extracting people from a news articles</a></li>
+</ul>
+</li>
+<li><a href="https://llm.datasette.io/en/stable/schemas.html#using-json-schemas" rel="nofollow">Using JSON schemas</a></li>
+<li><a href="https://llm.datasette.io/en/stable/schemas.html#ways-to-specify-a-schema" rel="nofollow">Ways to specify a schema</a></li>
+<li><a href="https://llm.datasette.io/en/stable/schemas.html#concise-llm-schema-syntax" rel="nofollow">Concise LLM schema syntax</a></li>
+<li><a href="https://llm.datasette.io/en/stable/schemas.html#saving-reusable-schemas-in-templates" rel="nofollow">Saving reusable schemas in templates</a></li>
+<li><a href="https://llm.datasette.io/en/stable/schemas.html#browsing-logged-json-objects-created-using-schemas" rel="nofollow">Browsing logged JSON objects created using schemas</a></li>
+</ul>
+</li>
+<li>
+<p dir="auto"><a href="https://llm.datasette.io/en/stable/templates.html" rel="nofollow">Templates</a></p>
+<ul dir="auto">
+<li><a href="https://llm.datasette.io/en/stable/templates.html#getting-started-with-save" rel="nofollow">Getting started with <code>–save</code></a></li>
+<li><a href="https://llm.datasette.io/en/stable/templates.html#using-a-template" rel="nofollow">Using a template</a></li>
+<li><a href="https://llm.datasette.io/en/stable/templates.html#listing-available-templates" rel="nofollow">Listing available templates</a></li>
+<li><a href="https://llm.datasette.io/en/stable/templates.html#templates-as-yaml-files" rel="nofollow">Templates as YAML files</a>
+<ul dir="auto">
+<li><a href="https://llm.datasette.io/en/stable/templates.html#system-prompts" rel="nofollow">System prompts</a></li>
+<li><a href="https://llm.datasette.io/en/stable/templates.html#fragments" rel="nofollow">Fragments</a></li>
+<li><a href="https://llm.datasette.io/en/stable/templates.html#options" rel="nofollow">Options</a></li>
+<li><a href="https://llm.datasette.io/en/stable/templates.html#schemas" rel="nofollow">Schemas</a></li>
+<li><a href="https://llm.datasette.io/en/stable/templates.html#additional-template-variables" rel="nofollow">Additional template variables</a></li>
+<li><a href="https://llm.datasette.io/en/stable/templates.html#specifying-default-parameters" rel="nofollow">Specifying default parameters</a></li>
+<li><a href="https://llm.datasette.io/en/stable/templates.html#configuring-code-extraction" rel="nofollow">Configuring code extraction</a></li>
+<li><a href="https://llm.datasette.io/en/stable/templates.html#setting-a-default-model-for-a-template" rel="nofollow">Setting a default model for a template</a></li>
+</ul>
+</li>
+<li><a href="https://llm.datasette.io/en/stable/templates.html#template-loaders-from-plugins" rel="nofollow">Template loaders from plugins</a></li>
+</ul>
+</li>
+<li>
+<p dir="auto"><a href="https://llm.datasette.io/en/stable/fragments.html" rel="nofollow">Fragments</a></p>
+<ul dir="auto">
+<li><a href="https://llm.datasette.io/en/stable/fragments.html#using-fragments-in-a-prompt" rel="nofollow">Using fragments in a prompt</a></li>
+<li><a href="https://llm.datasette.io/en/stable/fragments.html#using-fragments-in-chat" rel="nofollow">Using fragments in chat</a></li>
+<li><a href="https://llm.datasette.io/en/stable/fragments.html#browsing-fragments" rel="nofollow">Browsing fragments</a></li>
+<li><a href="https://llm.datasette.io/en/stable/fragments.html#setting-aliases-for-fragments" rel="nofollow">Setting aliases for fragments</a></li>
+<li><a href="https://llm.datasette.io/en/stable/fragments.html#viewing-fragments-in-your-logs" rel="nofollow">Viewing fragments in your logs</a></li>
+<li><a href="https://llm.datasette.io/en/stable/fragments.html#using-fragments-from-plugins" rel="nofollow">Using fragments from plugins</a></li>
+<li><a href="https://llm.datasette.io/en/stable/fragments.html#listing-available-fragment-prefixes" rel="nofollow">Listing available fragment prefixes</a></li>
+</ul>
+</li>
+<li>
+<p dir="auto"><a href="https://llm.datasette.io/en/stable/aliases.html" rel="nofollow">Model aliases</a></p>
+<ul dir="auto">
+<li><a href="https://llm.datasette.io/en/stable/aliases.html#listing-aliases" rel="nofollow">Listing aliases</a></li>
+<li><a href="https://llm.datasette.io/en/stable/aliases.html#adding-a-new-alias" rel="nofollow">Adding a new alias</a></li>
+<li><a href="https://llm.datasette.io/en/stable/aliases.html#removing-an-alias" rel="nofollow">Removing an alias</a></li>
+<li><a href="https://llm.datasette.io/en/stable/aliases.html#viewing-the-aliases-file" rel="nofollow">Viewing the aliases file</a></li>
+</ul>
+</li>
+<li>
+<p dir="auto"><a href="https://llm.datasette.io/en/stable/embeddings/index.html" rel="nofollow">Embeddings</a></p>
+<ul dir="auto">
+<li><a href="https://llm.datasette.io/en/stable/embeddings/cli.html" rel="nofollow">Embedding with the CLI</a>
+<ul dir="auto">
+<li><a href="https://llm.datasette.io/en/stable/embeddings/cli.html#llm-embed" rel="nofollow">llm embed</a></li>
+<li><a href="https://llm.datasette.io/en/stable/embeddings/cli.html#llm-embed-multi" rel="nofollow">llm embed-multi</a></li>
+<li><a href="https://llm.datasette.io/en/stable/embeddings/cli.html#llm-similar" rel="nofollow">llm similar</a></li>
+<li><a href="https://llm.datasette.io/en/stable/embeddings/cli.html#llm-embed-models" rel="nofollow">llm embed-models</a></li>
+<li><a href="https://llm.datasette.io/en/stable/embeddings/cli.html#llm-collections-list" rel="nofollow">llm collections list</a></li>
+<li><a href="https://llm.datasette.io/en/stable/embeddings/cli.html#llm-collections-delete" rel="nofollow">llm collections delete</a></li>
+</ul>
+</li>
+<li><a href="https://llm.datasette.io/en/stable/embeddings/python-api.html" rel="nofollow">Using embeddings from Python</a>
+<ul dir="auto">
+<li><a href="https://llm.datasette.io/en/stable/embeddings/python-api.html#working-with-collections" rel="nofollow">Working with collections</a></li>
+<li><a href="https://llm.datasette.io/en/stable/embeddings/python-api.html#retrieving-similar-items" rel="nofollow">Retrieving similar items</a></li>
+<li><a href="https://llm.datasette.io/en/stable/embeddings/python-api.html#sql-schema" rel="nofollow">SQL schema</a></li>
+</ul>
+</li>
+<li><a href="https://llm.datasette.io/en/stable/embeddings/writing-plugins.html" rel="nofollow">Writing plugins to add new embedding models</a>
+<ul dir="auto">
+<li><a href="https://llm.datasette.io/en/stable/embeddings/writing-plugins.html#embedding-binary-content" rel="nofollow">Embedding binary content</a></li>
+</ul>
+</li>
+<li><a href="https://llm.datasette.io/en/stable/embeddings/storage.html" rel="nofollow">Embedding storage format</a></li>
+</ul>
+</li>
+<li>
+<p dir="auto"><a href="https://llm.datasette.io/en/stable/plugins/index.html" rel="nofollow">Plugins</a></p>
+<ul dir="auto">
+<li><a href="https://llm.datasette.io/en/stable/plugins/installing-plugins.html" rel="nofollow">Installing plugins</a>
+<ul dir="auto">
+<li><a href="https://llm.datasette.io/en/stable/plugins/installing-plugins.html#listing-installed-plugins" rel="nofollow">Listing installed plugins</a></li>
+<li><a href="https://llm.datasette.io/en/stable/plugins/installing-plugins.html#running-with-a-subset-of-plugins" rel="nofollow">Running with a subset of plugins</a></li>
+</ul>
+</li>
+<li><a href="https://llm.datasette.io/en/stable/plugins/directory.html" rel="nofollow">Plugin directory</a>
+<ul dir="auto">
+<li><a href="https://llm.datasette.io/en/stable/plugins/directory.html#local-models" rel="nofollow">Local models</a></li>
+<li><a href="https://llm.datasette.io/en/stable/plugins/directory.html#remote-apis" rel="nofollow">Remote APIs</a></li>
+<li><a href="https://llm.datasette.io/en/stable/plugins/directory.html#tools" rel="nofollow">Tools</a></li>
+<li><a href="https://llm.datasette.io/en/stable/plugins/directory.html#fragments-and-template-loaders" rel="nofollow">Fragments and template loaders</a></li>
+<li><a href="https://llm.datasette.io/en/stable/plugins/directory.html#embedding-models" rel="nofollow">Embedding models</a></li>
+<li><a href="https://llm.datasette.io/en/stable/plugins/directory.html#extra-commands" rel="nofollow">Extra commands</a></li>
+<li><a href="https://llm.datasette.io/en/stable/plugins/directory.html#just-for-fun" rel="nofollow">Just for fun</a></li>
+</ul>
+</li>
+<li><a href="https://llm.datasette.io/en/stable/plugins/plugin-hooks.html" rel="nofollow">Plugin hooks</a>
+<ul dir="auto">
+<li><a href="https://llm.datasette.io/en/stable/plugins/plugin-hooks.html#register-commands-cli" rel="nofollow">register_commands(cli)</a></li>
+<li><a href="https://llm.datasette.io/en/stable/plugins/plugin-hooks.html#register-models-register" rel="nofollow">register_models(register)</a></li>
+<li><a href="https://llm.datasette.io/en/stable/plugins/plugin-hooks.html#register-embedding-models-register" rel="nofollow">register_embedding_models(register)</a></li>
+<li><a href="https://llm.datasette.io/en/stable/plugins/plugin-hooks.html#register-tools-register" rel="nofollow">register_tools(register)</a></li>
+<li><a href="https://llm.datasette.io/en/stable/plugins/plugin-hooks.html#register-template-loaders-register" rel="nofollow">register_template_loaders(register)</a></li>
+<li><a href="https://llm.datasette.io/en/stable/plugins/plugin-hooks.html#register-fragment-loaders-register" rel="nofollow">register_fragment_loaders(register)</a></li>
+</ul>
+</li>
+<li><a href="https://llm.datasette.io/en/stable/plugins/tutorial-model-plugin.html" rel="nofollow">Developing a model plugin</a>
+<ul dir="auto">
+<li><a href="https://llm.datasette.io/en/stable/plugins/tutorial-model-plugin.html#the-initial-structure-of-the-plugin" rel="nofollow">The initial structure of the plugin</a></li>
+<li><a href="https://llm.datasette.io/en/stable/plugins/tutorial-model-plugin.html#installing-your-plugin-to-try-it-out" rel="nofollow">Installing your plugin to try it out</a></li>
+<li><a href="https://llm.datasette.io/en/stable/plugins/tutorial-model-plugin.html#building-the-markov-chain" rel="nofollow">Building the Markov chain</a></li>
+<li><a href="https://llm.datasette.io/en/stable/plugins/tutorial-model-plugin.html#executing-the-markov-chain" rel="nofollow">Executing the Markov chain</a></li>
+<li><a href="https://llm.datasette.io/en/stable/plugins/tutorial-model-plugin.html#adding-that-to-the-plugin" rel="nofollow">Adding that to the plugin</a></li>
+<li><a href="https://llm.datasette.io/en/stable/plugins/tutorial-model-plugin.html#understanding-execute" rel="nofollow">Understanding execute()</a></li>
+<li><a href="https://llm.datasette.io/en/stable/plugins/tutorial-model-plugin.html#prompts-and-responses-are-logged-to-the-database" rel="nofollow">Prompts and responses are logged to the database</a></li>
+<li><a href="https://llm.datasette.io/en/stable/plugins/tutorial-model-plugin.html#adding-options" rel="nofollow">Adding options</a></li>
+<li><a href="https://llm.datasette.io/en/stable/plugins/tutorial-model-plugin.html#distributing-your-plugin" rel="nofollow">Distributing your plugin</a></li>
+<li><a href="https://llm.datasette.io/en/stable/plugins/tutorial-model-plugin.html#github-repositories" rel="nofollow">GitHub repositories</a></li>
+<li><a href="https://llm.datasette.io/en/stable/plugins/tutorial-model-plugin.html#publishing-plugins-to-pypi" rel="nofollow">Publishing plugins to PyPI</a></li>
+<li><a href="https://llm.datasette.io/en/stable/plugins/tutorial-model-plugin.html#adding-metadata" rel="nofollow">Adding metadata</a></li>
+<li><a href="https://llm.datasette.io/en/stable/plugins/tutorial-model-plugin.html#what-to-do-if-it-breaks" rel="nofollow">What to do if it breaks</a></li>
+</ul>
+</li>
+<li><a href="https://llm.datasette.io/en/stable/plugins/advanced-model-plugins.html" rel="nofollow">Advanced model plugins</a>
+<ul dir="auto">
+<li><a href="https://llm.datasette.io/en/stable/plugins/advanced-model-plugins.html#tip-lazily-load-expensive-dependencies" rel="nofollow">Tip: lazily load expensive dependencies</a></li>
+<li><a href="https://llm.datasette.io/en/stable/plugins/advanced-model-plugins.html#models-that-accept-api-keys" rel="nofollow">Models that accept API keys</a></li>
+<li><a href="https://llm.datasette.io/en/stable/plugins/advanced-model-plugins.html#async-models" rel="nofollow">Async models</a></li>
+<li><a href="https://llm.datasette.io/en/stable/plugins/advanced-model-plugins.html#supporting-schemas" rel="nofollow">Supporting schemas</a></li>
+<li><a href="https://llm.datasette.io/en/stable/plugins/advanced-model-plugins.html#supporting-tools" rel="nofollow">Supporting tools</a></li>
+<li><a href="https://llm.datasette.io/en/stable/plugins/advanced-model-plugins.html#attachments-for-multi-modal-models" rel="nofollow">Attachments for multi-modal models</a></li>
+<li><a href="https://llm.datasette.io/en/stable/plugins/advanced-model-plugins.html#tracking-token-usage" rel="nofollow">Tracking token usage</a></li>
+<li><a href="https://llm.datasette.io/en/stable/plugins/advanced-model-plugins.html#tracking-resolved-model-names" rel="nofollow">Tracking resolved model names</a></li>
+<li><a href="https://llm.datasette.io/en/stable/plugins/advanced-model-plugins.html#llm-raise-errors" rel="nofollow">LLM_RAISE_ERRORS</a></li>
+</ul>
+</li>
+<li><a href="https://llm.datasette.io/en/stable/plugins/plugin-utilities.html" rel="nofollow">Utility functions for plugins</a>
+<ul dir="auto">
+<li><a href="https://llm.datasette.io/en/stable/plugins/plugin-utilities.html#llm-get-key" rel="nofollow">llm.get_key()</a></li>
+<li><a href="https://llm.datasette.io/en/stable/plugins/plugin-utilities.html#llm-user-dir" rel="nofollow">llm.user_dir()</a></li>
+<li><a href="https://llm.datasette.io/en/stable/plugins/plugin-utilities.html#llm-modelerror" rel="nofollow">llm.ModelError</a></li>
+<li><a href="https://llm.datasette.io/en/stable/plugins/plugin-utilities.html#response-fake" rel="nofollow">Response.fake()</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p dir="auto"><a href="https://llm.datasette.io/en/stable/python-api.html" rel="nofollow">Python API</a></p>
+<ul dir="auto">
+<li><a href="https://llm.datasette.io/en/stable/python-api.html#basic-prompt-execution" rel="nofollow">Basic prompt execution</a>
+<ul dir="auto">
+<li><a href="https://llm.datasette.io/en/stable/python-api.html#system-prompts" rel="nofollow">System prompts</a></li>
+<li><a href="https://llm.datasette.io/en/stable/python-api.html#attachments" rel="nofollow">Attachments</a></li>
+<li><a href="https://llm.datasette.io/en/stable/python-api.html#tools" rel="nofollow">Tools</a></li>
+<li><a href="https://llm.datasette.io/en/stable/python-api.html#schemas" rel="nofollow">Schemas</a></li>
+<li><a href="https://llm.datasette.io/en/stable/python-api.html#fragments" rel="nofollow">Fragments</a></li>
+<li><a href="https://llm.datasette.io/en/stable/python-api.html#model-options" rel="nofollow">Model options</a></li>
+<li><a href="https://llm.datasette.io/en/stable/python-api.html#passing-an-api-key" rel="nofollow">Passing an API key</a></li>
+<li><a href="https://llm.datasette.io/en/stable/python-api.html#models-from-plugins" rel="nofollow">Models from plugins</a></li>
+<li><a href="https://llm.datasette.io/en/stable/python-api.html#accessing-the-underlying-json" rel="nofollow">Accessing the underlying JSON</a></li>
+<li><a href="https://llm.datasette.io/en/stable/python-api.html#token-usage" rel="nofollow">Token usage</a></li>
+<li><a href="https://llm.datasette.io/en/stable/python-api.html#streaming-responses" rel="nofollow">Streaming responses</a></li>
+</ul>
+</li>
+<li><a href="https://llm.datasette.io/en/stable/python-api.html#async-models" rel="nofollow">Async models</a>
+<ul dir="auto">
+<li><a href="https://llm.datasette.io/en/stable/python-api.html#tool-functions-can-be-sync-or-async" rel="nofollow">Tool functions can be sync or async</a></li>
+<li><a href="https://llm.datasette.io/en/stable/python-api.html#tool-use-for-async-models" rel="nofollow">Tool use for async models</a></li>
+</ul>
+</li>
+<li><a href="https://llm.datasette.io/en/stable/python-api.html#conversations" rel="nofollow">Conversations</a>
+<ul dir="auto">
+<li><a href="https://llm.datasette.io/en/stable/python-api.html#conversations-using-tools" rel="nofollow">Conversations using tools</a></li>
+</ul>
+</li>
+<li><a href="https://llm.datasette.io/en/stable/python-api.html#listing-models" rel="nofollow">Listing models</a></li>
+<li><a href="https://llm.datasette.io/en/stable/python-api.html#running-code-when-a-response-has-completed" rel="nofollow">Running code when a response has completed</a></li>
+<li><a href="https://llm.datasette.io/en/stable/python-api.html#other-functions" rel="nofollow">Other functions</a>
+<ul dir="auto">
+<li><a href="https://llm.datasette.io/en/stable/python-api.html#set-alias-alias-model-id" rel="nofollow">set_alias(alias, model_id)</a></li>
+<li><a href="https://llm.datasette.io/en/stable/python-api.html#remove-alias-alias" rel="nofollow">remove_alias(alias)</a></li>
+<li><a href="https://llm.datasette.io/en/stable/python-api.html#set-default-model-alias" rel="nofollow">set_default_model(alias)</a></li>
+<li><a href="https://llm.datasette.io/en/stable/python-api.html#get-default-model" rel="nofollow">get_default_model()</a></li>
+<li><a href="https://llm.datasette.io/en/stable/python-api.html#set-default-embedding-model-alias-and-get-default-embedding-model" rel="nofollow">set_default_embedding_model(alias) and get_default_embedding_model()</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p dir="auto"><a href="https://llm.datasette.io/en/stable/logging.html" rel="nofollow">Logging to SQLite</a></p>
+<ul dir="auto">
+<li><a href="https://llm.datasette.io/en/stable/logging.html#viewing-the-logs" rel="nofollow">Viewing the logs</a>
+<ul dir="auto">
+<li><a href="https://llm.datasette.io/en/stable/logging.html#s-short-mode" rel="nofollow">-s/–short mode</a></li>
+<li><a href="https://llm.datasette.io/en/stable/logging.html#logs-for-a-conversation" rel="nofollow">Logs for a conversation</a></li>
+<li><a href="https://llm.datasette.io/en/stable/logging.html#searching-the-logs" rel="nofollow">Searching the logs</a></li>
+<li><a href="https://llm.datasette.io/en/stable/logging.html#filtering-past-a-specific-id" rel="nofollow">Filtering past a specific ID</a></li>
+<li><a href="https://llm.datasette.io/en/stable/logging.html#filtering-by-model" rel="nofollow">Filtering by model</a></li>
+<li><a href="https://llm.datasette.io/en/stable/logging.html#filtering-by-prompts-that-used-specific-fragments" rel="nofollow">Filtering by prompts that used specific fragments</a></li>
+<li><a href="https://llm.datasette.io/en/stable/logging.html#filtering-by-prompts-that-used-specific-tools" rel="nofollow">Filtering by prompts that used specific tools</a></li>
+<li><a href="https://llm.datasette.io/en/stable/logging.html#browsing-data-collected-using-schemas" rel="nofollow">Browsing data collected using schemas</a></li>
+</ul>
+</li>
+<li><a href="https://llm.datasette.io/en/stable/logging.html#browsing-logs-using-datasette" rel="nofollow">Browsing logs using Datasette</a></li>
+<li><a href="https://llm.datasette.io/en/stable/logging.html#backing-up-your-database" rel="nofollow">Backing up your database</a></li>
+<li><a href="https://llm.datasette.io/en/stable/logging.html#sql-schema" rel="nofollow">SQL schema</a></li>
+</ul>
+</li>
+<li>
+<p dir="auto"><a href="https://llm.datasette.io/en/stable/related-tools.html" rel="nofollow">Related tools</a></p>
+<ul dir="auto">
+<li><a href="https://llm.datasette.io/en/stable/related-tools.html#strip-tags" rel="nofollow">strip-tags</a></li>
+<li><a href="https://llm.datasette.io/en/stable/related-tools.html#ttok" rel="nofollow">ttok</a></li>
+<li><a href="https://llm.datasette.io/en/stable/related-tools.html#symbex" rel="nofollow">Symbex</a></li>
+</ul>
+</li>
+<li>
+<p dir="auto"><a href="https://llm.datasette.io/en/stable/help.html" rel="nofollow">CLI reference</a></p>
+<ul dir="auto">
+<li><a href="https://llm.datasette.io/en/stable/help.html#llm-help" rel="nofollow">llm  –help</a>
+<ul dir="auto">
+<li><a href="https://llm.datasette.io/en/stable/help.html#llm-prompt-help" rel="nofollow">llm prompt –help</a></li>
+<li><a href="https://llm.datasette.io/en/stable/help.html#llm-chat-help" rel="nofollow">llm chat –help</a></li>
+<li><a href="https://llm.datasette.io/en/stable/help.html#llm-keys-help" rel="nofollow">llm keys –help</a></li>
+<li><a href="https://llm.datasette.io/en/stable/help.html#llm-logs-help" rel="nofollow">llm logs –help</a></li>
+<li><a href="https://llm.datasette.io/en/stable/help.html#llm-models-help" rel="nofollow">llm models –help</a></li>
+<li><a href="https://llm.datasette.io/en/stable/help.html#llm-templates-help" rel="nofollow">llm templates –help</a></li>
+<li><a href="https://llm.datasette.io/en/stable/help.html#llm-schemas-help" rel="nofollow">llm schemas –help</a></li>
+<li><a href="https://llm.datasette.io/en/stable/help.html#llm-tools-help" rel="nofollow">llm tools –help</a></li>
+<li><a href="https://llm.datasette.io/en/stable/help.html#llm-aliases-help" rel="nofollow">llm aliases –help</a></li>
+<li><a href="https://llm.datasette.io/en/stable/help.html#llm-fragments-help" rel="nofollow">llm fragments –help</a></li>
+<li><a href="https://llm.datasette.io/en/stable/help.html#llm-plugins-help" rel="nofollow">llm plugins –help</a></li>
+<li><a href="https://llm.datasette.io/en/stable/help.html#llm-install-help" rel="nofollow">llm install –help</a></li>
+<li><a href="https://llm.datasette.io/en/stable/help.html#llm-uninstall-help" rel="nofollow">llm uninstall –help</a></li>
+<li><a href="https://llm.datasette.io/en/stable/help.html#llm-embed-help" rel="nofollow">llm embed –help</a></li>
+<li><a href="https://llm.datasette.io/en/stable/help.html#llm-embed-multi-help" rel="nofollow">llm embed-multi –help</a></li>
+<li><a href="https://llm.datasette.io/en/stable/help.html#llm-similar-help" rel="nofollow">llm similar –help</a></li>
+<li><a href="https://llm.datasette.io/en/stable/help.html#llm-embed-models-help" rel="nofollow">llm embed-models –help</a></li>
+<li><a href="https://llm.datasette.io/en/stable/help.html#llm-collections-help" rel="nofollow">llm collections –help</a></li>
+<li><a href="https://llm.datasette.io/en/stable/help.html#llm-openai-help" rel="nofollow">llm openai –help</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p dir="auto"><a href="https://llm.datasette.io/en/stable/contributing.html" rel="nofollow">Contributing</a></p>
+<ul dir="auto">
+<li><a href="https://llm.datasette.io/en/stable/contributing.html#updating-recorded-http-api-interactions-and-associated-snapshots" rel="nofollow">Updating recorded HTTP API interactions and associated snapshots</a></li>
+<li><a href="https://llm.datasette.io/en/stable/contributing.html#debugging-tricks" rel="nofollow">Debugging tricks</a></li>
+<li><a href="https://llm.datasette.io/en/stable/contributing.html#documentation" rel="nofollow">Documentation</a></li>
+<li><a href="https://llm.datasette.io/en/stable/contributing.html#release-process" rel="nofollow">Release process</a></li>
+</ul>
+</li>
+<li>
+<p dir="auto"><a href="https://llm.datasette.io/en/stable/changelog.html" rel="nofollow">Changelog</a></p>
+</li>
+</ul>
+
 </article></div>

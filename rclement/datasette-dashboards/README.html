@@ -1,0 +1,546 @@
+<div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">datasette-dashboards</h1><a id="user-content-datasette-dashboards" class="anchor" aria-label="Permalink: datasette-dashboards" href="#datasette-dashboards"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<blockquote>
+<p dir="auto">Datasette plugin providing data dashboards from metadata</p>
+</blockquote>
+<p dir="auto"><a href="https://pypi.org/project/datasette-dashboards/" rel="nofollow"><img src="https://img.shields.io/pypi/v/datasette-dashboards.svg" alt="PyPI" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/1d2cb25117bd2c3357b55b9b4ff8a2d4d91b937bf5662d5dee0fd8b662a67953/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f6461746173657474652d64617368626f617264732e737667"></a>
+<a href="https://github.com/rclement/datasette-dashboards/actions/workflows/ci-cd.yml"><img src="https://github.com/rclement/datasette-dashboards/actions/workflows/ci-cd.yml/badge.svg" alt="CI/CD" style="max-width: 100%;"></a>
+<a href="https://codecov.io/gh/rclement/datasette-dashboards" rel="nofollow"><img src="https://img.shields.io/codecov/c/github/rclement/datasette-dashboards" alt="Coverage Status" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/d2e4654a69233d5dd3fdadc7927a3eb94bb0c6383e22d3c09008d5e383516fed/68747470733a2f2f696d672e736869656c64732e696f2f636f6465636f762f632f6769746875622f72636c656d656e742f6461746173657474652d64617368626f61726473"></a>
+<a href="https://github.com/rclement/datasette-dashboards/blob/master/LICENSE"><img src="https://img.shields.io/github/license/rclement/datasette-dashboards" alt="License" style="max-width: 100%;" data-camo-src="https://camo.githubusercontent.com/7421741095dde43a76368f96e54864d1990e04d83639ddc245bb9573ae8d1b7a/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f6c6963656e73652f72636c656d656e742f6461746173657474652d64617368626f61726473"></a></p>
+<p dir="auto">Try out a live demo at <a href="https://datasette-dashboards-demo.vercel.app/-/dashboards" rel="nofollow">https://datasette-dashboards-demo.vercel.app</a></p>
+<p dir="auto"><strong>WARNING</strong>: this plugin is still experimental and not ready for production.
+Some breaking changes might happen between releases before reaching a stable version.
+Use it at your own risks!</p>
+<p dir="auto"><a target="_blank" rel="noopener noreferrer nofollow" href="https://raw.githubusercontent.com/rclement/datasette-dashboards/master/demo/datasette-dashboards-demo.png"><img src="https://raw.githubusercontent.com/rclement/datasette-dashboards/master/demo/datasette-dashboards-demo.png" alt="Datasette Dashboards Demo" style="max-width: 100%;"></a></p>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Installation</h2><a id="user-content-installation" class="anchor" aria-label="Permalink: Installation" href="#installation"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Install this plugin in the same environment as Datasette:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="$ datasette install datasette-dashboards"><pre>$ datasette install datasette-dashboards</pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Usage</h2><a id="user-content-usage" class="anchor" aria-label="Permalink: Usage" href="#usage"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Define dashboards within <code>metadata.yml</code> / <code>metadata.json</code>:</p>
+<div class="highlight highlight-source-yaml notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="plugins:
+  datasette-dashboards:
+    my-dashboard:
+      title: My Dashboard
+      description: Showing some nice metrics
+      layout:
+        - [analysis-note, events-count]
+        - [analysis-note, events-source]
+      filters:
+        date_start:
+          name: Date Start
+          type: date
+          default: "2021-01-01"
+        date_end:
+          name: Date End
+          type: date
+        category:
+          name: My Category
+          type: select
+          options: [Option 1, Option 2, Option 3]
+        dynamic_category:
+          name: My Dynamic Category
+          type: select
+          db: jobs
+          query: SELECT region FROM jobs ORDER BY region ASC
+      charts:
+        analysis-note:
+          library: markdown
+          display: |-
+            # Analysis notes
+            > A quick rundown of events statistics and KPIs
+
+        events-count:
+          title: Total number of events
+          db: jobs
+          query: SELECT count(*) as count FROM events
+          library: metric
+          display:
+            field: count
+            prefix:
+            suffix:
+
+        events-source:
+          title: Number of events by source
+          db: jobs
+          query: SELECT source, count(*) as count FROM events WHERE TRUE [[ AND date >= date(:date_start) ]] [[ AND date <= date(:date_end) ]] GROUP BY source ORDER BY count DESC
+          library: vega-lite
+          display:
+            mark: { type: arc, tooltip: true }
+            encoding:
+              color: { field: source, type: nominal }
+              theta: { field: count, type: quantitative }"><pre><span class="pl-ent">plugins</span>:
+  <span class="pl-ent">datasette-dashboards</span>:
+    <span class="pl-ent">my-dashboard</span>:
+      <span class="pl-ent">title</span>: <span class="pl-s">My Dashboard</span>
+      <span class="pl-ent">description</span>: <span class="pl-s">Showing some nice metrics</span>
+      <span class="pl-ent">layout</span>:
+        - <span class="pl-s">[analysis-note, events-count]</span>
+        - <span class="pl-s">[analysis-note, events-source]</span>
+      <span class="pl-ent">filters</span>:
+        <span class="pl-ent">date_start</span>:
+          <span class="pl-ent">name</span>: <span class="pl-s">Date Start</span>
+          <span class="pl-ent">type</span>: <span class="pl-s">date</span>
+          <span class="pl-ent">default</span>: <span class="pl-s"><span class="pl-pds">"</span>2021-01-01<span class="pl-pds">"</span></span>
+        <span class="pl-ent">date_end</span>:
+          <span class="pl-ent">name</span>: <span class="pl-s">Date End</span>
+          <span class="pl-ent">type</span>: <span class="pl-s">date</span>
+        <span class="pl-ent">category</span>:
+          <span class="pl-ent">name</span>: <span class="pl-s">My Category</span>
+          <span class="pl-ent">type</span>: <span class="pl-s">select</span>
+          <span class="pl-ent">options</span>: <span class="pl-s">[Option 1, Option 2, Option 3]</span>
+        <span class="pl-ent">dynamic_category</span>:
+          <span class="pl-ent">name</span>: <span class="pl-s">My Dynamic Category</span>
+          <span class="pl-ent">type</span>: <span class="pl-s">select</span>
+          <span class="pl-ent">db</span>: <span class="pl-s">jobs</span>
+          <span class="pl-ent">query</span>: <span class="pl-s">SELECT region FROM jobs ORDER BY region ASC</span>
+      <span class="pl-ent">charts</span>:
+        <span class="pl-ent">analysis-note</span>:
+          <span class="pl-ent">library</span>: <span class="pl-s">markdown</span>
+          <span class="pl-ent">display</span>: <span class="pl-s">|-</span>
+<span class="pl-s">            # Analysis notes</span>
+<span class="pl-s">            > A quick rundown of events statistics and KPIs</span>
+<span class="pl-s"></span>
+<span class="pl-s"></span>        <span class="pl-ent">events-count</span>:
+          <span class="pl-ent">title</span>: <span class="pl-s">Total number of events</span>
+          <span class="pl-ent">db</span>: <span class="pl-s">jobs</span>
+          <span class="pl-ent">query</span>: <span class="pl-s">SELECT count(*) as count FROM events</span>
+          <span class="pl-ent">library</span>: <span class="pl-s">metric</span>
+          <span class="pl-ent">display</span>:
+            <span class="pl-ent">field</span>: <span class="pl-s">count</span>
+            <span class="pl-ent">prefix</span>:
+            <span class="pl-ent">suffix</span>:
+
+        <span class="pl-ent">events-source</span>:
+          <span class="pl-ent">title</span>: <span class="pl-s">Number of events by source</span>
+          <span class="pl-ent">db</span>: <span class="pl-s">jobs</span>
+          <span class="pl-ent">query</span>: <span class="pl-s">SELECT source, count(*) as count FROM events WHERE TRUE [[ AND date >= date(:date_start) ]] [[ AND date <= date(:date_end) ]] GROUP BY source ORDER BY count DESC</span>
+          <span class="pl-ent">library</span>: <span class="pl-s">vega-lite</span>
+          <span class="pl-ent">display</span>:
+            <span class="pl-ent">mark</span>: <span class="pl-s">{ type: arc, tooltip: true }</span>
+            <span class="pl-ent">encoding</span>:
+              <span class="pl-ent">color</span>: <span class="pl-s">{ field: source, type: nominal }</span>
+              <span class="pl-ent">theta</span>: <span class="pl-s">{ field: count, type: quantitative }</span></pre></div>
+<p dir="auto">A new menu entry is now available, pointing at <code>/-/dashboards</code> to access all defined dashboards.</p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Properties</h3><a id="user-content-properties" class="anchor" aria-label="Permalink: Properties" href="#properties"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Dashboard properties:</p>
+<markdown-accessiblity-table><table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>title</code></td>
+<td><code>string</code></td>
+<td>Dashboard title</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td><code>string</code></td>
+<td>Dashboard description</td>
+</tr>
+<tr>
+<td><code>settings</code></td>
+<td><code>object</code></td>
+<td>Dashboard settings</td>
+</tr>
+<tr>
+<td><code>layout</code></td>
+<td><code>array</code></td>
+<td>Dashboard layout</td>
+</tr>
+<tr>
+<td><code>filters</code></td>
+<td><code>object</code></td>
+<td>Dashboard filters</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p dir="auto">Dashboard settings:</p>
+<markdown-accessiblity-table><table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>allow_fullscreen</code></td>
+<td><code>bool</code></td>
+<td>Allow dashboard to be toggled in fullscreen  (default <code>false</code>)</td>
+</tr>
+<tr>
+<td><code>autorefresh</code></td>
+<td><code>number</code></td>
+<td>Auto-refresh timeout in minutes</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p dir="auto">Dashboard filters:</p>
+<markdown-accessiblity-table><table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>Filter display name</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Filter type (<code>text</code>, <code>date</code>, <code>number</code>, <code>select</code>)</td>
+</tr>
+<tr>
+<td><code>default</code></td>
+<td><code>string</code>, <code>number</code></td>
+<td>(optional) Filter default value</td>
+</tr>
+<tr>
+<td><code>min</code></td>
+<td><code>number</code></td>
+<td>(optional) Filter minimum value</td>
+</tr>
+<tr>
+<td><code>max</code></td>
+<td><code>number</code></td>
+<td>(optional) Filter maximum value</td>
+</tr>
+<tr>
+<td><code>step</code></td>
+<td><code>number</code></td>
+<td>(optional) Filter stepping value</td>
+</tr>
+<tr>
+<td><code>options</code></td>
+<td><code>list</code></td>
+<td>(optional) Select filter options list</td>
+</tr>
+<tr>
+<td><code>db</code></td>
+<td><code>string</code></td>
+<td>(optional) Dynamic select filter database</td>
+</tr>
+<tr>
+<td><code>query</code></td>
+<td><code>string</code></td>
+<td>(optional) Dynamic select filter query</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p dir="auto">Common chart properties for all chart types:</p>
+<markdown-accessiblity-table><table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>title</code></td>
+<td><code>string</code></td>
+<td>Chart title</td>
+</tr>
+<tr>
+<td><code>db</code></td>
+<td><code>string</code></td>
+<td>Database name against which to run the query</td>
+</tr>
+<tr>
+<td><code>query</code></td>
+<td><code>string</code></td>
+<td>SQL query to run and extract data from</td>
+</tr>
+<tr>
+<td><code>library</code></td>
+<td><code>string</code></td>
+<td>One of supported libraries: <code>vega</code>, <code>vega-lite</code>, <code>markdown</code>, <code>metric</code>, <code>table</code>, <code>map</code></td>
+</tr>
+<tr>
+<td><code>display</code></td>
+<td><code>object</code></td>
+<td>Chart display specification (depend on the used library)</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p dir="auto">To define SQL queries using dashboard filters:</p>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="SELECT * FROM mytable [[ WHERE col >= :my_filter ]]"><pre><span class="pl-k">SELECT</span> <span class="pl-k">*</span> <span class="pl-k">FROM</span> mytable [[ <span class="pl-k">WHERE</span> col <span class="pl-k">>=</span> :my_filter ]]</pre></div>
+<div class="highlight highlight-source-sql notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="SELECT * FROM mytable WHERE TRUE [[ AND col1 = :my_filter_1 ]] [[ AND col2 = :my_filter_2 ]]"><pre><span class="pl-k">SELECT</span> <span class="pl-k">*</span> <span class="pl-k">FROM</span> mytable <span class="pl-k">WHERE</span> TRUE [[ <span class="pl-k">AND</span> col1 <span class="pl-k">=</span> :my_filter_1 ]] [[ <span class="pl-k">AND</span> col2 <span class="pl-k">=</span> :my_filter_2 ]]</pre></div>
+<p dir="auto"><strong>Important notes:</strong></p>
+<ul dir="auto">
+<li>When a <code>select</code> filter has more than 100 options, the dropdown list will be automatically converted to a text filter with autocompletion</li>
+</ul>
+<div class="markdown-heading" dir="auto"><h4 class="heading-element" dir="auto">Vega properties</h4><a id="user-content-vega-properties" class="anchor" aria-label="Permalink: Vega properties" href="#vega-properties"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Available configuration for <code>vega</code> charts:</p>
+<markdown-accessiblity-table><table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>library</code></td>
+<td><code>string</code></td>
+<td>Must be set to <code>vega</code></td>
+</tr>
+<tr>
+<td><code>display</code></td>
+<td><code>object</code></td>
+<td>Vega specification object</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p dir="auto">Notes about the <code>display</code> property:</p>
+<ul dir="auto">
+<li>Requires a valid <a href="https://vega.github.io/vega/docs/" rel="nofollow">Vega specification object</a></li>
+<li>Some fields are pre-defined: <code>$schema</code>, <code>description</code>, <code>autosize</code>, <code>data</code>, <code>signals</code></li>
+<li>All fields are passed along as-is (overriding pre-defined fields if any)</li>
+<li>Only <code>mark</code> and <code>encoding</code> fields are required as the bare-minimum</li>
+</ul>
+<div class="markdown-heading" dir="auto"><h4 class="heading-element" dir="auto">Vega-Lite properties</h4><a id="user-content-vega-lite-properties" class="anchor" aria-label="Permalink: Vega-Lite properties" href="#vega-lite-properties"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Available configuration for <code>vega-lite</code> charts:</p>
+<markdown-accessiblity-table><table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>library</code></td>
+<td><code>string</code></td>
+<td>Must be set to <code>vega-lite</code></td>
+</tr>
+<tr>
+<td><code>display</code></td>
+<td><code>object</code></td>
+<td>Vega specification object</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p dir="auto">Notes about the <code>display</code> property:</p>
+<ul dir="auto">
+<li>Requires a valid <a href="https://vega.github.io/vega-lite/docs/" rel="nofollow">Vega-Lite specification object</a></li>
+<li>Some fields are pre-defined: <code>$schema</code>, <code>description</code>, <code>width</code>, <code>view</code>, <code>config</code>, <code>data</code></li>
+<li>All fields are passed along as-is (overriding pre-defined fields if any)</li>
+<li>Only <code>mark</code> and <code>encoding</code> fields are required as the bare-minimum</li>
+</ul>
+<div class="markdown-heading" dir="auto"><h4 class="heading-element" dir="auto">Markdown properties</h4><a id="user-content-markdown-properties" class="anchor" aria-label="Permalink: Markdown properties" href="#markdown-properties"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Available configuration for <code>markdown</code> chart:</p>
+<markdown-accessiblity-table><table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>library</code></td>
+<td><code>string</code></td>
+<td>Must be set to <code>markdown</code></td>
+</tr>
+<tr>
+<td><code>display</code></td>
+<td><code>string</code></td>
+<td>Multi-line string containing the Markdown content</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p dir="auto">Note :</p>
+<ul dir="auto">
+<li>Some common properties do not apply and can be omitted: <code>title</code>, <code>db</code>, <code>query</code></li>
+<li>Markdown rendering is done by <a href="https://datasette.io/plugins/datasette-render-markdown" rel="nofollow"><code>datasette-render-markdown</code></a></li>
+<li>To configure Markdown rendering, extensions can be enabled in <a href="https://datasette.io/plugins/datasette-render-markdown#user-content-markdown-extensions" rel="nofollow">metadata</a></li>
+</ul>
+<div class="markdown-heading" dir="auto"><h4 class="heading-element" dir="auto">Metric properties</h4><a id="user-content-metric-properties" class="anchor" aria-label="Permalink: Metric properties" href="#metric-properties"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Available configuration for <code>metric</code> chart:</p>
+<markdown-accessiblity-table><table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>library</code></td>
+<td><code>string</code></td>
+<td>Must be set to <code>metric</code></td>
+</tr>
+<tr>
+<td><code>display.field</code></td>
+<td><code>string</code></td>
+<td>Numerical field to be displayed as metric</td>
+</tr>
+<tr>
+<td><code>display.prefix</code></td>
+<td><code>string</code></td>
+<td>Prefix to be displayed before metric</td>
+</tr>
+<tr>
+<td><code>display.suffix</code></td>
+<td><code>string</code></td>
+<td>Prefix to be displayed after metric</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p dir="auto">Note:</p>
+<ul dir="auto">
+<li>The <code>display.field</code> must reference a single-numerical value from the SQL query
+(e.g. numerical <code>number</code> field in <code>SELECT count(*) as number FROM events</code>)</li>
+</ul>
+<div class="markdown-heading" dir="auto"><h4 class="heading-element" dir="auto">Table properties</h4><a id="user-content-table-properties" class="anchor" aria-label="Permalink: Table properties" href="#table-properties"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">There is no required configured in <code>display</code>, so you can either ignored or
+leave it empty for table charts.</p>
+<p dir="auto">Some advice for a nice table chart:</p>
+<ul dir="auto">
+<li>Set proper column names in the <code>SELECT</code> clause</li>
+<li>Limit the number of columns in the <code>SELECT</code> clause</li>
+<li>Limit the number of rows with the <code>LIMIT</code> clause</li>
+<li>Order the rows explicitely with the <code>ORDER BY</code> clause</li>
+<li>Use SQLite string concatenation operator (<code>||</code>) to format column data (for instance to include HTML markup!)</li>
+</ul>
+<div class="markdown-heading" dir="auto"><h4 class="heading-element" dir="auto">Map properties</h4><a id="user-content-map-properties" class="anchor" aria-label="Permalink: Map properties" href="#map-properties"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Available configuration for <code>map</code> chart:</p>
+<markdown-accessiblity-table><table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>library</code></td>
+<td><code>string</code></td>
+<td>Must be set to <code>map</code></td>
+</tr>
+<tr>
+<td><code>display.latitude_column</code></td>
+<td><code>string</code></td>
+<td>Name of the latitude column (default: <code>latitude</code>)</td>
+</tr>
+<tr>
+<td><code>display.longitude_column</code></td>
+<td><code>string</code></td>
+<td>Name of the latitude column (default: <code>longitude</code>)</td>
+</tr>
+<tr>
+<td><code>display.show_latlng_popup</code></td>
+<td><code>boolean</code></td>
+<td>Whether or not to display latitude and longitude values in popup (default: <code>false</code>)</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p dir="auto"><strong>Warning</strong>: do not try to load more than a thousand rows for a map at the risk of
+slugginess and being unreadable. Make sensible use of the <code>LIMIT</code> clause to reduce
+the number of items to display on the map.</p>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Dashboard layout</h3><a id="user-content-dashboard-layout" class="anchor" aria-label="Permalink: Dashboard layout" href="#dashboard-layout"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">The default dashboard layout will present two charts per row (one per row on mobile).
+To make use of custom dashboard layout using <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout" rel="nofollow">CSS Grid Layout</a>,
+define the <code>layout</code> array property as a grid / matrix:</p>
+<ul dir="auto">
+<li>Each entry represents a row of charts</li>
+<li>Each column is referring a chart by its property name</li>
+<li>An empty slot in the grid can be specified using the <code>.</code> (<em>full stop</em>) placeholder</li>
+</ul>
+<p dir="auto"><strong>WARNINGS</strong>:</p>
+<ul dir="auto">
+<li>All rows must specify the same number of columns</li>
+<li>All charts must be placed somewhere on the custom layout</li>
+</ul>
+<p dir="auto">Here is a simple 2x3 grid example with 4 different charts:</p>
+<div class="highlight highlight-source-yaml notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="layout:
+  - [chart1, chart2, chart3]
+  - [chart1, chart4, chart4]"><pre><span class="pl-ent">layout</span>:
+  - <span class="pl-s">[chart1, chart2, chart3]</span>
+  - <span class="pl-s">[chart1, chart4, chart4]</span></pre></div>
+<p dir="auto">Here is a more subtle example involving an empty spot at the end of the second row:</p>
+<div class="highlight highlight-source-yaml notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="layout:
+  - [chart1, chart2, chart3]
+  - [chart1, chart4, .]"><pre><span class="pl-ent">layout</span>:
+  - <span class="pl-s">[chart1, chart2, chart3]</span>
+  - <span class="pl-s">[chart1, chart4, .]</span></pre></div>
+<div class="markdown-heading" dir="auto"><h3 class="heading-element" dir="auto">Embedding dashboards and charts</h3><a id="user-content-embedding-dashboards-and-charts" class="anchor" aria-label="Permalink: Embedding dashboards and charts" href="#embedding-dashboards-and-charts"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Dashboards can be embedded within an HTML page using an <code>iframe</code> element:</p>
+<div class="highlight highlight-text-html-basic notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="<iframe
+  src="/-/dashboards/my-dashboard/embed?start_date=2023-01-01&end_date=2023-12-31"
+  frameborder="0"
+  width="100%"
+  height="600"
+  allowtransparency
+>
+</iframe>"><pre><span class="pl-kos"><</span><span class="pl-ent">iframe</span>
+  <span class="pl-c1">src</span>="<span class="pl-s">/-/dashboards/my-dashboard/embed?start_date=2023-01-01&end_date=2023-12-31</span>"
+  <span class="pl-c1">frameborder</span>="<span class="pl-s">0</span>"
+  <span class="pl-c1">width</span>="<span class="pl-s">100%</span>"
+  <span class="pl-c1">height</span>="<span class="pl-s">600</span>"
+  <span class="pl-c1">allowtransparency</span>
+<span class="pl-kos">></span>
+<span class="pl-kos"></</span><span class="pl-ent">iframe</span><span class="pl-kos">></span></pre></div>
+<p dir="auto">Same goes for charts:</p>
+<div class="highlight highlight-text-html-basic notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="<iframe
+  src="/-/dashboards/my-dashboard/my-chart/embed?start_date=2023-01-01&end_date=2023-12-31"
+  frameborder="0"
+  width="100%"
+  height="600"
+  allowtransparency
+>
+</iframe>"><pre><span class="pl-kos"><</span><span class="pl-ent">iframe</span>
+  <span class="pl-c1">src</span>="<span class="pl-s">/-/dashboards/my-dashboard/my-chart/embed?start_date=2023-01-01&end_date=2023-12-31</span>"
+  <span class="pl-c1">frameborder</span>="<span class="pl-s">0</span>"
+  <span class="pl-c1">width</span>="<span class="pl-s">100%</span>"
+  <span class="pl-c1">height</span>="<span class="pl-s">600</span>"
+  <span class="pl-c1">allowtransparency</span>
+<span class="pl-kos">></span>
+<span class="pl-kos"></</span><span class="pl-ent">iframe</span><span class="pl-kos">></span></pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Development</h2><a id="user-content-development" class="anchor" aria-label="Permalink: Development" href="#development"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">To set up this plugin locally, first checkout the code.
+Then create a new virtual environment and the required dependencies:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="poetry install
+poetry shell"><pre>poetry install
+poetry shell</pre></div>
+<p dir="auto">To run the QA suite:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="black --check datasette_dashboards tests
+flake8 datasette_dashboards tests
+mypy datasette_dashboards tests
+pytest -v --cov=datasette_dashboards --cov=tests --cov-branch --cov-report=term-missing tests"><pre>black --check datasette_dashboards tests
+flake8 datasette_dashboards tests
+mypy datasette_dashboards tests
+pytest -v --cov=datasette_dashboards --cov=tests --cov-branch --cov-report=term-missing tests</pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Updating JS dependencies</h2><a id="user-content-updating-js-dependencies" class="anchor" aria-label="Permalink: Updating JS dependencies" href="#updating-js-dependencies"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">External JS dependencies are tracked and bundled using NPM and <code>package.json</code> (<code>package-lock.json</code> is not needed here):</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="npm install --no-package-lock"><pre>npm install --no-package-lock</pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Demo</h2><a id="user-content-demo" class="anchor" aria-label="Permalink: Demo" href="#demo"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">With the developmnent environment setup, you can run the demo locally:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="datasette \
+  --metadata demo/metadata.yml \
+  --template-dir demo/templates \
+  demo/jobs.db"><pre>datasette \
+  --metadata demo/metadata.yml \
+  --template-dir demo/templates \
+  demo/jobs.db</pre></div>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">License</h2><a id="user-content-license" class="anchor" aria-label="Permalink: License" href="#license"><svg class="octicon octicon-link" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">Licensed under Apache License, Version 2.0</p>
+<p dir="auto">Copyright (c) 2021 - present Romain Clement</p>
+</article></div>
