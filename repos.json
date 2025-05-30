@@ -674,5 +674,129 @@
   {
     "repo": "simonw/llm",
     "pushed_at": "2025-05-28T15:02:37Z"
+  },
+  {
+    "repo": "simonw/strip-tags",
+    "pushed_at": "2025-02-28T21:53:34Z"
+  },
+  {
+    "repo": "simonw/ttok",
+    "pushed_at": "2024-05-02T23:37:54Z"
+  },
+  {
+    "repo": "datasette/datasette-write-ui",
+    "pushed_at": "2025-01-14T18:36:18Z"
+  },
+  {
+    "repo": "datasette/datasette-extract",
+    "pushed_at": "2025-04-17T17:02:08Z"
+  },
+  {
+    "repo": "datasette/datasette-visible-internal-db",
+    "pushed_at": "2023-08-30T22:49:10Z"
+  },
+  {
+    "repo": "simonw/datasette-llm-embed",
+    "pushed_at": "2024-03-17T22:15:00Z"
+  },
+  {
+    "repo": "datasette/datasette-sqlite-debug-authorizer",
+    "pushed_at": "2024-03-05T00:43:50Z"
+  },
+  {
+    "repo": "datasette/datasette-sqlite-authorizer",
+    "pushed_at": "2024-03-05T01:09:05Z"
+  },
+  {
+    "repo": "datasette/datasette-comments",
+    "pushed_at": "2025-04-21T18:55:26Z"
+  },
+  {
+    "repo": "datasette/datasette-plot",
+    "pushed_at": "2023-12-21T23:21:38Z"
+  },
+  {
+    "repo": "datasette/datasette-enrichments-jinja",
+    "pushed_at": "2023-12-06T20:10:09Z"
+  },
+  {
+    "repo": "datasette/datasette-enrichments-gpt",
+    "pushed_at": "2024-05-15T21:48:50Z"
+  },
+  {
+    "repo": "datasette/datasette-enrichments-opencage",
+    "pushed_at": "2024-02-16T03:31:34Z"
+  },
+  {
+    "repo": "datasette/datasette-enrichments-re2",
+    "pushed_at": "2023-11-30T02:12:47Z"
+  },
+  {
+    "repo": "datasette/datasette-chronicle",
+    "pushed_at": "2025-05-13T18:21:37Z"
+  },
+  {
+    "repo": "datasette/datasette-proxy-url",
+    "pushed_at": "2024-01-23T20:34:46Z"
+  },
+  {
+    "repo": "datasette/datasette-homepage-table",
+    "pushed_at": "2024-01-31T18:50:48Z"
+  },
+  {
+    "repo": "datasette/datasette-events-db",
+    "pushed_at": "2024-02-08T22:05:48Z"
+  },
+  {
+    "repo": "datasette/datasette-enrichments-quickjs",
+    "pushed_at": "2024-04-05T22:07:16Z"
+  },
+  {
+    "repo": "datasette/datasette-unsafe-actor-debug",
+    "pushed_at": "2024-02-18T20:20:13Z"
+  },
+  {
+    "repo": "datasette/datasette-events-forward",
+    "pushed_at": "2024-02-20T21:54:53Z"
+  },
+  {
+    "repo": "datasette/datasette-column-sum",
+    "pushed_at": "2024-03-01T04:12:55Z"
+  },
+  {
+    "repo": "datasette/datasette-tail",
+    "pushed_at": "2024-03-01T16:25:48Z"
+  },
+  {
+    "repo": "datasette/datasette-uptime",
+    "pushed_at": "2024-03-06T05:19:17Z"
+  },
+  {
+    "repo": "datasette/datasette-create-view",
+    "pushed_at": "2024-03-07T05:07:44Z"
+  },
+  {
+    "repo": "datasette/datasette-export-database",
+    "pushed_at": "2024-03-16T00:49:47Z"
+  },
+  {
+    "repo": "datasette/datasette-embeddings",
+    "pushed_at": "2024-11-15T21:29:24Z"
+  },
+  {
+    "repo": "datasette/datasette-query-assistant",
+    "pushed_at": "2025-05-01T19:18:25Z"
+  },
+  {
+    "repo": "datasette/datasette-import",
+    "pushed_at": "2024-09-04T05:38:05Z"
+  },
+  {
+    "repo": "datasette/datasette-secrets",
+    "pushed_at": "2024-04-27T01:20:07Z"
+  },
+  {
+    "repo": "datasette/datasette-checkbox",
+    "pushed_at": "2024-08-16T21:22:45Z"
   }
 ]
